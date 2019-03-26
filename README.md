@@ -2,14 +2,14 @@
 
 ## How to Use
 
-0. Cloning this repository
+### 0 Cloning this repository
 
 ```sh
 git clone https://github.com/Ikuyadeu/review_pattern_gen.git
 cd review_pattern_gen
 ```
 
-1. Preparing config file
+### 1 Preparing config file
 
 ```sh
 touch config
@@ -29,7 +29,7 @@ repo = Your Target GitHub Repository (e.g. tensorflow)
 lang = Your Target Language (e.g. Python)
 ```
 
-2. Collecting training data set
+### 2 Collecting training data set
 
 
 ```sh
@@ -41,7 +41,7 @@ Output:
 * Pull List (`pulls/owner_repo.csv`)
 * Change List (`changes/owner_repo_python.json`)
 
-3. Generating frequently appered patterns
+### 3 Generating frequently appered patterns
 
 ```sh
 python3 out_patterns.py
@@ -50,7 +50,7 @@ python3 out_patterns.py
 Output:
 * Pattern (`patterns/owner_repo_python.json`)
 
-4. (Option) Filter patterns
+### 4 (Option) Filter patterns
 
 If you want the pattern that has
 Frequency > 0.1%
