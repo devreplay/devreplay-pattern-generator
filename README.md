@@ -17,12 +17,11 @@ touch config
 
 and edit `config` file like berrow
 
-If your target `Python` repository name is `tensorflow/model`
-
+(If your target `Python` repository name is `tensorflow/model`)
 ```properties
 [GitHub]
 id = YourGitHubId
-password = YourGitHubPass
+password = YourGitHubPassword
 [Target]
 owner = Your Target GitHub Repository Owner (e.g. model)
 repo = Your Target GitHub Repository (e.g. tensorflow)
@@ -38,19 +37,19 @@ puthon3 collect_changes.py
 ```
 
 Output:
-* Pull List (`pulls/owner_repo.csv`)
-* Change List (`changes/owner_repo_python.json`)
+* Pull List (`pulls/{owner}_{repo}.csv`)
+* Change List (`changes/{owner}_{repo}_python.json`)
 
 ### 3 Generating frequently appered patterns
 
 ```sh
-python3 out_patterns.py
+python3 generate_rules.py
 ```
 
 Output:
-* Pattern (`patterns/owner_repo_python.json`)
+* Pattern (`rules/{owner}_{repo}_python.json`)
 
-### 4 (Option) Filter patterns
+<!-- ### 4 (Option) Filter patterns
 
 If you want the pattern that has
 Frequency > 0.1%
@@ -61,4 +60,4 @@ python3 filter_patterns.py owner repo 0.1 50
 ```
 
 Output
-* Pattern (`patterns/owner_repo_python_filtered.json`)
+* Pattern (`patterns/{owner}_{repo}_python_filtered.json`) -->
