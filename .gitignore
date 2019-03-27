@@ -1,11 +1,3 @@
-*.diff
-data/pulls/*.csv
-data/out/*.json
-data/orgs/diffs/*.json
-data/orgs/diffs/*/*.json
-data/pulls/*/*.csv
 *.pyc
-*.log
 .DS_Store
-*.json
 config
