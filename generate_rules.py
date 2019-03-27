@@ -13,21 +13,35 @@ INPUT_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
 OUTPUT_JSON_NAME = "data/rules/" + owner + "_" + repo + "_" + lang + ".json"
 
 
+def remove_dup_changes(changes_sets):
+    new_changes = []
+    current_pull = 0
+    for changes_set in changes_sets:
+        if current_pull == changes_set["number"] and\
+                changes_set["changes_set"] in new_changes:
+            continue
+        current_pull = changes_set["number"]
+        new_changes.append(changes_set["changes_set"])
+    return new_changes
+
+
 with open(INPUT_JSON_NAME, mode='r', encoding='utf-8') as f:
     changes_sets = load(f)
 
-changes = [x["changes_set"] for x in changes_sets]
+changes = remove_dup_changes(changes_sets)
 
 new_changes = []
 for tokens in changes:
     new_tokens = [x for x in tokens
                   if not x.endswith("\n") and not x.endswith(" ")]
-    if new_tokens != [] and new_tokens not in new_changes:
+    if new_tokens != []:
         new_changes.append(new_tokens)
 
-print("Start rule generation")
 ps = PrefixSpan(new_changes)
-freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
+print("Start rule generation")
+# freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
+freq_seqs = ps.frequent(minsup=5, closed=True)
+
 # freq_seqs = PrefixSpan_frequent(
 #     ps, minsup=int(len(new_changes) * 0.1), closed=True)
 freq_seqs = [x for x in freq_seqs
