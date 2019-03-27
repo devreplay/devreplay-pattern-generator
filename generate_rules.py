@@ -9,8 +9,8 @@ owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
 
-INPUT_JSON_NAME = "changes/" + owner + "_" + repo + "_" + lang + ".json"
-OUTPUT_JSON_NAME = "rules/" + owner + "_" + repo + "_" + lang + ".json"
+INPUT_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
+OUTPUT_JSON_NAME = "data/rules/" + owner + "_" + repo + "_" + lang + ".json"
 
 
 with open(INPUT_JSON_NAME, mode='r', encoding='utf-8') as f:

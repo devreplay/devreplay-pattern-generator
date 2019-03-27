@@ -99,7 +99,7 @@ def get_pulls(owner, repo_name):
 
 def main():
     results = get_pulls(owner, repo)
-    out_name = "changes/" + owner + "_" + repo + "_" + lang + "3.json"
+    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "3.json"
 
     with open(out_name, "w", encoding='utf-8') as f:
         dump(results, f, indent=1)

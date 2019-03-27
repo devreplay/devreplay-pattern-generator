@@ -40,8 +40,8 @@ puthon3 collect_changes.py
 ```
 
 Output:
-* Pull List (`pulls/{owner}_{repo}.csv`)
-* Change List (`changes/{owner}_{repo}_python.json`)
+* Pull List (`data/pulls/{owner}_{repo}.csv`)
+* Change List (`data/changes/{owner}_{repo}_python.json`)
 
 ### 3 Generating frequently appered patterns
 
@@ -52,7 +52,7 @@ python3 generate_rules.py
 ```
 
 Output:
-* Pattern (`rules/{owner}_{repo}_python.json`)
+* Pattern (`data/rules/{owner}_{repo}_python.json`)
 
 
 ### Sample

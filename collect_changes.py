@@ -32,7 +32,7 @@ def main():
     """
     changes_sets = get_project_changes(owner, repo, lang)
 
-    out_name = "changes/" + owner + "_" + repo + "_" + lang + ".json"
+    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
 
     with open(out_name, "w", encoding='utf-8') as f:
         dump(changes_sets, f, indent=1)
@@ -41,7 +41,7 @@ def main():
 def get_project_changes(owner, repo, lang, diffs_file=None):
     changes_sets = []
     if diffs_file is None:
-        diffs_file = "pulls/" + owner + "_" + repo + ".csv"
+        diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
     with open(diffs_file, "r", encoding="utf-8") as diffs:
         reader = DictReader(diffs)
         for diff_path in reader:
