@@ -1,14 +1,16 @@
 """
+Combined collect_pulls.py and collect_changes.py
+Get data at once
 Usage: python3 collect_pulls.py
 """
 import sys
 from csv import DictReader
 from json import dump
 from time import sleep
-from github import Github
 from configparser import ConfigParser
 from unidiff import PatchSet, errors
 from urllib.request import urlopen
+from github import Github
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
 

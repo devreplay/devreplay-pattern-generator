@@ -1,9 +1,5 @@
 # Generate Source Code Change Pattern from Review History
 
-This repository use other repository
-https://github.com/Ikuyadeu/CodeTokenizer
-
-
 ## How to Use
 
 ### 0 Cloning this repository
@@ -11,9 +7,12 @@ https://github.com/Ikuyadeu/CodeTokenizer
 ```sh
 git clone https://github.com/Ikuyadeu/review_pattern_gen.git
 cd review_pattern_gen
+pip3 install antlr4-python3-runtime, prefixspan, PyGithub
 ```
 
 ### 1 Preparing config file
+
+Making empty `config` file
 
 ```sh
 touch config
@@ -46,6 +45,8 @@ Output:
 
 ### 3 Generating frequently appered patterns
 
+This process needs long time
+
 ```sh
 python3 generate_rules.py
 ```
@@ -54,6 +55,17 @@ Output:
 * Pattern (`rules/{owner}_{repo}_python.json`)
 
 
+### Sample
+
+This repository put a part of `tensorflow/model`s' review data on each directory.
+Also, these data is shorter than correct data set.
+
+### Thanks
+
+I would like to thank the Support Center for Advanced Telecommunications (SCAT) Technology Research, Foundation. This system was supported by JSPS KAKENHI Grant Numbers JP18H03222, JP17H00731, JP15H02683, and JP18KT0013.
+
+Also, this repository use other repository
+https://github.com/Ikuyadeu/CodeTokenizer
 
 <!-- ### 4 (Option) Filter patterns
 

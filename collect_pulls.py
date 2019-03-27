@@ -2,7 +2,7 @@
 Usage: python3 collect_pulls.py
 """
 import sys
-import csv
+from csv import DictWriter
 from time import sleep
 from github import Github
 import configparser
@@ -26,7 +26,8 @@ sha_fields = [
     "merged_at",
     "merged_by",
     "1-n_url"
-    ]
+]
+
 
 def get_pulls(owner, repo_name):
     results = []
@@ -46,7 +47,8 @@ def get_pulls(owner, repo_name):
         first_commit_sha = commits[0].sha
         last_commit_sha = commits[-1].sha
         commits_len = len(list(commits))
-        one_n_diff_url = repo.compare(first_commit_sha, last_commit_sha).diff_url
+        one_n_diff_url = repo.compare(
+            first_commit_sha, last_commit_sha).diff_url
         results.append({
             "number": x.number,
             "commit_len": commits_len,
@@ -60,15 +62,19 @@ def get_pulls(owner, repo_name):
         })
     return results
 
+
 def out_pulls(path, results):
     with open(path, "w", encoding="utf-8") as commits:
-        writer = csv.DictWriter(commits, sha_fields)
+        writer = DictWriter(commits, sha_fields)
         writer.writeheader()
         writer.writerows(results)
 
+
 def main():
     results = get_pulls(owner, repo)
-    out_pulls("data/pulls/" + lang + "/"+ owner + "_" + repo + ".csv", results)
+    out_pulls("data/pulls/" + lang + "/" +
+              owner + "_" + repo + ".csv", results)
+
 
 if __name__ == '__main__':
     main()

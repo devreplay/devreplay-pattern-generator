@@ -7,16 +7,16 @@ Style misses list
 * Space or Tab
 * Don't changed AST
 """
-import csv
 import sys
-import json
+from csv import DictReader
+from json import dump
 from unidiff import PatchSet, errors
 from urllib.request import urlopen
+from configparser import ConfigParser
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
-import configparser
 
-config = configparser.ConfigParser()
+config = ConfigParser()
 config.read('config')
 user = config["GitHub"]["id"]
 password = config["GitHub"]["password"]
@@ -32,18 +32,18 @@ def main():
     """
     changes_sets = get_project_changes(owner, repo, lang)
 
-    out_name = "changes/" + owner + "_" + repo + "_" + lang + "2.json"
+    out_name = "changes/" + owner + "_" + repo + "_" + lang + ".json"
 
     with open(out_name, "w", encoding='utf-8') as f:
-        json.dump(changes_sets, f, indent=1)
+        dump(changes_sets, f, indent=1)
 
 
 def get_project_changes(owner, repo, lang, diffs_file=None):
     changes_sets = []
     if diffs_file is None:
-        diffs_file = "pulls/" + owner + "_" + repo + "_short.csv"
+        diffs_file = "pulls/" + owner + "_" + repo + ".csv"
     with open(diffs_file, "r", encoding="utf-8") as diffs:
-        reader = csv.DictReader(diffs)
+        reader = DictReader(diffs)
         for diff_path in reader:
             if diff_path["commit_len"] == "1":
                 continue
