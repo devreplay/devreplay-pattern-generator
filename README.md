@@ -1,5 +1,9 @@
 # Generate Source Code Change Pattern from Review History
 
+This repository use other repository
+https://github.com/Ikuyadeu/CodeTokenizer
+
+
 ## How to Use
 
 ### 0 Cloning this repository
@@ -48,6 +52,8 @@ python3 generate_rules.py
 
 Output:
 * Pattern (`rules/{owner}_{repo}_python.json`)
+
+
 
 <!-- ### 4 (Option) Filter patterns
 
