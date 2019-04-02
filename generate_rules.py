@@ -25,31 +25,40 @@ def remove_dup_changes(changes_sets):
     return new_changes
 
 
+def generate_rules(changes_sets, threshold):
+    ps = PrefixSpan(changes_sets)
+    print("Start rule generation")
+    # freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
+    freq_seqs = ps.frequent(minsup=threshold, closed=True)
+
+    # freq_seqs = PrefixSpan_frequent(
+    #     ps, minsup=int(len(new_changes) * 0.1), closed=True)
+    freq_seqs = [x for x in freq_seqs
+                 if any([y.startswith("+") for y in x[1]]) and
+                 any([y.startswith("-") for y in x[1]])
+                 ]
+
+    freq_seqs = sorted(freq_seqs, reverse=True)
+    return freq_seqs
+
+
 with open(INPUT_JSON_NAME, mode='r', encoding='utf-8') as f:
     changes_sets = load(f)
 
 changes = remove_dup_changes(changes_sets)
 
-new_changes = []
-for tokens in changes:
-    new_tokens = [x for x in tokens
-                  if not x.endswith("\n") and not x.endswith(" ")]
-    if new_tokens != []:
-        new_changes.append(new_tokens)
+# new_changes = []
+# for tokens in changes:
+#     new_tokens = [x for x in tokens
+#                   if not x.endswith("\n") and not x.endswith(" ")]
+#     if new_tokens != []:
+#         new_changes.append(new_tokens)
 
-ps = PrefixSpan(new_changes)
-print("Start rule generation")
-# freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
-freq_seqs = ps.frequent(minsup=5, closed=True)
+changes = [[x for x in tokens
+            if not x.endswith("\n") and not x.endswith(" ")]
+           for tokens in changes]
 
-# freq_seqs = PrefixSpan_frequent(
-#     ps, minsup=int(len(new_changes) * 0.1), closed=True)
-freq_seqs = [x for x in freq_seqs
-             if any([y.startswith("+") for y in x[1]]) and
-             any([y.startswith("-") for y in x[1]])
-             ]
-
-freq_seqs = sorted(freq_seqs, reverse=True)
+freq_seqs = generate_rules(changes, 7)
 
 with open(OUTPUT_JSON_NAME, mode='w', encoding='utf-8') as f:
     dump(freq_seqs, f, indent=1)
