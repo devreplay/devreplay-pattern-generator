@@ -26,8 +26,8 @@ and edit `config` file like berrow
 id = YourGitHubId
 password = YourGitHubPassword
 [Target]
-owner = Your Target GitHub Repository Owner (e.g. model)
-repo = Your Target GitHub Repository (e.g. tensorflow)
+owner = Your Target GitHub Repository Owner (e.g. tensorflow)
+repo = Your Target GitHub Repository (e.g. model)
 lang = Your Target Language (e.g. Python)
 ```
 
