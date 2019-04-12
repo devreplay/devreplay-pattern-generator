@@ -2,6 +2,7 @@ from json import dump, load
 from configparser import ConfigParser
 from difflib import ndiff
 from prefixspan import PrefixSpan_frequent, PrefixSpan
+import np
 
 config = ConfigParser()
 config.read('config')
@@ -41,7 +42,6 @@ def generate_rules(changes_sets, threshold):
     freq_seqs = sorted(freq_seqs, reverse=True)
     return freq_seqs
 
-
 with open(INPUT_JSON_NAME, mode='r', encoding='utf-8') as f:
     changes_sets = load(f)
 
@@ -60,5 +60,13 @@ changes = [[x for x in tokens
 
 freq_seqs = generate_rules(changes, 7)
 
+new_rules = []
+
+for i, rule in enumerate(freq_seqs):
+    count = rule[0]
+    code = rule[1]
+    trigger_tokens = list(np.hstack([x[2:].split(" ") if " " in x[2:] else [x[2:]] for x in code if not x.startswith("+")]))
+    new_rules.append({"count": count, "code": code, "trigger": trigger_tokens})
+
 with open(OUTPUT_JSON_NAME, mode='w', encoding='utf-8') as f:
-    dump(freq_seqs, f, indent=1)
+    dump(new_rules, f, indent=1)
