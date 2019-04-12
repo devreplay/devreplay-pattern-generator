@@ -7,7 +7,7 @@
 ```sh
 git clone https://github.com/Ikuyadeu/review_pattern_gen.git
 cd review_pattern_gen
-pip3 install antlr4-python3-runtime, prefixspan, PyGithub
+pip3 install antlr4-python3-runtime prefixspan PyGithub unidiff
 git clone https://github.com/Ikuyadeu/CodeTokenizer.git
 ```
 
@@ -27,8 +27,8 @@ and edit `config` file like berrow
 id = YourGitHubId
 password = YourGitHubPassword
 [Target]
-owner = Your Target GitHub Repository Owner (e.g. model)
-repo = Your Target GitHub Repository (e.g. tensorflow)
+owner = Your Target GitHub Repository Owner (e.g. tensorflow)
+repo = Your Target GitHub Repository (e.g. model)
 lang = Your Target Language (e.g. Python)
 ```
 
