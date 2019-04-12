@@ -7,7 +7,8 @@
 ```sh
 git clone https://github.com/Ikuyadeu/review_pattern_gen.git
 cd review_pattern_gen
-pip3 install antlr4-python3-runtime prefixspan PyGithub
+pip3 install antlr4-python3-runtime prefixspan PyGithub unidiff
+git clone https://github.com/Ikuyadeu/CodeTokenizer.git
 ```
 
 ### 1 Preparing config file
