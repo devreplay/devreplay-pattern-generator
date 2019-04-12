@@ -13,6 +13,18 @@ lang = config["Target"]["lang"]
 INPUT_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
 OUTPUT_JSON_NAME = "data/rules/" + owner + "_" + repo + "_" + lang + ".json"
 
+def remove_redundant_symbols(code):
+    tokens = []
+    symbol = ""
+    for token in code:
+        start = token[0]
+        if start == symbol:
+            tokens[-1] = tokens[-1] + " " + token[2:]
+        else:
+            symbol = start
+            tokens.append(token)
+
+    return tokens
 
 def remove_dup_changes(changes_sets):
     new_changes = []
@@ -66,6 +78,7 @@ for i, rule in enumerate(freq_seqs):
     count = rule[0]
     code = rule[1]
     trigger_tokens = list(np.hstack([x[2:].split(" ") if " " in x[2:] else [x[2:]] for x in code if not x.startswith("+")]))
+    code = remove_redundant_symbols(code)
     new_rules.append({"count": count, "code": code, "trigger": trigger_tokens})
 
 with open(OUTPUT_JSON_NAME, mode='w', encoding='utf-8') as f:
