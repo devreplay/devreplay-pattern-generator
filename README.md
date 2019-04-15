@@ -21,16 +21,18 @@ touch config
 
 and edit `config` file like berrow
 
-(If your target `Python` repository name is `tensorflow/model`)
+(If your target `Python` repository name is `tensorflow/models`)
 ```properties
 [GitHub]
 id = YourGitHubId
 password = YourGitHubPassword
 [Target]
 owner = Your Target GitHub Repository Owner (e.g. tensorflow)
-repo = Your Target GitHub Repository (e.g. model)
+repo = Your Target GitHub Repository (e.g. models)
 lang = Your Target Language (e.g. Python)
 ```
+
+Currently, 2FA and Personal Personal Access Token are not supported.
 
 ### 2 Collecting training data set
 
