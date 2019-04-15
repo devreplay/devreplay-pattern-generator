@@ -72,9 +72,7 @@ def out_pulls(path, results):
 
 def main():
     results = get_pulls(owner, repo)
-    out_pulls("data/pulls/" + lang + "/" +
-              owner + "_" + repo + ".csv", results)
-
+    out_pulls("data/pulls/" + owner + "_" + repo + ".csv", results)
 
 if __name__ == '__main__':
     main()
