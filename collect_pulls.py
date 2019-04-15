@@ -47,8 +47,10 @@ def get_pulls(owner, repo_name):
         first_commit_sha = commits[0].sha
         last_commit_sha = commits[-1].sha
         commits_len = len(list(commits))
-        one_n_diff_url = repo.compare(
-            first_commit_sha, last_commit_sha).diff_url
+        # one_n_diff_url = repo.compare(
+        #     first_commit_sha, last_commit_sha).diff_url
+        one_n_diff_url = make_diff_url(first_commit_sha, last_commit_sha)
+        
         results.append({
             "number": x.number,
             "commit_len": commits_len,
@@ -69,6 +71,11 @@ def out_pulls(path, results):
         writer.writeheader()
         writer.writerows(results)
 
+def make_diff_url(base, after):
+    return "https://github.com/" +\
+        owner + "/" +\
+        repo + "/compare/" +\
+        base + "..." + after + ".diff"
 
 def main():
     results = get_pulls(owner, repo)
