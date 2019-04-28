@@ -2,7 +2,7 @@ from json import dump, load
 from configparser import ConfigParser
 from difflib import ndiff
 from prefixspan import PrefixSpan_frequent, PrefixSpan
-import np
+import numpy as np
 
 config = ConfigParser()
 config.read('config')

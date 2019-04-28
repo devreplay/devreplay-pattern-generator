@@ -57,6 +57,14 @@ python3 generate_rules.py
 Output:
 * Pattern (`data/rules/{owner}_{repo}_python.json`)
 
+### 4 Evaluating detected patterns
+
+```sh
+python3 evaluated_rules.py
+```
+
+Output:
+* Pattern (`data/rules/{owner}_{repo}_python_evaluated.json`)
 
 ### Sample
 
