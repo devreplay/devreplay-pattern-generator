@@ -30,6 +30,8 @@ password = YourGitHubPassword
 owner = Your Target GitHub Repository Owner (e.g. tensorflow)
 repo = Your Target GitHub Repository (e.g. models)
 lang = Your Target Language (e.g. Python)
+[Rule]
+threshold = Rule threshold (e.g. 2, it means all repeated changes are rule)
 ```
 
 Currently, 2FA and Personal Personal Access Token are not supported.
@@ -39,7 +41,7 @@ Currently, 2FA and Personal Personal Access Token are not supported.
 
 ```sh
 python3 collect_pulls.py
-puthon3 collect_changes.py
+python3 collect_changes.py
 ```
 
 Output:

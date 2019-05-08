@@ -9,6 +9,7 @@ config.read('config')
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
+threshold = int(config["Rule"]["threshold"])
 
 INPUT_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
 OUTPUT_JSON_NAME = "data/rules/" + owner + "_" + repo + "_" + lang + ".json"
@@ -70,7 +71,7 @@ changes = [[x for x in tokens
             if not x.endswith("\n") and not x.endswith(" ")]
            for tokens in changes]
 
-freq_seqs = generate_rules(changes, 7)
+freq_seqs = generate_rules(changes, threshold)
 
 new_rules = []
 
