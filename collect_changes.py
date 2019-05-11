@@ -11,7 +11,7 @@ import sys
 from csv import DictReader
 from json import dump
 from unidiff import PatchSet, errors
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from configparser import ConfigParser
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
@@ -56,12 +56,26 @@ def get_project_changes(owner, repo, lang, diffs_file=None):
 
 def curl_diffs(diff_path):
     changes_sets = []
-    try:
-        url_diff = urlopen(diff_path["1-n_url"])
-        diffs = PatchSet(url_diff, encoding="utf-8")
-    except (UnicodeDecodeError, errors.UnidiffParseError):
-        print("UnicodeDecodeError:" + str(diff_path))
-        return []
+
+    if "Token" in config["GitHub"]:
+        token = config["GitHub"]["Token"]
+        diff_url = "https://api.github.com/repos/" + owner + "/" + repo + "/compare/" + diff_path["first_commit_sha"] + "..." + diff_path["merge_commit_sha"]
+        request = Request(diff_url)
+        request.add_header("Authorization", "token %s" % token)
+        request.add_header("Accept", "application/vnd.github.v3.diff")
+        try:
+            url_diff = urlopen(request)
+            diffs = PatchSet(url_diff, encoding="utf-8")
+        except (UnicodeDecodeError, errors.UnidiffParseError):
+            print("UnicodeDecodeError:" + str(diff_path))
+            return []
+    else:
+        try:
+            url_diff = urlopen(diff_path["1-n_url"])
+            diffs = PatchSet(url_diff, encoding="utf-8")
+        except (UnicodeDecodeError, errors.UnidiffParseError):
+            print("UnicodeDecodeError:" + str(diff_path))
+            return []
 
     filtered_diffs = [x for x in diffs
                       if x.is_modified_file

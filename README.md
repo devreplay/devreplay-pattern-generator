@@ -26,6 +26,7 @@ and edit `config` file like berrow
 [GitHub]
 id = YourGitHubId
 password = YourGitHubPassword
+token = (**option if you will collect from private repo)YourGitHubToken
 [Target]
 owner = Your Target GitHub Repository Owner (e.g. tensorflow)
 repo = Your Target GitHub Repository (e.g. models)
@@ -33,8 +34,7 @@ lang = Your Target Language (e.g. Python)
 [Rule]
 threshold = Rule threshold (e.g. 2, it means all repeated changes are rule)
 ```
-
-Currently, 2FA and Personal Personal Access Token are not supported.
+**GitHub token can be generated from https://github.com/settings/tokens)
 
 ### 2 Collecting training data set
 
@@ -80,15 +80,3 @@ I would like to thank the Support Center for Advanced Telecommunications (SCAT) 
 Also, this repository use other repository
 https://github.com/Ikuyadeu/CodeTokenizer
 
-<!-- ### 4 (Option) Filter patterns
-
-If you want the pattern that has
-Frequency > 0.1%
-Accuracy > 50%
-
-```sh
-python3 filter_patterns.py owner repo 0.1 50
-```
-
-Output
-* Pattern (`patterns/{owner}_{repo}_python_filtered.json`) -->
