@@ -2,7 +2,7 @@ from json import dump, load
 from configparser import ConfigParser
 from difflib import ndiff
 from prefixspan import PrefixSpan_frequent, PrefixSpan
-import numpy as np
+from functools import reduce
 
 config = ConfigParser()
 config.read('config')
@@ -78,7 +78,7 @@ new_rules = []
 for i, rule in enumerate(freq_seqs):
     count = rule[0]
     code = rule[1]
-    trigger_tokens = list(np.hstack([x[2:].split(" ") if " " in x[2:] else [x[2:]] for x in code if not x.startswith("+")]))
+    trigger_tokens = reduce(lambda x,y :x+y ,[x[2:].split(" ") if " " in x[2:] else [x[2:]] for x in code if not x.startswith("+")])
     code = remove_redundant_symbols(code)
     new_rules.append({"count": count, "code": code, "trigger": trigger_tokens})
 
