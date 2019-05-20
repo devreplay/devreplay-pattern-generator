@@ -9,13 +9,14 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('config')
-user = config["GitHub"]["id"]
-password = config["GitHub"]["password"]
+user = config["GitHub"].get("id")
+password = config["GitHub"].get("password")
+token = config["GitHub"].get("token")
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
 
-g = Github(user, password)
+g = Github(user, password) if token is None else Github(token)
 sha_fields = [
     "number",
     "commit_len",
@@ -36,6 +37,7 @@ def get_pulls(owner, repo_name):
     pulls = repo.get_pulls(state='close', sort='created', base='master')
 
     for x in pulls:
+        sys.stdout.write("\rProcessing... : %s/%s#%d" % (owner, repo_name, x.number))
         if not x.merged:
             continue
         ratelimit = g.get_rate_limit().core.remaining
