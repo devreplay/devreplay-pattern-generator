@@ -18,8 +18,6 @@ from lang_extentions import lang_extentions
 
 config = ConfigParser()
 config.read('config')
-user = config["GitHub"]["id"]
-password = config["GitHub"]["password"]
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
