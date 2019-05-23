@@ -1,7 +1,7 @@
 from json import dump, load
 from configparser import ConfigParser
 from difflib import ndiff
-from prefixspan import PrefixSpan_frequent, PrefixSpan
+from prefixspan import PrefixSpan_frequent, PrefixSpan_topk,PrefixSpan
 from functools import reduce
 
 config = ConfigParser()
@@ -9,6 +9,7 @@ config.read('config')
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
+rule_method = config["Rule"]["frequent_or_topk"]
 threshold = int(config["Rule"]["threshold"])
 
 INPUT_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
@@ -43,10 +44,13 @@ def generate_rules(changes_sets, threshold):
     ps = PrefixSpan(changes_sets)
     print("Start rule generation")
     # freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
-    freq_seqs = ps.frequent(minsup=threshold, closed=True)
-
-    # freq_seqs = PrefixSpan_frequent(
-    #     ps, minsup=int(len(new_changes) * 0.1), closed=True)
+    if rule_method == "frequent":
+        freq_seqs = PrefixSpan_frequent(ps, minsup=threshold, closed=True)
+    elif rule_method == "topk":
+        freq_seqs = PrefixSpan_topk(ps, k=threshold, closed=True)
+    else:
+        freq_seqs = PrefixSpan_frequent(ps, minsup=threshold, closed=True)
+    
     freq_seqs = [x for x in freq_seqs
                  if any([y.startswith("+") for y in x[1]]) and
                  any([y.startswith("-") for y in x[1]])
