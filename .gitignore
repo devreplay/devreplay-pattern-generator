@@ -1,3 +1,12 @@
 *.pyc
 .DS_Store
 config
+/data
+!/data/changes/tensorflow_models_Python.json
+!/data/changes/twbs_bootstrap-sass_Ruby.json
+!/data/pulls/tensorflow_models.csv
+!/data/pulls/tensorflow_models_short.csv
+!/data/pulls/twbs_bootstrap-sass.csv
+!/data/rules/tensorflow_models_Python.json
+!/data/rules/tensorflow_models_Python_evaluated.json
+!/data/rules/twbs_bootstrap-sass_Ruby.json
