@@ -3,7 +3,7 @@ Usage: python3 collect_pulls.py
 """
 import configparser
 
-from review_pattern_gen.pulls_collector import PullsCollector
+from collector.pulls_collector import PullsCollector
 
 config = configparser.ConfigParser()
 config.read('config')
