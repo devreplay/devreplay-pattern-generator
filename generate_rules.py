@@ -44,7 +44,7 @@ def generate_rules(changes_sets, threshold):
     print("Start rule generation")
     # freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
     rule_len = 0
-    while rule_len == 0 or threshold!=0:
+    while rule_len == 0 and threshold>0:
         if rule_method == "frequent":
             freq_seqs = PrefixSpan_frequent(ps, minsup=threshold, closed=True)
         elif rule_method == "topk":
@@ -53,9 +53,7 @@ def generate_rules(changes_sets, threshold):
             freq_seqs = PrefixSpan_frequent(ps, minsup=threshold, closed=True)
         
         freq_seqs = [x for x in freq_seqs
-                    if any([y.startswith("+") for y in x[1]]) and
-                    any([y.startswith("-") for y in x[1]])
-                    ]
+                    if any([y.startswith("*") for y in x[1]])]
         rule_len = len(freq_seqs)
         if rule_method == "frequent":
             print("Fix threshold " + str(threshold) + " to " + str(threshold / 2))
@@ -94,10 +92,8 @@ for threshold in thresholds:
     for i, rule in enumerate(freq_seqs):
         count = rule[0]
         code = rule[1]
-        trigger_tokens = reduce(lambda x,y :x+y ,[x[2:].split(" ") 
-        if " " in x[2:] else [x[2:]] for x in code if not x.startswith("+")])
         code = remove_redundant_symbols(code)
-        new_rules.append({"count": count, "code": code, "trigger": trigger_tokens})
+        new_rules.append({"count": count, "code": code})
 
     with open(OUTPUT_JSON_NAME, mode='w', encoding='utf-8') as f:
         dump(new_rules, f, indent=1)

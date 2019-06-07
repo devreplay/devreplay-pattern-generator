@@ -95,7 +95,7 @@ def curl_diffs(diff_path):
                 "merged_by": diff_path["merged_by"],
                 "1-n_url": diff_path["1-n_url"],
                 "file_path": diff.path,
-                "changes_set": TN.make_change_set(source, target)
+                "changes_set": TN.make_change_set2(source, target)
             }
             if out_metricses["changes_set"] == -1:
                 continue
