@@ -118,7 +118,7 @@ class PullsCollector:
         }
 
     def _parse_datetime(self, d: str) -> datetime:
-        return datetime.strptime(d, '%Y-%m-%dT%H:%M:%S%z')
+        return datetime.strptime(d, '%Y-%m-%dT%H:%M:%SZ')
 
     def _compare_url(self, base: str, head: str) -> str:
         return f'https://github.com/{self._repo_owner}/{self._repo_name}/compare/{base}...{head}.diff'
