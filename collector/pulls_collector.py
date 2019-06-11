@@ -2,7 +2,7 @@ import json
 from csv import DictWriter
 from datetime import datetime, timezone
 from time import sleep
-from typing import Generator
+from typing import Generator, Optional
 from urllib.request import urlopen, Request
 
 
@@ -114,7 +114,7 @@ class PullsCollector:
             "1-n_url": self._compare_url(base_sha, head_sha),
             "created_at": self._parse_datetime(pull['createdAt']),
             "merged_at": self._parse_datetime(pull['mergedAt']),
-            "merged_by": pull['mergedBy']['login'],
+            "merged_by": self._merged_by(pull),
         }
 
     def _parse_datetime(self, d: str) -> datetime:
@@ -122,3 +122,9 @@ class PullsCollector:
 
     def _compare_url(self, base: str, head: str) -> str:
         return f'https://github.com/{self._repo_owner}/{self._repo_name}/compare/{base}...{head}.diff'
+
+    def _merged_by(self, pull: dict) -> Optional[str]:
+        merged_by = pull.get('mergedBy')
+        if merged_by is None:
+            return None
+        return merged_by.get('login')
