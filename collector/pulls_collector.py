@@ -1,12 +1,15 @@
 import json
+import sys
 from csv import DictWriter
 from datetime import datetime, timezone
 from time import sleep
 from typing import Generator, Optional
+from urllib.error import HTTPError
 from urllib.request import urlopen, Request
 
 
 class PullsCollector:
+    MAX_FETCH_RETRY = 3
     fields = [
         "number",
         "commit_len",
@@ -47,7 +50,7 @@ class PullsCollector:
                 delta = reset_at - datetime.now(timezone.utc)
                 sleep(delta.seconds)
 
-    def _fetch(self, cursor: str = None) -> dict:
+    def _fetch(self, cursor: str = None, nth_retry: int = 0) -> dict:
         req = Request(
             'https://api.github.com/graphql',
             method='POST',
@@ -55,7 +58,21 @@ class PullsCollector:
             headers={
                 'Authorization': f'bearer {self._token}',
             })
-        response = urlopen(req)
+        try:
+            response = urlopen(req)
+        except HTTPError as e:
+            print('===== Headers\n\n'
+                  f'{e.headers.as_string()}\n'
+                  '===== Reason\n\n'
+                  f'{e.reason}\n\n'
+                  '===== Code\n'
+                  f'{e.code}\n', file=sys.stderr)
+            retry_after = e.headers.get('Retry-After')
+            if retry_after is not None and nth_retry < self.MAX_FETCH_RETRY:
+                print(f'Waiting {retry_after} seconds to retry fetching', file=sys.stderr)
+                sleep(retry_after)
+                return self._fetch(cursor, nth_retry + 1)
+            raise
         return json.loads(response.read().decode('utf-8'))
 
     def _graphql_request(self, cursor: str = None) -> str:
