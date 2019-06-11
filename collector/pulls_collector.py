@@ -37,7 +37,8 @@ class PullsCollector:
         while True:
             obj = self._fetch(cursor)
             for pull in (edge['node'] for edge in obj['data']['repository']['pullRequests']['edges']):
-                yield self._format(pull)
+                if pull['commits']['totalCount'] > 0:
+                    yield self._format(pull)
             if not obj['data']['repository']['pullRequests']['pageInfo']['hasNextPage']:
                 break
             cursor = obj['data']['repository']['pullRequests']['pageInfo']['endCursor']
