@@ -6,11 +6,12 @@ config.read('config')
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
+threshold = [int(x) for x in config["Rule"]["thresholds"].split()][0]
 
-RULE_JSON_NAME = "data/rules/" + owner + "_" + repo + "_" + lang + ".json"
+RULE_JSON_NAME = "data/rules/" + owner + "_" + repo + "_"  + str(threshold) + "_" + lang + ".json"
 # RULE_JSON_NAME = "pattern2.json"
 CHANGE_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
-EVALUATED_RULE_JSON_NAME = "data/rules/" + owner + "_" + repo + "_" + lang + "_evaluated.json"
+EVALUATED_RULE_JSON_NAME = "data/rules/" + owner + "_" + repo + "_"  + str(threshold) + "_" + lang + "_evaluated.json"
 
 def main():
 
@@ -23,15 +24,15 @@ def main():
     evaluated_rules = []
 
     for rule in rules:
-        code = extendCode(rule["code"])
-        trigger = rule["trigger"]
+        after = makeAfter(rule["code"])
+        trigger = makeBefore(rule["code"])
 
         trigarable_changes = [x for x in changes if isTrigarable(trigger, makeBefore(x["changes_set"]))]
         rule["trigarable_len"] = len(trigarable_changes)
         if rule["trigarable_len"] == 0:
             continue
 
-        adoptable_changes = [x for x in trigarable_changes if isRule(code, x["changes_set"])]
+        adoptable_changes = [x for x in trigarable_changes if isTrigarable(after, makeAfter(x["changes_set"]))]
         rule["adoptable_len"] = len(adoptable_changes)
         if rule["adoptable_len"] == 0:
             continue
@@ -54,46 +55,59 @@ def main():
 def makeBefore(changes):
     before_changes = []
     for change in changes:
-        if not change.startswith("+"):
+        if change.startswith("*"):
+            before = change[2:].split("-->")[0][:-1].split(" ")
+            before_changes.extend(before)
+        elif not change.startswith("+"):
             before_changes.extend(change[2:].split(" "))
     return before_changes
 
-def extendCode(code):
-    original_code = []
-    for tokens in code:
-        symbol = tokens[0]
-        new_tokens = [symbol + " " + x for x in tokens[2:].split(" ")]
-        original_code.extend(new_tokens)
-    return original_code
+def makeAfter(changes):
+    after_changes = []
+    for change in changes:
+        if change.startswith("*"):
+            after = change[2:].split("-->")[1][1:].split(" ")
+            after_changes.extend(after)
+        elif not change.startswith("="):
+            after_changes.extend(change[2:].split(" "))
+    return after_changes
 
+# def extendCode(code):
+#     original_code = []
+#     for tokens in code:
+#         symbol = tokens[0]
+#         new_tokens = [symbol + " " + x for x in tokens[2:].split(" ")]
+#         original_code.extend(new_tokens)
+#     return original_code
 
 def isTrigarable(rule, code):
+    code_index = 0
     for i in rule:
         founded = False
-        for j, b in enumerate(code):
+        for j, b in enumerate(code[code_index:], 1):
             if b == i:
-                code = code[j:]
                 founded = True
+                code_index += j
                 break
         if not founded:
             return False
     return True
 
-def isRule(rule, code):
-    for i in rule:
-        founded = False
-        for j, b in enumerate(code):
-            if b == i:
-                code = code[j+1:]
-                founded = True
-                break
-            elif b[0] == i[0] and i[2:] in b[2:]:
-                code = code[j:]
-                founded = True
-                break
-        if not founded:
-            return False
-    return True
+# def isRule(rule, code):
+#     for i in rule:
+#         founded = False
+#         for j, b in enumerate(code):
+#             if b == i:
+#                 code = code[j+1:]
+#                 founded = True
+#                 break
+#             elif b[0] == i[0] and i[2:] in b[2:]:
+#                 code = code[j:]
+#                 founded = True
+#                 break
+#         if not founded:
+#             return False
+#     return True
 
 if __name__ == "__main__":
     main()
