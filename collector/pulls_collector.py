@@ -1,12 +1,15 @@
 import json
+import sys
 from csv import DictWriter
 from datetime import datetime, timezone
 from time import sleep
-from typing import Generator
+from typing import Generator, Optional
+from urllib.error import HTTPError
 from urllib.request import urlopen, Request
 
 
 class PullsCollector:
+    MAX_FETCH_RETRY = 3
     fields = [
         "number",
         "commit_len",
@@ -37,7 +40,8 @@ class PullsCollector:
         while True:
             obj = self._fetch(cursor)
             for pull in (edge['node'] for edge in obj['data']['repository']['pullRequests']['edges']):
-                yield self._format(pull)
+                if pull['commits']['totalCount'] > 0:
+                    yield self._format(pull)
             if not obj['data']['repository']['pullRequests']['pageInfo']['hasNextPage']:
                 break
             cursor = obj['data']['repository']['pullRequests']['pageInfo']['endCursor']
@@ -46,7 +50,7 @@ class PullsCollector:
                 delta = reset_at - datetime.now(timezone.utc)
                 sleep(delta.seconds)
 
-    def _fetch(self, cursor: str = None) -> dict:
+    def _fetch(self, cursor: str = None, nth_retry: int = 0) -> dict:
         req = Request(
             'https://api.github.com/graphql',
             method='POST',
@@ -54,7 +58,21 @@ class PullsCollector:
             headers={
                 'Authorization': f'bearer {self._token}',
             })
-        response = urlopen(req)
+        try:
+            response = urlopen(req)
+        except HTTPError as e:
+            print('===== Headers\n\n'
+                  f'{e.headers.as_string()}\n'
+                  '===== Reason\n\n'
+                  f'{e.reason}\n\n'
+                  '===== Code\n'
+                  f'{e.code}\n', file=sys.stderr)
+            retry_after = e.headers.get('Retry-After')
+            if retry_after is not None and nth_retry < self.MAX_FETCH_RETRY:
+                print(f'Waiting {retry_after} seconds to retry fetching', file=sys.stderr)
+                sleep(retry_after)
+                return self._fetch(cursor, nth_retry + 1)
+            raise
         return json.loads(response.read().decode('utf-8'))
 
     def _graphql_request(self, cursor: str = None) -> str:
@@ -114,7 +132,7 @@ class PullsCollector:
             "1-n_url": self._compare_url(base_sha, head_sha),
             "created_at": self._parse_datetime(pull['createdAt']),
             "merged_at": self._parse_datetime(pull['mergedAt']),
-            "merged_by": pull['mergedBy']['login'],
+            "merged_by": self._merged_by(pull),
         }
 
     def _parse_datetime(self, d: str) -> datetime:
@@ -122,3 +140,9 @@ class PullsCollector:
 
     def _compare_url(self, base: str, head: str) -> str:
         return f'https://github.com/{self._repo_owner}/{self._repo_name}/compare/{base}...{head}.diff'
+
+    def _merged_by(self, pull: dict) -> Optional[str]:
+        merged_by = pull.get('mergedBy')
+        if merged_by is None:
+            return None
+        return merged_by.get('login')
