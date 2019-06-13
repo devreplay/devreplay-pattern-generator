@@ -72,13 +72,6 @@ def makeAfter(changes):
             after_changes.extend(change[2:].split(" "))
     return after_changes
 
-# def extendCode(code):
-#     original_code = []
-#     for tokens in code:
-#         symbol = tokens[0]
-#         new_tokens = [symbol + " " + x for x in tokens[2:].split(" ")]
-#         original_code.extend(new_tokens)
-#     return original_code
 
 def isTrigarable(rule, code):
     code_index = 0
@@ -92,22 +85,6 @@ def isTrigarable(rule, code):
         if not founded:
             return False
     return True
-
-# def isRule(rule, code):
-#     for i in rule:
-#         founded = False
-#         for j, b in enumerate(code):
-#             if b == i:
-#                 code = code[j+1:]
-#                 founded = True
-#                 break
-#             elif b[0] == i[0] and i[2:] in b[2:]:
-#                 code = code[j:]
-#                 founded = True
-#                 break
-#         if not founded:
-#             return False
-#     return True
 
 if __name__ == "__main__":
     main()

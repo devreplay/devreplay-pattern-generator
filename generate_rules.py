@@ -12,7 +12,7 @@ lang = config["Target"]["lang"]
 rule_method = config["Rule"]["frequent_or_topk"]
 thresholds = [int(x) for x in config["Rule"]["thresholds"].split()]
 
-INPUT_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
+INPUT_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + "2.json"
 
 def remove_redundant_symbols(code):
     tokens = []

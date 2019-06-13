@@ -54,6 +54,7 @@ Output:
 This process needs long time
 
 ```sh
+python3 merge_changes.py
 python3 generate_rules.py
 ```
 
