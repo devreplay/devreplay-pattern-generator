@@ -33,7 +33,7 @@ repo = Your Target GitHub Repository (e.g. models)
 lang = Your Target Language (e.g. Python)
 [Rule]
 threshold = Rule threshold (e.g. 2, it means all repeated changes are rule)
-frequent_or_topk = Method to use threshold (frequent or top-k)
+frequent_or_topk = Method to use threshold (frequent or topk)
 ```
 **GitHub token can be generated from https://github.com/settings/tokens)
 
@@ -64,7 +64,7 @@ Output:
 ### 4 Evaluating detected patterns
 
 ```sh
-python3 evaluated_rules.py
+python3 evaluate_rules.py
 ```
 
 Output:
