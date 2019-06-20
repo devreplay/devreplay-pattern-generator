@@ -42,6 +42,8 @@ def remove_dup_changes(changes_sets):
 def generate_rules(changes_sets, threshold):
     ps = PrefixSpan(changes_sets)
     print("Start rule generation")
+    if len(changes_sets) == 0:
+        return []
     # freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
     rule_len = 0
     while rule_len == 0 and threshold>0:
