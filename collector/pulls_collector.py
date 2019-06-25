@@ -70,9 +70,10 @@ class PullsCollector:
             retry_after = e.headers.get('Retry-After')
             if retry_after is not None and nth_retry < self.MAX_FETCH_RETRY:
                 print(f'Waiting {retry_after} seconds to retry fetching', file=sys.stderr)
-                sleep(retry_after)
+                sleep(int(retry_after))
                 return self._fetch(cursor, nth_retry + 1)
-            raise
+            else:
+                raise
         return json.loads(response.read().decode('utf-8'))
 
     def _graphql_request(self, cursor: str = None) -> str:
