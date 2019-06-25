@@ -10,3 +10,4 @@ config
 !/data/rules/tensorflow_models_Python.json
 !/data/rules/tensorflow_models_Python_evaluated.json
 !/data/rules/twbs_bootstrap-sass_Ruby.json
+!/data/repos/repo/file.py
