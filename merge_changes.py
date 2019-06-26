@@ -20,6 +20,7 @@ def remove_dup_changes(changes_sets):
     current_changes = []
     current_pull = 0
     for changes_set in changes_sets:
+        changes_set["changes_set"] = [x for x in changes_set["changes_set"] if x.startswith("*")]
         if current_pull == changes_set["number"]:
             if changes_set["changes_set"] in current_changes:
                 continue
