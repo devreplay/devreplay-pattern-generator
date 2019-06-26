@@ -61,7 +61,7 @@ def clone_target_repo():
     if not os.path.exists(data_repo_dir):
         os.makedirs(data_repo_dir)
     if not os.path.exists(data_repo_dir + "/" + repo):
-        git.Git(data_repo_dir).clone("https://github.com/" + owner + "/" + repo +".git")
+        git.Git(data_repo_dir).clone("https://" + config["GitHub"]["Token"] + ":@github.com/" + owner + "/" + repo +".git")
 
 def make_pull_diff(target_repo, diff_path):
     change_sets = []
