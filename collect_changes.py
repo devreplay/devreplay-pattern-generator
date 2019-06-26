@@ -8,6 +8,7 @@ Style misses list
 * Don't changed AST
 """
 import sys
+import time
 from csv import DictReader
 from json import dump
 from unidiff import PatchSet, errors
@@ -15,6 +16,7 @@ from urllib.request import urlopen, Request
 from configparser import ConfigParser
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
+from datetime import datetime
 
 config = ConfigParser()
 config.read('config')
@@ -51,6 +53,15 @@ def get_project_changes(owner, repo, lang, diffs_file=None):
             changes_sets.extend(changes_set)
     return changes_sets
 
+def urlopen_with_ratelimit_handling(request):
+    url_diff = urlopen(request)
+    ratelimit_remaining = int(url_diff.getheader("X-RateLimit-Remaining"))
+    if ratelimit_remaining < 1000:
+        now = datetime.now()
+        reset_at = datetime.fromtimestamp(int(url_diff.getheader("X-RateLimit-Reset")))
+        print("Current ratelimit remaining is {}. Wait until reset_at: {}".format(ratelimit_remaining, reset_at))
+        time.sleep((reset_at - now).seconds)
+    return url_diff
 
 def curl_diffs(diff_path):
     changes_sets = []
@@ -62,14 +73,14 @@ def curl_diffs(diff_path):
         request.add_header("Authorization", "token %s" % token)
         request.add_header("Accept", "application/vnd.github.v3.diff")
         try:
-            url_diff = urlopen(request)
+            url_diff = urlopen_with_ratelimit_handling(request)
             diffs = PatchSet(url_diff, encoding="utf-8")
         except (UnicodeDecodeError, errors.UnidiffParseError):
             print("UnicodeDecodeError:" + str(diff_path))
             return []
     else:
         try:
-            url_diff = urlopen(diff_path["1-n_url"])
+            url_diff = urlopen_with_ratelimit_handling(diff_path["1-n_url"])
             diffs = PatchSet(url_diff, encoding="utf-8")
         except (UnicodeDecodeError, errors.UnidiffParseError):
             print("UnicodeDecodeError:" + str(diff_path))
