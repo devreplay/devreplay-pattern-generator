@@ -48,6 +48,7 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
         for diff_path in reader:
             if diff_path["commit_len"] == "1":
                 continue
+            sys.stdout.write("\r%s pulls" % (diff_path["number"]))
             changes_set = make_pull_diff(target_repo, diff_path)
             if changes_set == []:
                 continue
@@ -64,10 +65,16 @@ def clone_target_repo():
 
 def make_pull_diff(target_repo, diff_path):
     change_sets = []
-    original_commit = target_repo.commit(diff_path["first_commit_sha"])
-    changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
+    try :
+        original_commit = target_repo.commit(diff_path["first_commit_sha"])
+        changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
+    except:
+        return []
     diff_index = original_commit.diff(changed_commit)
     for diff_item in diff_index.iter_change_type('M'):
+        if not any([diff_item.a_rawpath.decode('utf-8').endswith(x) 
+                    for x in lang_extentions[lang]]):
+            continue
         source = diff_item.a_blob.data_stream.read().decode('utf-8')
         target = diff_item.b_blob.data_stream.read().decode('utf-8')
 
