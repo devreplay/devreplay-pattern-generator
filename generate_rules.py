@@ -19,7 +19,7 @@ def remove_redundant_symbols(code):
     symbol = ""
     for token in code:
         start = token[0]
-        if start == symbol:
+        if start == symbol and symbol != "*":
             tokens[-1] = tokens[-1] + " " + token[2:]
         else:
             symbol = start
