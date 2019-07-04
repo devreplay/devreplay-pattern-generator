@@ -1,0 +1,3 @@
+python3 collect_pulls.py
+python3 collect_changes_clone.py
+python3 merge_changes.py
