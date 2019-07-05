@@ -28,15 +28,15 @@ def main():
         trigger = makeBefore(rule["code"])
 
         trigarable_changes = [x for x in changes if isTrigarable(trigger, makeBefore(x["changes_set"]))]
-        rule["trigarable_len"] = len(trigarable_changes)
+        rule["trigarable_len"] = len((set([x["number"] for x in trigarable_changes])))
         if rule["trigarable_len"] == 0:
             continue
 
-        adoptable_changes = [x for x in trigarable_changes if isTrigarable(after, makeAfter(x["changes_set"]))]
-        rule["adoptable_len"] = len(adoptable_changes)
+        adoptable_pull_id = list(set([x["number"] for x in trigarable_changes if isTrigarable(after, makeAfter(x["changes_set"]))]))
+        rule["adoptable_len"] = len(adoptable_pull_id)
         if rule["adoptable_len"] == 0:
             continue
-        rule["adoptable_pull_id"] = list(set([x["number"] for x in adoptable_changes]))
+        rule["links"] = [f'https://github.com/{owner}/{repo}/pull/{x}' for x in adoptable_pull_id]
         rule["accuracy"] =  rule["adoptable_len"] / rule["trigarable_len"]
         
         if rule["accuracy"] < 0.01:
