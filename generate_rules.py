@@ -46,7 +46,8 @@ def generate_rules(changes_sets, threshold):
         return []
     # freq_seqs = ps.frequent(minsup=int(len(new_changes) * 0.1), closed=True)
     rule_len = 0
-    while rule_len == 0 and threshold>0:
+    tmp_threshold = threshold
+    while True:
         if rule_method == "frequent":
             freq_seqs = PrefixSpan_frequent(ps, minsup=threshold, closed=True)
         elif rule_method == "topk":
@@ -58,9 +59,14 @@ def generate_rules(changes_sets, threshold):
                     if any([y.startswith("*") for y in x[1]])]
         rule_len = len(freq_seqs)
         if rule_method == "frequent":
+            if rule_len > 0 or threshold < 1:
+                break
             print("Fix threshold " + str(threshold) + " to " + str(threshold / 2))
             threshold /= 2
         elif rule_method == "topk":
+            if rule_len >= tmp_threshold:
+                break
+            print(f"Current #rule is {rule_len}")
             print("Fix threshold " + str(threshold) + " to " + str(threshold * 2))
             threshold *= 2
 
