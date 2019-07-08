@@ -24,6 +24,7 @@ owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
 TN = TokeNizer(lang)
+DIVIDE_PER = 500
 
 def main():
     """
@@ -33,7 +34,7 @@ def main():
     target_repo = git.Repo("data/repos/" + repo)
     changes_sets = get_project_changes(owner, repo, lang, target_repo)
 
-    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
+    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_last.json"
 
     with open(out_name, "w", encoding='utf-8') as f:
         dump(changes_sets, f, indent=1)
@@ -45,7 +46,7 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
         diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
     with open(diffs_file, "r", encoding="utf-8") as diffs:
         reader = DictReader(diffs)
-        for diff_path in reader:
+        for i, diff_path in enumerate(reader):
             if diff_path["commit_len"] == "1":
                 continue
             sys.stdout.write("\r%s pulls" % (diff_path["number"]))
@@ -53,6 +54,12 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
             if changes_set == []:
                 continue
             changes_sets.extend(changes_set)
+            if i % DIVIDE_PER == 0:
+                out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_" + i + ".json"
+
+                with open(out_name, "w", encoding='utf-8') as f:
+                    dump(changes_sets, f, indent=1)
+                changes_sets = []
     return changes_sets
 
 
