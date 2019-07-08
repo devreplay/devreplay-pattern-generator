@@ -83,9 +83,10 @@ def make_pull_diff(target_repo, diff_path):
         changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
     except:
         return []
-    diff_index = original_commit.diff(changed_commit)
-    if original_commit.message.startswith("Merge") or changed_commit.message.startswith("Merge"):
+    commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
+    if  any([x.message.startswith("Merge") for x in commits]):
         return []
+    diff_index = original_commit.diff(changed_commit)    
     for diff_item in diff_index.iter_change_type('M'):
         if not any([diff_item.a_rawpath.decode('utf-8').endswith(x) 
                     for x in lang_extentions[lang]]):
