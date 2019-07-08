@@ -24,7 +24,7 @@ owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
 TN = TokeNizer(lang)
-DIVIDE_PER = 500
+DIVIDE_PER = 100
 
 def main():
     """
@@ -50,16 +50,18 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
             if diff_path["commit_len"] == "1":
                 continue
             sys.stdout.write("\r%s pulls" % (diff_path["number"]))
+
             changes_set = make_pull_diff(target_repo, diff_path)
             if changes_set == []:
                 continue
             changes_sets.extend(changes_set)
-            if i % DIVIDE_PER == 0:
-                out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_" + i + ".json"
+            if (len(changes_sets) + 1) % DIVIDE_PER == 0:
+                out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_" + str(i) + ".json"
 
                 with open(out_name, "w", encoding='utf-8') as f:
                     dump(changes_sets, f, indent=1)
                 changes_sets = []
+
     return changes_sets
 
 
@@ -82,6 +84,8 @@ def make_pull_diff(target_repo, diff_path):
     except:
         return []
     diff_index = original_commit.diff(changed_commit)
+    if original_commit.message.startswith("Merge") or changed_commit.message.startswith("Merge"):
+        return []
     for diff_item in diff_index.iter_change_type('M'):
         if not any([diff_item.a_rawpath.decode('utf-8').endswith(x) 
                     for x in lang_extentions[lang]]):
