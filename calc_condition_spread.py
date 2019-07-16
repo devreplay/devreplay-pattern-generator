@@ -17,6 +17,7 @@ config.read('config')
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
+change_size = int(config["Target"]["change_size"])
 TN = TokeNizer(lang)
 
 
@@ -74,7 +75,7 @@ url_re = re.compile(r"https://github\.com/" + owner + r"/" + repo + r"/compare/(
 
 output = []
 changes_len = len(changes)
-for i, change in enumerate(changes):
+for i, change in enumerate(reversed(changes)):
     sys.stdout.write("\r%d / %d pulls" %
                     (i + 1, changes_len))
     token_dict = defaultdict()
@@ -101,6 +102,8 @@ for i, change in enumerate(changes):
     token_dict["original_tokens"] = searchTokenCharcter(target_repo, token_dict["sha"], deleted_file, set(changes_tokens["A"] + changes_tokens["B"]))
 
     output.append(token_dict)
+    if len(output) > change_size:
+        break
 
 with open(OUT_TOKEN_NAME + ".json", "w") as target:
     json.dump(output, target, indent=2)
