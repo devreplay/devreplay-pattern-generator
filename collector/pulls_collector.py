@@ -12,14 +12,15 @@ class PullsCollector:
     MAX_FETCH_RETRY = 3
     fields = [
         "number",
+        "author",
+        "participant",
         "commit_len",
         "base_commit_sha",
         "first_commit_sha",
         "merge_commit_sha",
         "created_at",
         "merged_at",
-        "merged_by",
-        "1-n_url"
+        "merged_by"
     ]
 
     def __init__(self, token: str, repo_owner: str, repo_name: str):
@@ -95,6 +96,9 @@ class PullsCollector:
                   }
                   edges {
                     node {
+                      author {
+                        login
+                      }
                       number
                       createdAt
                       mergedAt
@@ -112,6 +116,13 @@ class PullsCollector:
                           }
                         }
                       }
+                      participants(first:100) {
+                        edges {
+                          node {
+                            login
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -121,16 +132,20 @@ class PullsCollector:
         return json.dumps({'query': query, 'variables': {'cursor': cursor}}).encode('utf-8')
 
     def _format(self, pull: dict) -> dict:
+        author = pull["author"]["login"]
         commit_oids = [edge['node']['commit']['oid'] for edge in pull['commits']['edges']]
+        participant = [participant["node"]["login"] for participant in pull["participants"]["edges"] 
+                        if participant["node"]["login"] != author]
         base_sha = commit_oids[0]
         head_sha = commit_oids[-1]
         return {
+            "author": author,
+            "participant": participant[0] if len(participant) > 0 else "None",
             "number": pull['number'],
             "commit_len": pull['commits']['totalCount'],
             "base_commit_sha": pull['baseRefOid'],
             "first_commit_sha": base_sha,
             "merge_commit_sha": head_sha,
-            "1-n_url": self._compare_url(base_sha, head_sha),
             "created_at": self._parse_datetime(pull['createdAt']),
             "merged_at": self._parse_datetime(pull['mergedAt']),
             "merged_by": self._merged_by(pull),
@@ -138,9 +153,6 @@ class PullsCollector:
 
     def _parse_datetime(self, d: str) -> datetime:
         return datetime.strptime(d, '%Y-%m-%dT%H:%M:%SZ')
-
-    def _compare_url(self, base: str, head: str) -> str:
-        return f'https://github.com/{self._repo_owner}/{self._repo_name}/compare/{base}...{head}.diff'
 
     def _merged_by(self, pull: dict) -> Optional[str]:
         merged_by = pull.get('mergedBy')
