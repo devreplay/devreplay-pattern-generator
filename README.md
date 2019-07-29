@@ -31,6 +31,7 @@ token = (**option if you will collect from private repo)YourGitHubToken
 owner = Your Target GitHub Repository Owner (e.g. tensorflow)
 repo = Your Target GitHub Repository (e.g. models)
 lang = Your Target Language (e.g. Python)
+choange_size Your target change size (e.g. 100)
 [Rule]
 threshold = Rule threshold (e.g. 2, it means all repeated changes are rule)
 frequent_or_topk = Method to use threshold (frequent or topk)

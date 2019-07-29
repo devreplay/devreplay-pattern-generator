@@ -12,7 +12,8 @@ import os
 from csv import DictReader
 from json import dump
 from unidiff import PatchSet, errors
-from urllib.request import urlopen, Request
+import difflib
+import io
 from configparser import ConfigParser
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
@@ -23,6 +24,7 @@ config.read('config')
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
+change_size = int(config["Target"]["change_size"])
 TN = TokeNizer(lang)
 DIVIDE_PER = 100
 
@@ -34,7 +36,7 @@ def main():
     target_repo = git.Repo("data/repos/" + repo)
     changes_sets = get_project_changes(owner, repo, lang, target_repo)
 
-    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_last.json"
+    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
 
     with open(out_name, "w", encoding='utf-8') as f:
         dump(changes_sets, f, indent=1)
@@ -46,7 +48,7 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
         diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
     with open(diffs_file, "r", encoding="utf-8") as diffs:
         reader = DictReader(diffs)
-        for i, diff_path in enumerate(reader):
+        for diff_path in reader:
             if diff_path["commit_len"] == "1":
                 continue
             sys.stdout.write("\r%s pulls" % (diff_path["number"]))
@@ -55,12 +57,8 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
             if changes_set == []:
                 continue
             changes_sets.extend(changes_set)
-            if (len(changes_sets) + 1) % DIVIDE_PER == 0:
-                out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_" + str(i) + ".json"
-
-                with open(out_name, "w", encoding='utf-8') as f:
-                    dump(changes_sets, f, indent=1)
-                changes_sets = []
+            if len(changes_sets) > change_size:
+                return changes_sets
 
     return changes_sets
 
@@ -75,6 +73,45 @@ def clone_target_repo():
         else:
             git_url = "https://github.com/" + owner + "/" + repo +".git"
         git.Git(data_repo_dir).clone(git_url)
+
+def make_hunks(source, target):
+    hunks = []
+    differ = difflib.ndiff(source, target)
+    previous_symbol = " "
+    deleted_lines = []
+    added_lines = []
+    for diff in differ:
+        # print(diff)
+        symbol = diff[0]
+        if len(diff) < 3 or symbol == "?":
+            continue
+        line = diff[2:]
+
+        if symbol not in ["+", previous_symbol] and deleted_lines != [] and added_lines != []:
+            hunks.append({
+                "source": "\n".join(deleted_lines),
+                "target": "\n".join(added_lines),
+            })
+            deleted_lines = []
+            added_lines = []
+
+        if symbol == "-":
+            deleted_lines.append(line)
+        elif symbol == "+":
+            added_lines.append(line)
+
+        previous_symbol = symbol
+    if deleted_lines != [] and added_lines != []:
+        hunks.append({
+            "source": "\n".join(deleted_lines),
+            "target": "\n".join(added_lines),
+        })
+    return hunks
+
+def is_valued_change(diff):
+    if diff["identifiers"]["condition"] == [] and diff["identifiers"]["consequent"] == []:
+        return False
+    return True
 
 def make_pull_diff(target_repo, diff_path):
     change_sets = []
@@ -93,20 +130,34 @@ def make_pull_diff(target_repo, diff_path):
             continue
         source = diff_item.a_blob.data_stream.read().decode('utf-8')
         target = diff_item.b_blob.data_stream.read().decode('utf-8')
-
-        out_metricses = {
-            "number": int(diff_path["number"]),
-            "commit_len": int(diff_path["commit_len"]),
-            "created_at": diff_path["created_at"],
-            "merged_at": diff_path["merged_at"],
-            "merged_by": diff_path["merged_by"],
-            "1-n_url": diff_path["1-n_url"],
-            "file_path": diff_item.a_rawpath.decode('utf-8'),
-            "changes_set": TN.make_change_set2(source, target)
-        }
-        if out_metricses["changes_set"] == -1:
+        if source == target:
             continue
-        change_sets.append(out_metricses)
+        hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))   
+
+        for hunk in hunks:
+            try:
+                diff_result = TN.get_abstract_tree_diff(hunk["source"], hunk["target"])
+            except:
+                continue
+
+            if not is_valued_change(diff_result):
+                continue
+
+            out_metricses = {
+                "number": int(diff_path["number"]),
+                "sha": diff_path["merge_commit_sha"],
+                "author":diff_path["author"],
+                "participant":diff_path["participant"],
+                "created_at": diff_path["created_at"],
+                "merged_at": diff_path["merged_at"],
+                "merged_by": diff_path["merged_by"],
+                "file_path": diff_item.a_rawpath.decode('utf-8'),
+                "condition": " ".join(diff_result["condition"]).splitlines(keepends=True),
+                "consequent": " ".join(diff_result["consequent"]).splitlines(keepends=True),
+                "identifiers": diff_result["identifiers"]
+            }
+            if out_metricses["condition"] != []:
+                change_sets.append(out_metricses)
         
     return change_sets
 

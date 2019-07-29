@@ -1,35 +1,25 @@
 import sys
 import os
-import re
+import glob
 import json
-import csv
 from collections import defaultdict, OrderedDict
 from configparser import ConfigParser
 from pathlib import Path
-
 import git
-
 from lang_extentions import lang_extentions
-from CodeTokenizer.tokenizer import TokeNizer
+import itertools
 
 config = ConfigParser()
 config.read('config')
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
-change_size = int(config["Target"]["change_size"])
-TN = TokeNizer(lang)
 
 
 CHANGE_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + ".json"
-OUT_TOKEN_NAME = "data/tokens/" + owner + "_" + repo + "_" + lang + "_latest.json"
+OUT_TOKEN_NAME = "data/tokens/" + owner + "_" + repo + "_" + lang + "_HEAD.json"
+OUT_TOKEN_NAME2 = "data/tokens/" + owner + "_" + repo + "_" + lang + "_ORIGINAL.json"
 
-
-def list_paths(root_tree, path=Path(".")):
-    for blob in root_tree.blobs:
-        yield path / blob.name
-    for tree in root_tree.trees:
-        yield from list_paths(tree, path / tree.name)
 
 def clone_target_repo():
     data_repo_dir = "data/repos"
@@ -42,68 +32,111 @@ def clone_target_repo():
             git_url = "https://github.com/" + owner + "/" + repo +".git"
         git.Git(data_repo_dir).clone(git_url)
 
-def getChangesTokens(changes_set):
-    tokens = {"A": [], "B": []}
-    for change in changes_set:
-        before = [x for x in change[2:].split("-->")[0][:-1].split(" ")
-                    if any([y.isalnum() for y in x])]
-        after = [x for x in change[2:].split("-->")[1][1:].split(" ")
-                    if any([y.isalnum() for y in x])]
-
-        tokens["A"].extend(before)
-        tokens["B"].extend(after)
-    return tokens
-
-def searchTokenCharcter(target_repo, sha, files = [], condition_tokens = []):
-    tokens = defaultdict(list)
+def searchTokenCharcter(sha, files = [], condition_tokens = []):
+    new_files = []
     for path in files:
         file_contents = target_repo.git.show('{}:{}'.format(sha, path))
-        for token in [x for x in condition_tokens if x in file_contents]:
-            tokens[token].append(path)
+        if all([x in file_contents for x in condition_tokens]):
+            new_files.append(path)
 
-    return tokens
+    return new_files
 
-# 対象プロジェクトをクローン or 特定
+def list_paths(root_tree, path=Path(".")):
+    for blob in root_tree.blobs:
+        yield path / blob.name
+    for tree in root_tree.trees:
+        yield from list_paths(tree, path / tree.name)
 
-# clone_target_repo()
+def get_all_tokens(tokens):
+    paths = [str(x) for x in list_paths(target_repo.commit("HEAD").tree)
+             if any([str(x).endswith(y) for y in lang_extentions[lang]])]
+    contained_tokens = defaultdict(list)
+    for path in paths:
+        file_contents = target_repo.git.show('HEAD:{}'.format(path))
+        for token in [x for x in tokens if x in file_contents]:
+            contained_tokens[token].append(path)
+    return contained_tokens
+
+def make_file_index():
+    if os.path.exists(OUT_TOKEN_NAME):
+        print("already exist")
+        with open(OUT_TOKEN_NAME, "r") as target:
+            changes = json.load(target)
+        return changes
+    # 対象とするトークンを決定
+    target_tokens = [x["identifiers"]["condition"] + x["identifiers"]["consequent"] for x in changes]
+    target_tokens = list(set(itertools.chain.from_iterable(target_tokens)))
+    latest_tokens = get_all_tokens(target_tokens)
+    with open(OUT_TOKEN_NAME, "w") as target:
+        json.dump(latest_tokens, target, indent=2)
+    return latest_tokens
+
+clone_target_repo()
 target_repo = git.Repo("data/repos/" + repo)
 
 with open(CHANGE_JSON_NAME, "r") as json_file:
     changes = json.load(json_file)
 
-url_re = re.compile(r"https://github\.com/" + owner + r"/" + repo + r"/compare/(\w+)\.\.\.(\w+)\.diff")
+latest_tokens = make_file_index()
 
 output = []
 changes_len = len(changes)
+head_commit = target_repo.commit("HEAD")
+
 for i, change in enumerate(reversed(changes)):
-    sys.stdout.write("\r%d / %d pulls" %
-                    (i + 1, changes_len))
-    token_dict = defaultdict()
+    sys.stdout.write("\r%d / %d pulls %d changes are collected" %
+                    (i + 1, changes_len, len(output)))
+    token_dict = change
 
-    match = url_re.fullmatch(change["1-n_url"])
-    if match is None:
-        continue
-    token_dict["number"] = change["number"]
-    token_dict["sha"] = match.group(2)
-    token_dict["changes_set"] = [x for x in change["changes_set"]
-                                 if x.startswith("*")]
-    changes_tokens = getChangesTokens(token_dict["changes_set"])
-    if changes_tokens["A"] + changes_tokens["B"] == []:
+    ident_condition = change["identifiers"]["condition"]
+    ident_consequent = change["identifiers"]["consequent"]
+    target_tokens = list(set(ident_condition + ident_consequent))
+    if target_tokens == []:
         continue
 
-    changed_diff_index = target_repo.commit(token_dict["sha"]).diff(target_repo.commit("HEAD"))
+    changed_diff_index = target_repo.commit(change["sha"]).diff(head_commit)
 
-    deleted_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("D")]
-    changed_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("M")]
+    # added_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("A")]
+    # deleted_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("D")]
+    changed_file = [str(x.a_rawpath.decode('utf-8')) for x in changed_diff_index.iter_change_type("M")
+                    if any([str(x.a_rawpath.decode('utf-8')).endswith(y) for y in lang_extentions[lang]])]
     
-    deleted_file = [x for x in deleted_file + changed_file
-                    if any([str(x).endswith(y) for y in lang_extentions[lang]])]
+    # deleted_file = [x for x in deleted_file + changed_file
+    #                 if any([str(x).endswith(y) for y in lang_extentions[lang]])]
+    # added_file = [x for x in added_file + changed_file
+    #                 if any([str(x).endswith(y) for y in lang_extentions[lang]])]
 
-    token_dict["original_tokens"] = searchTokenCharcter(target_repo, token_dict["sha"], deleted_file, set(changes_tokens["A"] + changes_tokens["B"]))
+    condition_files = searchTokenCharcter(change["sha"], changed_file, ident_condition)
+    token_dict["# condition_files"] = len(condition_files)
+    
+    head_condition = [list(set(latest_tokens[x]) & set(changed_file))
+                      for x in ident_condition if x in latest_tokens]
+    if len(head_condition) == 0:
+        token_dict["# condition_files_HEAD"] = 0
+    elif len(head_condition) == 1:
+        token_dict["# condition_files_HEAD"] = len(head_condition[0])
+    else:
+        token_dict["# condition_files_HEAD"] = len([x for x in head_condition[0]
+                                                    if all([x in y for y in head_condition[1:]])])
+
+    if ident_condition == ident_consequent:
+        token_dict["consequent_files"] = token_dict["# condition_files"]
+        token_dict["consequent_files_HEAD"] = token_dict["# condition_files_HEAD"]
+    else:
+        token_dict["# consequent_files"] = len(searchTokenCharcter(change["sha"], changed_file, ident_consequent))
+        head_consequent = [list(set(latest_tokens[x]) & set(changed_file))
+                           for x in ident_consequent if x in latest_tokens]        
+        if len(head_consequent) == 0:
+            token_dict["# consequent_files_HEAD"] = 0
+        elif len(head_consequent) == 1:
+            token_dict["# consequent_files_HEAD"] = len(head_consequent[0])
+        else:
+            token_dict["# consequent_files_HEAD"] = len([x for x in head_consequent[0]
+                                                    if all([x in y for y in head_consequent[1:]])])  
+    token_dict["# changed_files"] = len(changed_file)
 
     output.append(token_dict)
-    if len(output) > change_size:
-        break
 
-with open(OUT_TOKEN_NAME + ".json", "w") as target:
+print()
+with open(OUT_TOKEN_NAME2, "w") as target:
     json.dump(output, target, indent=2)
