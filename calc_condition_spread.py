@@ -34,6 +34,8 @@ def clone_target_repo():
 
 def searchTokenCharcter(sha, files = [], condition_tokens = []):
     new_files = []
+    if condition_tokens == []:
+        return []
     for path in files:
         file_contents = target_repo.git.show('{}:{}'.format(sha, path))
         if all([x in file_contents for x in condition_tokens]):
@@ -57,13 +59,11 @@ def get_all_tokens(tokens):
             contained_tokens[token].append(path)
     return contained_tokens
 
-def make_file_index():
+def make_file_index(changes):
     if os.path.exists(OUT_TOKEN_NAME):
-        print("already exist")
         with open(OUT_TOKEN_NAME, "r") as target:
             changes = json.load(target)
         return changes
-    # 対象とするトークンを決定
     target_tokens = [x["identifiers"]["condition"] + x["identifiers"]["consequent"] for x in changes]
     target_tokens = list(set(itertools.chain.from_iterable(target_tokens)))
     latest_tokens = get_all_tokens(target_tokens)
@@ -71,27 +71,67 @@ def make_file_index():
         json.dump(latest_tokens, target, indent=2)
     return latest_tokens
 
+def make_repeated_rules(rules):
+    correct_rules = []
+    for rule in rules:
+        condition = rule["identifiers"]["condition"]
+        consequent = rule["identifiers"]["consequent"]
+        condition_changes = list(set(
+                            [x["number"] for x in changes 
+                             if x["number"] > rule["number"] and\
+                             all([y in x["identifiers"]["condition"] for y in condition]) and\
+                             all([y in x["identifiers"]["consequent"] for y in consequent])]))
+
+        condition_changes_num = len(condition_changes)
+        rule["frequency"] = condition_changes_num
+        rule["repeated_pr_id"] = condition_changes
+        correct_rules.append(rule)
+    return sorted(correct_rules, key=lambda x: x["frequency"], reverse=True)
+
+def make_token_ratio(ident_condition, ident_consequent, changed_file, condition_head, consequent_head):
+    token_dict = {}
+    if set(ident_condition).issubset(set(ident_consequent)):
+        consequent_files = searchTokenCharcter(change["sha"], changed_file, ident_consequent)
+        token_dict["#consequent_files"] = len(consequent_files)
+        token_dict["#condition_files"] = len(searchTokenCharcter(change["sha"],
+                                                                 consequent_files, ident_consequent))
+    elif set(ident_consequent).issubset(set(ident_condition)):
+        condition_files = searchTokenCharcter(change["sha"], changed_file, ident_condition)        
+        token_dict["#condition_files"] = len(condition_files)
+        token_dict["#consequent_files"] = len(searchTokenCharcter(change["sha"],
+                                                                  condition_files, ident_consequent))
+    else:
+        token_dict["#condition_files"] = len(searchTokenCharcter(change["sha"],
+                                                                 changed_file, ident_condition))
+        token_dict["#consequent_files"] = len(searchTokenCharcter(change["sha"],
+                                                                  changed_file, ident_consequent))
+    
+    token_dict["condition_ratio"] = (condition_head + 1) / (token_dict["#condition_files"] + 1)
+    token_dict["consequent_ratio"] = (consequent_head + 1) / (token_dict["#consequent_files"] + 1)
+
+    token_dict["#changed_files"] = len(changed_file)
+    return token_dict
+
 clone_target_repo()
 target_repo = git.Repo("data/repos/" + repo)
 
 with open(CHANGE_JSON_NAME, "r") as json_file:
     changes = json.load(json_file)
 
-latest_tokens = make_file_index()
+latest_tokens = make_file_index(changes)
 
 output = []
 changes_len = len(changes)
 head_commit = target_repo.commit("HEAD")
 
 for i, change in enumerate(reversed(changes)):
-    sys.stdout.write("\r%d / %d pulls %d changes are collected" %
+    sys.stdout.write("\r%d / %d pulls %d rules are collected" %
                     (i + 1, changes_len, len(output)))
     token_dict = change
 
     ident_condition = change["identifiers"]["condition"]
     ident_consequent = change["identifiers"]["consequent"]
-    target_tokens = list(set(ident_condition + ident_consequent))
-    if target_tokens == []:
+    if ident_condition == ident_consequent or list(set(ident_condition + ident_consequent)) == []:
         continue
 
     changed_diff_index = target_repo.commit(change["sha"]).diff(head_commit)
@@ -100,43 +140,57 @@ for i, change in enumerate(reversed(changes)):
     # deleted_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("D")]
     changed_file = [str(x.a_rawpath.decode('utf-8')) for x in changed_diff_index.iter_change_type("M")
                     if any([str(x.a_rawpath.decode('utf-8')).endswith(y) for y in lang_extentions[lang]])]
-    
-    # deleted_file = [x for x in deleted_file + changed_file
-    #                 if any([str(x).endswith(y) for y in lang_extentions[lang]])]
-    # added_file = [x for x in added_file + changed_file
-    #                 if any([str(x).endswith(y) for y in lang_extentions[lang]])]
 
-    condition_files = searchTokenCharcter(change["sha"], changed_file, ident_condition)
-    token_dict["# condition_files"] = len(condition_files)
-    
+    if any([x not in latest_tokens for x in ident_condition]) or\
+       any([x not in latest_tokens for x in ident_consequent]):
+        continue
+
     head_condition = [list(set(latest_tokens[x]) & set(changed_file))
-                      for x in ident_condition if x in latest_tokens]
+                      for x in ident_condition]
+
+    head_consequent = [list(set(latest_tokens[x]) & set(changed_file))
+                       for x in ident_consequent]        
+    if len(head_consequent) == 0:
+        continue
+    elif len(head_consequent) == 1:
+        adopted_files = head_consequent[0]
+    else:
+        adopted_files = [x for x in head_consequent[0]
+                                                if all([x in y for y in head_consequent[1:]])]
+    token_dict["#consequent_files_HEAD"] = len(adopted_files)
+
     if len(head_condition) == 0:
-        token_dict["# condition_files_HEAD"] = 0
+        continue
     elif len(head_condition) == 1:
-        token_dict["# condition_files_HEAD"] = len(head_condition[0])
+        token_dict["adoptable_files"] = head_condition[0]
     else:
-        token_dict["# condition_files_HEAD"] = len([x for x in head_condition[0]
-                                                    if all([x in y for y in head_condition[1:]])])
+        token_dict["adoptable_files"] = [x for x in head_condition[0]
+                                         if all([x in y for y in head_condition])]
+    token_dict["#condition_files_HEAD"] = len(token_dict["adoptable_files"])
+    token_dict["adoptable_files"] = [x for x in token_dict["adoptable_files"]\
+                                     if x not in adopted_files]
 
-    if ident_condition == ident_consequent:
-        token_dict["consequent_files"] = token_dict["# condition_files"]
-        token_dict["consequent_files_HEAD"] = token_dict["# condition_files_HEAD"]
-    else:
-        token_dict["# consequent_files"] = len(searchTokenCharcter(change["sha"], changed_file, ident_consequent))
-        head_consequent = [list(set(latest_tokens[x]) & set(changed_file))
-                           for x in ident_consequent if x in latest_tokens]        
-        if len(head_consequent) == 0:
-            token_dict["# consequent_files_HEAD"] = 0
-        elif len(head_consequent) == 1:
-            token_dict["# consequent_files_HEAD"] = len(head_consequent[0])
-        else:
-            token_dict["# consequent_files_HEAD"] = len([x for x in head_consequent[0]
-                                                    if all([x in y for y in head_consequent[1:]])])  
-    token_dict["# changed_files"] = len(changed_file)
+    # original_stat = make_token_ratio(ident_condition, ident_consequent, changed_file,
+    #                                  token_dict["#condition_files_HEAD"], token_dict["#consequent_files_HEAD"]) 
+    # token_dict.update(original_stat)
+    # if not (token_dict["consequent_ratio"] > 1.0 or token_dict["condition_ratio"] < 1.0) or\
+    #     token_dict["consequent_ratio"] < token_dict["condition_ratio"]:
+    #     continue
+    if token_dict["#condition_files_HEAD"] == 0:
+        continue
 
-    output.append(token_dict)
+    token_dict["condition/consequent"] = token_dict["#consequent_files_HEAD"] /\
+                                         token_dict["#condition_files_HEAD"]
 
-print()
+    if token_dict["condition/consequent"] > 1.0 or\
+    (len(ident_condition) == 1 and len(ident_consequent) == 1 and  ident_condition[0] in ident_consequent[0]):
+        output.append(token_dict)
+        # print(ident_condition)
+        # print(head_condition)
+
+output = make_repeated_rules(output)
+output = sorted(output, key=lambda x: x["condition/consequent"], reverse=True)
+
+print("output %d rules" % len(output))
 with open(OUT_TOKEN_NAME2, "w") as target:
     json.dump(output, target, indent=2)

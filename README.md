@@ -50,26 +50,16 @@ Output:
 * Pull List (`data/pulls/{owner}_{repo}.csv`)
 * Change List (`data/changes/{owner}_{repo}_python.json`)
 
-### 3 Generating frequently appered patterns
+### 3 Generating reusable changes
 
 This process needs long time
 
 ```sh
-python3 merge_changes.py
-python3 generate_rules.py
+python3 calc_condition_spread.py
 ```
 
 Output:
-* Pattern (`data/rules/{owner}_{repo}_python.json`)
-
-### 4 Evaluating detected patterns
-
-```sh
-python3 evaluate_rules.py
-```
-
-Output:
-* Pattern (`data/rules/{owner}_{repo}_python_evaluated.json`)
+* Pattern (`data/tokens/{owner}_{repo}_python_ORIGINAL.json`)
 
 ### Sample
 

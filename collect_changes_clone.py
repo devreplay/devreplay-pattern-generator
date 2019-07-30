@@ -51,7 +51,7 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
         for diff_path in reader:
             if diff_path["commit_len"] == "1":
                 continue
-            sys.stdout.write("\r%s pulls" % (diff_path["number"]))
+            sys.stdout.write("\r%s pulls %d / %d changes" % (diff_path["number"], len(changes_sets), change_size))
 
             changes_set = make_pull_diff(target_repo, diff_path)
             if changes_set == []:
@@ -89,8 +89,8 @@ def make_hunks(source, target):
 
         if symbol not in ["+", previous_symbol] and deleted_lines != [] and added_lines != []:
             hunks.append({
-                "source": "\n".join(deleted_lines),
-                "target": "\n".join(added_lines),
+                "source": "".join(deleted_lines),
+                "target": "".join(added_lines),
             })
             deleted_lines = []
             added_lines = []
@@ -103,13 +103,13 @@ def make_hunks(source, target):
         previous_symbol = symbol
     if deleted_lines != [] and added_lines != []:
         hunks.append({
-            "source": "\n".join(deleted_lines),
-            "target": "\n".join(added_lines),
+            "source": "".join(deleted_lines),
+            "target": "".join(added_lines),
         })
     return hunks
 
 def is_valued_change(diff):
-    if diff["identifiers"]["condition"] == [] and diff["identifiers"]["consequent"] == []:
+    if diff["identifiers"]["condition"] == diff["identifiers"]["consequent"]:
         return False
     return True
 
