@@ -43,7 +43,7 @@ frequent_or_topk = Method to use threshold (frequent or topk)
 
 ```sh
 python3 collect_pulls.py
-python3 collect_changes_clone.py
+python3 collect_pulls_changes.py
 ```
 
 Output:
@@ -55,7 +55,7 @@ Output:
 This process needs long time
 
 ```sh
-python3 calc_condition_spread.py
+python3 collect_pulls_repeatable_changes.py
 ```
 
 Output:
