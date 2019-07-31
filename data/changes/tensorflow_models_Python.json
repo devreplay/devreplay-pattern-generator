@@ -1,4184 +1,2861 @@
 [
  {
-  "number": 26,
-  "commit_len": 2,
-  "created_at": "2016-03-19 05:35:25",
-  "merged_at": "2016-03-19 06:09:24",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/55a34ae564f5ab49adaf98bd4552dcd4bf8f85f3...a472ac952520c04d4fad1921b19ce3b26d54895e.diff",
-  "file_path": "autoencoder/VariationalAutoencoderRunner.py",
-  "changes_set": [
-   "  def",
-   "- minmax_scale",
-   "+ min_max_scale",
-   "  (",
-   "  X_train",
-   "  ,",
-   "  X_test",
-   "  )",
-   "  :",
-   "  \n",
-   "      ",
-   "  preprocessor",
-   "  =",
-   "  prep",
-   "  .",
-   "  MinMaxScaler",
-   "  (",
-   "- feature_range",
-   "- =",
-   "- (",
-   "- 0",
-   "- ,",
-   "- 1",
-   "- )",
-   "  )",
-   "  .",
-   "  fit",
-   "  (",
-   "  X_train",
-   "  )",
-   "  )",
-   "  )",
-   "  rain)"
-  ]
- },
- {
-  "number": 26,
-  "commit_len": 2,
-  "created_at": "2016-03-19 05:35:25",
-  "merged_at": "2016-03-19 06:09:24",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/55a34ae564f5ab49adaf98bd4552dcd4bf8f85f3...a472ac952520c04d4fad1921b19ce3b26d54895e.diff",
-  "file_path": "autoencoder/VariationalAutoencoderRunner.py",
-  "changes_set": [
-   "  X_train",
-   "  ,",
-   "  X_test",
-   "  =",
-   "- minmax_scale",
-   "+ min_max_scale",
-   "  (",
-   "  mnist",
-   "  .",
-   "  train",
-   "  .",
-   "  images",
-   "  ,",
-   "  mnist",
-   "  .",
-   "  test",
-   "  .",
-   "  images",
-   "  )"
-  ]
- },
- {
-  "number": 44,
-  "commit_len": 11,
-  "created_at": "2016-04-13 05:41:24",
-  "merged_at": "2016-04-13 16:46:45",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...2ab20f2ebbb9363a9796d25cd905616394c0391f.diff",
-  "file_path": "inception/inception/imagenet_distributed_train.py",
-  "changes_set": [
-   "- import",
-   "- google3",
-   "- \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  import",
-   "  inception_distributed_train",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  .",
-   "  imagenet_data",
-   "  import",
-   "  ImagenetData"
-  ]
- },
- {
-  "number": 44,
-  "commit_len": 11,
-  "created_at": "2016-04-13 05:41:24",
-  "merged_at": "2016-04-13 16:46:45",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...2ab20f2ebbb9363a9796d25cd905616394c0391f.diff",
-  "file_path": "inception/inception/inception_distributed_train.py",
-  "changes_set": [
-   "- import",
-   "- google3",
-   "- \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  import",
-   "  image_processing",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  import",
-   "  inception_model",
-   "  as",
-   "  inception",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  .",
-   "  slim",
-   "  import",
-   "  slim"
-  ]
- },
- {
-  "number": 44,
-  "commit_len": 11,
-  "created_at": "2016-04-13 05:41:24",
-  "merged_at": "2016-04-13 16:46:45",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...2ab20f2ebbb9363a9796d25cd905616394c0391f.diff",
-  "file_path": "inception/inception/slim/ops.py",
-  "changes_set": [
-   "  axis",
-   "  =",
-   "+ list",
-   "+ (",
-   "  range",
-   "  (",
-   "  len",
-   "  (",
-   "  inputs_shape",
-   "  )",
-   "  -",
-   "  1",
-   "  )",
-   "+ )",
-   "  \n",
-   "      ",
-   "+ beta",
-   "- with",
-   "- scopes",
-   "- .",
-   "- arg_scope",
-   "- (",
-   "- [",
-   "- variables",
-   "- .",
-   "- variable",
-   "- ]",
-   "  ,",
-   "- restore",
-   "+ gamma",
-   "  =",
-   "- restore",
-   "- )",
-   "+ None",
-   "+ ,",
-   "+ None",
-   "+ \n",
-   "+ if",
-   "+ center",
-   "  :",
-   "  \n",
-   "                                  ",
-   "  trainable",
-   "  =",
-   "  trainable",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "  )",
-   "  \n",
-   "   ",
-   "  if",
-   "  scale",
-   "  :",
-   "  \n",
-   "-         ",
-   "+       ",
-   "  gamma",
-   "  =",
-   "  variables",
-   "  .",
-   "  variable",
-   "  (",
-   "  'gamma'",
-   "  ,",
-   "  \n",
-   "-                                    ",
-   "+                                  ",
-   "  params_shape",
-   "  ,",
-   "  \n",
-   "  initializer",
-   "  =",
-   "  tf",
-   "  .",
-   "- ones",
-   "+ ones_initializer",
-   "  ,",
-   "  \n",
-   "  trainable",
-   "  =",
-   "  trainable",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "  )",
-   "  \n",
-   "   ",
-   "   ",
-   "- else",
-   "- :",
-   "- \n",
-   "-         ",
-   "- gamma",
-   "- =",
-   "- None",
-   "- \n",
-   "-  ",
-   "- with",
-   "- scopes",
-   "- .",
-   "- arg_scope",
-   "- (",
-   "- [",
-   "- variables",
-   "- .",
-   "- variable",
-   "- ]",
-   "- ,",
-   "- trainable",
-   "- =",
-   "- False",
-   "- ,",
-   "- \n",
-   "-                             ",
-   "- collections",
-   "+ moving_collections",
-   "  =",
-   "  [",
-   "  moving_vars",
-   "  ,",
-   "  tf",
-   "  .",
-   "  GraphKeys",
-   "  .",
-   "  MOVING_AVERAGE_VARIABLES",
-   "  ]",
-   "- )",
-   "- :",
-   "  \n",
-   "-  ",
-   "  moving_mean",
-   "  =",
-   "  variables",
-   "  .",
-   "  variable",
-   "  (",
-   "  'moving_mean'",
-   "  ,",
-   "  \n",
-   "-                                          ",
-   "+                                      ",
-   "+ params_shape",
-   "+ ,",
-   "+ \n",
-   "  initializer",
-   "  =",
-   "  tf",
-   "  .",
-   "  zeros_initializer",
-   "+ ,",
-   "+ \n",
-   "+ trainable",
-   "+ =",
-   "+ False",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "+ ,",
-   "+ \n",
-   "+ collections",
-   "+ =",
-   "+ moving_collections",
-   "  )",
-   "  \n",
-   "   ",
-   "  moving_variance",
-   "  =",
-   "  variables",
-   "  .",
-   "  variable",
-   "  (",
-   "  'moving_variance'",
-   "  ,",
-   "  \n",
-   "-                                              ",
-   "+                                          ",
-   "- params_shape",
-   "- ,",
-   "- \n",
-   "  initializer",
-   "  =",
-   "  tf",
-   "  .",
-   "- ones",
-   "+ ones_initializer",
-   "+ ,",
-   "+ \n",
-   "+ trainable",
-   "+ =",
-   "+ False",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "+ ,",
-   "+ \n",
-   "+ collections",
-   "+ =",
-   "+ moving_collections",
-   "  )",
-   "  )",
-   "  )",
-   "  )",
-   "- ones)",
-   "+ ions)"
-  ]
- },
- {
-  "number": 44,
-  "commit_len": 11,
-  "created_at": "2016-04-13 05:41:24",
-  "merged_at": "2016-04-13 16:46:45",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...2ab20f2ebbb9363a9796d25cd905616394c0391f.diff",
-  "file_path": "inception/inception/slim/ops.py",
-  "changes_set": [
-   "  keep_prob",
-   "  :",
-   "  the",
-   "  probability",
-   "  of",
-   "- dropping",
-   "+ keeping",
-   "  each",
-   "  input",
-   "  unit",
-   "  ."
-  ]
- },
- {
-  "number": 44,
-  "commit_len": 11,
-  "created_at": "2016-04-13 05:41:24",
-  "merged_at": "2016-04-13 16:46:45",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...2ab20f2ebbb9363a9796d25cd905616394c0391f.diff",
-  "file_path": "inception/inception/slim/variables.py",
-  "changes_set": [
-   "+ \n",
-   "+   ",
-   "  with",
-   "  tf",
-   "  .",
-   "  device",
-   "  (",
-   "+ variable_device",
-   "+ (",
-   "  device",
-   "+ ,",
-   "+ name",
-   "+ )",
-   "  )",
-   "  :",
-   "+ :",
-   "+ :",
-   "+ me)):"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/image_processing.py",
-  "changes_set": [
-   "  num_preprocess_threads",
-   "  =",
-   "  num_preprocess_threads",
-   "+ ,",
-   "+ \n",
-   "+         ",
-   "+ num_readers",
-   "+ =",
-   "+ 1",
-   "  )",
-   "+ )",
-   "+ )",
-   "+ rs=1)"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/image_processing.py",
-  "changes_set": [
-   "  num_preprocess_threads",
-   "  =",
-   "  num_preprocess_threads",
-   "+ ,",
-   "+ \n",
-   "+         ",
-   "+ num_readers",
-   "+ =",
-   "+ FLAGS",
-   "+ .",
-   "+ num_readers",
-   "  )",
-   "+ )",
-   "+ )",
-   "+ ders)"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/image_processing.py",
-  "changes_set": [
-   "  def",
-   "  batch_inputs",
-   "  (",
-   "  dataset",
-   "  ,",
-   "  batch_size",
-   "  ,",
-   "  train",
-   "  ,",
-   "  num_preprocess_threads",
-   "  =",
-   "  None",
-   "+ ,",
-   "+ num_readers",
-   "+ =",
-   "+ 1",
-   "  )",
-   "  :"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/image_processing.py",
-  "changes_set": [
-   "+ \n",
-   "+     ",
-   "+ if",
-   "+ train",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "  filename_queue",
-   "  =",
-   "  tf",
-   "  .",
-   "  train",
-   "  .",
-   "  string_input_producer",
-   "  (",
-   "  data_files",
-   "  ,",
-   "+ shuffle",
-   "+ =",
-   "+ True",
-   "+ ,",
-   "  capacity",
-   "  =",
-   "  16",
-   "  )",
-   "  \n",
-   "+  ",
-   "+ else",
-   "-     ",
-   "- images_and_labels",
-   "- =",
-   "- [",
-   "- ]",
-   "- \n",
-   "- for",
-   "- thread_id",
-   "- in",
-   "- range",
-   "- (",
-   "- num_preprocess_threads",
-   "- )",
-   "  :",
-   "  \n",
-   "        ",
-   "- reader",
-   "+ filename_queue",
-   "  =",
-   "- dataset",
-   "+ tf",
-   "  .",
-   "- reader",
-   "+ train",
-   "+ .",
-   "+ string_input_producer",
-   "  (",
-   "+ data_files",
-   "+ ,",
-   "+ shuffle",
-   "+ =",
-   "+ False",
-   "+ ,",
-   "+ capacity",
-   "+ =",
-   "+ 1",
-   "  )",
-   "  \n",
-   "- _",
-   "- ,",
-   "- example_serialized",
-   "+  ",
-   "+ if",
-   "+ num_readers",
-   "+ is",
-   "+ None",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "+ num_readers",
-   "  =",
-   "- reader",
-   "+ FLAGS",
-   "  .",
-   "- read",
-   "+ num_readers",
-   "+ \n",
-   "+  ",
-   "+ if",
-   "+ num_readers",
-   "+ <",
-   "+ 1",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "+ raise",
-   "+ ValueError",
-   "  (",
-   "+ 'Please make num_readers at least 1'",
-   "- filename_queue",
-   "- )",
-   "- \n",
-   "- image_buffer",
-   "- ,",
-   "- label_index",
-   "- ,",
-   "- bbox",
-   "- ,",
-   "- _",
-   "- =",
-   "- parse_example_proto",
-   "- (",
-   "- example_serialized",
-   "- )",
-   "- \n",
-   "- image",
-   "- =",
-   "- image_preprocessing",
-   "- (",
-   "- image_buffer",
-   "- ,",
-   "- bbox",
-   "- ,",
-   "- train",
-   "- ,",
-   "- thread_id",
-   "- )",
-   "- \n",
-   "- images_and_labels",
-   "- .",
-   "- append",
-   "- (",
-   "- [",
-   "- image",
-   "- ,",
-   "- label_index",
-   "- ]",
-   "  )",
-   "  )",
-   "  )",
-   "  )",
-   "- dex])",
-   "+ t 1')"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/image_processing.py",
-  "changes_set": [
-   "+ examples_queue",
-   "+ =",
-   "+ tf",
-   "+ .",
-   "+ RandomShuffleQueue",
-   "+ (",
-   "+ min_after_dequeue",
-   "+ =",
-   "+ min_queue_examples",
-   "+ ,",
-   "+ dtypes",
-   "+ =",
-   "+ [",
-   "+ tf",
-   "+ .",
-   "+ string",
-   "+ ]",
-   "+ )",
-   "+ \n",
-   "+     ",
-   "+ else",
-   "+ :",
-   "  \n",
-   "        ",
-   "+ examples_queue",
-   "- images",
-   "- ,",
-   "- label_index_batch",
-   "  =",
-   "  tf",
-   "  .",
-   "+ FIFOQueue",
-   "- train",
-   "- .",
-   "- shuffle_batch_join",
-   "  (",
-   "- images_and_labels",
-   "- ,",
-   "- batch_size",
-   "- =",
-   "- batch_size",
-   "- ,",
-   "- min_after_dequeue",
-   "- =",
-   "- min_queue_examples",
-   "- )",
-   "- \n",
-   "- images",
-   "- ,",
-   "- label_index_batch",
-   "- =",
-   "- tf",
-   "- .",
-   "- train",
-   "- .",
-   "- batch_join",
-   "- (",
-   "- images_and_labels",
-   "- ,",
-   "- batch_size",
-   "- =",
-   "- batch_size",
-   "- ,",
-   "  capacity",
-   "  =",
-   "- min_queue_examples",
-   "+ examples_per_shard",
-   "  +",
-   "  3",
-   "  *",
-   "  batch_size",
-   "+ ,",
-   "+ dtypes",
-   "+ =",
-   "+ [",
-   "+ tf",
-   "+ .",
-   "+ string",
-   "+ ]",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+ if",
-   "+ num_readers",
-   "+ >",
-   "+ 1",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "+ enqueue_ops",
-   "+ =",
-   "+ [",
-   "+ ]",
-   "+ \n",
-   "+ for",
-   "+ _",
-   "+ in",
-   "+ range",
-   "+ (",
-   "+ num_readers",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+         ",
-   "+ reader",
-   "+ =",
-   "+ dataset",
-   "+ .",
-   "+ reader",
-   "+ (",
-   "+ )",
-   "+ \n",
-   "+ _",
-   "+ ,",
-   "+ value",
-   "+ =",
-   "+ reader",
-   "+ .",
-   "+ read",
-   "+ (",
-   "+ filename_queue",
-   "+ )",
-   "+ \n",
-   "+ enqueue_ops",
-   "+ .",
-   "+ append",
-   "+ (",
-   "+ examples_queue",
-   "+ .",
-   "+ enqueue",
-   "+ (",
-   "+ [",
-   "+ value",
-   "+ ]",
-   "+ )",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+ tf",
-   "+ .",
-   "+ train",
-   "+ .",
-   "+ queue_runner",
-   "+ .",
-   "+ add_queue_runner",
-   "+ (",
-   "+ tf",
-   "+ .",
-   "+ train",
-   "+ .",
-   "+ queue_runner",
-   "+ .",
-   "+ QueueRunner",
-   "+ (",
-   "+ examples_queue",
-   "+ ,",
-   "+ enqueue_ops",
-   "+ )",
-   "+ )",
-   "+ \n",
-   "+ example_serialized",
-   "+ =",
-   "+ examples_queue",
-   "+ .",
-   "+ dequeue",
-   "+ (",
-   "+ )",
-   "+ \n",
-   "+ reader",
-   "+ =",
-   "+ dataset",
-   "+ .",
-   "+ reader",
-   "+ (",
-   "+ )",
-   "+ \n",
-   "+ _",
-   "+ ,",
-   "+ example_serialized",
-   "+ =",
-   "+ reader",
-   "+ .",
-   "+ read",
-   "+ (",
-   "+ filename_queue",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+ images_and_labels",
-   "+ =",
-   "+ [",
-   "+ ]",
-   "+ \n",
-   "+ for",
-   "+ thread_id",
-   "+ in",
-   "+ range",
-   "+ (",
-   "+ num_preprocess_threads",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "+ image_buffer",
-   "+ ,",
-   "+ label_index",
-   "+ ,",
-   "+ bbox",
-   "+ ,",
-   "+ _",
-   "+ =",
-   "+ parse_example_proto",
-   "+ (",
-   "+ example_serialized",
-   "+ )",
-   "+ \n",
-   "+ image",
-   "+ =",
-   "+ image_preprocessing",
-   "+ (",
-   "+ image_buffer",
-   "+ ,",
-   "+ bbox",
-   "+ ,",
-   "+ train",
-   "+ ,",
-   "+ thread_id",
-   "+ )",
-   "+ \n",
-   "+ images_and_labels",
-   "+ .",
-   "+ append",
-   "+ (",
-   "+ [",
-   "+ image",
-   "+ ,",
-   "+ label_index",
-   "+ ]",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+ images",
-   "+ ,",
-   "+ label_index_batch",
-   "+ =",
-   "+ tf",
-   "+ .",
-   "+ train",
-   "+ .",
-   "+ batch_join",
-   "+ (",
-   "+ images_and_labels",
-   "+ ,",
-   "+ batch_size",
-   "+ =",
-   "+ batch_size",
-   "+ ,",
-   "+ capacity",
-   "+ =",
-   "+ 2",
-   "+ *",
-   "+ num_preprocess_threads",
-   "+ *",
-   "+ batch_size",
-   "  )",
-   "  )",
-   "  )",
-   "  size)"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/imagenet_distributed_train.py",
-  "changes_set": [
-   "- import",
-   "- google3",
-   "- \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  import",
-   "  inception_distributed_train",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  .",
-   "  imagenet_data",
-   "  import",
-   "  ImagenetData"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/inception_distributed_train.py",
-  "changes_set": [
-   "- import",
-   "- google3",
-   "- \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  import",
-   "  image_processing",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  import",
-   "  inception_model",
-   "  as",
-   "  inception",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "- tensorflow_models",
-   "- .",
-   "  inception",
-   "  .",
-   "  slim",
-   "  import",
-   "  slim"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/slim/ops.py",
-  "changes_set": [
-   "  axis",
-   "  =",
-   "+ list",
-   "+ (",
-   "  range",
-   "  (",
-   "  len",
-   "  (",
-   "  inputs_shape",
-   "  )",
-   "  -",
-   "  1",
-   "  )",
-   "+ )",
-   "  \n",
-   "      ",
-   "+ beta",
-   "- with",
-   "- scopes",
-   "- .",
-   "- arg_scope",
-   "- (",
-   "- [",
-   "- variables",
-   "- .",
-   "- variable",
-   "- ]",
-   "  ,",
-   "- restore",
-   "+ gamma",
-   "  =",
-   "- restore",
-   "- )",
-   "+ None",
-   "+ ,",
-   "+ None",
-   "+ \n",
-   "+ if",
-   "+ center",
-   "  :",
-   "  \n",
-   "                                  ",
-   "  trainable",
-   "  =",
-   "  trainable",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "  )",
-   "  \n",
-   "   ",
-   "  if",
-   "  scale",
-   "  :",
-   "  \n",
-   "-         ",
-   "+       ",
-   "  gamma",
-   "  =",
-   "  variables",
-   "  .",
-   "  variable",
-   "  (",
-   "  'gamma'",
-   "  ,",
-   "  \n",
-   "-                                    ",
-   "+                                  ",
-   "  params_shape",
-   "  ,",
-   "  \n",
-   "  initializer",
-   "  =",
-   "  tf",
-   "  .",
-   "- ones",
-   "+ ones_initializer",
-   "  ,",
-   "  \n",
-   "  trainable",
-   "  =",
-   "  trainable",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "  )",
-   "  \n",
-   "   ",
-   "   ",
-   "- else",
-   "- :",
-   "- \n",
-   "-         ",
-   "- gamma",
-   "- =",
-   "- None",
-   "- \n",
-   "-  ",
-   "- with",
-   "- scopes",
-   "- .",
-   "- arg_scope",
-   "- (",
-   "- [",
-   "- variables",
-   "- .",
-   "- variable",
-   "- ]",
-   "- ,",
-   "- trainable",
-   "- =",
-   "- False",
-   "- ,",
-   "- \n",
-   "-                             ",
-   "- collections",
-   "+ moving_collections",
-   "  =",
-   "  [",
-   "  moving_vars",
-   "  ,",
-   "  tf",
-   "  .",
-   "  GraphKeys",
-   "  .",
-   "  MOVING_AVERAGE_VARIABLES",
-   "  ]",
-   "- )",
-   "- :",
-   "  \n",
-   "-  ",
-   "  moving_mean",
-   "  =",
-   "  variables",
-   "  .",
-   "  variable",
-   "  (",
-   "  'moving_mean'",
-   "  ,",
-   "  \n",
-   "-                                          ",
-   "+                                      ",
-   "+ params_shape",
-   "+ ,",
-   "+ \n",
-   "  initializer",
-   "  =",
-   "  tf",
-   "  .",
-   "  zeros_initializer",
-   "+ ,",
-   "+ \n",
-   "+ trainable",
-   "+ =",
-   "+ False",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "+ ,",
-   "+ \n",
-   "+ collections",
-   "+ =",
-   "+ moving_collections",
-   "  )",
-   "  \n",
-   "   ",
-   "  moving_variance",
-   "  =",
-   "  variables",
-   "  .",
-   "  variable",
-   "  (",
-   "  'moving_variance'",
-   "  ,",
-   "  \n",
-   "-                                              ",
-   "+                                          ",
-   "- params_shape",
-   "- ,",
-   "- \n",
-   "  initializer",
-   "  =",
-   "  tf",
-   "  .",
-   "- ones",
-   "+ ones_initializer",
-   "+ ,",
-   "+ \n",
-   "+ trainable",
-   "+ =",
-   "+ False",
-   "+ ,",
-   "+ \n",
-   "+ restore",
-   "+ =",
-   "+ restore",
-   "+ ,",
-   "+ \n",
-   "+ collections",
-   "+ =",
-   "+ moving_collections",
-   "  )",
-   "  )",
-   "  )",
-   "  )",
-   "- ones)",
-   "+ ions)"
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/slim/ops.py",
-  "changes_set": [
-   "  keep_prob",
-   "  :",
-   "  the",
-   "  probability",
-   "  of",
-   "- dropping",
-   "+ keeping",
-   "  each",
-   "  input",
-   "  unit",
-   "  ."
-  ]
- },
- {
-  "number": 45,
-  "commit_len": 13,
-  "created_at": "2016-04-13 19:36:25",
-  "merged_at": "2016-04-13 21:33:03",
-  "merged_by": "mrry",
-  "1-n_url": "https://github.com/tensorflow/models/compare/f05040b06b981246acae4ac4774c77468d5bfd31...370c05ffd3bb1685643731139b0607a58fdafd64.diff",
-  "file_path": "inception/inception/slim/variables.py",
-  "changes_set": [
-   "+ \n",
-   "+   ",
-   "  with",
-   "  tf",
-   "  .",
-   "  device",
-   "  (",
-   "+ variable_device",
-   "+ (",
-   "  device",
-   "+ ,",
-   "+ name",
-   "+ )",
-   "  )",
-   "  :",
-   "+ :",
-   "+ :",
-   "+ me)):"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/beam_reader_ops_test.py",
-  "changes_set": [
-   "- \"\"\"Tests for beam-reader-ops.\"\"\"",
-   "  \n",
-   "+ \"\"\"Tests for beam_reader_ops.\"\"\"",
-   "- import",
-   "- google3",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  framework",
-   "  import",
-   "  test_util",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  googletest",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  logging",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  structured_graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  .",
-   "  ops",
-   "  import",
-   "  gen_parser_ops",
-   "+ \n",
-   "+ if",
-   "+ not",
-   "+ hasattr",
-   "+ (",
-   "+ FLAGS",
-   "+ ,",
-   "+ 'test_srcdir'",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ FLAGS",
-   "+ .",
-   "+ test_srcdir",
-   "+ =",
-   "+ ''",
-   "+ \n",
-   "+ \n",
-   "+ if",
-   "+ not",
-   "+ hasattr",
-   "+ (",
-   "+ FLAGS",
-   "+ ,",
-   "+ 'test_tmpdir'",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ FLAGS",
-   "+ .",
-   "+ test_tmpdir",
-   "+ =",
-   "+ tf",
-   "+ .",
-   "+ test",
-   "+ .",
-   "+ get_temp_dir",
-   "+ (",
-   "+ )",
-   "  \n",
-   "          ",
-   "  FLAGS",
-   "  .",
-   "  test_srcdir",
-   "  ,",
-   "- 'google3/nlp/saft/components/dependencies'",
-   "- \n",
-   "- '/opensource/testdata/context.pbtxt'",
-   "+ 'neurosis/testdata/context.pbtxt'",
-   "+ )",
-   "  )",
-   "  )",
-   "  )",
-   "  txt')"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/graph_builder.py",
-  "changes_set": [
-   "+ \n",
-   "- \"\"\"Build parser models.\"\"\"",
-   "+ \"\"\"Builds parser models.\"\"\"",
-   "+ \n",
-   "+ import",
-   "+ neurosis",
-   "+ .",
-   "+ load_parser_ops",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  ops",
-   "  import",
-   "  control_flow_ops",
-   "  as",
-   "  cf",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  ops",
-   "  import",
-   "  state_ops",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  logging",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  .",
-   "  ops",
-   "  import",
-   "  gen_parser_ops"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/graph_builder_test.py",
-  "changes_set": [
-   "- import",
-   "- google3",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  framework",
-   "  import",
-   "  test_util",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  ops",
-   "  import",
-   "  variables",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  googletest",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  sparse_pb2",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  .",
-   "  ops",
-   "  import",
-   "  gen_parser_ops",
-   "+ \n",
-   "+ if",
-   "+ not",
-   "+ hasattr",
-   "+ (",
-   "+ FLAGS",
-   "+ ,",
-   "+ 'test_srcdir'",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ FLAGS",
-   "+ .",
-   "+ test_srcdir",
-   "+ =",
-   "+ ''",
-   "+ \n",
-   "+ \n",
-   "+ if",
-   "+ not",
-   "+ hasattr",
-   "+ (",
-   "+ FLAGS",
-   "+ ,",
-   "+ 'test_tmpdir'",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ FLAGS",
-   "+ .",
-   "+ test_tmpdir",
-   "+ =",
-   "+ tf",
-   "+ .",
-   "+ test",
-   "+ .",
-   "+ get_temp_dir",
-   "+ (",
-   "+ )",
-   "  \n",
-   "          ",
-   "  FLAGS",
-   "  .",
-   "  test_srcdir",
-   "  ,",
-   "- 'google3/nlp/saft/components/dependencies'",
-   "- \n",
-   "- '/opensource/testdata/context.pbtxt'",
-   "+ 'neurosis/testdata/context.pbtxt'",
-   "+ )",
-   "  )",
-   "  )",
-   "  )",
-   "  txt')"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_eval.py",
-  "changes_set": [
-   "+ \n",
-   "- blaze",
-   "+ bazel",
-   "  -",
-   "  bin",
-   "  /",
-   "  nlp",
-   "  /",
-   "  saft",
-   "  /",
-   "  components",
-   "  /",
-   "  dependencies",
-   "  /",
-   "  opensource",
-   "  /",
-   "  parser_eval",
-   "  -",
-   "  -",
-   "- batch_size",
-   "- =",
-   "- 32",
-   "- -",
-   "- -",
-   "  task_context",
-   "  =",
-   "- /",
-   "- cns",
-   "- /",
-   "- ...",
-   "- /",
-   "  context",
-   "  \\"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_eval.py",
-  "changes_set": [
-   "- import",
-   "- google3",
-   "- \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  gfile",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  logging",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  sentence_pb2",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  structured_graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  .",
-   "  ops",
-   "  import",
-   "  gen_parser_ops"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_eval.py",
-  "changes_set": [
-   "  flags",
-   "  .",
-   "- DEFINE_list",
-   "+ DEFINE_string",
-   "  (",
-   "  'hidden_layer_sizes'",
-   "  ,",
-   "+ '200,200'",
-   "- [",
-   "- 200",
-   "- ,",
-   "- 200",
-   "- ]",
-   "  ,",
-   "  'Comma separated list of hidden layer sizes.'",
-   "  )"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_eval.py",
-  "changes_set": [
-   "  hidden_layer_sizes",
-   "  =",
-   "  map",
-   "  (",
-   "  int",
-   "  ,",
-   "  FLAGS",
-   "  .",
-   "  hidden_layer_sizes",
-   "+ .",
-   "+ split",
-   "+ (",
-   "+ ','",
-   "  )",
-   "+ )"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_trainer.py",
-  "changes_set": [
-   "- import",
-   "- google3",
-   "- \n",
-   "- try",
-   "- :",
-   "- \n",
-   "-   ",
-   "- import",
-   "- tensorflow",
-   "- .",
-   "- google",
-   "- as",
-   "- tf",
-   "- \n",
-   "- \n",
-   "- except",
-   "- ImportError",
-   "- :",
-   "- \n",
-   "-   ",
-   "  import",
-   "  tensorflow",
-   "  as",
-   "  tf",
-   "  \n",
-   "- \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  gfile",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  logging",
-   "  \n",
-   "  from",
-   "- google3",
-   "+ google",
-   "  .",
-   "+ protobuf",
-   "- net",
-   "- .",
-   "- proto2",
-   "- .",
-   "- python",
-   "- .",
-   "- public",
-   "  import",
-   "  text_format",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  structured_graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  .",
-   "  ops",
-   "  import",
-   "  gen_parser_ops",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  task_spec_pb2"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_trainer.py",
-  "changes_set": [
-   "  flags",
-   "  .",
-   "- DEFINE_list",
-   "+ DEFINE_string",
-   "  (",
-   "  'hidden_layer_sizes'",
-   "  ,",
-   "+ '200,200'",
-   "- [",
-   "- 200",
-   "- ,",
-   "- 200",
-   "- ]",
-   "  ,",
-   "  'Comma separated list of hidden layer sizes.'",
-   "  )"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_trainer.py",
-  "changes_set": [
-   "  flags",
-   "  .",
-   "- DEFINE_list",
-   "+ DEFINE_string",
-   "  (",
-   "  'pretrained_params_names'",
-   "  ,",
-   "  None",
-   "  ,",
-   "  'List of names of tensors to load from pretrained model.'",
-   "  )"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_trainer.py",
-  "changes_set": [
-   "  hidden_layer_sizes",
-   "  =",
-   "  map",
-   "  (",
-   "  int",
-   "  ,",
-   "  FLAGS",
-   "  .",
-   "  hidden_layer_sizes",
-   "+ .",
-   "+ split",
-   "+ (",
-   "+ ','",
-   "  )",
-   "+ )"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/parser_trainer.py",
-  "changes_set": [
-   "  node",
-   "  .",
-   "  input",
-   "  [",
-   "  0",
-   "  ]",
-   "  in",
-   "  FLAGS",
-   "  .",
-   "  pretrained_params_names",
-   "+ .",
-   "+ split",
-   "+ (",
-   "+ ','",
-   "+ )",
-   "  )",
-   "  :"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/reader_ops_test.py",
-  "changes_set": [
-   "- \"\"\"Tests for parser_ops.\"\"\"",
-   "  \n",
-   "+ \"\"\"Tests for reader_ops.\"\"\"",
-   "- import",
-   "- google3",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  framework",
-   "  import",
-   "  test_util",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  ops",
-   "  import",
-   "  control_flow_ops",
-   "  as",
-   "  cf",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  googletest",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  platform",
-   "  import",
-   "  logging",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  dictionary_pb2",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  sparse_pb2",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  .",
-   "  ops",
-   "  import",
-   "  gen_parser_ops",
-   "+ \n",
-   "+ if",
-   "+ not",
-   "+ hasattr",
-   "+ (",
-   "+ FLAGS",
-   "+ ,",
-   "+ 'test_srcdir'",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ FLAGS",
-   "+ .",
-   "+ test_srcdir",
-   "+ =",
-   "+ ''",
-   "+ \n",
-   "+ \n",
-   "+ if",
-   "+ not",
-   "+ hasattr",
-   "+ (",
-   "+ FLAGS",
-   "+ ,",
-   "+ 'test_tmpdir'",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ FLAGS",
-   "+ .",
-   "+ test_tmpdir",
-   "+ =",
-   "+ tf",
-   "+ .",
-   "+ test",
-   "+ .",
-   "+ get_temp_dir",
-   "+ (",
-   "+ )",
-   "  \n",
-   "          ",
-   "  FLAGS",
-   "  .",
-   "  test_srcdir",
-   "  ,",
-   "- 'google3/nlp/saft/components/dependencies/'",
-   "- \n",
-   "- 'opensource/testdata/context.pbtxt'",
-   "+ 'neurosis/testdata/context.pbtxt'",
-   "+ )",
-   "  )",
-   "  )",
-   "  )",
-   "  txt')"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/reader_ops_test.py",
-  "changes_set": [
-   "  writer",
-   "  .",
-   "  write",
-   "  (",
-   "  _TokenEmbedding",
-   "  (",
-   "- 'the'",
-   "+ '.'",
-   "  ,",
-   "  [",
-   "  1",
-   "  ,",
-   "  2",
-   "  ]",
-   "  )",
-   "  )",
-   "  \n",
-   "      ",
-   "  writer",
-   "  .",
-   "  write",
-   "  (",
-   "  _TokenEmbedding",
-   "  (",
-   "- '.'",
-   "+ 'the'",
-   "  ,",
-   "  [",
-   "  5",
-   "  ,",
-   "  6",
-   "  ]",
-   "  )",
-   "  )",
-   "  )",
-   "  )",
-   "   6]))"
-  ]
- },
- {
-  "number": 63,
-  "commit_len": 51,
-  "created_at": "2016-05-12 18:34:12",
-  "merged_at": "2016-05-12 18:40:03",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/6c34cf7a8789500bbf679b761b58bb9b337a8cf1...455cee25a3f9f545abfb795baa2f78aaac318f51.diff",
-  "file_path": "syntaxnet/structured_graph_builder.py",
-  "changes_set": [
-   "+ \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  ops",
-   "  import",
-   "  control_flow_ops",
-   "  as",
-   "  cf",
-   "  \n",
-   "  from",
-   "- google3",
-   "- .",
-   "- third_party",
-   "- .",
-   "  tensorflow",
-   "  .",
-   "  python",
-   "  .",
-   "  ops",
-   "  import",
-   "  state_ops",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  import",
-   "  graph_builder",
-   "  \n",
-   "  from",
-   "+ neurosis",
-   "- google3",
-   "- .",
-   "- nlp",
-   "- .",
-   "- saft",
-   "- .",
-   "- components",
-   "- .",
-   "- dependencies",
-   "- .",
-   "- opensource",
-   "  .",
-   "  ops",
-   "  import",
-   "  gen_parser_ops"
-  ]
- },
- {
-  "number": 155,
-  "commit_len": 3,
-  "created_at": "2016-05-26 08:16:42",
-  "merged_at": "2016-05-31 16:15:14",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5ee2a0c8024ee0343f5c69490859184365393da1...a2909725383a2f74fc89a486059495d11919409b.diff",
-  "file_path": "transformer/cluttered_mnist.py",
-  "changes_set": [
-   "- \n",
-   "- from",
-   "- scipy",
-   "- import",
-   "- ndimage",
-   "- \n",
-   "- import",
-   "- matplotlib",
-   "- .",
-   "- pyplot",
-   "- as",
-   "- plt",
-   "  \n",
-   "  from",
-   "  tf_utils",
-   "  import",
-   "- conv2d",
-   "- ,",
-   "- linear",
-   "- ,",
-   "  weight_variable",
-   "  ,",
-   "  bias_variable",
-   "  ,",
-   "  dense_to_one_hot"
-  ]
- },
- {
-  "number": 155,
-  "commit_len": 3,
-  "created_at": "2016-05-26 08:16:42",
-  "merged_at": "2016-05-31 16:15:14",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5ee2a0c8024ee0343f5c69490859184365393da1...a2909725383a2f74fc89a486059495d11919409b.diff",
-  "file_path": "transformer/spatial_transformer.py",
-  "changes_set": [
-   "  U",
-   "  :",
-   "  float",
-   "  \n",
-   "          ",
-   "  shape",
-   "  [",
-   "  num_batch",
-   "  ,",
-   "  height",
-   "  ,",
-   "  width",
-   "  ,",
-   "  num_channels",
-   "  ]",
-   "  .",
-   "  \n",
-   "   ",
-   "  theta",
-   "  :",
-   "  float",
-   "  \n",
-   "      ",
-   "  out_size",
-   "  :",
-   "  tuple",
-   "  of",
-   "  two",
-   "- floats",
-   "+ ints",
-   "  \n",
-   "          ",
-   "  The",
-   "  size",
-   "  of",
-   "  the",
-   "  output",
-   "  of",
-   "  the",
-   "  network",
-   "- k",
-   "- k",
-   "- k",
-   "- twork",
-   "+ (",
-   "+ height",
-   "+ ,",
-   "+ width",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ idth)"
-  ]
- },
- {
-  "number": 155,
-  "commit_len": 3,
-  "created_at": "2016-05-26 08:16:42",
-  "merged_at": "2016-05-31 16:15:14",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5ee2a0c8024ee0343f5c69490859184365393da1...a2909725383a2f74fc89a486059495d11919409b.diff",
-  "file_path": "transformer/spatial_transformer.py",
-  "changes_set": [
-   "  [",
-   "  0.",
-   "  ,",
-   "  1.",
-   "  ,",
-   "  0.",
-   "  ]",
-   "  ]",
-   "  )",
-   "  \n",
-   "              ",
-   "  rep",
-   "  =",
-   "  tf",
-   "  .",
-   "  transpose",
-   "  (",
-   "+ \n",
-   "+                 ",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  tf",
-   "  .",
-   "  ones",
-   "  (",
-   "  shape",
-   "  =",
-   "  tf",
-   "  .",
-   "  pack",
-   "  (",
-   "  [",
-   "  n_repeats",
-   "  ,",
-   "  ]",
-   "  )",
-   "  )",
-   "  ,",
-   "  1",
-   "  )",
-   "  ,",
-   "  [",
-   "  1",
-   "  ,",
-   "  0",
-   "  ]",
-   "  )",
-   "  \n",
-   "+  ",
-   "  x",
-   "  =",
-   "  tf",
-   "  .",
-   "  matmul",
-   "  (",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  x",
-   "  ,",
-   "  (",
-   "  -",
-   "  1",
-   "  ,",
-   "  1",
-   "  )",
-   "  )",
-   "  ,",
-   "  rep",
-   "  )",
-   "  \n",
-   "  return",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  x",
-   "  ,",
-   "  [",
-   "  -",
-   "  1",
-   "  ]",
-   "  )",
-   "  )",
-   "  )",
-   "  [-1])"
-  ]
- },
- {
-  "number": 155,
-  "commit_len": 3,
-  "created_at": "2016-05-26 08:16:42",
-  "merged_at": "2016-05-31 16:15:14",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5ee2a0c8024ee0343f5c69490859184365393da1...a2909725383a2f74fc89a486059495d11919409b.diff",
-  "file_path": "transformer/spatial_transformer.py",
-  "changes_set": [
-   "  wa",
-   "  =",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  (",
-   "  (",
-   "  x1_f",
-   "  -",
-   "  x",
-   "  )",
-   "  *",
-   "  (",
-   "  y1_f",
-   "  -",
-   "  y",
-   "  )",
-   "  )",
-   "  ,",
-   "  1",
-   "  )",
-   "  \n",
-   "              ",
-   "  wb",
-   "  =",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  (",
-   "  (",
-   "  x1_f",
-   "  -",
-   "  x",
-   "  )",
-   "  *",
-   "  (",
-   "  y",
-   "  -",
-   "  y0_f",
-   "  )",
-   "  )",
-   "  ,",
-   "  1",
-   "  )",
-   "  \n",
-   "  wc",
-   "  =",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  (",
-   "  (",
-   "  x",
-   "  -",
-   "  x0_f",
-   "  )",
-   "  *",
-   "  (",
-   "  y1_f",
-   "  -",
-   "  y",
-   "  )",
-   "  )",
-   "  ,",
-   "  1",
-   "  )",
-   "  \n",
-   "  wd",
-   "  =",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  (",
-   "  (",
-   "  x",
-   "  -",
-   "  x0_f",
-   "  )",
-   "  *",
-   "  (",
-   "  y",
-   "  -",
-   "  y0_f",
-   "  )",
-   "  )",
-   "  ,",
-   "  1",
-   "  )",
-   "  )",
-   "  )",
-   "- )),1)",
-   "+ ), 1)"
-  ]
- },
- {
-  "number": 155,
-  "commit_len": 3,
-  "created_at": "2016-05-26 08:16:42",
-  "merged_at": "2016-05-31 16:15:14",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5ee2a0c8024ee0343f5c69490859184365393da1...a2909725383a2f74fc89a486059495d11919409b.diff",
-  "file_path": "transformer/spatial_transformer.py",
-  "changes_set": [
-   "  tf",
-   "  .",
-   "  transpose",
-   "  (",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  tf",
-   "  .",
-   "  linspace",
-   "  (",
-   "  -",
-   "  1.0",
-   "  ,",
-   "  1.0",
-   "  ,",
-   "  width",
-   "  )",
-   "  ,",
-   "  1",
-   "  )",
-   "  ,",
-   "  [",
-   "  1",
-   "  ,",
-   "  0",
-   "  ]",
-   "  )",
-   "  )",
-   "  \n",
-   "              ",
-   "  y_t",
-   "  =",
-   "  tf",
-   "  .",
-   "  matmul",
-   "  (",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  tf",
-   "  .",
-   "  linspace",
-   "  (",
-   "  -",
-   "  1.0",
-   "  ,",
-   "  1.0",
-   "  ,",
-   "  height",
-   "  )",
-   "  ,",
-   "  1",
-   "  )",
-   "  ,",
-   "  \n",
-   "-                         ",
-   "+                             ",
-   "  tf",
-   "  .",
-   "  ones",
-   "  (",
-   "  shape",
-   "  =",
-   "  tf",
-   "  .",
-   "  pack",
-   "  (",
-   "  [",
-   "  1",
-   "  ,",
-   "  width",
-   "  ]",
-   "  )",
-   "  )",
-   "  )",
-   "  \n",
-   "   ",
-   "  x_t_flat",
-   "  =",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  x_t",
-   "  ,",
-   "  (",
-   "  1",
-   "  ,",
-   "  -",
-   "  1",
-   "  )",
-   "  )",
-   "  \n",
-   "  y_t_flat",
-   "  =",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  y_t",
-   "  ,",
-   "  (",
-   "  1",
-   "  ,",
-   "  -",
-   "  1",
-   "  )",
-   "  )",
-   "  )",
-   "  )",
-   "   -1))"
-  ]
- },
- {
-  "number": 155,
-  "commit_len": 3,
-  "created_at": "2016-05-26 08:16:42",
-  "merged_at": "2016-05-31 16:15:14",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5ee2a0c8024ee0343f5c69490859184365393da1...a2909725383a2f74fc89a486059495d11919409b.diff",
-  "file_path": "transformer/spatial_transformer.py",
-  "changes_set": [
-   "  out_width",
-   "  =",
-   "  out_size",
-   "  [",
-   "  1",
-   "  ]",
-   "  \n",
-   "              ",
-   "  grid",
-   "  =",
-   "  tf",
-   "  .",
-   "  expand_dims",
-   "  (",
-   "  grid",
-   "  ,",
-   "  0",
-   "  )",
-   "  \n",
-   "  grid",
-   "  =",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  grid",
-   "  ,",
-   "  [",
-   "  -",
-   "  1",
-   "  ]",
-   "  )",
-   "  \n",
-   "  grid",
-   "  =",
-   "  tf",
-   "  .",
-   "  tile",
-   "  (",
-   "  grid",
-   "  ,",
-   "  tf",
-   "  .",
-   "  pack",
-   "  (",
-   "  [",
-   "  num_batch",
-   "  ]",
-   "  )",
-   "  )",
-   "  \n",
-   "  grid",
-   "  =",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  grid",
-   "  ,",
-   "  tf",
-   "  .",
-   "  pack",
-   "  (",
-   "  [",
-   "  num_batch",
-   "  ,",
-   "  3",
-   "  ,",
-   "  -",
-   "  1",
-   "  ]",
-   "  )",
-   "  )",
-   "  \n",
-   "  x_s",
-   "  =",
-   "  tf",
-   "  .",
-   "  slice",
-   "  (",
-   "  T_g",
-   "  ,",
-   "  [",
-   "  0",
-   "  ,",
-   "  0",
-   "  ,",
-   "  0",
-   "  ]",
-   "  ,",
-   "  [",
-   "  -",
-   "  1",
-   "  ,",
-   "  1",
-   "  ,",
-   "  -",
-   "  1",
-   "  ]",
-   "  )",
-   "  \n",
-   "  y_s",
-   "  =",
-   "  tf",
-   "  .",
-   "  slice",
-   "  (",
-   "  T_g",
-   "  ,",
-   "  [",
-   "  0",
-   "  ,",
-   "  1",
-   "  ,",
-   "  0",
-   "  ]",
-   "  ,",
-   "  [",
-   "  -",
-   "  1",
-   "  ,",
-   "  1",
-   "  ,",
-   "  -",
-   "  1",
-   "  ]",
-   "  )",
-   "  \n",
-   "  x_s_flat",
-   "  =",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  x_s",
-   "  ,",
-   "  [",
-   "  -",
-   "  1",
-   "  ]",
-   "  )",
-   "  \n",
-   "  y_s_flat",
-   "  =",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "  y_s",
-   "  ,",
-   "  [",
-   "  -",
-   "  1",
-   "  ]",
-   "  )",
-   "  \n",
-   "-                   ",
-   "+                 ",
-   "  input_dim",
-   "  ,",
-   "  x_s_flat",
-   "  ,",
-   "  y_s_flat",
-   "  ,",
-   "  \n",
-   "  out_size",
-   "  )",
-   "  \n",
-   "   ",
-   "  output",
-   "  =",
-   "  tf",
-   "  .",
-   "  reshape",
-   "  (",
-   "+ \n",
-   "+                 ",
-   "  input_transformed",
-   "  ,",
-   "  tf",
-   "  .",
-   "  pack",
-   "  (",
-   "  [",
-   "  num_batch",
-   "  ,",
-   "  out_height",
-   "  ,",
-   "  out_width",
-   "  ,",
-   "  num_channels",
-   "  ]",
-   "  )",
-   "  )",
-   "  )",
-   "  )",
-   "+ )",
-   "  ls]))"
-  ]
- },
- {
-  "number": 181,
-  "commit_len": 2,
-  "created_at": "2016-06-06 09:33:11",
-  "merged_at": "2016-06-23 02:37:18",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/552c75b550820496e4bd3431fc098ba519422fcd...3b44c941796f7f6e5e61f6bdb2b524e08a78a95c.diff",
-  "file_path": "transformer/cluttered_mnist.py",
-  "changes_set": [
-   "  y_logits",
-   "  =",
-   "- tf",
-   "- .",
-   "- nn",
-   "- .",
-   "- softmax",
-   "- (",
-   "  tf",
-   "  .",
-   "  matmul",
-   "  (",
-   "  h_fc1_drop",
-   "  ,",
-   "  W_fc2",
-   "  )",
-   "  +",
-   "  b_fc2",
-   "- )",
-   "  \n",
-   "  cross_entropy",
-   "  =",
-   "  tf",
-   "  .",
-   "- reduce_sum",
-   "+ reduce_mean",
-   "  ("
-  ]
- },
- {
-  "number": 306,
-  "commit_len": 4,
-  "created_at": "2016-08-07 11:57:06",
-  "merged_at": "2016-08-07 11:58:03",
-  "merged_by": "calberti",
-  "1-n_url": "https://github.com/tensorflow/models/compare/42c4a2c53a0f984a561966f914d2b7d65d2dfba6...abebf103bd8c48bf57f5d643bfb650b336e8fbc9.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "+ def",
-   "+ RewriteContext",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ context",
-   "+ =",
-   "+ task_spec_pb2",
-   "+ .",
-   "+ TaskSpec",
-   "+ (",
-   "+ )",
-   "+ \n",
-   "+ with",
-   "+ gfile",
-   "+ .",
-   "+ FastGFile",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ as",
-   "+ fin",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ text_format",
-   "+ .",
-   "+ Merge",
-   "+ (",
-   "+ fin",
-   "+ .",
-   "+ read",
-   "+ (",
-   "+ )",
-   "+ ,",
-   "+ context",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+ for",
-   "+ resource",
-   "+ in",
-   "+ context",
-   "+ .",
-   "+ input",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ for",
-   "+ part",
-   "+ in",
-   "+ resource",
-   "+ .",
-   "+ part",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "+ if",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ !=",
-   "+ '-'",
-   "+ :",
-   "+ \n",
-   "+         ",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ =",
-   "+ os",
-   "+ .",
-   "+ path",
-   "+ .",
-   "+ join",
-   "+ (",
-   "+ FLAGS",
-   "+ .",
-   "+ resource_dir",
-   "+ ,",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+  ",
-   "+  ",
-   "+ with",
-   "+ tempfile",
-   "+ .",
-   "+ NamedTemporaryFile",
-   "+ (",
-   "+ delete",
-   "+ =",
-   "+ False",
-   "+ )",
-   "+ as",
-   "+ fout",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ fout",
-   "+ .",
-   "+ write",
-   "+ (",
-   "+ str",
-   "+ (",
-   "+ context",
-   "+ )",
-   "+ )",
-   "+ \n",
-   "+ return",
-   "+ fout",
-   "+ .",
-   "+ name",
-   "+ \n",
-   "+ \n",
-   "+ \n",
-   "  def",
-   "  Eval",
-   "  (",
-   "  sess",
-   "- ,",
-   "- num_actions",
-   "- ,",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ \"\"\"Builds and evaluates a network.\"\"\"",
-   "+ \n",
-   "+ task_context",
-   "+ =",
-   "+ FLAGS",
-   "+ .",
-   "+ task_context",
-   "+ \n",
-   "+ if",
-   "+ FLAGS",
-   "+ .",
-   "+ resource_dir",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ task_context",
-   "+ =",
-   "+ RewriteContext",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "  feature_sizes",
-   "  ,",
-   "  domain_sizes",
-   "  ,",
-   "  embedding_dims",
-   "+ ,",
-   "+ num_actions",
-   "+ =",
-   "+ sess",
-   "+ .",
-   "+ run",
-   "+ (",
-   "+ gen_parser_ops",
-   "+ .",
-   "+ feature_size",
-   "+ (",
-   "+ task_context",
-   "+ =",
-   "+ task_context",
-   "+ ,",
-   "+ arg_prefix",
-   "+ =",
-   "+ FLAGS",
-   "+ .",
-   "+ arg_prefix",
-   "  )",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ fix))",
-   "- :",
-   "- \n",
-   "-   ",
-   "- \"\"\"Builds and evaluates a network.\n  Args:\n    sess: tensorflow session to use\n    num_actions: number of possible golden actions\n    feature_sizes: size of each feature vector\n    domain_sizes: number of possible feature ids in each feature vector\n    embedding_dims: embedding dimension for each feature group\n  \"\"\"",
-   "- \"",
-   "- \"",
-   "-   \"\"\""
-  ]
- },
- {
-  "number": 306,
-  "commit_len": 4,
-  "created_at": "2016-08-07 11:57:06",
-  "merged_at": "2016-08-07 11:58:03",
-  "merged_by": "calberti",
-  "1-n_url": "https://github.com/tensorflow/models/compare/42c4a2c53a0f984a561966f914d2b7d65d2dfba6...abebf103bd8c48bf57f5d643bfb650b336e8fbc9.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "  task_context",
-   "  =",
-   "- FLAGS",
-   "- .",
-   "  task_context",
-   "  ,"
-  ]
- },
- {
-  "number": 306,
-  "commit_len": 4,
-  "created_at": "2016-08-07 11:57:06",
-  "merged_at": "2016-08-07 11:58:03",
-  "merged_by": "calberti",
-  "1-n_url": "https://github.com/tensorflow/models/compare/42c4a2c53a0f984a561966f914d2b7d65d2dfba6...abebf103bd8c48bf57f5d643bfb650b336e8fbc9.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "- feature_sizes",
-   "- ,",
-   "- domain_sizes",
-   "- ,",
-   "- embedding_dims",
-   "- ,",
-   "- num_actions",
-   "- =",
-   "- sess",
-   "- .",
-   "- run",
-   "- (",
-   "- gen_parser_ops",
-   "- .",
-   "- feature_size",
-   "- (",
-   "- task_context",
-   "- =",
-   "- FLAGS",
-   "- .",
-   "- task_context",
-   "- ,",
-   "- arg_prefix",
-   "- =",
-   "- FLAGS",
-   "- .",
-   "- arg_prefix",
-   "- )",
-   "- )",
-   "- \n",
-   "-   ",
-   "- with",
-   "- tf",
-   "- .",
-   "- Session",
-   "- (",
-   "- )",
-   "- as",
-   "- sess",
-   "- :",
-   "- \n",
-   "-     ",
-   "  Eval",
-   "  (",
-   "  sess",
-   "- ,",
-   "- num_actions",
-   "- ,",
-   "- feature_sizes",
-   "- ,",
-   "- domain_sizes",
-   "- ,",
-   "- embedding_dims",
-   "  )",
-   "- )",
-   "- )",
-   "- )",
-   "- dims)"
-  ]
- },
- {
-  "number": 308,
-  "commit_len": 7,
-  "created_at": "2016-08-08 15:38:03",
-  "merged_at": "2016-08-08 15:38:47",
-  "merged_by": "calberti",
-  "1-n_url": "https://github.com/tensorflow/models/compare/42c4a2c53a0f984a561966f914d2b7d65d2dfba6...adf3eddb097a4e7c00df5cc476eb691f16901181.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "+ def",
-   "+ RewriteContext",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ context",
-   "+ =",
-   "+ task_spec_pb2",
-   "+ .",
-   "+ TaskSpec",
-   "+ (",
-   "+ )",
-   "+ \n",
-   "+ with",
-   "+ gfile",
-   "+ .",
-   "+ FastGFile",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ as",
-   "+ fin",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ text_format",
-   "+ .",
-   "+ Merge",
-   "+ (",
-   "+ fin",
-   "+ .",
-   "+ read",
-   "+ (",
-   "+ )",
-   "+ ,",
-   "+ context",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+ for",
-   "+ resource",
-   "+ in",
-   "+ context",
-   "+ .",
-   "+ input",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ for",
-   "+ part",
-   "+ in",
-   "+ resource",
-   "+ .",
-   "+ part",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "+ if",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ !=",
-   "+ '-'",
-   "+ :",
-   "+ \n",
-   "+         ",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ =",
-   "+ os",
-   "+ .",
-   "+ path",
-   "+ .",
-   "+ join",
-   "+ (",
-   "+ FLAGS",
-   "+ .",
-   "+ resource_dir",
-   "+ ,",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+  ",
-   "+  ",
-   "+ with",
-   "+ tempfile",
-   "+ .",
-   "+ NamedTemporaryFile",
-   "+ (",
-   "+ delete",
-   "+ =",
-   "+ False",
-   "+ )",
-   "+ as",
-   "+ fout",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ fout",
-   "+ .",
-   "+ write",
-   "+ (",
-   "+ str",
-   "+ (",
-   "+ context",
-   "+ )",
-   "+ )",
-   "+ \n",
-   "+ return",
-   "+ fout",
-   "+ .",
-   "+ name",
-   "+ \n",
-   "+ \n",
-   "+ \n",
-   "  def",
-   "  Eval",
-   "  (",
-   "  sess",
-   "- ,",
-   "- num_actions",
-   "- ,",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ \"\"\"Builds and evaluates a network.\"\"\"",
-   "+ \n",
-   "+ task_context",
-   "+ =",
-   "+ FLAGS",
-   "+ .",
-   "+ task_context",
-   "+ \n",
-   "+ if",
-   "+ FLAGS",
-   "+ .",
-   "+ resource_dir",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ task_context",
-   "+ =",
-   "+ RewriteContext",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "  feature_sizes",
-   "  ,",
-   "  domain_sizes",
-   "  ,",
-   "  embedding_dims",
-   "+ ,",
-   "+ num_actions",
-   "+ =",
-   "+ sess",
-   "+ .",
-   "+ run",
-   "+ (",
-   "+ gen_parser_ops",
-   "+ .",
-   "+ feature_size",
-   "+ (",
-   "+ task_context",
-   "+ =",
-   "+ task_context",
-   "+ ,",
-   "+ arg_prefix",
-   "+ =",
-   "+ FLAGS",
-   "+ .",
-   "+ arg_prefix",
-   "  )",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ fix))",
-   "- :",
-   "- \n",
-   "-   ",
-   "- \"\"\"Builds and evaluates a network.\n  Args:\n    sess: tensorflow session to use\n    num_actions: number of possible golden actions\n    feature_sizes: size of each feature vector\n    domain_sizes: number of possible feature ids in each feature vector\n    embedding_dims: embedding dimension for each feature group\n  \"\"\"",
-   "- \"",
-   "- \"",
-   "-   \"\"\""
-  ]
- },
- {
-  "number": 308,
-  "commit_len": 7,
-  "created_at": "2016-08-08 15:38:03",
-  "merged_at": "2016-08-08 15:38:47",
-  "merged_by": "calberti",
-  "1-n_url": "https://github.com/tensorflow/models/compare/42c4a2c53a0f984a561966f914d2b7d65d2dfba6...adf3eddb097a4e7c00df5cc476eb691f16901181.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "  task_context",
-   "  =",
-   "- FLAGS",
-   "- .",
-   "  task_context",
-   "  ,"
-  ]
- },
- {
-  "number": 308,
-  "commit_len": 7,
-  "created_at": "2016-08-08 15:38:03",
-  "merged_at": "2016-08-08 15:38:47",
-  "merged_by": "calberti",
-  "1-n_url": "https://github.com/tensorflow/models/compare/42c4a2c53a0f984a561966f914d2b7d65d2dfba6...adf3eddb097a4e7c00df5cc476eb691f16901181.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "- feature_sizes",
-   "- ,",
-   "- domain_sizes",
-   "- ,",
-   "- embedding_dims",
-   "- ,",
-   "- num_actions",
-   "- =",
-   "- sess",
-   "- .",
-   "- run",
-   "- (",
-   "- gen_parser_ops",
-   "- .",
-   "- feature_size",
-   "- (",
-   "- task_context",
-   "- =",
-   "- FLAGS",
-   "- .",
-   "- task_context",
-   "- ,",
-   "- arg_prefix",
-   "- =",
-   "- FLAGS",
-   "- .",
-   "- arg_prefix",
-   "- )",
-   "- )",
-   "- \n",
-   "-   ",
-   "- with",
-   "- tf",
-   "- .",
-   "- Session",
-   "- (",
-   "- )",
-   "- as",
-   "- sess",
-   "- :",
-   "- \n",
-   "-     ",
-   "  Eval",
-   "  (",
-   "  sess",
-   "- ,",
-   "- num_actions",
-   "- ,",
-   "- feature_sizes",
-   "- ,",
-   "- domain_sizes",
-   "- ,",
-   "- embedding_dims",
-   "  )",
-   "- )",
-   "- )",
-   "- )",
-   "- dims)"
-  ]
- },
- {
-  "number": 349,
-  "commit_len": 2,
-  "created_at": "2016-08-27 00:20:54",
-  "merged_at": "2016-08-27 00:29:45",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5e45908744c76caadfaee0da278632231ba4cfef...03d7dce753c5234387c9c27e2b8eb0b401915f97.diff",
-  "file_path": "syntaxnet/syntaxnet/conll2tree.py",
-  "changes_set": [
-   "+ Note",
-   "+ that",
-   "+ the",
-   "+ suffix",
-   "+ \"@id\"",
-   "+ (",
-   "+ where",
-   "+ 'id'",
-   "+ is",
-   "+ a",
-   "+ number",
-   "+ )",
-   "+ is",
-   "+ appended",
-   "+ to",
-   "+ each",
-   "+ element",
-   "+ \n",
-   "+      ",
-   "+ to",
-   "+ handle",
-   "+ the",
-   "+ sentence",
-   "+ that",
-   "+ has",
-   "+ multiple",
-   "+ elements",
-   "+ with",
-   "+ identical",
-   "+ representation",
-   "+ .",
-   "+ \n",
-   "+ Those",
-   "+ suffix",
-   "+ needs",
-   "+ to",
-   "+ be",
-   "+ removed",
-   "+ after",
-   "+ the",
-   "+ asciitree",
-   "+ is",
-   "+ rendered",
-   "+ .",
-   "+ \n",
-   "+  ",
-   "  token_str",
-   "  =",
-   "- [",
-   "+ list",
-   "+ (",
-   "+ )",
-   "+ \n",
-   "+     ",
-   "+ token_str",
-   "+ .",
-   "+ append",
-   "+ (",
-   "- '%s %s %s'",
-   "+ '%s %s %s @%d'",
-   "  %",
-   "  (",
-   "  token",
-   "  .",
-   "  word",
-   "  ,",
-   "  token",
-   "  .",
-   "  tag",
-   "  ,",
-   "  token",
-   "  .",
-   "  label",
-   "+ ,",
-   "+ (",
-   "+ i",
-   "+ +",
-   "+ 1",
-   "  )",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ +1)))",
-   "- for",
-   "- token",
-   "- in",
-   "- sentence",
-   "- .",
-   "- token",
-   "- ]"
-  ]
- },
- {
-  "number": 349,
-  "commit_len": 2,
-  "created_at": "2016-08-27 00:20:54",
-  "merged_at": "2016-08-27 00:29:45",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5e45908744c76caadfaee0da278632231ba4cfef...03d7dce753c5234387c9c27e2b8eb0b401915f97.diff",
-  "file_path": "syntaxnet/syntaxnet/conll2tree.py",
-  "changes_set": [
-   "- print",
-   "+ tr_str",
-   "+ =",
-   "  tr",
-   "  (",
-   "  d",
-   "  )",
-   "+ \n",
-   "+         ",
-   "+ pat",
-   "+ =",
-   "+ re",
-   "+ .",
-   "+ compile",
-   "+ (",
-   "+ '\\s*@\\d+$'",
-   "+ )",
-   "+ \n",
-   "+ for",
-   "+ tr_ln",
-   "+ in",
-   "+ tr_str",
-   "+ .",
-   "+ splitlines",
-   "+ (",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+           ",
-   "+ print",
-   "+ pat",
-   "+ .",
-   "+ sub",
-   "+ (",
-   "+ ''",
-   "+ ,",
-   "+ tr_ln",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ r_ln)"
-  ]
- },
- {
-  "number": 349,
-  "commit_len": 2,
-  "created_at": "2016-08-27 00:20:54",
-  "merged_at": "2016-08-27 00:29:45",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5e45908744c76caadfaee0da278632231ba4cfef...03d7dce753c5234387c9c27e2b8eb0b401915f97.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "+ def",
-   "+ RewriteContext",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ context",
-   "+ =",
-   "+ task_spec_pb2",
-   "+ .",
-   "+ TaskSpec",
-   "+ (",
-   "+ )",
-   "+ \n",
-   "+ with",
-   "+ gfile",
-   "+ .",
-   "+ FastGFile",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ as",
-   "+ fin",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ text_format",
-   "+ .",
-   "+ Merge",
-   "+ (",
-   "+ fin",
-   "+ .",
-   "+ read",
-   "+ (",
-   "+ )",
-   "+ ,",
-   "+ context",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+ for",
-   "+ resource",
-   "+ in",
-   "+ context",
-   "+ .",
-   "+ input",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ for",
-   "+ part",
-   "+ in",
-   "+ resource",
-   "+ .",
-   "+ part",
-   "+ :",
-   "+ \n",
-   "+       ",
-   "+ if",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ !=",
-   "+ '-'",
-   "+ :",
-   "+ \n",
-   "+         ",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ =",
-   "+ os",
-   "+ .",
-   "+ path",
-   "+ .",
-   "+ join",
-   "+ (",
-   "+ FLAGS",
-   "+ .",
-   "+ resource_dir",
-   "+ ,",
-   "+ part",
-   "+ .",
-   "+ file_pattern",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "+  ",
-   "+  ",
-   "+ with",
-   "+ tempfile",
-   "+ .",
-   "+ NamedTemporaryFile",
-   "+ (",
-   "+ delete",
-   "+ =",
-   "+ False",
-   "+ )",
-   "+ as",
-   "+ fout",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ fout",
-   "+ .",
-   "+ write",
-   "+ (",
-   "+ str",
-   "+ (",
-   "+ context",
-   "+ )",
-   "+ )",
-   "+ \n",
-   "+ return",
-   "+ fout",
-   "+ .",
-   "+ name",
-   "+ \n",
-   "+ \n",
-   "+ \n",
-   "  def",
-   "  Eval",
-   "  (",
-   "  sess",
-   "- ,",
-   "- num_actions",
-   "- ,",
-   "+ )",
-   "+ :",
-   "+ \n",
-   "+   ",
-   "+ \"\"\"Builds and evaluates a network.\"\"\"",
-   "+ \n",
-   "+ task_context",
-   "+ =",
-   "+ FLAGS",
-   "+ .",
-   "+ task_context",
-   "+ \n",
-   "+ if",
-   "+ FLAGS",
-   "+ .",
-   "+ resource_dir",
-   "+ :",
-   "+ \n",
-   "+     ",
-   "+ task_context",
-   "+ =",
-   "+ RewriteContext",
-   "+ (",
-   "+ task_context",
-   "+ )",
-   "+ \n",
-   "+  ",
-   "  feature_sizes",
-   "  ,",
-   "  domain_sizes",
-   "  ,",
-   "  embedding_dims",
-   "+ ,",
-   "+ num_actions",
-   "+ =",
-   "+ sess",
-   "+ .",
-   "+ run",
-   "+ (",
-   "+ gen_parser_ops",
-   "+ .",
-   "+ feature_size",
-   "+ (",
-   "+ task_context",
-   "+ =",
-   "+ task_context",
-   "+ ,",
-   "+ arg_prefix",
-   "+ =",
-   "+ FLAGS",
-   "+ .",
-   "+ arg_prefix",
-   "  )",
-   "+ )",
-   "+ )",
-   "+ )",
-   "+ fix))",
-   "- :",
-   "- \n",
-   "-   ",
-   "- \"\"\"Builds and evaluates a network.\n  Args:\n    sess: tensorflow session to use\n    num_actions: number of possible golden actions\n    feature_sizes: size of each feature vector\n    domain_sizes: number of possible feature ids in each feature vector\n    embedding_dims: embedding dimension for each feature group\n  \"\"\"",
-   "- \"",
-   "- \"",
-   "-   \"\"\""
-  ]
- },
- {
-  "number": 349,
-  "commit_len": 2,
-  "created_at": "2016-08-27 00:20:54",
-  "merged_at": "2016-08-27 00:29:45",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5e45908744c76caadfaee0da278632231ba4cfef...03d7dce753c5234387c9c27e2b8eb0b401915f97.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "  task_context",
-   "  =",
-   "- FLAGS",
-   "- .",
-   "  task_context",
-   "  ,"
-  ]
- },
- {
-  "number": 349,
-  "commit_len": 2,
-  "created_at": "2016-08-27 00:20:54",
-  "merged_at": "2016-08-27 00:29:45",
-  "merged_by": "martinwicke",
-  "1-n_url": "https://github.com/tensorflow/models/compare/5e45908744c76caadfaee0da278632231ba4cfef...03d7dce753c5234387c9c27e2b8eb0b401915f97.diff",
-  "file_path": "syntaxnet/syntaxnet/parser_eval.py",
-  "changes_set": [
-   "- feature_sizes",
-   "- ,",
-   "- domain_sizes",
-   "- ,",
-   "- embedding_dims",
-   "- ,",
-   "- num_actions",
-   "- =",
-   "- sess",
-   "- .",
-   "- run",
-   "- (",
-   "- gen_parser_ops",
-   "- .",
-   "- feature_size",
-   "- (",
-   "- task_context",
-   "- =",
-   "- FLAGS",
-   "- .",
-   "- task_context",
-   "- ,",
-   "- arg_prefix",
-   "- =",
-   "- FLAGS",
-   "- .",
-   "- arg_prefix",
-   "- )",
-   "- )",
-   "- \n",
-   "-   ",
-   "- with",
-   "- tf",
-   "- .",
-   "- Session",
-   "- (",
-   "- )",
-   "- as",
-   "- sess",
-   "- :",
-   "- \n",
-   "-     ",
-   "  Eval",
-   "  (",
-   "  sess",
-   "- ,",
-   "- num_actions",
-   "- ,",
-   "- feature_sizes",
-   "- ,",
-   "- domain_sizes",
-   "- ,",
-   "- embedding_dims",
-   "  )",
-   "- )",
-   "- )",
-   "- )",
-   "- dims)"
-  ]
- },
- {
   "number": 377,
-  "commit_len": 2,
+  "sha": "a0de5ca9364f98aa36241c5ea7e891e2f1e1d80b",
+  "author": "kaiix",
+  "participant": "googlebot",
   "created_at": "2016-08-31 09:07:08",
   "merged_at": "2016-10-17 23:09:45",
   "merged_by": "panyx0718",
-  "1-n_url": "https://github.com/tensorflow/models/compare/dab1517e74a082a7af04c7a2b2d75f2e933dc50c...a0de5ca9364f98aa36241c5ea7e891e2f1e1d80b.diff",
   "file_path": "textsum/seq2seq_attention.py",
-  "changes_set": [
-   "  sess",
-   "  =",
-   "  sv",
-   "  .",
-   "  prepare_or_wait_for_session",
-   "  (",
-   "+ config",
-   "+ =",
-   "+ tf",
-   "+ .",
-   "+ ConfigProto",
-   "+ (",
-   "+ allow_soft_placement",
-   "+ =",
-   "+ True",
-   "  )",
-   "+ )"
-  ]
+  "condition": [
+   "$0 = $1 . prepare_or_wait_for_session ( )"
+  ],
+  "consequent": [
+   "$0 = $1 . prepare_or_wait_for_session ( config = tf . ConfigProto ( allow_soft_placement = True ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "prepare_or_wait_for_session"
+   ],
+   "consequent": [
+    "allow_soft_placement",
+    "prepare_or_wait_for_session",
+    "config",
+    "ConfigProto",
+    "tf"
+   ]
+  }
+ },
+ {
+  "number": 783,
+  "sha": "48f5b4dab71dc1874d3a052c67450dc8e443b510",
+  "author": "dweekly",
+  "participant": "nealwu",
+  "created_at": "2016-12-21 05:00:58",
+  "merged_at": "2017-03-16 04:37:51",
+  "merged_by": "nealwu",
+  "file_path": "im2txt/im2txt/ops/image_processing.py",
+  "condition": [
+   "$0 . image_summary ( $1 , $0 . expand_dims ( $2 , 0 ) )"
+  ],
+  "consequent": [
+   "$0 . summary . $2 ( $1 , $0 . expand_dims ( $2 , 0 ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "expand_dims",
+    "image_summary"
+   ],
+   "consequent": [
+    "expand_dims",
+    "summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/embedding/word2vec.py",
+  "condition": [
+   "$0 . contrib . deprecated . scalar_summary ( \"NCE loss\" , $1 )"
+  ],
+  "consequent": [
+   "$0 . scalar_summary ( \"NCE loss\" , $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "scalar_summary",
+    "deprecated"
+   ],
+   "consequent": [
+    "scalar_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/image/cifar10/cifar10_input.py",
+  "condition": [
+   "$0 . contrib . deprecated . image_summary ( 'images' , $1 )"
+  ],
+  "consequent": [
+   "$0 . image_summary ( 'images' , $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "image_summary",
+    "deprecated"
+   ],
+   "consequent": [
+    "image_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "$0 . contrib . deprecated . scalar_summary ( $1 , $2 )"
+  ],
+  "consequent": [
+   "$0 . scalar_summary ( $1 , $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "scalar_summary",
+    "deprecated"
+   ],
+   "consequent": [
+    "scalar_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "$0 . append ( $1 . contrib . deprecated . scalar_summary ( 'learning_rate' , $2 ) )"
+  ],
+  "consequent": [
+   "$0 . append ( $1 . scalar_summary ( 'learning_rate' , $2 ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "append",
+    "contrib",
+    "scalar_summary",
+    "deprecated"
+   ],
+   "consequent": [
+    "append",
+    "scalar_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "$0 . contrib . deprecated . histogram_summary ( $1 . $2 . $3 + '/gradients' ,"
+  ],
+  "consequent": [
+   "$0 . histogram_summary ( $1 . $2 . $3 + '/gradients' ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "deprecated",
+    "histogram_summary"
+   ],
+   "consequent": [
+    "histogram_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "$0 . contrib . deprecated . histogram_summary ( $1 . $2 . $3 , $1 ) )"
+  ],
+  "consequent": [
+   "$0 . histogram_summary ( $1 . $2 . $3 , $1 ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "deprecated",
+    "histogram_summary"
+   ],
+   "consequent": [
+    "histogram_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "$0 = $1 . contrib . deprecated . merge_summary ( $2 )"
+  ],
+  "consequent": [
+   "$0 = $1 . merge_summary ( $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "merge_summary",
+    "contrib",
+    "deprecated"
+   ],
+   "consequent": [
+    "merge_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/rnn/ptb/ptb_word_lm.py",
+  "condition": [
+   "$0 . contrib . deprecated . scalar_summary ( \"Training Loss\" , $1 . $2 )"
+  ],
+  "consequent": [
+   "$0 . scalar_summary ( \"Training Loss\" , $1 . $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "scalar_summary",
+    "deprecated"
+   ],
+   "consequent": [
+    "scalar_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/rnn/ptb/ptb_word_lm.py",
+  "condition": [
+   "$0 . contrib . deprecated . scalar_summary ( \"Learning Rate\" , $1 . $2 )"
+  ],
+  "consequent": [
+   "$0 . scalar_summary ( \"Learning Rate\" , $1 . $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "scalar_summary",
+    "deprecated"
+   ],
+   "consequent": [
+    "scalar_summary"
+   ]
+  }
+ },
+ {
+  "number": 785,
+  "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+  "author": "mrphoenix13",
+  "participant": "YuMS",
+  "created_at": "2016-12-21 08:05:05",
+  "merged_at": "2017-01-18 19:14:21",
+  "merged_by": "itsmeolivia",
+  "file_path": "tutorials/rnn/ptb/ptb_word_lm.py",
+  "condition": [
+   "$0 . contrib . deprecated . scalar_summary ( \"Validation Loss\" , $1 . $2 )"
+  ],
+  "consequent": [
+   "$0 . scalar_summary ( \"Validation Loss\" , $1 . $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "contrib",
+    "scalar_summary",
+    "deprecated"
+   ],
+   "consequent": [
+    "scalar_summary"
+   ]
+  }
+ },
+ {
+  "number": 852,
+  "sha": "97e391dd868abcf833c8273866b34aa69a0d4d17",
+  "author": "tae-jun",
+  "participant": "nealwu",
+  "created_at": "2017-01-05 07:28:54",
+  "merged_at": "2017-03-15 01:51:59",
+  "merged_by": "nealwu",
+  "file_path": "slim/datasets/mnist.py",
+  "condition": [
+   "$0 / $1 / $2 / data / create_mnist_dataset . py"
+  ],
+  "consequent": [
+   "$0 / $1 / $2 / datasets / download_and_convert_mnist . py"
+  ],
+  "identifiers": {
+   "condition": [
+    "py",
+    "create_mnist_dataset",
+    "data"
+   ],
+   "consequent": [
+    "datasets",
+    "download_and_convert_mnist",
+    "py"
+   ]
+  }
+ },
+ {
+  "number": 864,
+  "sha": "f4161b6fc15caa519a275afea14a6c6173a80abe",
+  "author": "martinwicke",
+  "participant": "zlj9155",
+  "created_at": "2017-01-08 09:25:56",
+  "merged_at": "2017-01-08 09:27:05",
+  "merged_by": "martinwicke",
+  "file_path": "inception/inception/slim/losses.py",
+  "condition": [
+   "$0 ,"
+  ],
+  "consequent": [
+   "labels = $0 ,"
+  ],
+  "identifiers": {
+   "condition": [],
+   "consequent": [
+    "labels"
+   ]
+  }
+ },
+ {
+  "number": 864,
+  "sha": "f4161b6fc15caa519a275afea14a6c6173a80abe",
+  "author": "martinwicke",
+  "participant": "zlj9155",
+  "created_at": "2017-01-08 09:25:56",
+  "merged_at": "2017-01-08 09:27:05",
+  "merged_by": "martinwicke",
+  "file_path": "transformer/cluttered_mnist.py",
+  "condition": [
+   "$0 . $1 . softmax_cross_entropy_with_logits ( $2 , $3 ) )"
+  ],
+  "consequent": [
+   "$0 . $1 . softmax_cross_entropy_with_logits ( logits = $2 , targets = $3 ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "softmax_cross_entropy_with_logits"
+   ],
+   "consequent": [
+    "targets",
+    "logits",
+    "softmax_cross_entropy_with_logits"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/image_embedding_test.py",
+  "condition": [
+   "for $0 in $1 . all_variables ( ) :"
+  ],
+  "consequent": [
+   "for $0 in $1 . global_variables ( ) :"
+  ],
+  "identifiers": {
+   "condition": [
+    "all_variables"
+   ],
+   "consequent": [
+    "global_variables"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/image_embedding_test.py",
+  "condition": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . VARIABLES )"
+  ],
+  "consequent": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . GLOBAL_VARIABLES )"
+  ],
+  "identifiers": {
+   "condition": [
+    "VARIABLES",
+    "_assertCollectionSize"
+   ],
+   "consequent": [
+    "GLOBAL_VARIABLES",
+    "_assertCollectionSize"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/image_embedding_test.py",
+  "condition": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . VARIABLES )"
+  ],
+  "consequent": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . GLOBAL_VARIABLES )"
+  ],
+  "identifiers": {
+   "condition": [
+    "VARIABLES",
+    "_assertCollectionSize"
+   ],
+   "consequent": [
+    "GLOBAL_VARIABLES",
+    "_assertCollectionSize"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/image_embedding_test.py",
+  "condition": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . VARIABLES )"
+  ],
+  "consequent": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . GLOBAL_VARIABLES )"
+  ],
+  "identifiers": {
+   "condition": [
+    "VARIABLES",
+    "_assertCollectionSize"
+   ],
+   "consequent": [
+    "GLOBAL_VARIABLES",
+    "_assertCollectionSize"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/image_embedding_test.py",
+  "condition": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . VARIABLES )"
+  ],
+  "consequent": [
+   "$0 . _assertCollectionSize ( 376 , $1 . $2 . GLOBAL_VARIABLES )"
+  ],
+  "identifiers": {
+   "condition": [
+    "VARIABLES",
+    "_assertCollectionSize"
+   ],
+   "consequent": [
+    "GLOBAL_VARIABLES",
+    "_assertCollectionSize"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/image_processing.py",
+  "condition": [
+   "$0 = $1 . sub ( $0 , 0.5 )"
+  ],
+  "consequent": [
+   "$0 = $1 . subtract ( $0 , 0.5 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "sub"
+   ],
+   "consequent": [
+    "subtract"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/image_processing.py",
+  "condition": [
+   "$0 = $1 . mul ( $0 , 2.0 )"
+  ],
+  "consequent": [
+   "$0 = $1 . multiply ( $0 , 2.0 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "mul"
+   ],
+   "consequent": [
+    "multiply"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/ops/inputs.py",
+  "condition": [
+   "$0 = $1 . expand_dims ( $1 . sub ( $2 , 1 ) , 0 )"
+  ],
+  "consequent": [
+   "$0 = $1 . expand_dims ( $1 . subtract ( $2 , 1 ) , 0 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "sub",
+    "expand_dims"
+   ],
+   "consequent": [
+    "expand_dims",
+    "subtract"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/show_and_tell_model.py",
+  "condition": [
+   "$0 = $1 . nn . rnn_cell . BasicLSTMCell ("
+  ],
+  "consequent": [
+   "$0 = $1 . contrib . rnn . BasicLSTMCell ("
+  ],
+  "identifiers": {
+   "condition": [
+    "BasicLSTMCell",
+    "rnn_cell",
+    "nn"
+   ],
+   "consequent": [
+    "contrib",
+    "rnn",
+    "BasicLSTMCell"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/show_and_tell_model.py",
+  "condition": [
+   "$0 = $1 . nn . rnn_cell . DropoutWrapper ("
+  ],
+  "consequent": [
+   "$0 = $1 . contrib . rnn . DropoutWrapper ("
+  ],
+  "identifiers": {
+   "condition": [
+    "rnn_cell",
+    "DropoutWrapper",
+    "nn"
+   ],
+   "consequent": [
+    "contrib",
+    "rnn",
+    "DropoutWrapper"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/show_and_tell_model.py",
+  "condition": [
+   "$0 . concat ( 1 , $1 , $2 = \"initial_state\" )"
+  ],
+  "consequent": [
+   "$0 . concat_v2 ( $1 , 1 , $2 = \"initial_state\" )"
+  ],
+  "identifiers": {
+   "condition": [
+    "concat"
+   ],
+   "consequent": [
+    "concat_v2"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/show_and_tell_model.py",
+  "condition": [
+   "$0 = $1 . split ( 1 , 2 , $2 )"
+  ],
+  "consequent": [
+   "$0 = $1 . split ( value = $2 , num_or_size_splits = 2 , axis = 1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "split"
+   ],
+   "consequent": [
+    "value",
+    "axis",
+    "split",
+    "num_or_size_splits"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/show_and_tell_model.py",
+  "condition": [
+   "$0 . concat ( 1 , $1 , $2 = \"state\" )"
+  ],
+  "consequent": [
+   "$0 . concat_v2 ( $1 , 1 , $2 = \"state\" )"
+  ],
+  "identifiers": {
+   "condition": [
+    "concat"
+   ],
+   "consequent": [
+    "concat_v2"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/show_and_tell_model.py",
+  "condition": [
+   "$0 = $1 . $2 . sparse_softmax_cross_entropy_with_logits ( $3 , $4 )"
+  ],
+  "consequent": [
+   "$0 = $1 . $2 . sparse_softmax_cross_entropy_with_logits ( labels = $4 , $3 = $3 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "sparse_softmax_cross_entropy_with_logits"
+   ],
+   "consequent": [
+    "sparse_softmax_cross_entropy_with_logits",
+    "labels"
+   ]
+  }
+ },
+ {
+  "number": 881,
+  "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+  "author": "cshallue",
+  "participant": "googlebot",
+  "created_at": "2017-01-10 18:56:31",
+  "merged_at": "2017-01-10 18:56:41",
+  "merged_by": "cshallue",
+  "file_path": "im2txt/im2txt/show_and_tell_model.py",
+  "condition": [
+   "$0 = $1 . div ( $1 . reduce_sum ( $1 . mul ( $2 , $3 ) ) ,"
+  ],
+  "consequent": [
+   "$0 = $1 . div ( $1 . reduce_sum ( $1 . multiply ( $2 , $3 ) ) ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "reduce_sum",
+    "mul",
+    "div"
+   ],
+   "consequent": [
+    "multiply",
+    "reduce_sum",
+    "div"
+   ]
+  }
+ },
+ {
+  "number": 959,
+  "sha": "4ec3452d9524726297c0aeb92933a79296345e7e",
+  "author": "yaroslavvb",
+  "participant": "panyx0718",
+  "created_at": "2017-01-26 22:07:26",
+  "merged_at": "2017-01-26 22:22:58",
+  "merged_by": "panyx0718",
+  "file_path": "resnet/cifar_input.py",
+  "condition": [
+   "\n",
+   " import inspect \n",
+   " def concat ( $0 , $1 ) : \n",
+   " \t if 'axis' in inspect . signature ( $2 . concat ) . parameters . keys ( ) : \n",
+   " \t return $2 . concat ( $0 = $0 , $1 = $1 ) \n",
+   " else : \n",
+   " \t assert 'concat_dim' in inspect . signature ( $2 . concat ) . parameters . keys ( ) \n",
+   " return $2 . concat ( concat_dim = $1 , $0 = $0 ) \n",
+   " $2 . concat ( $0 = [ $3 , $4 ] , $1 = 1 ) , \n"
+  ],
+  "consequent": [
+   "$2 . concat_v2 ( $0 = [ $3 , $4 ] , $1 = 1 ) ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "concat",
+    "parameters",
+    "keys",
+    "signature",
+    "concat_dim",
+    "inspect"
+   ],
+   "consequent": [
+    "concat_v2"
+   ]
+  }
+ },
+ {
+  "number": 959,
+  "sha": "4ec3452d9524726297c0aeb92933a79296345e7e",
+  "author": "yaroslavvb",
+  "participant": "panyx0718",
+  "created_at": "2017-01-26 22:07:26",
+  "merged_at": "2017-01-26 22:22:58",
+  "merged_by": "panyx0718",
+  "file_path": "resnet/resnet_main.py",
+  "condition": [
+   "for $0 in xrange ( $1 . $2 ) :"
+  ],
+  "consequent": [
+   "import six \n",
+   " \t for $0 in six . moves . range ( $1 . $2 ) : \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "xrange"
+   ],
+   "consequent": [
+    "range",
+    "moves",
+    "six"
+   ]
+  }
+ },
+ {
+  "number": 982,
+  "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+  "author": "arvind385801",
+  "participant": "googlebot",
+  "created_at": "2017-02-05 15:05:57",
+  "merged_at": "2017-03-16 00:13:40",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+  "condition": [
+   "return $0 . nn . rnn_cell . GRUCell ( $1 )"
+  ],
+  "consequent": [
+   "return $0 . contrib . rnn . GRUCell ( $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "rnn_cell",
+    "GRUCell",
+    "nn"
+   ],
+   "consequent": [
+    "contrib",
+    "rnn",
+    "GRUCell"
+   ]
+  }
+ },
+ {
+  "number": 982,
+  "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+  "author": "arvind385801",
+  "participant": "googlebot",
+  "created_at": "2017-02-05 15:05:57",
+  "merged_at": "2017-03-16 00:13:40",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+  "condition": [
+   "return $0 . nn . rnn_cell . BasicLSTMCell ( $1 )"
+  ],
+  "consequent": [
+   "return $0 . contrib . rnn . BasicLSTMCell ( $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "BasicLSTMCell",
+    "rnn_cell",
+    "nn"
+   ],
+   "consequent": [
+    "contrib",
+    "rnn",
+    "BasicLSTMCell"
+   ]
+  }
+ },
+ {
+  "number": 982,
+  "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+  "author": "arvind385801",
+  "participant": "googlebot",
+  "created_at": "2017-02-05 15:05:57",
+  "merged_at": "2017-03-16 00:13:40",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+  "condition": [
+   "$0 = $1 . nn . rnn_cell . MultiRNNCell ( [ single_cell ( ) for $2 in range ( $3 ) ] )"
+  ],
+  "consequent": [
+   "$0 = $1 . contrib . rnn . MultiRNNCell ( [ single_cell ( ) for $2 in range ( $3 ) ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "nn",
+    "range",
+    "single_cell",
+    "rnn_cell",
+    "MultiRNNCell"
+   ],
+   "consequent": [
+    "range",
+    "rnn",
+    "single_cell",
+    "contrib",
+    "MultiRNNCell"
+   ]
+  }
+ },
+ {
+  "number": 982,
+  "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+  "author": "arvind385801",
+  "participant": "googlebot",
+  "created_at": "2017-02-05 15:05:57",
+  "merged_at": "2017-03-16 00:13:40",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+  "condition": [
+   "return $0 . nn . seq2seq . embedding_attention_seq2seq ("
+  ],
+  "consequent": [
+   "return $0 . contrib . legacy_seq2seq . embedding_attention_seq2seq ("
+  ],
+  "identifiers": {
+   "condition": [
+    "seq2seq",
+    "embedding_attention_seq2seq",
+    "nn"
+   ],
+   "consequent": [
+    "embedding_attention_seq2seq",
+    "contrib",
+    "legacy_seq2seq"
+   ]
+  }
+ },
+ {
+  "number": 982,
+  "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+  "author": "arvind385801",
+  "participant": "googlebot",
+  "created_at": "2017-02-05 15:05:57",
+  "merged_at": "2017-03-16 00:13:40",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+  "condition": [
+   "$0 . $1 , $0 . $2 = $3 . nn . seq2seq . model_with_buckets ("
+  ],
+  "consequent": [
+   "$0 . $1 , $0 . $2 = $3 . contrib . legacy_seq2seq . model_with_buckets ("
+  ],
+  "identifiers": {
+   "condition": [
+    "seq2seq",
+    "model_with_buckets",
+    "nn"
+   ],
+   "consequent": [
+    "contrib",
+    "model_with_buckets",
+    "legacy_seq2seq"
+   ]
+  }
+ },
+ {
+  "number": 982,
+  "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+  "author": "arvind385801",
+  "participant": "googlebot",
+  "created_at": "2017-02-05 15:05:57",
+  "merged_at": "2017-03-16 00:13:40",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+  "condition": [
+   "$0 . $1 , $0 . $2 = $3 . nn . seq2seq . model_with_buckets ("
+  ],
+  "consequent": [
+   "$0 . $1 , $0 . $2 = $3 . contrib . legacy_seq2seq . model_with_buckets ("
+  ],
+  "identifiers": {
+   "condition": [
+    "seq2seq",
+    "model_with_buckets",
+    "nn"
+   ],
+   "consequent": [
+    "contrib",
+    "model_with_buckets",
+    "legacy_seq2seq"
+   ]
+  }
+ },
+ {
+  "number": 1031,
+  "sha": "64254ad355f9ea72531ae305c2db2a737c47c9a9",
+  "author": "nealwu",
+  "participant": "panyx0718",
+  "created_at": "2017-02-18 01:43:59",
+  "merged_at": "2017-02-23 02:44:17",
+  "merged_by": "panyx0718",
+  "file_path": "resnet/resnet_main.py",
+  "condition": [
+   "time . sleep ( 60 ) \n",
+   " \t $0 . $1 . info ( 'loss: %.3f, precision: %.3f, best precision: %.3f\\n' % \n"
+  ],
+  "consequent": [
+   "$0 . $1 . info ( 'loss: %.3f, precision: %.3f, best precision: %.3f' %"
+  ],
+  "identifiers": {
+   "condition": [
+    "time",
+    "sleep",
+    "info"
+   ],
+   "consequent": [
+    "info"
+   ]
+  }
+ },
+ {
+  "number": 1031,
+  "sha": "64254ad355f9ea72531ae305c2db2a737c47c9a9",
+  "author": "nealwu",
+  "participant": "panyx0718",
+  "created_at": "2017-02-18 01:43:59",
+  "merged_at": "2017-02-23 02:44:17",
+  "merged_by": "panyx0718",
+  "file_path": "resnet/resnet_model.py",
+  "condition": [
+   "$0 . $1 . info ( 'image after unit %s' , $2 . get_shape ( ) )"
+  ],
+  "consequent": [
+   "$0 . $1 . debug ( 'image after unit %s' , $2 . get_shape ( ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "get_shape",
+    "info"
+   ],
+   "consequent": [
+    "debug",
+    "get_shape"
+   ]
+  }
+ },
+ {
+  "number": 1053,
+  "sha": "289b439308be829db258d5b1bb33a6de03769e57",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-02-22 02:24:55",
+  "merged_at": "2017-03-14 02:14:26",
+  "merged_by": "nealwu",
+  "file_path": "slim/deployment/model_deploy.py",
+  "condition": [
+   "$0 . $1 . scalar ( 'clone_loss' , $2 )"
+  ],
+  "consequent": [
+   "$0 . $1 . scalar ( clone . scope + '/clone_loss' , $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "scalar"
+   ],
+   "consequent": [
+    "scope",
+    "clone",
+    "scalar"
+   ]
+  }
+ },
+ {
+  "number": 1053,
+  "sha": "289b439308be829db258d5b1bb33a6de03769e57",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-02-22 02:24:55",
+  "merged_at": "2017-03-14 02:14:26",
+  "merged_by": "nealwu",
+  "file_path": "slim/nets/resnet_v2.py",
+  "condition": [
+   "return $0 , end_points"
+  ],
+  "consequent": [
+   "logits = tf . squeeze ( $0 , [ 1 , 2 ] , name = 'SpatialSqueeze' ) \n",
+   " \t return logits , end_points \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "end_points"
+   ],
+   "consequent": [
+    "squeeze",
+    "logits",
+    "end_points",
+    "name",
+    "tf"
+   ]
+  }
+ },
+ {
+  "number": 1053,
+  "sha": "289b439308be829db258d5b1bb33a6de03769e57",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-02-22 02:24:55",
+  "merged_at": "2017-03-14 02:14:26",
+  "merged_by": "nealwu",
+  "file_path": "slim/train_image_classifier.py",
+  "condition": [
+   "$0 [ 'AuxLogits' ] , $1 ,"
+  ],
+  "consequent": [
+   "logits = $0 [ 'AuxLogits' ] , onehot_labels = $1 ,"
+  ],
+  "identifiers": {
+   "condition": [],
+   "consequent": [
+    "onehot_labels",
+    "logits"
+   ]
+  }
+ },
+ {
+  "number": 1053,
+  "sha": "289b439308be829db258d5b1bb33a6de03769e57",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-02-22 02:24:55",
+  "merged_at": "2017-03-14 02:14:26",
+  "merged_by": "nealwu",
+  "file_path": "slim/train_image_classifier.py",
+  "condition": [
+   "tf . squeeze ( $0 ) , $1 , $2 = $3 . $2 , $4 = 1.0 )"
+  ],
+  "consequent": [
+   "$0 = $0 , onehot_labels = $1 , \n",
+   " \t $2 = $3 . $2 , $4 = 1.0 ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "squeeze",
+    "tf"
+   ],
+   "consequent": [
+    "onehot_labels"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "consequent": [
+   "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "concat"
+   ],
+   "consequent": [
+    "conv2d",
+    "values",
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] , values = 3 )"
+  ],
+  "consequent": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "values"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "consequent": [
+   "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "concat"
+   ],
+   "consequent": [
+    "conv2d",
+    "values",
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] , values = 3 )"
+  ],
+  "consequent": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "values"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] )"
+  ],
+  "consequent": [
+   "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] ) \n",
+   " \t $0 = $1 . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "avg_pool"
+   ],
+   "consequent": [
+    "avg_pool",
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = ops . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n",
+   " \t $1 = $2 . concat ( $3 = [ $4 , $5 , $6 , $0 ] , $7 = 3 ) \n"
+  ],
+  "consequent": [
+   "$1 = $2 . concat ( $3 = 3 , $7 = [ $4 , $5 , $6 , $0 ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "ops",
+    "conv2d",
+    "concat"
+   ],
+   "consequent": [
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "consequent": [
+   "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "concat"
+   ],
+   "consequent": [
+    "conv2d",
+    "values",
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] , values = 3 )"
+  ],
+  "consequent": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "values"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "consequent": [
+   "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "concat"
+   ],
+   "consequent": [
+    "conv2d",
+    "values",
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] , values = 3 )"
+  ],
+  "consequent": [
+   "$0 . conv2d ( $1 , 384 , [ 3 , 1 ] ) ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "conv2d",
+    "values"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] )"
+  ],
+  "consequent": [
+   "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] ) \n",
+   " \t $0 = $1 . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "avg_pool"
+   ],
+   "consequent": [
+    "avg_pool",
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/inception_model.py",
+  "condition": [
+   "$0 = ops . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n",
+   " \t $1 = $2 . concat ( $3 = [ $4 , $5 , $6 , $0 ] , $7 = 3 ) \n"
+  ],
+  "consequent": [
+   "$1 = $2 . concat ( $3 = 3 , $7 = [ $4 , $5 , $6 , $0 ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "ops",
+    "conv2d",
+    "concat"
+   ],
+   "consequent": [
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "slim/deployment/model_deploy.py",
+  "condition": [
+   "name = 'clone_loss' ) \n",
+   " \t $0 . $1 . scalar ( 'regularization_loss' , $2 , <missing ')'> \n"
+  ],
+  "consequent": [
+   "$0 . $1 . scalar ( 'regularization_loss' , $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "name",
+    "scalar"
+   ],
+   "consequent": [
+    "scalar"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "slim/deployment/model_deploy.py",
+  "condition": [
+   "name = 'regularization_loss' ) \n",
+   " \t $0 . add ( $1 . $2 . scalar ( 'total_loss' , $3 , <missing ')'> \n"
+  ],
+  "consequent": [
+   "$0 . add ( $1 . $2 . scalar ( 'total_loss' , $3 ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "add",
+    "name",
+    "scalar"
+   ],
+   "consequent": [
+    "add",
+    "scalar"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "slim/train_image_classifier.py",
+  "condition": [
+   "name = 'learning_rate' ) ) \n",
+   " \t $0 . add ( $1 . $2 . scalar ( 'total_loss' , $3 , <missing ')'> \n"
+  ],
+  "consequent": [
+   "$0 . add ( $1 . $2 . scalar ( 'total_loss' , $3 ) )"
+  ],
+  "identifiers": {
+   "condition": [
+    "add",
+    "name",
+    "scalar"
+   ],
+   "consequent": [
+    "add",
+    "scalar"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "street/python/vgsl_model.py",
+  "condition": [
+   "$0 . $1 . scalar ( 'loss' , $2 . $3 , name = 'loss' )"
+  ],
+  "consequent": [
+   "$0 . $1 . scalar ( 'loss' , $2 . $3 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "name",
+    "scalar"
+   ],
+   "consequent": [
+    "scalar"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "street/python/vgsl_model.py",
+  "condition": [
+   "$0 . $1 . scalar ( 'learn_rate' , $2 , name = 'lr_summ' )"
+  ],
+  "consequent": [
+   "$0 . $1 . scalar ( 'learn_rate' , $2 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "name",
+    "scalar"
+   ],
+   "consequent": [
+    "scalar"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "swivel/swivel.py",
+  "condition": [
+   "$0 = $1 . concat ( $2 = [ $1 . expand_dims ( $3 , 1 ) ,"
+  ],
+  "consequent": [
+   "$0 = $1 . concat ( $2 = 1 , values = [ $1 . expand_dims ( $3 , 1 ) ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "expand_dims",
+    "concat"
+   ],
+   "consequent": [
+    "expand_dims",
+    "values",
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1063,
+  "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+  "author": "nealwu",
+  "participant": "TheodoreGalanos",
+  "created_at": "2017-02-23 22:32:21",
+  "merged_at": "2017-03-14 02:14:41",
+  "merged_by": "nealwu",
+  "file_path": "swivel/swivel.py",
+  "condition": [
+   "$0 . expand_dims ( $1 , 1 ) ] , values = 1 )"
+  ],
+  "consequent": [
+   "$0 . expand_dims ( $1 , 1 ) ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "values",
+    "expand_dims"
+   ],
+   "consequent": [
+    "expand_dims"
+   ]
+  }
+ },
+ {
+  "number": 1073,
+  "sha": "d6787c0fdd0011d61860f849767e40d9d45e87e3",
+  "author": "knathanieltucker",
+  "participant": "martinwicke",
+  "created_at": "2017-02-26 07:51:14",
+  "merged_at": "2017-03-08 20:37:01",
+  "merged_by": "martinwicke",
+  "file_path": "namignizer/model.py",
+  "condition": [
+   "$0 = $1 . $2 . $3 . BasicLSTMCell ( $4 , $5 = 0.0 )"
+  ],
+  "consequent": [
+   "lstm_cells = [ ] \n",
+   " \t for layer in range ( config . num_layers ) : \n",
+   " \t $0 = $1 . $2 . $3 . BasicLSTMCell ( $4 , $5 = 0.0 ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "BasicLSTMCell"
+   ],
+   "consequent": [
+    "layer",
+    "range",
+    "num_layers",
+    "config",
+    "lstm_cells",
+    "BasicLSTMCell"
+   ]
+  }
+ },
+ {
+  "number": 1073,
+  "sha": "d6787c0fdd0011d61860f849767e40d9d45e87e3",
+  "author": "knathanieltucker",
+  "participant": "martinwicke",
+  "created_at": "2017-02-26 07:51:14",
+  "merged_at": "2017-03-08 20:37:01",
+  "merged_by": "martinwicke",
+  "file_path": "namignizer/model.py",
+  "condition": [
+   "$0 , $1 = $2 . $3 )"
+  ],
+  "consequent": [
+   "$0 , $1 = $2 . $3 ) \n",
+   " \t lstm_cells . append ( $0 ) \n"
+  ],
+  "identifiers": {
+   "condition": [],
+   "consequent": [
+    "append",
+    "lstm_cells"
+   ]
+  }
+ },
+ {
+  "number": 1073,
+  "sha": "d6787c0fdd0011d61860f849767e40d9d45e87e3",
+  "author": "knathanieltucker",
+  "participant": "martinwicke",
+  "created_at": "2017-02-26 07:51:14",
+  "merged_at": "2017-03-08 20:37:01",
+  "merged_by": "martinwicke",
+  "file_path": "namignizer/model.py",
+  "condition": [
+   "$0 = $1 . $2 . $3 . MultiRNNCell ( [ lstm_cell ] * config . num_layers )"
+  ],
+  "consequent": [
+   "$0 = $1 . $2 . $3 . MultiRNNCell ( lstm_cells )"
+  ],
+  "identifiers": {
+   "condition": [
+    "num_layers",
+    "config",
+    "lstm_cell",
+    "MultiRNNCell"
+   ],
+   "consequent": [
+    "lstm_cells",
+    "MultiRNNCell"
+   ]
+  }
+ },
+ {
+  "number": 1127,
+  "sha": "74ad728e9ec024be1182fc7e4f8b881440d9c274",
+  "author": "AsterAI",
+  "participant": "googlebot",
+  "created_at": "2017-03-08 13:19:42",
+  "merged_at": "2017-03-16 01:23:05",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_train.py",
+  "condition": [
+   "log_steps = $0 . log_steps_count \n",
+   " \t if $1 . $2 % log_steps == 0 : \n"
+  ],
+  "consequent": [
+   "if $1 . $2 % $0 . log_frequency == 0 : \n",
+   " \t current_time = time . time ( ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "log_steps_count",
+    "log_steps"
+   ],
+   "consequent": [
+    "log_frequency",
+    "current_time",
+    "time"
+   ]
+  }
+ },
+ {
+  "number": 1127,
+  "sha": "74ad728e9ec024be1182fc7e4f8b881440d9c274",
+  "author": "AsterAI",
+  "participant": "googlebot",
+  "created_at": "2017-03-08 13:19:42",
+  "merged_at": "2017-03-16 01:23:05",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_train.py",
+  "condition": [
+   "$0 = time . time ( ) - $1 . _start_time"
+  ],
+  "consequent": [
+   "$0 = current_time - $1 . _start_time"
+  ],
+  "identifiers": {
+   "condition": [
+    "time",
+    "_start_time"
+   ],
+   "consequent": [
+    "current_time",
+    "_start_time"
+   ]
+  }
+ },
+ {
+  "number": 1127,
+  "sha": "74ad728e9ec024be1182fc7e4f8b881440d9c274",
+  "author": "AsterAI",
+  "participant": "googlebot",
+  "created_at": "2017-03-08 13:19:42",
+  "merged_at": "2017-03-16 01:23:05",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_train.py",
+  "condition": [
+   "$0 . $1 = time . time ( )"
+  ],
+  "consequent": [
+   "$0 . $1 = current_time"
+  ],
+  "identifiers": {
+   "condition": [
+    "time"
+   ],
+   "consequent": [
+    "current_time"
+   ]
+  }
+ },
+ {
+  "number": 1127,
+  "sha": "74ad728e9ec024be1182fc7e4f8b881440d9c274",
+  "author": "AsterAI",
+  "participant": "googlebot",
+  "created_at": "2017-03-08 13:19:42",
+  "merged_at": "2017-03-16 01:23:05",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_train.py",
+  "condition": [
+   "num_examples_per_step = $0 . $1 \n",
+   " \t $2 = num_examples_per_step * $0 . log_steps_count / $3 \n",
+   " $4 = float ( $3 / log_steps ) \n"
+  ],
+  "consequent": [
+   "$2 = $0 . log_frequency * $0 . $1 / $3 \n",
+   " \t $4 = float ( $3 / $0 . log_frequency ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "log_steps_count",
+    "float",
+    "log_steps",
+    "num_examples_per_step"
+   ],
+   "consequent": [
+    "log_frequency",
+    "float"
+   ]
+  }
+ },
+ {
+  "number": 1177,
+  "sha": "241881995e4f0f9734481fdaf1fe4246c5036b4a",
+  "author": "bogatyy",
+  "participant": "calberti",
+  "created_at": "2017-03-15 20:25:24",
+  "merged_at": "2017-03-15 20:28:33",
+  "merged_by": "calberti",
+  "file_path": "syntaxnet/dragnn/tools/evaluator.py",
+  "condition": [
+   "print 'POS %.2f UAS %.2f LAS %.2f' % ( pos , uas , las )"
+  ],
+  "consequent": [
+   "tf . logging . set_verbosity ( tf . logging . INFO )"
+  ],
+  "identifiers": {
+   "condition": [
+    "las",
+    "uas",
+    "pos",
+    "print"
+   ],
+   "consequent": [
+    "tf",
+    "logging",
+    "INFO",
+    "set_verbosity"
+   ]
+  }
+ },
+ {
+  "number": 1425,
+  "sha": "b2fc63b3fcd1cd7732b732d07b108cec64bf75de",
+  "author": "edouardfouche",
+  "participant": "googlebot",
+  "created_at": "2017-04-28 17:39:08",
+  "merged_at": "2017-05-10 02:22:32",
+  "merged_by": "panyx0718",
+  "file_path": "lm_1b/lm_1b_eval.py",
+  "condition": [
+   "for $0 in range ( $1 . $2 ) :"
+  ],
+  "consequent": [
+   "import six \n",
+   " \t for $0 in six . moves . range ( $1 . $2 ) : \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "range"
+   ],
+   "consequent": [
+    "range",
+    "moves",
+    "six"
+   ]
+  }
+ },
+ {
+  "number": 1425,
+  "sha": "b2fc63b3fcd1cd7732b732d07b108cec64bf75de",
+  "author": "edouardfouche",
+  "participant": "googlebot",
+  "created_at": "2017-04-28 17:39:08",
+  "merged_at": "2017-05-10 02:22:32",
+  "merged_by": "panyx0718",
+  "file_path": "lm_1b/lm_1b_eval.py",
+  "condition": [
+   "for $0 in range ( $1 . $2 ) :"
+  ],
+  "consequent": [
+   "for $0 in six . moves . range ( $1 . $2 ) :"
+  ],
+  "identifiers": {
+   "condition": [
+    "range"
+   ],
+   "consequent": [
+    "range",
+    "moves",
+    "six"
+   ]
+  }
+ },
+ {
+  "number": 1425,
+  "sha": "b2fc63b3fcd1cd7732b732d07b108cec64bf75de",
+  "author": "edouardfouche",
+  "participant": "googlebot",
+  "created_at": "2017-04-28 17:39:08",
+  "merged_at": "2017-05-10 02:22:32",
+  "merged_by": "panyx0718",
+  "file_path": "lm_1b/lm_1b_eval.py",
+  "condition": [
+   "for $0 in range ( len ( $1 ) ) :"
+  ],
+  "consequent": [
+   "for $0 in six . moves . range ( len ( $1 ) ) :"
+  ],
+  "identifiers": {
+   "condition": [
+    "range",
+    "len"
+   ],
+   "consequent": [
+    "range",
+    "moves",
+    "len",
+    "six"
+   ]
+  }
+ },
+ {
+  "number": 1447,
+  "sha": "cb4a4853e821bea8cda500b1759cf2e7ab6a1ed5",
+  "author": "ahundt",
+  "participant": "nealwu",
+  "created_at": "2017-05-05 23:14:37",
+  "merged_at": "2017-05-06 00:06:52",
+  "merged_by": "nealwu",
+  "file_path": "slim/nets/resnet_v2.py",
+  "condition": [
+   "$0 = True , $1 = $1 , $2 = $2 )"
+  ],
+  "consequent": [
+   "else : \n",
+   " \t logits = net \n",
+   " \t spatial_squeeze = True , \n",
+   " \t $0 = True , spatial_squeeze = spatial_squeeze , \n",
+   " $1 = $1 , $2 = $2 ) \n"
+  ],
+  "identifiers": {
+   "condition": [],
+   "consequent": [
+    "net",
+    "spatial_squeeze",
+    "logits"
+   ]
+  }
+ },
+ {
+  "number": 1447,
+  "sha": "cb4a4853e821bea8cda500b1759cf2e7ab6a1ed5",
+  "author": "ahundt",
+  "participant": "nealwu",
+  "created_at": "2017-05-05 23:14:37",
+  "merged_at": "2017-05-06 00:06:52",
+  "merged_by": "nealwu",
+  "file_path": "slim/nets/resnet_v2.py",
+  "condition": [
+   "$0 = True , $1 = $1 , $2 = $2 )"
+  ],
+  "consequent": [
+   "spatial_squeeze = True , \n",
+   " \t $0 = True , spatial_squeeze = spatial_squeeze , \n",
+   " $1 = $1 , $2 = $2 ) \n"
+  ],
+  "identifiers": {
+   "condition": [],
+   "consequent": [
+    "spatial_squeeze"
+   ]
+  }
+ },
+ {
+  "number": 1447,
+  "sha": "cb4a4853e821bea8cda500b1759cf2e7ab6a1ed5",
+  "author": "ahundt",
+  "participant": "nealwu",
+  "created_at": "2017-05-05 23:14:37",
+  "merged_at": "2017-05-06 00:06:52",
+  "merged_by": "nealwu",
+  "file_path": "slim/nets/resnet_v2.py",
+  "condition": [
+   "$0 = True , $1 = $1 , $2 = $2 )"
+  ],
+  "consequent": [
+   "spatial_squeeze = True , \n",
+   " \t $0 = True , spatial_squeeze = spatial_squeeze , \n",
+   " $1 = $1 , $2 = $2 ) \n"
+  ],
+  "identifiers": {
+   "condition": [],
+   "consequent": [
+    "spatial_squeeze"
+   ]
+  }
+ },
+ {
+  "number": 1447,
+  "sha": "cb4a4853e821bea8cda500b1759cf2e7ab6a1ed5",
+  "author": "ahundt",
+  "participant": "nealwu",
+  "created_at": "2017-05-05 23:14:37",
+  "merged_at": "2017-05-06 00:06:52",
+  "merged_by": "nealwu",
+  "file_path": "slim/nets/resnet_v2.py",
+  "condition": [
+   "$0 = True , $1 = $1 , $2 = $2 )"
+  ],
+  "consequent": [
+   "spatial_squeeze = True , \n",
+   " \t $0 = True , spatial_squeeze = spatial_squeeze , \n",
+   " $1 = $1 , $2 = $2 ) \n"
+  ],
+  "identifiers": {
+   "condition": [],
+   "consequent": [
+    "spatial_squeeze"
+   ]
+  }
+ },
+ {
+  "number": 1487,
+  "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-05-18 23:58:45",
+  "merged_at": "2017-05-23 01:06:30",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/ops_test.py",
+  "condition": [
+   "barrier = $0 . no_op ( name = 'gradient_barrier' ) \n",
+   " \t with $0 . control_dependencies ( [ barrier ] ) : \n",
+   " \t $1 = $1 \n"
+  ],
+  "consequent": [
+   "$1 = $0 . identity ( $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "no_op",
+    "control_dependencies",
+    "barrier",
+    "name"
+   ],
+   "consequent": [
+    "identity"
+   ]
+  }
+ },
+ {
+  "number": 1487,
+  "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-05-18 23:58:45",
+  "merged_at": "2017-05-23 01:06:30",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/ops_test.py",
+  "condition": [
+   "barrier = $0 . no_op ( name = 'gradient_barrier' ) \n",
+   " \t with $0 . control_dependencies ( [ barrier ] ) : \n",
+   " \t $1 = $1 \n"
+  ],
+  "consequent": [
+   "$1 = $0 . identity ( $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "no_op",
+    "control_dependencies",
+    "barrier",
+    "name"
+   ],
+   "consequent": [
+    "identity"
+   ]
+  }
+ },
+ {
+  "number": 1487,
+  "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-05-18 23:58:45",
+  "merged_at": "2017-05-23 01:06:30",
+  "merged_by": "nealwu",
+  "file_path": "inception/inception/slim/ops_test.py",
+  "condition": [
+   "barrier = $0 . no_op ( name = 'gradient_barrier' ) \n",
+   " \t with $0 . control_dependencies ( [ barrier ] ) : \n",
+   " \t $1 = $1 \n"
+  ],
+  "consequent": [
+   "$1 = $0 . identity ( $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "no_op",
+    "control_dependencies",
+    "barrier",
+    "name"
+   ],
+   "consequent": [
+    "identity"
+   ]
+  }
+ },
+ {
+  "number": 1487,
+  "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-05-18 23:58:45",
+  "merged_at": "2017-05-23 01:06:30",
+  "merged_by": "nealwu",
+  "file_path": "slim/deployment/model_deploy.py",
+  "condition": [
+   "$0 = total_loss"
+  ],
+  "consequent": [
+   "$0 = tf . identity ( total_loss , name = 'train_op' )"
+  ],
+  "identifiers": {
+   "condition": [
+    "total_loss"
+   ],
+   "consequent": [
+    "identity",
+    "total_loss",
+    "tf",
+    "name"
+   ]
+  }
+ },
+ {
+  "number": 1487,
+  "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+  "author": "nealwu",
+  "participant": "jhseu",
+  "created_at": "2017-05-18 23:58:45",
+  "merged_at": "2017-05-23 01:06:30",
+  "merged_by": "nealwu",
+  "file_path": "slim/train_image_classifier.py",
+  "condition": [
+   "$0 = total_loss"
+  ],
+  "consequent": [
+   "$0 = tf . identity ( total_loss , name = 'train_op' )"
+  ],
+  "identifiers": {
+   "condition": [
+    "total_loss"
+   ],
+   "consequent": [
+    "identity",
+    "total_loss",
+    "tf",
+    "name"
+   ]
+  }
+ },
+ {
+  "number": 1532,
+  "sha": "76cf35de36b3d5a10255c54b2e54500048c79b47",
+  "author": "andrewgilbert12",
+  "participant": "nealwu",
+  "created_at": "2017-06-06 09:49:02",
+  "merged_at": "2017-06-06 19:40:32",
+  "merged_by": "nealwu",
+  "file_path": "adversarial_crypto/train_eval.py",
+  "condition": [
+   "$0 = $1 . concat ( [ $2 , $3 ] , 1 )"
+  ],
+  "consequent": [
+   "$0 = $1 . concat ( axis = 1 , values = [ $2 , $3 ] )"
+  ],
+  "identifiers": {
+   "condition": [
+    "concat"
+   ],
+   "consequent": [
+    "axis",
+    "values",
+    "concat"
+   ]
+  }
+ },
+ {
+  "number": 1532,
+  "sha": "76cf35de36b3d5a10255c54b2e54500048c79b47",
+  "author": "andrewgilbert12",
+  "participant": "nealwu",
+  "created_at": "2017-06-06 09:49:02",
+  "merged_at": "2017-06-06 19:40:32",
+  "merged_by": "nealwu",
+  "file_path": "adversarial_crypto/train_eval.py",
+  "condition": [
+   "[ $0 . $1 . $2 . $3 , $0 . $1 . $2 . convolution2d ] ,"
+  ],
+  "consequent": [
+   "[ $0 . $1 . $2 . $3 , $0 . $1 . $2 . conv2d ] ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "convolution2d"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1532,
+  "sha": "76cf35de36b3d5a10255c54b2e54500048c79b47",
+  "author": "andrewgilbert12",
+  "participant": "nealwu",
+  "created_at": "2017-06-06 09:49:02",
+  "merged_at": "2017-06-06 19:40:32",
+  "merged_by": "nealwu",
+  "file_path": "adversarial_crypto/train_eval.py",
+  "condition": [
+   "$0 = $1 . $2 . $3 . convolution2d ("
+  ],
+  "consequent": [
+   "$0 = $1 . $2 . $3 . conv2d ("
+  ],
+  "identifiers": {
+   "condition": [
+    "convolution2d"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1532,
+  "sha": "76cf35de36b3d5a10255c54b2e54500048c79b47",
+  "author": "andrewgilbert12",
+  "participant": "nealwu",
+  "created_at": "2017-06-06 09:49:02",
+  "merged_at": "2017-06-06 19:40:32",
+  "merged_by": "nealwu",
+  "file_path": "adversarial_crypto/train_eval.py",
+  "condition": [
+   "$0 = $1 . $2 . $3 . convolution2d ("
+  ],
+  "consequent": [
+   "$0 = $1 . $2 . $3 . conv2d ("
+  ],
+  "identifiers": {
+   "condition": [
+    "convolution2d"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1532,
+  "sha": "76cf35de36b3d5a10255c54b2e54500048c79b47",
+  "author": "andrewgilbert12",
+  "participant": "nealwu",
+  "created_at": "2017-06-06 09:49:02",
+  "merged_at": "2017-06-06 19:40:32",
+  "merged_by": "nealwu",
+  "file_path": "adversarial_crypto/train_eval.py",
+  "condition": [
+   "$0 = $1 . $2 . $3 . convolution2d ("
+  ],
+  "consequent": [
+   "$0 = $1 . $2 . $3 . conv2d ("
+  ],
+  "identifiers": {
+   "condition": [
+    "convolution2d"
+   ],
+   "consequent": [
+    "conv2d"
+   ]
+  }
+ },
+ {
+  "number": 1536,
+  "sha": "11733fcafdb148878052c47dda0e4b9e76736700",
+  "author": "awilliamson",
+  "participant": "nealwu",
+  "created_at": "2017-06-07 18:13:27",
+  "merged_at": "2017-06-15 21:51:36",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/alexnet/alexnet_benchmark.py",
+  "condition": [
+   "$0 = $1 . $2 . local_response_normalization ("
+  ],
+  "consequent": [
+   "$0 = $1 . $2 . local_response_normalization ( conv1 , alpha = 1e-4 , beta = 0.75 , depth_radius = 2 , bias = 2.0 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "local_response_normalization"
+   ],
+   "consequent": [
+    "local_response_normalization",
+    "beta",
+    "conv1",
+    "bias",
+    "depth_radius",
+    "alpha"
+   ]
+  }
+ },
+ {
+  "number": 1536,
+  "sha": "11733fcafdb148878052c47dda0e4b9e76736700",
+  "author": "awilliamson",
+  "participant": "nealwu",
+  "created_at": "2017-06-07 18:13:27",
+  "merged_at": "2017-06-15 21:51:36",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/alexnet/alexnet_benchmark.py",
+  "condition": [
+   "conv1 , \n",
+   " \t alpha = 1e-04 , \n",
+   " beta = 0.75 , \n",
+   " depth_radius = 5 , \n",
+   " bias = 2.0 \n",
+   " )"
+  ],
+  "consequent": [],
+  "identifiers": {
+   "condition": [
+    "beta",
+    "conv1",
+    "bias",
+    "depth_radius",
+    "alpha"
+   ],
+   "consequent": []
+  }
+ },
+ {
+  "number": 1536,
+  "sha": "11733fcafdb148878052c47dda0e4b9e76736700",
+  "author": "awilliamson",
+  "participant": "nealwu",
+  "created_at": "2017-06-07 18:13:27",
+  "merged_at": "2017-06-15 21:51:36",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/alexnet/alexnet_benchmark.py",
+  "condition": [
+   "$0 = $1 . $2 . local_response_normalization ("
+  ],
+  "consequent": [
+   "$0 = $1 . $2 . local_response_normalization ( conv2 , alpha = 1e-4 , beta = 0.75 , depth_radius = 2 , bias = 2.0 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "local_response_normalization"
+   ],
+   "consequent": [
+    "local_response_normalization",
+    "beta",
+    "bias",
+    "depth_radius",
+    "alpha",
+    "conv2"
+   ]
+  }
+ },
+ {
+  "number": 1538,
+  "sha": "b5acc005968d37495f0e7d83d2dd2ef3d3674211",
+  "author": "tfboyd",
+  "participant": "nealwu",
+  "created_at": "2017-06-08 17:14:00",
+  "merged_at": "2017-06-09 07:48:58",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "def tower_loss ( $0 ) :"
+  ],
+  "consequent": [
+   "def tower_loss ( $0 , images , labels ) :"
+  ],
+  "identifiers": {
+   "condition": [
+    "tower_loss"
+   ],
+   "consequent": [
+    "tower_loss",
+    "labels",
+    "images"
+   ]
+  }
+ },
+ {
+  "number": 1538,
+  "sha": "b5acc005968d37495f0e7d83d2dd2ef3d3674211",
+  "author": "tfboyd",
+  "participant": "nealwu",
+  "created_at": "2017-06-08 17:14:00",
+  "merged_at": "2017-06-09 07:48:58",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "\n",
+   " \t $0 , $1 = cifar10 . distorted_inputs ( ) \n"
+  ],
+  "consequent": [
+   "$0 : Images . 4 D tensor of shape [ batch_size , height , width , 3 ] . <missing <INVALID>> \n",
+   " \t $1 : Labels . 1 D tensor of shape [ batch_size ] . <missing <INVALID>> \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "distorted_inputs",
+    "cifar10"
+   ],
+   "consequent": [
+    "<missing <INVALID>>",
+    "of",
+    "tensor",
+    "height",
+    "Labels",
+    "batch_size",
+    "width",
+    "D",
+    "Images",
+    "shape"
+   ]
+  }
+ },
+ {
+  "number": 1538,
+  "sha": "b5acc005968d37495f0e7d83d2dd2ef3d3674211",
+  "author": "tfboyd",
+  "participant": "nealwu",
+  "created_at": "2017-06-08 17:14:00",
+  "merged_at": "2017-06-09 07:48:58",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+  "condition": [
+   "$0 = tower_loss ( $1 )"
+  ],
+  "consequent": [
+   "\n",
+   " \t images , labels = cifar10 . distorted_inputs ( ) \n",
+   " batch_queue = tf . contrib . slim . prefetch_queue . prefetch_queue ( [ images , labels ] , capacity = 2 * FLAGS . num_gpus ) \n",
+   " \t images , labels = batch_queue . dequeue ( ) \n",
+   " $0 = tower_loss ( $1 , images , labels ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "tower_loss"
+   ],
+   "consequent": [
+    "distorted_inputs",
+    "num_gpus",
+    "tower_loss",
+    "images",
+    "dequeue",
+    "batch_queue",
+    "prefetch_queue",
+    "labels",
+    "cifar10",
+    "capacity",
+    "contrib",
+    "tf",
+    "slim",
+    "FLAGS"
+   ]
+  }
+ },
+ {
+  "number": 1538,
+  "sha": "b5acc005968d37495f0e7d83d2dd2ef3d3674211",
+  "author": "tfboyd",
+  "participant": "nealwu",
+  "created_at": "2017-06-08 17:14:00",
+  "merged_at": "2017-06-09 07:48:58",
+  "merged_by": "nealwu",
+  "file_path": "tutorials/image/cifar10/cifar10_train.py",
+  "condition": [
+   "$0 , $1 = $2 . distorted_inputs ( )"
+  ],
+  "consequent": [
+   "\n",
+   " \t with tf . device ( '/cpu:0' ) : \n",
+   " \t $0 , $1 = $2 . distorted_inputs ( ) \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "distorted_inputs"
+   ],
+   "consequent": [
+    "device",
+    "tf",
+    "distorted_inputs"
+   ]
+  }
+ },
+ {
+  "number": 1869,
+  "sha": "545b75f9e221d84f4470df657493dd63c92f6c6a",
+  "author": "tmattio",
+  "participant": "derekjchow",
+  "created_at": "2017-07-06 06:38:12",
+  "merged_at": "2017-07-07 22:40:21",
+  "merged_by": "derekjchow",
+  "file_path": "object_detection/utils/visualization_utils.py",
+  "condition": [
+   "import six \n",
+   " \t for $0 , $1 in six . iteritems ( $2 ) : \n"
+  ],
+  "consequent": [
+   "for $0 , $1 in $2 . items ( ) :"
+  ],
+  "identifiers": {
+   "condition": [
+    "iteritems",
+    "six"
+   ],
+   "consequent": [
+    "items"
+   ]
+  }
+ },
+ {
+  "number": 1965,
+  "sha": "8f52c68137767220837e96bc9cb415ee5aac4c89",
+  "author": "korrawat",
+  "participant": "derekjchow",
+  "created_at": "2017-07-15 14:49:05",
+  "merged_at": "2017-07-17 16:28:42",
+  "merged_by": "derekjchow",
+  "file_path": "object_detection/utils/label_map_util.py",
+  "condition": [
+   "as $0 $1 . $2 False of if $3 <missing 'else'> $4 $5 $6 not <missing 'in'> $7 ,"
+  ],
+  "consequent": [
+   "as $0 $1 . $2 False or if $3 $4 $5 $6 not <missing 'in'> $7 ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "of"
+   ],
+   "consequent": []
+  }
+ },
+ {
+  "number": 2012,
+  "sha": "dac7db72dd5b9514801fa13d54f84817372e224c",
+  "author": "sussillo",
+  "participant": "googlebot",
+  "created_at": "2017-07-21 21:09:26",
+  "merged_at": "2017-07-21 21:25:52",
+  "merged_by": "sussillo",
+  "file_path": "lfads/synth_data/synthetic_data_utils.py",
+  "condition": [
+   "spikified_data_e : $0 $1 $2 $3 $4 $2 $5 $6 $7 as $8 ,"
+  ],
+  "consequent": [
+   "spikified_e : $0 $1 $2 $3 $4 $2 $5 $6 $7 as $8 ,"
+  ],
+  "identifiers": {
+   "condition": [
+    "spikified_data_e"
+   ],
+   "consequent": [
+    "spikified_e"
+   ]
+  }
+ },
+ {
+  "number": 2012,
+  "sha": "dac7db72dd5b9514801fa13d54f84817372e224c",
+  "author": "sussillo",
+  "participant": "googlebot",
+  "created_at": "2017-07-21 21:09:26",
+  "merged_at": "2017-07-21 21:25:52",
+  "merged_by": "sussillo",
+  "file_path": "lfads/synth_data/synthetic_data_utils.py",
+  "condition": [
+   "spikified_data_e : $0 $1 $2 $3 $4 $2 $5 $6 represented as spikes , \n",
+   " \t sampled from $5 <missing 'import'> underlying poisson process . <missing <INVALID>> \n"
+  ],
+  "consequent": [
+   "gauss_e : $0 $1 $2 $3 $4 $2 $5 $6 with noise ."
+  ],
+  "identifiers": {
+   "condition": [
+    "<missing <INVALID>>",
+    "underlying",
+    "process",
+    "represented",
+    "sampled",
+    "spikes",
+    "poisson",
+    "spikified_data_e"
+   ],
+   "consequent": [
+    "noise",
+    "gauss_e"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "\n",
+   " class ParamServerDeviceSetter ( $0 ) :"
+  ],
+  "consequent": [
+   "class GpuParamServerDeviceSetter ( $0 ) :"
+  ],
+  "identifiers": {
+   "condition": [
+    "ParamServerDeviceSetter"
+   ],
+   "consequent": [
+    "GpuParamServerDeviceSetter"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "\"\" \" $0 for ParamServerDeviceSetter ."
+  ],
+  "consequent": [
+   "\"\" \" $0 for GpuParamServerDeviceSetter ."
+  ],
+  "identifiers": {
+   "condition": [
+    "ParamServerDeviceSetter"
+   ],
+   "consequent": [
+    "GpuParamServerDeviceSetter"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "$0 : $1 $2 $3 $4 for computer <missing 'in'> ops ."
+  ],
+  "consequent": [
+   "$0 : $1 $2 $3 $4 for computation <missing 'in'> Ops ."
+  ],
+  "identifiers": {
+   "condition": [
+    "computer",
+    "ops"
+   ],
+   "consequent": [
+    "computation",
+    "Ops"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "$0 : $1 $2 $3 $4 $5 $6 for $7 <missing 'in'> ops . $8 <missing ':'> $9 is"
+  ],
+  "consequent": [
+   "$0 : $1 $2 $3 $4 $5 $6 for $7 <missing 'in'> Ops . $8 <missing ':'> $9 is"
+  ],
+  "identifiers": {
+   "condition": [
+    "ops"
+   ],
+   "consequent": [
+    "Ops"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "def _create_device_setter ( $0 , $1 ) :"
+  ],
+  "consequent": [
+   "def _create_device_setter ( $0 , $1 , num_gpus ) :"
+  ],
+  "identifiers": {
+   "condition": [
+    "_create_device_setter"
+   ],
+   "consequent": [
+    "_create_device_setter",
+    "num_gpus"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "$0 = [ '/gpu:%d' % $1 for $1 in range ( FLAGS . $2 ) ]"
+  ],
+  "consequent": [
+   "\n",
+   " \t $0 = [ '/gpu:%d' % $1 for $1 in range ( $2 ) ] \n"
+  ],
+  "identifiers": {
+   "condition": [
+    "range",
+    "FLAGS"
+   ],
+   "consequent": [
+    "range"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "return ParamServerDeviceSetter ( $0 , $1 )"
+  ],
+  "consequent": [
+   "return GpuParamServerDeviceSetter ( $0 , $1 )"
+  ],
+  "identifiers": {
+   "condition": [
+    "ParamServerDeviceSetter"
+   ],
+   "consequent": [
+    "GpuParamServerDeviceSetter"
+   ]
+  }
+ },
+ {
+  "number": 2044,
+  "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+  "author": "tfboyd",
+  "participant": "protoget",
+  "created_at": "2017-07-26 15:21:36",
+  "merged_at": "2017-07-27 16:44:44",
+  "merged_by": "tfboyd",
+  "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+  "condition": [
+   "$0 = _create_device_setter ( $1 , $2 )"
+  ],
+  "consequent": [
+   "$0 = _create_device_setter ( $1 , $2 , FLAGS . num_gpus )"
+  ],
+  "identifiers": {
+   "condition": [
+    "_create_device_setter"
+   ],
+   "consequent": [
+    "_create_device_setter",
+    "num_gpus",
+    "FLAGS"
+   ]
+  }
  }
 ]

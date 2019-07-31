@@ -134,6 +134,11 @@ for i, change in enumerate(reversed(changes)):
     if ident_condition == ident_consequent or list(set(ident_condition + ident_consequent)) == []:
         continue
 
+    consequent_in_condition = set(ident_consequent).issubset(set(ident_condition)) or\
+                              all([any([x in y for y in ident_condition]) for x in ident_consequent])
+    condition_in_consequent = set(ident_condition).issubset(set(ident_consequent)) or\
+                              all([any([x in y for y in ident_consequent]) for x in ident_condition])  
+
     changed_diff_index = target_repo.commit(change["sha"]).diff(head_commit)
 
     # added_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("A")]
@@ -157,7 +162,6 @@ for i, change in enumerate(reversed(changes)):
     else:
         adopted_files = [x for x in head_consequent[0]
                                                 if all([x in y for y in head_consequent[1:]])]
-    token_dict["#consequent_files_HEAD"] = len(adopted_files)
 
     if len(head_condition) == 0:
         continue
@@ -166,30 +170,45 @@ for i, change in enumerate(reversed(changes)):
     else:
         token_dict["adoptable_files"] = [x for x in head_condition[0]
                                          if all([x in y for y in head_condition])]
-    token_dict["#condition_files_HEAD"] = len(token_dict["adoptable_files"])
-    token_dict["adoptable_files"] = [x for x in token_dict["adoptable_files"]\
-                                     if x not in adopted_files]
+
+    if consequent_in_condition:
+        adopted_files = [x for x in adopted_files if x not in token_dict["adoptable_files"]]
+    elif condition_in_consequent:
+        token_dict["adoptable_files"] = [x for x in token_dict["adoptable_files"] if x not in adopted_files]
+    else:
+        tmp = token_dict["adoptable_files"]
+        token_dict["adoptable_files"] = [x for x in token_dict["adoptable_files"]\
+                                         if x not in adopted_files]
+        abopted_files = [x for x in adopted_files if x not in tmp]
+
+
+
+    token_dict["#condition_files"] = len(token_dict["adoptable_files"])
+    token_dict["#consequent_files"] = len(adopted_files)
 
     # original_stat = make_token_ratio(ident_condition, ident_consequent, changed_file,
-    #                                  token_dict["#condition_files_HEAD"], token_dict["#consequent_files_HEAD"]) 
+    #                                  token_dict["#condition_files"], token_dict["#consequent_files"]) 
     # token_dict.update(original_stat)
     # if not (token_dict["consequent_ratio"] > 1.0 or token_dict["condition_ratio"] < 1.0) or\
     #     token_dict["consequent_ratio"] < token_dict["condition_ratio"]:
     #     continue
-    if token_dict["#condition_files_HEAD"] == 0:
-        continue
+    if token_dict["#condition_files"] == 0:
+        if token_dict["#consequent_files"] != 0:
+            token_dict["consequent/condition"] = token_dict["#consequent_files"]
+        else:
+            continue
+    else:
+        token_dict["consequent/condition"] = token_dict["#consequent_files"] /\
+                                         token_dict["#condition_files"]
 
-    token_dict["condition/consequent"] = token_dict["#consequent_files_HEAD"] /\
-                                         token_dict["#condition_files_HEAD"]
+    
 
-    if token_dict["condition/consequent"] > 1.0 or\
-    (len(ident_condition) == 1 and len(ident_consequent) == 1 and  ident_condition[0] in ident_consequent[0]):
+    if token_dict["consequent/condition"] > 1.0 or\
+    (len(ident_condition) == 1 and len(ident_consequent) == 1 and token_dict["consequent/condition"] > 0.5):
         output.append(token_dict)
-        # print(ident_condition)
-        # print(head_condition)
 
 output = make_repeated_rules(output)
-output = sorted(output, key=lambda x: x["condition/consequent"], reverse=True)
+output = sorted(output, key=lambda x: x["consequent/condition"], reverse=True)
 
 print("output %d rules" % len(output))
 with open(OUT_TOKEN_NAME2, "w") as target:
