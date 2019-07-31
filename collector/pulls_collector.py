@@ -41,7 +41,7 @@ class PullsCollector:
         while True:
             obj = self._fetch(cursor)
             for pull in (edge['node'] for edge in obj['data']['repository']['pullRequests']['edges']):
-                if pull['commits']['totalCount'] > 0:
+                if pull['commits']['totalCount'] > 0 and "author" in pull and pull["author"] is not None:
                     yield self._format(pull)
             if not obj['data']['repository']['pullRequests']['pageInfo']['hasNextPage']:
                 break
