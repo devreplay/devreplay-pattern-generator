@@ -1,0 +1,1673 @@
+[
+  {
+    "number": 1487,
+    "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+    "author": "nealwu",
+    "participant": "jhseu",
+    "created_at": "2017-05-18 23:58:45",
+    "merged_at": "2017-05-23 01:06:30",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/ops_test.py",
+    "condition": [
+      "barrier = $0 . no_op ( name = 'gradient_barrier' ) \n",
+      " \t with $0 . control_dependencies ( [ barrier ] ) : \n",
+      " \t $1 = $1 \n"
+    ],
+    "consequent": [
+      "$1 = $0 . identity ( $1 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "no_op",
+        "control_dependencies",
+        "barrier",
+        "name"
+      ],
+      "consequent": [
+        "identity"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 121,
+    "consequent/condition": 121,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1487,
+    "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+    "author": "nealwu",
+    "participant": "jhseu",
+    "created_at": "2017-05-18 23:58:45",
+    "merged_at": "2017-05-23 01:06:30",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/ops_test.py",
+    "condition": [
+      "barrier = $0 . no_op ( name = 'gradient_barrier' ) \n",
+      " \t with $0 . control_dependencies ( [ barrier ] ) : \n",
+      " \t $1 = $1 \n"
+    ],
+    "consequent": [
+      "$1 = $0 . identity ( $1 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "no_op",
+        "control_dependencies",
+        "barrier",
+        "name"
+      ],
+      "consequent": [
+        "identity"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 121,
+    "consequent/condition": 121,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1487,
+    "sha": "99f9442b0f1f5225c7ef725c32e55afb41186e66",
+    "author": "nealwu",
+    "participant": "jhseu",
+    "created_at": "2017-05-18 23:58:45",
+    "merged_at": "2017-05-23 01:06:30",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/ops_test.py",
+    "condition": [
+      "barrier = $0 . no_op ( name = 'gradient_barrier' ) \n",
+      " \t with $0 . control_dependencies ( [ barrier ] ) : \n",
+      " \t $1 = $1 \n"
+    ],
+    "consequent": [
+      "$1 = $0 . identity ( $1 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "no_op",
+        "control_dependencies",
+        "barrier",
+        "name"
+      ],
+      "consequent": [
+        "identity"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 121,
+    "consequent/condition": 121,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1177,
+    "sha": "241881995e4f0f9734481fdaf1fe4246c5036b4a",
+    "author": "bogatyy",
+    "participant": "calberti",
+    "created_at": "2017-03-15 20:25:24",
+    "merged_at": "2017-03-15 20:28:33",
+    "merged_by": "calberti",
+    "file_path": "syntaxnet/dragnn/tools/evaluator.py",
+    "condition": [
+      "print 'POS %.2f UAS %.2f LAS %.2f' % ( pos , uas , las )"
+    ],
+    "consequent": [
+      "tf . logging . set_verbosity ( tf . logging . INFO )"
+    ],
+    "identifiers": {
+      "condition": [
+        "las",
+        "uas",
+        "pos",
+        "print"
+      ],
+      "consequent": [
+        "tf",
+        "logging",
+        "INFO",
+        "set_verbosity"
+      ]
+    },
+    "adoptable_files": [
+      "research/minigo/mcts.py"
+    ],
+    "#condition_files": 1,
+    "#consequent_files": 103,
+    "consequent/condition": 103.0,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 881,
+    "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+    "author": "cshallue",
+    "participant": "googlebot",
+    "created_at": "2017-01-10 18:56:31",
+    "merged_at": "2017-01-10 18:56:41",
+    "merged_by": "cshallue",
+    "file_path": "im2txt/im2txt/show_and_tell_model.py",
+    "condition": [
+      "$0 = $1 . nn . rnn_cell . BasicLSTMCell ("
+    ],
+    "consequent": [
+      "$0 = $1 . contrib . rnn . BasicLSTMCell ("
+    ],
+    "identifiers": {
+      "condition": [
+        "BasicLSTMCell",
+        "rnn_cell",
+        "nn"
+      ],
+      "consequent": [
+        "contrib",
+        "rnn",
+        "BasicLSTMCell"
+      ]
+    },
+    "adoptable_files": [
+      "research/deep_speech/deep_speech_model.py"
+    ],
+    "#condition_files": 1,
+    "#consequent_files": 23,
+    "consequent/condition": 23.0,
+    "frequency": 1,
+    "repeated_pr_id": [
+      982
+    ]
+  },
+  {
+    "number": 982,
+    "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+    "author": "arvind385801",
+    "participant": "googlebot",
+    "created_at": "2017-02-05 15:05:57",
+    "merged_at": "2017-03-16 00:13:40",
+    "merged_by": "nealwu",
+    "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+    "condition": [
+      "return $0 . nn . rnn_cell . BasicLSTMCell ( $1 )"
+    ],
+    "consequent": [
+      "return $0 . contrib . rnn . BasicLSTMCell ( $1 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "BasicLSTMCell",
+        "rnn_cell",
+        "nn"
+      ],
+      "consequent": [
+        "contrib",
+        "rnn",
+        "BasicLSTMCell"
+      ]
+    },
+    "adoptable_files": [
+      "research/deep_speech/deep_speech_model.py"
+    ],
+    "#condition_files": 1,
+    "#consequent_files": 23,
+    "consequent/condition": 23.0,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 881,
+    "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+    "author": "cshallue",
+    "participant": "googlebot",
+    "created_at": "2017-01-10 18:56:31",
+    "merged_at": "2017-01-10 18:56:41",
+    "merged_by": "cshallue",
+    "file_path": "im2txt/im2txt/show_and_tell_model.py",
+    "condition": [
+      "$0 = $1 . $2 . sparse_softmax_cross_entropy_with_logits ( $3 , $4 )"
+    ],
+    "consequent": [
+      "$0 = $1 . $2 . sparse_softmax_cross_entropy_with_logits ( labels = $4 , $3 = $3 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "sparse_softmax_cross_entropy_with_logits"
+      ],
+      "consequent": [
+        "sparse_softmax_cross_entropy_with_logits",
+        "labels"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 19,
+    "consequent/condition": 19,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1031,
+    "sha": "64254ad355f9ea72531ae305c2db2a737c47c9a9",
+    "author": "nealwu",
+    "participant": "panyx0718",
+    "created_at": "2017-02-18 01:43:59",
+    "merged_at": "2017-02-23 02:44:17",
+    "merged_by": "panyx0718",
+    "file_path": "resnet/resnet_main.py",
+    "condition": [
+      "time . sleep ( 60 ) \n",
+      " \t $0 . $1 . info ( 'loss: %.3f, precision: %.3f, best precision: %.3f\\n' % \n"
+    ],
+    "consequent": [
+      "$0 . $1 . info ( 'loss: %.3f, precision: %.3f, best precision: %.3f' %"
+    ],
+    "identifiers": {
+      "condition": [
+        "time",
+        "sleep",
+        "info"
+      ],
+      "consequent": [
+        "info"
+      ]
+    },
+    "adoptable_files": [
+      "research/object_detection/eval_util.py",
+      "research/brain_coder/single_task/pg_train.py",
+      "research/cognitive_planning/train_supervised_active_vision.py",
+      "research/efficient-hrl/utils/eval_utils.py",
+      "research/fivo/fivo/runners.py",
+      "research/adversarial_text/evaluate.py",
+      "research/efficient-hrl/train.py",
+      "research/skip_thoughts/skip_thoughts/track_perplexity.py",
+      "research/textsum/seq2seq_attention_decode.py",
+      "research/feelvos/vis_video.py",
+      "research/im2txt/im2txt/evaluate.py",
+      "research/object_detection/model_lib_v2.py",
+      "research/cognitive_mapping_and_planning/scripts/script_nav_agent_release.py",
+      "official/recommendation/data_pipeline.py",
+      "research/tcn/dataset/webcam.py",
+      "official/utils/logs/hooks_test.py",
+      "research/tcn/eval.py",
+      "research/brain_coder/single_task/ga_train.py",
+      "research/textsum/seq2seq_attention.py",
+      "official/resnet/keras/keras_common.py",
+      "official/utils/logs/logger_test.py",
+      "research/maskgan/train_mask_gan.py",
+      "research/street/python/vgsl_model.py"
+    ],
+    "#condition_files": 23,
+    "#consequent_files": 375,
+    "consequent/condition": 16.304347826086957,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 881,
+    "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+    "author": "cshallue",
+    "participant": "googlebot",
+    "created_at": "2017-01-10 18:56:31",
+    "merged_at": "2017-01-10 18:56:41",
+    "merged_by": "cshallue",
+    "file_path": "im2txt/im2txt/ops/image_embedding_test.py",
+    "condition": [
+      "for $0 in $1 . all_variables ( ) :"
+    ],
+    "consequent": [
+      "for $0 in $1 . global_variables ( ) :"
+    ],
+    "identifiers": {
+      "condition": [
+        "all_variables"
+      ],
+      "consequent": [
+        "global_variables"
+      ]
+    },
+    "adoptable_files": [
+      "research/deeplab/export_model.py",
+      "research/object_detection/model_lib_test.py",
+      "research/syntaxnet/examples/dragnn/tutorial_1.py",
+      "research/pcl_rl/trainer.py",
+      "research/object_detection/core/prefetcher_test.py",
+      "research/syntaxnet/examples/dragnn/tutorial_2.py",
+      "research/object_detection/core/batcher_test.py",
+      "research/brain_coder/single_task/pg_agent.py",
+      "research/learning_unsupervised_learning/run_eval.py",
+      "research/compression/entropy_coder/lib/block_base.py",
+      "research/tcn/estimators/base_estimator.py",
+      "research/qa_kg/util/misc.py"
+    ],
+    "#condition_files": 12,
+    "#consequent_files": 173,
+    "consequent/condition": 14.416666666666666,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 881,
+    "sha": "a46f826f5e3f063dc39cce339d4f836a167ce6b1",
+    "author": "cshallue",
+    "participant": "googlebot",
+    "created_at": "2017-01-10 18:56:31",
+    "merged_at": "2017-01-10 18:56:41",
+    "merged_by": "cshallue",
+    "file_path": "im2txt/im2txt/show_and_tell_model.py",
+    "condition": [
+      "$0 = $1 . nn . rnn_cell . DropoutWrapper ("
+    ],
+    "consequent": [
+      "$0 = $1 . contrib . rnn . DropoutWrapper ("
+    ],
+    "identifiers": {
+      "condition": [
+        "rnn_cell",
+        "DropoutWrapper",
+        "nn"
+      ],
+      "consequent": [
+        "contrib",
+        "rnn",
+        "DropoutWrapper"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 14,
+    "consequent/condition": 14,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 785,
+    "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+    "author": "mrphoenix13",
+    "participant": "YuMS",
+    "created_at": "2016-12-21 08:05:05",
+    "merged_at": "2017-01-18 19:14:21",
+    "merged_by": "itsmeolivia",
+    "file_path": "tutorials/image/cifar10/cifar10_input.py",
+    "condition": [
+      "$0 . contrib . deprecated . image_summary ( 'images' , $1 )"
+    ],
+    "consequent": [
+      "$0 . image_summary ( 'images' , $1 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "contrib",
+        "image_summary",
+        "deprecated"
+      ],
+      "consequent": [
+        "image_summary"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 9,
+    "consequent/condition": 9,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 783,
+    "sha": "48f5b4dab71dc1874d3a052c67450dc8e443b510",
+    "author": "dweekly",
+    "participant": "nealwu",
+    "created_at": "2016-12-21 05:00:58",
+    "merged_at": "2017-03-16 04:37:51",
+    "merged_by": "nealwu",
+    "file_path": "im2txt/im2txt/ops/image_processing.py",
+    "condition": [
+      "$0 . image_summary ( $1 , $0 . expand_dims ( $2 , 0 ) )"
+    ],
+    "consequent": [
+      "$0 . summary . $2 ( $1 , $0 . expand_dims ( $2 , 0 ) )"
+    ],
+    "identifiers": {
+      "condition": [
+        "expand_dims",
+        "image_summary"
+      ],
+      "consequent": [
+        "expand_dims",
+        "summary"
+      ]
+    },
+    "adoptable_files": [
+      "research/ptn/model_ptn.py",
+      "research/ptn/model_rotator.py",
+      "research/object_detection/meta_architectures/ssd_meta_arch.py",
+      "research/object_detection/utils/visualization_utils.py",
+      "research/ptn/model_voxel_generation.py",
+      "research/cognitive_planning/visualization_utils.py",
+      "research/im2txt/im2txt/ops/image_processing.py"
+    ],
+    "#condition_files": 7,
+    "#consequent_files": 58,
+    "consequent/condition": 8.285714285714286,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 785,
+    "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+    "author": "mrphoenix13",
+    "participant": "YuMS",
+    "created_at": "2016-12-21 08:05:05",
+    "merged_at": "2017-01-18 19:14:21",
+    "merged_by": "itsmeolivia",
+    "file_path": "tutorials/rnn/ptb/ptb_word_lm.py",
+    "condition": [
+      "$0 . contrib . deprecated . scalar_summary ( \"Validation Loss\" , $1 . $2 )"
+    ],
+    "consequent": [
+      "$0 . scalar_summary ( \"Validation Loss\" , $1 . $2 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "contrib",
+        "scalar_summary",
+        "deprecated"
+      ],
+      "consequent": [
+        "scalar_summary"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 8,
+    "consequent/condition": 8,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 785,
+    "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+    "author": "mrphoenix13",
+    "participant": "YuMS",
+    "created_at": "2016-12-21 08:05:05",
+    "merged_at": "2017-01-18 19:14:21",
+    "merged_by": "itsmeolivia",
+    "file_path": "tutorials/rnn/ptb/ptb_word_lm.py",
+    "condition": [
+      "$0 . contrib . deprecated . scalar_summary ( \"Learning Rate\" , $1 . $2 )"
+    ],
+    "consequent": [
+      "$0 . scalar_summary ( \"Learning Rate\" , $1 . $2 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "contrib",
+        "scalar_summary",
+        "deprecated"
+      ],
+      "consequent": [
+        "scalar_summary"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 8,
+    "consequent/condition": 8,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 785,
+    "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+    "author": "mrphoenix13",
+    "participant": "YuMS",
+    "created_at": "2016-12-21 08:05:05",
+    "merged_at": "2017-01-18 19:14:21",
+    "merged_by": "itsmeolivia",
+    "file_path": "tutorials/rnn/ptb/ptb_word_lm.py",
+    "condition": [
+      "$0 . contrib . deprecated . scalar_summary ( \"Training Loss\" , $1 . $2 )"
+    ],
+    "consequent": [
+      "$0 . scalar_summary ( \"Training Loss\" , $1 . $2 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "contrib",
+        "scalar_summary",
+        "deprecated"
+      ],
+      "consequent": [
+        "scalar_summary"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 8,
+    "consequent/condition": 8,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 785,
+    "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+    "author": "mrphoenix13",
+    "participant": "YuMS",
+    "created_at": "2016-12-21 08:05:05",
+    "merged_at": "2017-01-18 19:14:21",
+    "merged_by": "itsmeolivia",
+    "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+    "condition": [
+      "$0 . contrib . deprecated . scalar_summary ( $1 , $2 )"
+    ],
+    "consequent": [
+      "$0 . scalar_summary ( $1 , $2 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "contrib",
+        "scalar_summary",
+        "deprecated"
+      ],
+      "consequent": [
+        "scalar_summary"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 8,
+    "consequent/condition": 8,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 785,
+    "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+    "author": "mrphoenix13",
+    "participant": "YuMS",
+    "created_at": "2016-12-21 08:05:05",
+    "merged_at": "2017-01-18 19:14:21",
+    "merged_by": "itsmeolivia",
+    "file_path": "tutorials/embedding/word2vec.py",
+    "condition": [
+      "$0 . contrib . deprecated . scalar_summary ( \"NCE loss\" , $1 )"
+    ],
+    "consequent": [
+      "$0 . scalar_summary ( \"NCE loss\" , $1 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "contrib",
+        "scalar_summary",
+        "deprecated"
+      ],
+      "consequent": [
+        "scalar_summary"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 8,
+    "consequent/condition": 8,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = ops . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n",
+      " \t $1 = $2 . concat ( $3 = [ $4 , $5 , $6 , $0 ] , $7 = 3 ) \n"
+    ],
+    "consequent": [
+      "$1 = $2 . concat ( $3 = 3 , $7 = [ $4 , $5 , $6 , $0 ] )"
+    ],
+    "identifiers": {
+      "condition": [
+        "ops",
+        "conv2d",
+        "concat"
+      ],
+      "consequent": [
+        "concat"
+      ]
+    },
+    "adoptable_files": [
+      "research/morph_net/framework/op_regularizer_manager_test.py",
+      "research/gan/progressive_gan/layers.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor.py",
+      "research/cognitive_planning/embedders.py",
+      "research/object_detection/models/faster_rcnn_inception_v2_feature_extractor.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor_test.py",
+      "research/lstm_object_detection/lstm/lstm_cells.py",
+      "research/cognitive_mapping_and_planning/tfcode/cmp.py",
+      "research/autoaugment/shake_shake.py",
+      "research/object_detection/meta_architectures/ssd_meta_arch.py",
+      "research/learned_optimizer/problems/problem_generator.py",
+      "research/object_detection/utils/ops.py",
+      "research/slim/nets/inception_v2.py",
+      "research/real_nvp/real_nvp_utils.py",
+      "research/deeplab/core/nas_cell.py",
+      "research/lstm_object_detection/lstm/utils.py",
+      "research/adversarial_crypto/train_eval.py",
+      "research/object_detection/predictors/convolutional_box_predictor_test.py",
+      "research/cognitive_mapping_and_planning/tfcode/tf_utils.py",
+      "research/keypointnet/main.py",
+      "research/slim/nets/inception_v3.py",
+      "research/slim/nets/nasnet/nasnet_utils.py",
+      "research/object_detection/utils/autoaugment_utils.py",
+      "research/video_prediction/prediction_model.py",
+      "research/slim/nets/inception_resnet_v2.py",
+      "research/lstm_object_detection/models/lstm_ssd_mobilenet_v1_feature_extractor.py",
+      "research/object_detection/meta_architectures/rfcn_meta_arch.py",
+      "research/street/python/vgslspecs.py",
+      "research/morph_net/network_regularizers/flop_regularizer_test.py",
+      "research/object_detection/meta_architectures/faster_rcnn_meta_arch.py",
+      "research/syntaxnet/dragnn/python/network_units.py",
+      "research/inception/inception/slim/ops.py",
+      "research/slim/nets/mobilenet/conv_blocks.py",
+      "research/cognitive_mapping_and_planning/tfcode/vision_baseline_lstm.py",
+      "research/feelvos/utils/embedding_utils.py"
+    ],
+    "#condition_files": 35,
+    "#consequent_files": 275,
+    "consequent/condition": 7.857142857142857,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = ops . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n",
+      " \t $1 = $2 . concat ( $3 = [ $4 , $5 , $6 , $0 ] , $7 = 3 ) \n"
+    ],
+    "consequent": [
+      "$1 = $2 . concat ( $3 = 3 , $7 = [ $4 , $5 , $6 , $0 ] )"
+    ],
+    "identifiers": {
+      "condition": [
+        "ops",
+        "conv2d",
+        "concat"
+      ],
+      "consequent": [
+        "concat"
+      ]
+    },
+    "adoptable_files": [
+      "research/morph_net/framework/op_regularizer_manager_test.py",
+      "research/gan/progressive_gan/layers.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor.py",
+      "research/cognitive_planning/embedders.py",
+      "research/object_detection/models/faster_rcnn_inception_v2_feature_extractor.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor_test.py",
+      "research/lstm_object_detection/lstm/lstm_cells.py",
+      "research/cognitive_mapping_and_planning/tfcode/cmp.py",
+      "research/autoaugment/shake_shake.py",
+      "research/object_detection/meta_architectures/ssd_meta_arch.py",
+      "research/learned_optimizer/problems/problem_generator.py",
+      "research/object_detection/utils/ops.py",
+      "research/slim/nets/inception_v2.py",
+      "research/real_nvp/real_nvp_utils.py",
+      "research/deeplab/core/nas_cell.py",
+      "research/lstm_object_detection/lstm/utils.py",
+      "research/adversarial_crypto/train_eval.py",
+      "research/object_detection/predictors/convolutional_box_predictor_test.py",
+      "research/cognitive_mapping_and_planning/tfcode/tf_utils.py",
+      "research/keypointnet/main.py",
+      "research/slim/nets/inception_v3.py",
+      "research/slim/nets/nasnet/nasnet_utils.py",
+      "research/object_detection/utils/autoaugment_utils.py",
+      "research/video_prediction/prediction_model.py",
+      "research/slim/nets/inception_resnet_v2.py",
+      "research/lstm_object_detection/models/lstm_ssd_mobilenet_v1_feature_extractor.py",
+      "research/object_detection/meta_architectures/rfcn_meta_arch.py",
+      "research/street/python/vgslspecs.py",
+      "research/morph_net/network_regularizers/flop_regularizer_test.py",
+      "research/object_detection/meta_architectures/faster_rcnn_meta_arch.py",
+      "research/syntaxnet/dragnn/python/network_units.py",
+      "research/inception/inception/slim/ops.py",
+      "research/slim/nets/mobilenet/conv_blocks.py",
+      "research/cognitive_mapping_and_planning/tfcode/vision_baseline_lstm.py",
+      "research/feelvos/utils/embedding_utils.py"
+    ],
+    "#condition_files": 35,
+    "#consequent_files": 275,
+    "consequent/condition": 7.857142857142857,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 959,
+    "sha": "4ec3452d9524726297c0aeb92933a79296345e7e",
+    "author": "yaroslavvb",
+    "participant": "panyx0718",
+    "created_at": "2017-01-26 22:07:26",
+    "merged_at": "2017-01-26 22:22:58",
+    "merged_by": "panyx0718",
+    "file_path": "resnet/resnet_main.py",
+    "condition": [
+      "for $0 in xrange ( $1 . $2 ) :"
+    ],
+    "consequent": [
+      "import six \n",
+      " \t for $0 in six . moves . range ( $1 . $2 ) : \n"
+    ],
+    "identifiers": {
+      "condition": [
+        "xrange"
+      ],
+      "consequent": [
+        "range",
+        "moves",
+        "six"
+      ]
+    },
+    "adoptable_files": [
+      "research/gan/stargan_estimator/train.py",
+      "research/learning_unsupervised_learning/meta_objective/linear_regression.py",
+      "research/fivo/experimental/bounds.py",
+      "research/syntaxnet/dragnn/python/runtime_support.py",
+      "research/fivo/fivo/models/ghmm_test.py",
+      "research/seq2species/build_model.py",
+      "research/autoaugment/helper_utils.py",
+      "research/fivo/experimental/train.py",
+      "research/learning_unsupervised_learning/utils.py",
+      "research/rebar/rebar.py",
+      "research/learning_unsupervised_learning/summary_utils.py",
+      "research/autoaugment/train_cifar.py",
+      "research/fivo/experimental/summary_utils.py",
+      "research/syntaxnet/dragnn/python/network_units.py",
+      "research/seq2species/test_utils.py",
+      "research/syntaxnet/dragnn/python/spec_builder.py",
+      "research/fivo/fivo/data/datasets.py",
+      "research/cognitive_planning/envs/active_vision_dataset_env.py",
+      "research/fivo/experimental/data.py",
+      "research/cognitive_planning/embedders.py",
+      "research/syntaxnet/dragnn/python/graph_builder_test.py",
+      "research/fivo/experimental/models.py",
+      "research/syntaxnet/dragnn/python/trainer_lib.py",
+      "research/rebar/rebar_train.py",
+      "research/learning_unsupervised_learning/meta_objective/utils.py"
+    ],
+    "#condition_files": 25,
+    "#consequent_files": 155,
+    "consequent/condition": 6.2,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1869,
+    "sha": "545b75f9e221d84f4470df657493dd63c92f6c6a",
+    "author": "tmattio",
+    "participant": "derekjchow",
+    "created_at": "2017-07-06 06:38:12",
+    "merged_at": "2017-07-07 22:40:21",
+    "merged_by": "derekjchow",
+    "file_path": "object_detection/utils/visualization_utils.py",
+    "condition": [
+      "import six \n",
+      " \t for $0 , $1 in six . iteritems ( $2 ) : \n"
+    ],
+    "consequent": [
+      "for $0 , $1 in $2 . items ( ) :"
+    ],
+    "identifiers": {
+      "condition": [
+        "iteritems",
+        "six"
+      ],
+      "consequent": [
+        "items"
+      ]
+    },
+    "adoptable_files": [
+      "research/deeplab/core/xception_test.py",
+      "research/object_detection/utils/vrd_evaluation.py",
+      "research/domain_adaptation/domain_separation/dsn_eval.py",
+      "research/deeplab/evaluation/eval_coco_format.py",
+      "research/object_detection/eval_util_test.py",
+      "research/ptn/model_ptn.py",
+      "research/swivel/prep.py",
+      "research/brain_coder/single_task/tune.py",
+      "official/transformer/utils/metrics.py",
+      "official/transformer/utils/tokenizer.py",
+      "research/ptn/model_rotator.py",
+      "research/object_detection/utils/visualization_utils_test.py",
+      "research/maskgan/model_utils/n_gram.py",
+      "research/deeplab/train.py",
+      "tutorials/image/cifar10_estimator/cifar10_main.py",
+      "research/adversarial_text/gen_vocab.py",
+      "research/deeplab/evaluation/test_utils.py",
+      "research/deeplab/evaluation/parsing_covering.py",
+      "research/brain_coder/single_task/results_lib_test.py",
+      "research/learned_optimizer/metaopt.py",
+      "research/tcn/utils/util.py",
+      "research/swivel/glove_to_shards.py",
+      "official/transformer/data_download.py",
+      "research/feelvos/utils/train_utils.py",
+      "research/feelvos/train.py",
+      "research/deeplab/utils/train_utils.py",
+      "research/maskgan/train_mask_gan.py",
+      "official/bert/modeling.py",
+      "official/bert/squad_lib.py",
+      "research/object_detection/utils/object_detection_evaluation_test.py",
+      "tutorials/image/cifar10_estimator/cifar10_utils.py",
+      "research/brain_coder/single_task/pg_agent_test.py",
+      "research/maskgan/generate_samples.py",
+      "research/deeplab/evaluation/panoptic_quality.py"
+    ],
+    "#condition_files": 34,
+    "#consequent_files": 178,
+    "consequent/condition": 5.235294117647059,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 982,
+    "sha": "0d8916f4b84e8687eb46696883b50b84ac6aa420",
+    "author": "arvind385801",
+    "participant": "googlebot",
+    "created_at": "2017-02-05 15:05:57",
+    "merged_at": "2017-03-16 00:13:40",
+    "merged_by": "nealwu",
+    "file_path": "tutorials/rnn/translate/seq2seq_model.py",
+    "condition": [
+      "return $0 . nn . rnn_cell . GRUCell ( $1 )"
+    ],
+    "consequent": [
+      "return $0 . contrib . rnn . GRUCell ( $1 )"
+    ],
+    "identifiers": {
+      "condition": [
+        "rnn_cell",
+        "GRUCell",
+        "nn"
+      ],
+      "consequent": [
+        "contrib",
+        "rnn",
+        "GRUCell"
+      ]
+    },
+    "adoptable_files": [
+      "research/deep_speech/deep_speech_model.py"
+    ],
+    "#condition_files": 1,
+    "#consequent_files": 5,
+    "consequent/condition": 5.0,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] )"
+    ],
+    "consequent": [
+      "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] ) \n",
+      " \t $0 = $1 . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n"
+    ],
+    "identifiers": {
+      "condition": [
+        "avg_pool"
+      ],
+      "consequent": [
+        "avg_pool",
+        "conv2d"
+      ]
+    },
+    "adoptable_files": [
+      "research/slim/nets/i3d.py",
+      "tutorials/image/cifar10_estimator/cifar10_model.py",
+      "research/slim/nets/nasnet/nasnet_utils_test.py",
+      "research/slim/nets/s3dg.py",
+      "research/struct2depth/model.py",
+      "research/vid2depth/model.py",
+      "research/object_detection/utils/spatial_transform_ops.py"
+    ],
+    "#condition_files": 7,
+    "#consequent_files": 32,
+    "consequent/condition": 4.571428571428571,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] )"
+    ],
+    "consequent": [
+      "$0 = $1 . avg_pool ( $2 , [ 3 , 3 ] ) \n",
+      " \t $0 = $1 . conv2d ( $0 , 192 , [ 1 , 1 ] ) \n"
+    ],
+    "identifiers": {
+      "condition": [
+        "avg_pool"
+      ],
+      "consequent": [
+        "avg_pool",
+        "conv2d"
+      ]
+    },
+    "adoptable_files": [
+      "research/slim/nets/i3d.py",
+      "tutorials/image/cifar10_estimator/cifar10_model.py",
+      "research/slim/nets/nasnet/nasnet_utils_test.py",
+      "research/slim/nets/s3dg.py",
+      "research/struct2depth/model.py",
+      "research/vid2depth/model.py",
+      "research/object_detection/utils/spatial_transform_ops.py"
+    ],
+    "#condition_files": 7,
+    "#consequent_files": 32,
+    "consequent/condition": 4.571428571428571,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1538,
+    "sha": "b5acc005968d37495f0e7d83d2dd2ef3d3674211",
+    "author": "tfboyd",
+    "participant": "nealwu",
+    "created_at": "2017-06-08 17:14:00",
+    "merged_at": "2017-06-09 07:48:58",
+    "merged_by": "nealwu",
+    "file_path": "tutorials/image/cifar10/cifar10_train.py",
+    "condition": [
+      "$0 , $1 = $2 . distorted_inputs ( )"
+    ],
+    "consequent": [
+      "\n",
+      " \t with tf . device ( '/cpu:0' ) : \n",
+      " \t $0 , $1 = $2 . distorted_inputs ( ) \n"
+    ],
+    "identifiers": {
+      "condition": [
+        "distorted_inputs"
+      ],
+      "consequent": [
+        "device",
+        "tf",
+        "distorted_inputs"
+      ]
+    },
+    "adoptable_files": [
+      "tutorials/image/cifar10/cifar10_input.py"
+    ],
+    "#condition_files": 1,
+    "#consequent_files": 4,
+    "consequent/condition": 4.0,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 785,
+    "sha": "ba98bc479cb6bf06eb886e885fd5cd730082f670",
+    "author": "mrphoenix13",
+    "participant": "YuMS",
+    "created_at": "2016-12-21 08:05:05",
+    "merged_at": "2017-01-18 19:14:21",
+    "merged_by": "itsmeolivia",
+    "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+    "condition": [
+      "$0 . append ( $1 . contrib . deprecated . scalar_summary ( 'learning_rate' , $2 ) )"
+    ],
+    "consequent": [
+      "$0 . append ( $1 . scalar_summary ( 'learning_rate' , $2 ) )"
+    ],
+    "identifiers": {
+      "condition": [
+        "append",
+        "contrib",
+        "scalar_summary",
+        "deprecated"
+      ],
+      "consequent": [
+        "append",
+        "scalar_summary"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 4,
+    "consequent/condition": 4,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "consequent": [
+      "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "identifiers": {
+      "condition": [
+        "conv2d",
+        "concat"
+      ],
+      "consequent": [
+        "conv2d",
+        "values",
+        "concat"
+      ]
+    },
+    "adoptable_files": [
+      "research/morph_net/framework/op_regularizer_manager_test.py",
+      "research/cognitive_mapping_and_planning/tfcode/cmp.py",
+      "research/gan/mnist/networks.py",
+      "research/object_detection/predictors/convolutional_keras_box_predictor_test.py",
+      "research/compression/entropy_coder/lib/blocks_lstm.py",
+      "research/gan/progressive_gan/networks.py",
+      "research/gan/progressive_gan/layers.py",
+      "research/object_detection/predictors/convolutional_box_predictor_test.py",
+      "research/gan/progressive_gan/layers_test.py",
+      "research/lstm_object_detection/lstm/utils_test.py",
+      "research/lstm_object_detection/lstm/rnn_decoder_test.py",
+      "research/deep_speech/deep_speech_model.py",
+      "research/cognitive_mapping_and_planning/tfcode/vision_baseline_lstm.py",
+      "research/ptn/nets/ptn_im_decoder.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor_test.py"
+    ],
+    "#condition_files": 15,
+    "#consequent_files": 48,
+    "consequent/condition": 3.2,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "consequent": [
+      "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "identifiers": {
+      "condition": [
+        "conv2d",
+        "concat"
+      ],
+      "consequent": [
+        "conv2d",
+        "values",
+        "concat"
+      ]
+    },
+    "adoptable_files": [
+      "research/morph_net/framework/op_regularizer_manager_test.py",
+      "research/cognitive_mapping_and_planning/tfcode/cmp.py",
+      "research/gan/mnist/networks.py",
+      "research/object_detection/predictors/convolutional_keras_box_predictor_test.py",
+      "research/compression/entropy_coder/lib/blocks_lstm.py",
+      "research/gan/progressive_gan/networks.py",
+      "research/gan/progressive_gan/layers.py",
+      "research/object_detection/predictors/convolutional_box_predictor_test.py",
+      "research/gan/progressive_gan/layers_test.py",
+      "research/lstm_object_detection/lstm/utils_test.py",
+      "research/lstm_object_detection/lstm/rnn_decoder_test.py",
+      "research/deep_speech/deep_speech_model.py",
+      "research/cognitive_mapping_and_planning/tfcode/vision_baseline_lstm.py",
+      "research/ptn/nets/ptn_im_decoder.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor_test.py"
+    ],
+    "#condition_files": 15,
+    "#consequent_files": 48,
+    "consequent/condition": 3.2,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "consequent": [
+      "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "identifiers": {
+      "condition": [
+        "conv2d",
+        "concat"
+      ],
+      "consequent": [
+        "conv2d",
+        "values",
+        "concat"
+      ]
+    },
+    "adoptable_files": [
+      "research/morph_net/framework/op_regularizer_manager_test.py",
+      "research/cognitive_mapping_and_planning/tfcode/cmp.py",
+      "research/gan/mnist/networks.py",
+      "research/object_detection/predictors/convolutional_keras_box_predictor_test.py",
+      "research/compression/entropy_coder/lib/blocks_lstm.py",
+      "research/gan/progressive_gan/networks.py",
+      "research/gan/progressive_gan/layers.py",
+      "research/object_detection/predictors/convolutional_box_predictor_test.py",
+      "research/gan/progressive_gan/layers_test.py",
+      "research/lstm_object_detection/lstm/utils_test.py",
+      "research/lstm_object_detection/lstm/rnn_decoder_test.py",
+      "research/deep_speech/deep_speech_model.py",
+      "research/cognitive_mapping_and_planning/tfcode/vision_baseline_lstm.py",
+      "research/ptn/nets/ptn_im_decoder.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor_test.py"
+    ],
+    "#condition_files": 15,
+    "#consequent_files": 48,
+    "consequent/condition": 3.2,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "inception/inception/slim/inception_model.py",
+    "condition": [
+      "$0 = $1 . concat ( $2 = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "consequent": [
+      "$0 = $1 . concat ( $2 = 3 , values = [ $3 . conv2d ( $0 , 384 , [ 1 , 3 ] ) ,"
+    ],
+    "identifiers": {
+      "condition": [
+        "conv2d",
+        "concat"
+      ],
+      "consequent": [
+        "conv2d",
+        "values",
+        "concat"
+      ]
+    },
+    "adoptable_files": [
+      "research/morph_net/framework/op_regularizer_manager_test.py",
+      "research/cognitive_mapping_and_planning/tfcode/cmp.py",
+      "research/gan/mnist/networks.py",
+      "research/object_detection/predictors/convolutional_keras_box_predictor_test.py",
+      "research/compression/entropy_coder/lib/blocks_lstm.py",
+      "research/gan/progressive_gan/networks.py",
+      "research/gan/progressive_gan/layers.py",
+      "research/object_detection/predictors/convolutional_box_predictor_test.py",
+      "research/gan/progressive_gan/layers_test.py",
+      "research/lstm_object_detection/lstm/utils_test.py",
+      "research/lstm_object_detection/lstm/rnn_decoder_test.py",
+      "research/deep_speech/deep_speech_model.py",
+      "research/cognitive_mapping_and_planning/tfcode/vision_baseline_lstm.py",
+      "research/ptn/nets/ptn_im_decoder.py",
+      "research/lstm_object_detection/models/lstm_ssd_interleaved_mobilenet_v2_feature_extractor_test.py"
+    ],
+    "#condition_files": 15,
+    "#consequent_files": 48,
+    "consequent/condition": 3.2,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 2044,
+    "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+    "author": "tfboyd",
+    "participant": "protoget",
+    "created_at": "2017-07-26 15:21:36",
+    "merged_at": "2017-07-27 16:44:44",
+    "merged_by": "tfboyd",
+    "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+    "condition": [
+      "$0 : $1 $2 $3 $4 for computer <missing 'in'> ops ."
+    ],
+    "consequent": [
+      "$0 : $1 $2 $3 $4 for computation <missing 'in'> Ops ."
+    ],
+    "identifiers": {
+      "condition": [
+        "computer",
+        "ops"
+      ],
+      "consequent": [
+        "computation",
+        "Ops"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 3,
+    "consequent/condition": 3,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1538,
+    "sha": "b5acc005968d37495f0e7d83d2dd2ef3d3674211",
+    "author": "tfboyd",
+    "participant": "nealwu",
+    "created_at": "2017-06-08 17:14:00",
+    "merged_at": "2017-06-09 07:48:58",
+    "merged_by": "nealwu",
+    "file_path": "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+    "condition": [
+      "def tower_loss ( $0 ) :"
+    ],
+    "consequent": [
+      "def tower_loss ( $0 , images , labels ) :"
+    ],
+    "identifiers": {
+      "condition": [
+        "tower_loss"
+      ],
+      "consequent": [
+        "tower_loss",
+        "labels",
+        "images"
+      ]
+    },
+    "adoptable_files": [],
+    "#condition_files": 0,
+    "#consequent_files": 3,
+    "consequent/condition": 3,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 377,
+    "sha": "a0de5ca9364f98aa36241c5ea7e891e2f1e1d80b",
+    "author": "kaiix",
+    "participant": "googlebot",
+    "created_at": "2016-08-31 09:07:08",
+    "merged_at": "2016-10-17 23:09:45",
+    "merged_by": "panyx0718",
+    "file_path": "textsum/seq2seq_attention.py",
+    "condition": [
+      "$0 = $1 . prepare_or_wait_for_session ( )"
+    ],
+    "consequent": [
+      "$0 = $1 . prepare_or_wait_for_session ( config = tf . ConfigProto ( allow_soft_placement = True ) )"
+    ],
+    "identifiers": {
+      "condition": [
+        "prepare_or_wait_for_session"
+      ],
+      "consequent": [
+        "allow_soft_placement",
+        "prepare_or_wait_for_session",
+        "config",
+        "ConfigProto",
+        "tf"
+      ]
+    },
+    "adoptable_files": [
+      "research/brain_coder/single_task/pg_train.py"
+    ],
+    "#condition_files": 1,
+    "#consequent_files": 3,
+    "consequent/condition": 3.0,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 2044,
+    "sha": "2e960eb1ed234c94917e1cee55d915b57d6be336",
+    "author": "tfboyd",
+    "participant": "protoget",
+    "created_at": "2017-07-26 15:21:36",
+    "merged_at": "2017-07-27 16:44:44",
+    "merged_by": "tfboyd",
+    "file_path": "tutorials/image/cifar10_estimator/cifar10_main.py",
+    "condition": [
+      "$0 = [ '/gpu:%d' % $1 for $1 in range ( FLAGS . $2 ) ]"
+    ],
+    "consequent": [
+      "\n",
+      " \t $0 = [ '/gpu:%d' % $1 for $1 in range ( $2 ) ] \n"
+    ],
+    "identifiers": {
+      "condition": [
+        "range",
+        "FLAGS"
+      ],
+      "consequent": [
+        "range"
+      ]
+    },
+    "adoptable_files": [
+      "official/transformer/transformer_main.py",
+      "official/resnet/resnet_run_loop.py",
+      "research/lfads/synth_data/generate_labeled_rnn_data.py",
+      "research/slim/datasets/build_imagenet_data.py",
+      "research/deeplab/evaluation/eval_coco_format.py",
+      "research/gan/mnist/conditional_eval.py",
+      "research/maskgan/model_utils/model_utils.py",
+      "research/efficient-hrl/run_env.py",
+      "research/inception/inception/data/build_imagenet_data.py",
+      "research/cognitive_planning/viz_active_vision_dataset_main.py",
+      "research/maskgan/data/imdb_loader.py",
+      "research/maskgan/models/rnn_vd.py",
+      "research/deeplab/datasets/build_ade20k_data.py",
+      "research/maskgan/models/critic_vd.py",
+      "official/boosted_trees/data_download.py",
+      "research/deep_contextual_bandits/bandits/algorithms/bf_variational_neural_bandit_model.py",
+      "research/ptn/pretrain_rotator.py",
+      "research/maskgan/models/bidirectional_vd.py",
+      "research/deep_contextual_bandits/bandits/algorithms/bb_alpha_divergence_model.py",
+      "official/transformer/v2/beam_search.py",
+      "tutorials/image/cifar10/cifar10_multi_gpu_train.py",
+      "research/maskgan/models/seq2seq_zaremba.py",
+      "research/swivel/glove_to_shards.py",
+      "research/deep_contextual_bandits/bandits/algorithms/neural_bandit_model.py",
+      "research/compression/image_encoder/encoder.py",
+      "research/brain_coder/single_task/aggregate_experiment_results.py",
+      "official/transformer/data_download.py",
+      "research/vid2depth/ops/icp_train_demo.py",
+      "research/neural_programmer/data_utils.py",
+      "research/syntaxnet/dragnn/tools/segmenter-evaluator.py",
+      "official/transformer/v2/misc.py",
+      "research/gan/image_compression/data_provider_test.py",
+      "research/adversarial_logit_pairing/datasets/tiny_imagenet_input.py",
+      "official/resnet/imagenet_main.py",
+      "official/recommendation/ncf_test.py",
+      "research/cognitive_planning/train_supervised_active_vision.py",
+      "research/learned_optimizer/optimizer/coordinatewise_rnn.py",
+      "official/wide_deep/movielens_dataset.py",
+      "research/brain_coder/single_task/ga_lib.py",
+      "official/staging/shakespeare/shakespeare_main.py",
+      "research/gan/progressive_gan/data_provider_test.py",
+      "research/domain_adaptation/domain_separation/dsn_eval.py",
+      "research/deeplab/datasets/build_voc2012_data.py",
+      "research/maskgan/models/rollout.py",
+      "research/learned_optimizer/metarun.py",
+      "research/brain_coder/single_task/tune.py",
+      "research/maskgan/model_utils/model_losses.py",
+      "research/next_frame_prediction/cross_conv/eval.py",
+      "research/struct2depth/optimize.py",
+      "research/lfads/synth_data/generate_itb_data.py",
+      "research/next_frame_prediction/cross_conv/sprites_gen.py",
+      "research/object_detection/export_tflite_ssd_graph.py",
+      "research/neural_gpu/data_utils.py",
+      "official/recommendation/ncf_keras_main.py",
+      "research/inception/inception/data/build_image_data.py",
+      "official/transformer/model/beam_search.py",
+      "research/compression/image_encoder/decoder.py",
+      "research/adversarial_text/evaluate.py",
+      "research/tcn/labeled_eval.py",
+      "research/learned_optimizer/problems/problem_generator.py",
+      "research/attention_ocr/python/demo_inference.py",
+      "research/autoaugment/train_cifar.py",
+      "official/transformer/compute_bleu.py",
+      "research/gan/cifar/data_provider_test.py",
+      "research/learning_to_remember_rare_events/train.py",
+      "research/efficient-hrl/train.py",
+      "research/cognitive_mapping_and_planning/scripts/script_plot_trajectory.py",
+      "research/neural_programmer/model.py",
+      "research/tcn/alignment.py",
+      "research/maskgan/models/bidirectional_zaremba.py",
+      "research/efficient-hrl/eval.py",
+      "research/seq2species/test_utils.py",
+      "research/vid2depth/inference.py",
+      "official/mnist/mnist_eager.py",
+      "official/bert/run_squad.py",
+      "research/feelvos/train.py",
+      "research/morph_net/op_regularizers/gamma_mapper_test.py",
+      "research/deep_contextual_bandits/example_main.py",
+      "research/maskgan/models/seq2seq_vd.py",
+      "research/maskgan/models/rnn_zaremba.py",
+      "official/transformer/v2/transformer_main_test.py",
+      "research/gan/mnist_estimator/train.py",
+      "research/im2txt/im2txt/data/build_mscoco_data.py",
+      "research/syntaxnet/dragnn/tools/evaluator.py",
+      "research/object_detection/metrics/offline_eval_map_corloc.py",
+      "research/compression/image_encoder/msssim.py",
+      "research/tcn/visualize_embeddings.py",
+      "tutorials/rnn/ptb/ptb_word_lm.py",
+      "research/slim/deployment/model_deploy.py",
+      "research/skip_thoughts/skip_thoughts/track_perplexity.py",
+      "research/lm_commonsense/eval.py",
+      "research/tcn/estimators/base_estimator.py",
+      "research/audioset/vggish/vggish_train_demo.py",
+      "official/boosted_trees/train_higgs.py",
+      "tutorials/embedding/word2vec.py",
+      "research/fivo/experimental/train.py",
+      "research/deep_speech/deep_speech.py",
+      "official/mnist/mnist.py",
+      "research/deep_contextual_bandits/bandits/algorithms/variational_neural_bandit_model.py",
+      "research/maskgan/models/seq2seq.py",
+      "research/ptn/eval_ptn.py",
+      "research/maskgan/nas_utils/variational_dropout.py",
+      "research/deep_contextual_bandits/bandits/algorithms/multitask_gp.py",
+      "research/feelvos/vis_video.py",
+      "research/adversarial_text/graphs.py",
+      "research/pcl_rl/trainer.py",
+      "research/adversarial_crypto/train_eval.py",
+      "research/efficient-hrl/train_utils.py",
+      "research/vid2depth/ops/icp_test.py",
+      "research/im2txt/im2txt/evaluate.py",
+      "research/inception/inception/image_processing.py",
+      "official/keras_application_models/benchmark_main.py",
+      "research/object_detection/utils/spatial_transform_ops_test.py",
+      "research/adv_imagenet_models/eval_on_adversarial.py",
+      "official/wide_deep/wide_deep_run_loop.py",
+      "research/keypointnet/main.py",
+      "tutorials/image/mnist/convolutional.py",
+      "research/feelvos/datasets/build_davis2017_data.py",
+      "research/struct2depth/inference.py",
+      "research/adversarial_text/adversarial_losses.py",
+      "research/deeplab/eval.py",
+      "research/deeplab/datasets/build_cityscapes_data.py",
+      "research/maskgan/generate_samples.py",
+      "research/skip_thoughts/skip_thoughts/data/preprocess_dataset.py",
+      "research/syntaxnet/dragnn/tools/legacy_parse_to_conll.py",
+      "research/rebar/rebar_train.py",
+      "research/tcn/dataset/webcam.py",
+      "research/gan/stargan_estimator/train.py",
+      "research/learned_optimizer/optimizer/hierarchical_rnn.py",
+      "tutorials/rnn/quickdraw/train_model.py",
+      "official/transformer/v2/transformer_main.py",
+      "research/brain_coder/single_task/ga_train.py",
+      "research/neural_gpu/neural_gpu_trainer.py",
+      "research/maskgan/models/seq2seq_nas.py",
+      "official/bert/benchmark/bert_benchmark.py",
+      "research/swivel/prep.py",
+      "tutorials/rnn/ptb/util.py",
+      "research/pcl_rl/controller.py",
+      "research/gan/mnist/infogan_eval.py",
+      "research/tcn/dataset/videos_to_tfrecords.py",
+      "official/recommendation/ncf_estimator_main.py",
+      "research/deeplab/train.py",
+      "research/maskgan/models/rnn_nas.py",
+      "official/datasets/movielens.py",
+      "research/rebar/rebar.py",
+      "research/vid2depth/dataset/gen_data.py",
+      "research/maskgan/nas_utils/custom_cell.py",
+      "research/ptn/train_ptn.py",
+      "research/tcn/generate_videos.py",
+      "research/learned_optimizer/metaopt.py",
+      "official/resnet/ctl/ctl_imagenet_main.py",
+      "research/syntaxnet/dragnn/tools/parse_to_conll.py",
+      "official/resnet/keras/keras_common.py",
+      "research/compression/entropy_coder/dataset/gen_synthetic_dataset.py",
+      "research/next_frame_prediction/cross_conv/example_gen.py",
+      "tutorials/rnn/quickdraw/create_dataset.py",
+      "official/resnet/cifar10_main.py",
+      "research/deeplab/vis.py",
+      "research/vid2depth/nets.py",
+      "research/neural_programmer/neural_programmer.py",
+      "research/adversarial_logit_pairing/datasets/imagenet_input.py",
+      "research/maskgan/train_mask_gan.py",
+      "research/real_nvp/real_nvp_multiscale_dataset.py",
+      "research/syntaxnet/syntaxnet/conll2tree.py",
+      "research/lm_commonsense/utils.py",
+      "research/adversarial_text/graphs_test.py",
+      "research/maskgan/models/feedforward.py",
+      "research/maskgan/models/rnn.py",
+      "research/minigo/minigo.py",
+      "research/deep_contextual_bandits/bandits/algorithms/parameter_noise_sampling.py"
+    ],
+    "#condition_files": 170,
+    "#consequent_files": 457,
+    "consequent/condition": 2.6882352941176473,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1127,
+    "sha": "74ad728e9ec024be1182fc7e4f8b881440d9c274",
+    "author": "AsterAI",
+    "participant": "googlebot",
+    "created_at": "2017-03-08 13:19:42",
+    "merged_at": "2017-03-16 01:23:05",
+    "merged_by": "nealwu",
+    "file_path": "tutorials/image/cifar10/cifar10_train.py",
+    "condition": [
+      "$0 = time . time ( ) - $1 . _start_time"
+    ],
+    "consequent": [
+      "$0 = current_time - $1 . _start_time"
+    ],
+    "identifiers": {
+      "condition": [
+        "time",
+        "_start_time"
+      ],
+      "consequent": [
+        "current_time",
+        "_start_time"
+      ]
+    },
+    "adoptable_files": [
+      "research/learned_optimizer/metaopt.py"
+    ],
+    "#condition_files": 1,
+    "#consequent_files": 2,
+    "consequent/condition": 2.0,
+    "frequency": 0,
+    "repeated_pr_id": []
+  },
+  {
+    "number": 1063,
+    "sha": "b41ff7f1bfc7cca6727ce96d40e6400f66575286",
+    "author": "nealwu",
+    "participant": "TheodoreGalanos",
+    "created_at": "2017-02-23 22:32:21",
+    "merged_at": "2017-03-14 02:14:41",
+    "merged_by": "nealwu",
+    "file_path": "swivel/swivel.py",
+    "condition": [
+      "$0 = $1 . concat ( $2 = [ $1 . expand_dims ( $3 , 1 ) ,"
+    ],
+    "consequent": [
+      "$0 = $1 . concat ( $2 = 1 , values = [ $1 . expand_dims ( $3 , 1 ) ,"
+    ],
+    "identifiers": {
+      "condition": [
+        "expand_dims",
+        "concat"
+      ],
+      "consequent": [
+        "expand_dims",
+        "values",
+        "concat"
+      ]
+    },
+    "adoptable_files": [
+      "research/gan/stargan_estimator/train.py",
+      "research/delf/delf/python/feature_aggregation_extractor.py",
+      "research/cvt_text/task_specific/word_level/depparse_module.py",
+      "tutorials/rnn/quickdraw/train_model.py",
+      "research/fivo/experimental/bounds.py",
+      "research/lfads/synth_data/generate_labeled_rnn_data.py",
+      "research/object_detection/utils/np_box_list_ops.py",
+      "research/tcn/data_providers.py",
+      "research/gan/mnist/util.py",
+      "research/object_detection/utils/np_box_mask_list_ops.py",
+      "research/cognitive_mapping_and_planning/tfcode/nav_utils.py",
+      "research/gan/progressive_gan/networks.py",
+      "official/recommendation/ncf_keras_main.py",
+      "research/object_detection/box_coders/keypoint_box_coder.py",
+      "research/ptn/model_voxel_generation.py",
+      "research/gan/mnist/util_test.py",
+      "research/adversarial_text/graphs.py",
+      "research/struct2depth/reader.py",
+      "research/syntaxnet/dragnn/python/digraph_ops.py",
+      "research/learning_unsupervised_learning/summary_utils.py",
+      "research/object_detection/core/box_list_ops.py",
+      "research/object_detection/core/losses_test.py",
+      "research/object_detection/utils/test_utils.py",
+      "research/vid2depth/ops/icp_util.py",
+      "research/struct2depth/inference.py",
+      "research/vid2depth/reader.py",
+      "research/object_detection/core/target_assigner.py",
+      "official/bert/modeling.py",
+      "research/rebar/utils.py",
+      "research/learning_unsupervised_learning/architectures/more_local_weight_update.py",
+      "research/object_detection/metrics/oid_challenge_evaluation_utils_test.py",
+      "research/steve/nn.py",
+      "research/steve/worldmodel.py",
+      "research/object_detection/inputs_test.py",
+      "research/maskgan/generate_samples.py",
+      "research/cognitive_mapping_and_planning/tfcode/vision_baseline_lstm.py",
+      "research/gan/stargan/ops.py",
+      "research/struct2depth/model.py",
+      "research/cognitive_mapping_and_planning/src/depth_utils.py",
+      "research/steve/util.py"
+    ],
+    "#condition_files": 40,
+    "#consequent_files": 80,
+    "consequent/condition": 2.0,
+    "frequency": 0,
+    "repeated_pr_id": []
+  }
+]

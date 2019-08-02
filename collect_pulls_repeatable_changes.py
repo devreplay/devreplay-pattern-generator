@@ -141,10 +141,10 @@ for i, change in enumerate(reversed(changes)):
 
     changed_diff_index = target_repo.commit(change["sha"]).diff(head_commit)
 
-    # added_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("A")]
-    # deleted_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("D")]
-    changed_file = [str(x.a_rawpath.decode('utf-8')) for x in changed_diff_index.iter_change_type("M")
-                    if any([str(x.a_rawpath.decode('utf-8')).endswith(y) for y in lang_extentions[lang]])]
+    added_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("A")]
+    changed_file = [x.a_rawpath.decode('utf-8') for x in changed_diff_index.iter_change_type("M")]
+    changed_file = [str(x) for x in changed_file + added_file
+                    if any([str(x).endswith(y) for y in lang_extentions[lang]])]
 
     if any([x not in latest_tokens for x in ident_condition]) or\
        any([x not in latest_tokens for x in ident_consequent]):
