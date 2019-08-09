@@ -15,7 +15,7 @@ from unidiff import PatchSet, errors
 import difflib
 import io
 from configparser import ConfigParser
-from CodeTokenizer.tokenizer import TokeNizer
+from CodeTokenizer.tokenizer import TokeNizer, tokens2Realcode
 from lang_extentions import lang_extentions
 import git
 
@@ -109,9 +109,7 @@ def make_hunks(source, target):
     return hunks
 
 def is_valued_change(diff):
-    if diff["identifiers"]["condition"] == diff["identifiers"]["consequent"]:
-        return False
-    return True
+    return diff["identifiers"]["condition"] != diff["identifiers"]["consequent"]
 
 def make_pull_diff(target_repo, diff_path):
     change_sets = []
@@ -152,9 +150,8 @@ def make_pull_diff(target_repo, diff_path):
                 "merged_at": diff_path["merged_at"],
                 "merged_by": diff_path["merged_by"],
                 "file_path": diff_item.a_rawpath.decode('utf-8'),
-                "condition": " ".join(diff_result["condition"]).splitlines(keepends=True),
-                "consequent": " ".join(diff_result["consequent"]).splitlines(keepends=True),
-                "identifiers": diff_result["identifiers"]
+                "condition": tokens2Realcode(diff_result["condition"]).splitlines(),
+                "consequent": tokens2Realcode(diff_result["consequent"]).splitlines()
             }
             if out_metricses["condition"] != []:
                 change_sets.append(out_metricses)
