@@ -10,10 +10,9 @@ Style misses list
 import sys
 import os
 from csv import DictReader
-from json import dump
+from json import dump, loads, dumps
 from unidiff import PatchSet, errors
 import difflib
-import io
 from configparser import ConfigParser
 from CodeTokenizer.tokenizer import TokeNizer, tokens2Realcode
 from lang_extentions import lang_extentions
@@ -25,12 +24,11 @@ config.read('config')
 owner = config["Target"]["owner"]
 repo = config["Target"]["repo"]
 lang = config["Target"]["lang"]
-change_size = int(config["Option"]["change_size"])
-learn_from = config["Option"]["learn_from"]
-
-
 TN = TokeNizer(lang)
-DIVIDE_PER = 100
+change_size = int(config["Option"]["rule_size"])
+learn_from_pulls = config["Option"].getboolean("learn_from_pulls")
+abstracted = config["Option"].getboolean("abstract_master_change")
+
 
 def main():
     """
@@ -39,16 +37,14 @@ def main():
     clone_target_repo()
     target_repo = git.Repo("data/repos/" + repo)
 
-    if learn_from == "pulls":
+    if learn_from_pulls:
         out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_pulls.json"
         changes_sets = get_project_changes(owner, repo, lang, target_repo)
-    else:
-        if learn_from != "master":
-            print("Collect from master changes...")
-        out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
-        changes_sets = make_master_diff(target_repo, lang)
+        with open(out_name, "w", encoding='utf-8') as f:
+            dump(changes_sets, f, indent=1)
 
-
+    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
+    changes_sets = make_master_diff(target_repo, lang)
     with open(out_name, "w", encoding='utf-8') as f:
         dump(changes_sets, f, indent=1)
 
@@ -79,6 +75,7 @@ def clone_target_repo():
     if not os.path.exists(data_repo_dir):
         os.makedirs(data_repo_dir)
     if not os.path.exists(data_repo_dir + "/" + repo):
+        print("Cloning " + data_repo_dir + "/" + repo)
         if "Token" in config["GitHub"]:
             git_url = "https://" + config["GitHub"]["Token"] + ":@github.com/" + owner + "/" + repo +".git"
         else:
@@ -122,10 +119,6 @@ def make_hunks(source, target):
         })
     return hunks
 
-def is_valued_change(diff):
-    # return diff["identifiers"]["condition"] != diff["identifiers"]["consequent"] and\
-    return diff["identifiers"]["condition"] != [] and diff["identifiers"]["consequent"] != [] 
-
 def make_master_diff(target_repo, lang):
     change_sets = []
 
@@ -138,8 +131,10 @@ def make_master_diff(target_repo, lang):
         author = commit.author.name
         sha = commit.hexsha
         created_at = str(datetime.fromtimestamp(commit.authored_date))
-
-        diff_index = commit.diff(sha + "~1")
+        try:
+            diff_index = commit.diff(sha + "~1")
+        except:
+            continue
         for diff_item in [x for x in diff_index.iter_change_type('M')
                           if any([x.a_rawpath.decode('utf-8').endswith(y)
                                  for y in lang_extentions[lang]])]:
@@ -150,6 +145,20 @@ def make_master_diff(target_repo, lang):
             hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))
 
             for hunk in hunks:
+                if abstracted:
+                    try:
+                        diff_result = TN.get_abstract_tree_diff(hunk["source"], hunk["target"])
+                    except:
+                        continue
+
+                    if diff_result["condition"] == diff_result["consequent"] or\
+                        diff_result["identifiers"]["condition"] == [] or\
+                        diff_result["identifiers"]["consequent"] == []:
+                        continue
+
+                    hunk["source"] = diff_result["condition"]
+                    hunk["target"] = diff_result["consequent"]
+
 
                 out_metricses = {
                     "sha": sha,
@@ -162,7 +171,7 @@ def make_master_diff(target_repo, lang):
                 if out_metricses["condition"] != []:
                     change_sets.append(out_metricses)
         
-        if i > change_size:
+        if len(change_sets) > change_size:
             break
         
     return change_sets
@@ -193,7 +202,9 @@ def make_pull_diff(target_repo, diff_path):
             except:
                 continue
 
-            if not is_valued_change(diff_result):
+            if diff_result["condition"] == diff_result["consequent"] or\
+                diff_result["identifiers"]["condition"] == [] or\
+                diff_result["identifiers"]["consequent"] == []:
                 continue
 
             out_metricses = {
@@ -202,15 +213,14 @@ def make_pull_diff(target_repo, diff_path):
                 "author":diff_path["author"],
                 "participant":diff_path["participant"],
                 "created_at": diff_path["created_at"],
-                "merged_at": diff_path["merged_at"],
-                "merged_by": diff_path["merged_by"],
-                "file_path": diff_item.a_rawpath.decode('utf-8'),
-                "condition": tokens2Realcode(diff_result["condition"]).splitlines(),
-                "consequent": tokens2Realcode(diff_result["consequent"]).splitlines()
+                # "file_path": diff_item.a_rawpath.decode('utf-8'),
+                "condition": diff_result["condition"].splitlines(),
+                "consequent": diff_result["consequent"].splitlines()
             }
             if out_metricses["condition"] != []:
                 change_sets.append(out_metricses)
 
+    change_sets = list(map(loads, set(map(dumps, change_sets))))
     return change_sets
 
 if __name__ == '__main__':

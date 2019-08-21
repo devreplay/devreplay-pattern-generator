@@ -1,5 +1,7 @@
 # Generate Source Code Change Pattern from Review History
 
+This rules can be used on [devreplay](https://www.npmjs.com/package/devreplay)
+
 ## How to Use
 
 ### 0 Cloning this repository
@@ -30,16 +32,19 @@ token = (**option if you will collect from private repo)YourGitHubToken
 [Target]
 owner = Your Target GitHub Repository Owner (e.g. tensorflow)
 repo = Your Target GitHub Repository (e.g. models)
-lang = Your Target Language (e.g. Python)
-choange_size Your target change size (e.g. 100)
-[Rule]
-threshold = Rule threshold (e.g. 2, it means all repeated changes are rule)
-frequent_or_topk = Method to use threshold (frequent or topk)
+lang = Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
+[Option]
+rule_size = Number of rules that you want (e.g. 100)
+learn_from_pulls = yes or no
+abstract_master_change = yes or no
+validate_by_pulls = yes or no
+
+combined_owner = (**option if you want to use other projects' rules) Your Combination GitHub Repository Owner (e.g. tensorflow)
+combined_repo = repo = (**option if you want to use other projects' rules) Your Combination GitHub Repository (e.g. models)
 ```
 **GitHub token can be generated from https://github.com/settings/tokens)
 
 ### 2 Collecting training data set
-
 
 ```sh
 python3 collect_pulls.py
@@ -48,22 +53,22 @@ python3 collect_pulls_changes.py
 
 Output:
 * Pull List (`data/pulls/{owner}_{repo}.csv`)
-* Change List (`data/changes/{owner}_{repo}_python.json`)
+* Pull Change List (`data/changes/{owner}_{repo}_{lang}_pulls.json`)
+* Master Change List (`data/changes/{owner}_{repo}_{lang}_master.json`)
 
-### 3 Generating reusable changes
 
-This process needs long time
+### 3 Extracting reusable changes
 
 ```sh
-python3 collect_pulls_repeatable_changes.py
+python3 test_rules.py
 ```
 
 Output:
-* Pattern (`data/tokens/{owner}_{repo}_python_ORIGINAL.json`)
+* Pattern (`data/changes/{owner}_{repo}_{lang}_(pulls|master)_validated.json`)
 
 ### Sample
 
-This repository put a part of `tensorflow/model`s' review data on each directory.
+This repository put a part of `tensorflow/model`s' review data on `data/changes` directory.
 Also, these data is shorter than correct data set.
 
 ### Thanks

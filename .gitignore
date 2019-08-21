@@ -2,7 +2,7 @@
 .DS_Store
 config
 /data
-!/data/changes/tensorflow_models_Python.json
+!/data/changes/tensorflow_models_.*
 !/data/changes/twbs_bootstrap-sass_Ruby.json
 !/data/pulls/tensorflow_models.csv
 !/data/pulls/tensorflow_models_short.csv
@@ -13,4 +13,3 @@ config
 !/data/repos/repo/file.py
 !/data/tokens/tensorflow_models_Python_HEAD.json
 !/data/tokens/tensorflow_models_Python_ORIGINAL.json
-
