@@ -36,11 +36,11 @@ lang = Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
 [Option]
 rule_size = Number of rules that you want (e.g. 100)
 learn_from_pulls = If no, this tool will learn from master branch (e.g. yes or no)
-abstract_master_change = If yes, this tool will abstract master changes' identifier, string, number like `${1:NAME}` (e.g. yes or no)
+abstract_master_change = If yes, this tool will abstract master changed identifier, string, number like `${1:NAME}` (e.g. yes or no)
 validate_by_pulls = Check collected changes by pull changes or master changes. If `learn_from_pulls` is `no`, you can not choose yes (e.g. yes or no)
 
-combined_owner = (**option if you want to use other projects' rules) Your Combination GitHub Repository Owner (e.g. tensorflow)
-combined_repo = repo = (**option if you want to use other projects' rules) Your Combination GitHub Repository (e.g. models)
+combined_owner = (**option if you want to use other project rules) Your Combination GitHub Repository Owner (e.g. tensorflow)
+combined_repo = (**option if you want to use other projects' rules) Your Combination GitHub Repository (e.g. models)
 ```
 **GitHub token can be generated from https://github.com/settings/tokens)
 
@@ -123,6 +123,9 @@ rule_size = 100
 learn_from_pulls = yes
 abstract_master_change = no
 validate_by_pulls = yes or no
+
+combined_owner = Other Project Repository Owner
+combined_repo = Other Project Repository
 ```
 
 ### Thanks
