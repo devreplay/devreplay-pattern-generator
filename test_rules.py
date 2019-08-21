@@ -23,7 +23,7 @@ test_target = r"(\${?(\d+)(:[a-zA-Z_]+})?))" if validate_by == "pulls" else r"[a
 
 CHANGE_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + "_" + learn_from +".json"
 MASTER_CHANGE_JSON_NAME = "data/changes/" + owner + "_" + repo + "_" + lang + "_" + validate_by + ".json"
-OUT_TOKEN_NAME2 = "data/changes/" + owner + "_" + repo + "_" + lang + "_validated.json"
+OUT_TOKEN_NAME2 = "data/changes/" + owner + "_" + repo + "_" + lang + "_" + learn_from + "_validated.json"
 
 
 def clone_target_repo():
