@@ -46,8 +46,12 @@ combined_repo = (**option if you want to use other projects' rules) Your Combina
 
 ### 2. Collecting training data set
 
+(If you set `learn_from_pulls` to `yes`)
 ```sh
 python3 collect_pulls.py
+```
+
+```sh
 python3 collect_pulls_changes.py
 ```
 
@@ -70,7 +74,7 @@ Output:
 
 ### Sample
 
-This repository put a part of `tensorflow/model`s' review data on `data/changes` directory.
+This repository put a part of `tensorflow/model` and `twbs/bootstrap-sass` rules on `data/changes` directory.
 Also, these data is shorter than correct data set.
 
 ### Use Case, and How should you set config `Option`?

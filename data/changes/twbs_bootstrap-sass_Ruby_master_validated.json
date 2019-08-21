@@ -1,0 +1,80 @@
+[
+  {
+    "sha": "ad8cc1ecd4fbba6655a54baa9f09ec2e0b96fc1a",
+    "author": "Peter Gumeson",
+    "created_at": "2013-05-25 08:59:48",
+    "file_path": "tasks/converter.rb",
+    "condition": [
+      "convert_to_scss"
+    ],
+    "consequent": [
+      "convert"
+    ],
+    "successed_number": [
+      "5bd81ba89df10ce1650022b5d2b763fb5ed615b6",
+      "0aeef75154154f7bf48db42a79623bb957fd73f7",
+      "f076f64a4a3524f6791a1d04e63a9ed107ea919a"
+    ],
+    "failed_number": [],
+    "frequency": 3,
+    "accuracy": 1.0
+  },
+  {
+    "sha": "0ca86d31fcaa22d4ecb1c9052e5669f3f161e6a0",
+    "author": "Gleb Mazovetskiy",
+    "created_at": "2014-08-25 05:46:13",
+    "file_path": "test/sass_test.rb",
+    "condition": [
+      "      silence_stdout_if !ENV['VERBOSE'] do"
+    ],
+    "consequent": [
+      "      assert silence_stream(STDOUT) {"
+    ],
+    "successed_number": [
+      "6fe694cbd0627c45db4ed5ac3935d783ea0f02c8"
+    ],
+    "failed_number": [],
+    "frequency": 1,
+    "accuracy": 1.0
+  },
+  {
+    "sha": "afe8f8c23b8584b34a7bcd368a690aacd3cb38c1",
+    "author": "Gleb Mazovetskiy",
+    "created_at": "2013-08-05 07:44:05",
+    "file_path": "tasks/converter.rb",
+    "condition": [
+      "sub"
+    ],
+    "consequent": [
+      "gsub"
+    ],
+    "successed_number": [
+      "0445445727423f03d0dfc457560250172a7dcfb3"
+    ],
+    "failed_number": [
+      "6fe694cbd0627c45db4ed5ac3935d783ea0f02c8"
+    ],
+    "frequency": 1,
+    "accuracy": 0.5
+  },
+  {
+    "sha": "7951a6d663ae8fb3646ef6a9de537ee18d282877",
+    "author": "Gleb Mazovetskiy",
+    "created_at": "2014-06-24 10:03:39",
+    "file_path": "tasks/converter/js_conversion.rb",
+    "condition": [
+      "manifest"
+    ],
+    "consequent": [
+      "content"
+    ],
+    "successed_number": [
+      "430a80a2be7bf84acf5022cf7ab4989d858c5581"
+    ],
+    "failed_number": [
+      "7097cf5572e8f61b634c34e0dad86961b111b3b6"
+    ],
+    "frequency": 1,
+    "accuracy": 0.5
+  }
+]

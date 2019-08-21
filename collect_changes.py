@@ -145,6 +145,8 @@ def make_master_diff(target_repo, lang):
             hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))
 
             for hunk in hunks:
+                if hunk["source"] == hunk["target"]:
+                    continue
                 if abstracted:
                     try:
                         diff_result = TN.get_abstract_tree_diff(hunk["source"], hunk["target"])
