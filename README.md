@@ -28,7 +28,7 @@ and edit `config` file like berrow
 [GitHub]
 id = YourGitHubId
 password = YourGitHubPassword
-token = (**option if you will collect from private repo)YourGitHubToken
+token = YourGitHubToken
 [Target]
 owner = Your Target GitHub Repository Owner (e.g. tensorflow)
 repo = Your Target GitHub Repository (e.g. models)
@@ -41,6 +41,9 @@ validate_by_pulls = Check collected changes by pull changes or master changes. I
 
 combined_owner = (**option if you want to use other project rules) Your Combination GitHub Repository Owner (e.g. tensorflow)
 combined_repo = (**option if you want to use other projects' rules) Your Combination GitHub Repository (e.g. models)
+
+developer_id_git=egamma
+developer_id_github=Erich Gamma
 ```
 **GitHub token can be generated from https://github.com/settings/tokens)
 
@@ -52,7 +55,7 @@ python3 collect_pulls.py
 ```
 
 ```sh
-python3 collect_pulls_changes.py
+python3 collect_changes.py
 ```
 
 Output:
