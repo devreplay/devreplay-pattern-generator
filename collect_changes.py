@@ -28,7 +28,9 @@ TN = TokeNizer(lang)
 change_size = int(config["Option"]["rule_size"])
 learn_from_pulls = config["Option"].getboolean("learn_from_pulls")
 abstracted = config["Option"].getboolean("abstract_master_change")
-
+defined_author = config["Option"]["developer_github_id"] if learn_from_pulls and "developer_github_id" in config["Option"] else\
+                 config["Option"]["developer_git_username"] if not learn_from_pulls and "developer_git_username" in config["Option"] else\
+                     None
 
 def main():
     """
@@ -55,7 +57,7 @@ def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
     with open(diffs_file, "r", encoding="utf-8") as diffs:
         reader = DictReader(diffs)
         for i, diff_path in enumerate(reversed(list(reader))):
-            if diff_path["commit_len"] == "1":
+            if diff_path["commit_len"] == "1" or not is_defined_author(diff_path["author"]):
                 continue
             sys.stdout.write("\r%d pulls id: %s, %d / %d changes" % 
                              (i, diff_path["number"], len(changes_sets), change_size))
@@ -119,6 +121,9 @@ def make_hunks(source, target):
         })
     return hunks
 
+def is_defined_author(author):
+    return defined_author in [None, author]
+
 def make_master_diff(target_repo, lang):
     change_sets = []
 
@@ -129,6 +134,9 @@ def make_master_diff(target_repo, lang):
 
         sys.stdout.write("\r%d/%d commits %d / %d changes" % (i, len(commits), len(change_sets), change_size))
         author = commit.author.name
+        if not is_defined_author(author):
+            continue
+
         sha = commit.hexsha
         created_at = str(datetime.fromtimestamp(commit.authored_date))
         try:
@@ -213,7 +221,7 @@ def make_pull_diff(target_repo, diff_path):
                 "number": int(diff_path["number"]),
                 "sha": diff_path["merge_commit_sha"],
                 "author":diff_path["author"],
-                "participant":diff_path["participant"],
+                # "participant":diff_path["participant"],
                 "created_at": diff_path["created_at"],
                 # "file_path": diff_item.a_rawpath.decode('utf-8'),
                 "condition": diff_result["condition"].splitlines(),

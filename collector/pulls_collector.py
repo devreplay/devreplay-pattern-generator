@@ -116,13 +116,6 @@ class PullsCollector:
                           }
                         }
                       }
-                      participants(first:100) {
-                        edges {
-                          node {
-                            login
-                          }
-                        }
-                      }
                     }
                   }
                 }
@@ -140,7 +133,7 @@ class PullsCollector:
         head_sha = commit_oids[-1]
         return {
             "author": author,
-            "participant": participant[0] if len(participant) > 0 else "None",
+            # "participant": participant[0] if len(participant) > 0 else "None",
             "number": pull['number'],
             "commit_len": pull['commits']['totalCount'],
             "base_commit_sha": pull['baseRefOid'],
