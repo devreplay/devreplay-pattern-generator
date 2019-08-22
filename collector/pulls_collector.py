@@ -13,7 +13,6 @@ class PullsCollector:
     fields = [
         "number",
         "author",
-        "participant",
         "commit_len",
         "base_commit_sha",
         "first_commit_sha",
@@ -127,8 +126,8 @@ class PullsCollector:
     def _format(self, pull: dict) -> dict:
         author = pull["author"]["login"]
         commit_oids = [edge['node']['commit']['oid'] for edge in pull['commits']['edges']]
-        participant = [participant["node"]["login"] for participant in pull["participants"]["edges"] 
-                        if participant["node"]["login"] != author]
+        # participant = [participant["node"]["login"] for participant in pull["participants"]["edges"] 
+        #                 if participant["node"]["login"] != author]
         base_sha = commit_oids[0]
         head_sha = commit_oids[-1]
         return {
