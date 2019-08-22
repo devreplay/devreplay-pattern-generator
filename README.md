@@ -9,7 +9,7 @@ This rules can be used on [devreplay](https://www.npmjs.com/package/devreplay)
 ```sh
 git clone https://github.com/Ikuyadeu/review_pattern_gen.git
 cd review_pattern_gen
-pip3 install antlr4-python3-runtime prefixspan PyGithub unidiff numpy
+pip3 install antlr4-python3-runtime unidiff
 git clone https://github.com/Ikuyadeu/CodeTokenizer.git
 ```
 
