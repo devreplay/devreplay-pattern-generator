@@ -14,7 +14,7 @@ from json import dump, loads, dumps
 from unidiff import PatchSet, errors
 import difflib
 from configparser import ConfigParser
-from CodeTokenizer.tokenizer import TokeNizer, tokens2Realcode
+from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
 import git
 from datetime import datetime
