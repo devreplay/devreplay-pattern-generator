@@ -23,6 +23,9 @@ touch config
 
 and edit `config` file like berrow
 
+* If you try first time, please check bottom example for the `Option` setting
+* GitHub token can be generated from https://github.com/settings/tokens)
+
 (If your target `Python` repository name is `tensorflow/models`)
 ```properties
 [GitHub]
@@ -41,11 +44,7 @@ validate_by_pulls = Check collected changes by pull changes or master changes. I
 
 combined_owner = (**option if you want to use other project rules) Your Combination GitHub Repository Owner (e.g. tensorflow)
 combined_repo = (**option if you want to use other projects' rules) Your Combination GitHub Repository (e.g. models)
-
-developer_id_git=egamma
-developer_id_github=Erich Gamma
 ```
-**GitHub token can be generated from https://github.com/settings/tokens)
 
 ### 2. Collecting training data set
 
