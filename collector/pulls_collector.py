@@ -33,6 +33,7 @@ class PullsCollector:
             writer.writeheader()
             for row in self.all():
                 writer.writerow(row)
+            print("\nFinish to collect the pull list. Output is " + output_path)
 
     def all(self) -> Generator:
         cursor = None

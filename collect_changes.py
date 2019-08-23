@@ -43,11 +43,14 @@ def main():
         out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_pulls.json"
         changes_sets = get_project_changes(owner, repo, lang, target_repo)
         with open(out_name, "w", encoding='utf-8') as f:
+            print("\nSuccess to collect the pull changes Output is " + out_name)
             dump(changes_sets, f, indent=1)
 
     out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
+    print("collecting the master changes...")
     changes_sets = make_master_diff(target_repo, lang)
     with open(out_name, "w", encoding='utf-8') as f:
+        print("\nSuccess to collect the master changes Output is " + out_name)
         dump(changes_sets, f, indent=1)
 
 

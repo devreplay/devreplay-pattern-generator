@@ -140,4 +140,5 @@ else:
     print("Total condition: %d\nTotal frequency: %d\nTotal accuracy: %f\nCoveradge: %f" 
         % (total_condition, total_frequency, total_frequency / total_condition, total_frequency/target_len))
 with open(OUT_TOKEN_NAME2, "w") as target:
+    print("Success to validate the changes Output is " + OUT_TOKEN_NAME2)
     json.dump(output, target, indent=2)
