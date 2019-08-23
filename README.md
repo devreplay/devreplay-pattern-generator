@@ -1,6 +1,7 @@
 # Generate Source Code Change Pattern from Review History
 
 This rules can be used on [devreplay](https://www.npmjs.com/package/devreplay)
+And you can use your rule by the [vscode extension](https://marketplace.visualstudio.com/items?itemName=Ikuyadeu.devreplay)
 
 ## How to Use
 
@@ -93,7 +94,7 @@ Also, these data is shorter than correct data set.
 
 ```properties
 [Option]
-rule_size = 100
+rule_size = 1000
 learn_from_pulls = no
 abstract_master_change = yes
 validate_by_pulls = no
@@ -103,7 +104,7 @@ validate_by_pulls = no
 
 ```properties
 [Option]
-rule_size = 100
+rule_size = 1000
 learn_from_pulls = yes
 abstract_master_change = no
 validate_by_pulls = yes or no
@@ -119,7 +120,7 @@ owner = Other Project Repository Owner (e.g. tensorflow)
 repo = Other Project Repository (e.g. models)
 lang = Your Target Language
 [Option]
-rule_size = 100
+rule_size = 1000
 learn_from_pulls = no
 abstract_master_change = yes
 validate_by_pulls = no
@@ -133,7 +134,7 @@ owner = Your Project Repository Owner
 repo = Your Project Repository
 lang = Your Target Language
 [Option]
-rule_size = 100
+rule_size = 1000
 learn_from_pulls = yes
 abstract_master_change = no
 validate_by_pulls = yes or no
