@@ -9,7 +9,7 @@ This rules can be used on [devreplay](https://www.npmjs.com/package/devreplay)
 ```sh
 git clone https://github.com/Ikuyadeu/review_pattern_gen.git
 cd review_pattern_gen
-pip3 install antlr4-python3-runtime unidiff
+pip3 install antlr4-python3-runtime unidiff gitpython
 git clone https://github.com/Ikuyadeu/CodeTokenizer.git
 ```
 
@@ -46,16 +46,22 @@ combined_owner = (**option if you want to use other project rules) Your Combinat
 combined_repo = (**option if you want to use other projects' rules) Your Combination GitHub Repository (e.g. models)
 ```
 
+`[Option]` is neccesaly. Plase see Use Case section and set variables.
+
 ### 2. Collecting training data set
 
-(If you set `learn_from_pulls` to `yes`)
+If you set `learn_from_pulls` to `yes`, please run `collect_pulls.py` before run `collect_changes.py`
 ```sh
 python3 collect_pulls.py
 ```
 
+Run `collect_changes.py` is necessary.
+
 ```sh
 python3 collect_changes.py
 ```
+
+After run these script, some files output to `data` dirs.The details are as follows.
 
 Output:
 * Pull List (`data/pulls/{owner}_{repo}.csv`)
@@ -67,9 +73,11 @@ If `Option/learn_from_pulls` is `yes`
 
 ### 3. Extracting reusable changes
 
+If you want to get more information about these output, please do this section.
 ```sh
 python3 test_rules.py
 ```
+You can get frequency,accuracy,failed_number(pull_requests),successed_number(pull_requests) informations.
 
 Output:
 * Pattern (`data/changes/{owner}_{repo}_{lang}_(pulls|master)_validated.json`)
