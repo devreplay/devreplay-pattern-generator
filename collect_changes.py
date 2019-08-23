@@ -102,8 +102,8 @@ def make_hunks(source, target):
 
         if symbol not in ["+", previous_symbol] and deleted_lines != [] and added_lines != []:
             hunks.append({
-                "source": "".join(deleted_lines),
-                "target": "".join(added_lines),
+                "source": "".join(deleted_lines).lstrip(),
+                "target": "".join(added_lines).lstrip(),
             })
             deleted_lines = []
             added_lines = []
@@ -119,8 +119,8 @@ def make_hunks(source, target):
         previous_symbol = symbol
     if deleted_lines != [] and added_lines != []:
         hunks.append({
-            "source": "".join(deleted_lines),
-            "target": "".join(added_lines),
+            "source": "".join(deleted_lines).lstrip(),
+            "target": "".join(added_lines).lstrip(),
         })
     return hunks
 
@@ -199,7 +199,7 @@ def make_pull_diff(target_repo, diff_path):
     commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
     if any([x.message.startswith("Merge") for x in commits]):
         return []
-    diff_index = original_commit.diff(changed_commit)    
+    diff_index = original_commit.diff(changed_commit)
     for diff_item in [x for x in diff_index.iter_change_type('M')
                      if any([x.a_rawpath.decode('utf-8').endswith(y)
                              for y in lang_extentions[lang]])]:
@@ -210,6 +210,8 @@ def make_pull_diff(target_repo, diff_path):
         hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))   
 
         for hunk in hunks:
+            if hunk["source"] == hunk["target"]:
+                continue
             try:
                 diff_result = TN.get_abstract_tree_diff(hunk["source"], hunk["target"])
             except:
