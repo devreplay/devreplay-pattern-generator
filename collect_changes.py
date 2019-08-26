@@ -87,6 +87,45 @@ def clone_target_repo():
             git_url = "https://github.com/" + owner + "/" + repo +".git"
         git.Git(data_repo_dir).clone(git_url)
 
+def make_abstracted_hunks(diff_index, is_abstract):
+    out_hunks = []
+    for diff_item in [x for x in diff_index.iter_change_type('M')
+                     if any([x.a_rawpath.decode('utf-8').endswith(y)
+                             for y in lang_extentions[lang]])]:
+        source = diff_item.a_blob.data_stream.read().decode('utf-8')
+        target = diff_item.b_blob.data_stream.read().decode('utf-8')
+        if source == target:
+            continue
+        hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))
+        hunks = [x for x in hunks if x["condition"] != x["consequent"]]
+        hunks = list(map(loads, set(map(dumps, hunks))))
+
+        # file_path = diff_item.a_rawpath.decode('utf-8')
+        if is_abstract:
+            for hunk in hunks:
+                try:
+                    diff_result = TN.get_abstract_tree_diff(hunk["condition"], hunk["consequent"])
+                except:
+                    continue
+                if diff_result["condition"] == diff_result["consequent"] or\
+                    diff_result["condition"] == [] or\
+                    diff_result["identifiers"]["condition"] == [] or\
+                    diff_result["identifiers"]["consequent"] == []:
+                    continue
+ 
+                out_hunks.append({
+                    "condition": diff_result["condition"].splitlines(),
+                    "consequent": diff_result["consequent"].splitlines()
+                })
+        else:
+            out_hunks.extend([{
+                "condition": x["condition"].splitlines(),
+                "consequent": x["consequent"].splitlines()
+            } for x in hunks])
+    
+    out_hunks = list(map(loads, set(map(dumps, out_hunks))))
+    return out_hunks
+
 def make_hunks(source, target):
     hunks = []
     differ = difflib.ndiff(source, target)
@@ -102,8 +141,8 @@ def make_hunks(source, target):
 
         if symbol not in ["+", previous_symbol] and deleted_lines != [] and added_lines != []:
             hunks.append({
-                "source": "".join(deleted_lines).lstrip(),
-                "target": "".join(added_lines).lstrip(),
+                "condition": "".join(deleted_lines).lstrip(),
+                "consequent": "".join(added_lines).lstrip(),
             })
             deleted_lines = []
             added_lines = []
@@ -119,8 +158,8 @@ def make_hunks(source, target):
         previous_symbol = symbol
     if deleted_lines != [] and added_lines != []:
         hunks.append({
-            "source": "".join(deleted_lines).lstrip(),
-            "target": "".join(added_lines).lstrip(),
+            "condition": "".join(deleted_lines).lstrip(),
+            "consequent": "".join(added_lines).lstrip(),
         })
     return hunks
 
@@ -146,43 +185,18 @@ def make_master_diff(target_repo, lang):
             diff_index = commit.diff(sha + "~1")
         except:
             continue
-        for diff_item in [x for x in diff_index.iter_change_type('M')
-                          if any([x.a_rawpath.decode('utf-8').endswith(y)
-                                 for y in lang_extentions[lang]])]:
-            source = diff_item.a_blob.data_stream.read().decode('utf-8')
-            target = diff_item.b_blob.data_stream.read().decode('utf-8')
-            if source == target:
-                continue
-            hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))
 
-            for hunk in hunks:
-                if hunk["source"] == hunk["target"]:
-                    continue
-                if abstracted:
-                    try:
-                        diff_result = TN.get_abstract_tree_diff(hunk["source"], hunk["target"])
-                    except:
-                        continue
+        hunks = make_abstracted_hunks(diff_index, abstracted)
 
-                    if diff_result["condition"] == diff_result["consequent"] or\
-                        diff_result["identifiers"]["condition"] == [] or\
-                        diff_result["identifiers"]["consequent"] == []:
-                        continue
-
-                    hunk["source"] = diff_result["condition"]
-                    hunk["target"] = diff_result["consequent"]
-
-
-                out_metricses = {
-                    "sha": sha,
-                    "author":author,
-                    "created_at": created_at,
-                    "file_path": diff_item.a_rawpath.decode('utf-8'),
-                    "condition": hunk["source"].splitlines(),
-                    "consequent": hunk["target"].splitlines()
-                }
-                if out_metricses["condition"] != []:
-                    change_sets.append(out_metricses)
+        out_metricses = [{
+            "sha": sha,
+            "author":author,
+            "created_at": created_at,
+            # "file_path": x["file_path"],
+            "condition": x["condition"],
+            "consequent": x["consequent"]
+        } for x in hunks]
+        change_sets.extend(out_metricses)
         
         if len(change_sets) > change_size:
             break
@@ -200,42 +214,22 @@ def make_pull_diff(target_repo, diff_path):
     if any([x.message.startswith("Merge") for x in commits]):
         return []
     diff_index = original_commit.diff(changed_commit)
-    for diff_item in [x for x in diff_index.iter_change_type('M')
-                     if any([x.a_rawpath.decode('utf-8').endswith(y)
-                             for y in lang_extentions[lang]])]:
-        source = diff_item.a_blob.data_stream.read().decode('utf-8')
-        target = diff_item.b_blob.data_stream.read().decode('utf-8')
-        if source == target:
-            continue
-        hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))   
 
-        for hunk in hunks:
-            if hunk["source"] == hunk["target"]:
-                continue
-            try:
-                diff_result = TN.get_abstract_tree_diff(hunk["source"], hunk["target"])
-            except:
-                continue
+    hunks = make_abstracted_hunks(diff_index, True)
+    out_metricses = [{
+        "number": int(diff_path["number"]),
+        "sha": diff_path["merge_commit_sha"],
+        "author":diff_path["author"],
+        "created_at": diff_path["created_at"],
+        # "file_path": x["file_path"],
+        "condition": x["condition"],
+        "consequent": x["consequent"]
+    } for x in hunks]
+    change_sets.extend(out_metricses)
+    
+    if len(change_sets) > change_size:
+        return change_sets
 
-            if diff_result["condition"] == diff_result["consequent"] or\
-                diff_result["identifiers"]["condition"] == [] or\
-                diff_result["identifiers"]["consequent"] == []:
-                continue
-
-            out_metricses = {
-                "number": int(diff_path["number"]),
-                "sha": diff_path["merge_commit_sha"],
-                "author":diff_path["author"],
-                # "participant":diff_path["participant"],
-                "created_at": diff_path["created_at"],
-                # "file_path": diff_item.a_rawpath.decode('utf-8'),
-                "condition": diff_result["condition"].splitlines(),
-                "consequent": diff_result["consequent"].splitlines()
-            }
-            if out_metricses["condition"] != []:
-                change_sets.append(out_metricses)
-
-    change_sets = list(map(loads, set(map(dumps, change_sets))))
     return change_sets
 
 if __name__ == '__main__':
