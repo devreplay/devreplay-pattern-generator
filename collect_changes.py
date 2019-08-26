@@ -141,8 +141,8 @@ def make_hunks(source, target):
 
         if symbol not in ["+", previous_symbol] and deleted_lines != [] and added_lines != []:
             hunks.append({
-                "condition": "".join(deleted_lines).lstrip(),
-                "consequent": "".join(added_lines).lstrip(),
+                "condition": code_trip("".join(deleted_lines)),
+                "consequent": code_trip("".join(added_lines)),
             })
             deleted_lines = []
             added_lines = []
@@ -158,10 +158,15 @@ def make_hunks(source, target):
         previous_symbol = symbol
     if deleted_lines != [] and added_lines != []:
         hunks.append({
-            "condition": "".join(deleted_lines).lstrip(),
-            "consequent": "".join(added_lines).lstrip(),
+            "condition": code_trip("".join(deleted_lines)),
+            "consequent": code_trip("".join(added_lines)),
         })
     return hunks
+
+def code_trip(code):
+    splited_code = code.splitlines(keepends=True)
+    max_space = min(len(x) - len(x.lstrip()) for x in splited_code)
+    return "".join([x[max_space:] for x in splited_code])
 
 def is_defined_author(author):
     return defined_author in [None, author]
