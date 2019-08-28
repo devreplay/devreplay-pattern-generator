@@ -182,7 +182,7 @@ def code_trip(code):
 def is_defined_author(author):
     return all_author or\
        len(authors) == 0 or\
-       any(author in x["git"] or author in x["github"] for x in authors)
+       any(author in [x.get("git"), x.get("github")] for x in authors)
 
 def make_master_diff(target_repo, owner, repo, abstracted):
     change_sets = []
