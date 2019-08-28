@@ -28,12 +28,13 @@ and edit `config` file like berrow
 * GitHub token can be generated from https://github.com/settings/tokens)
 
 (If your target `Python` repository name is `tensorflow/models`)
-```properties
+```json
 {
     "github_token": "Your github token",
     // Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
     "lang": "Ruby",
-    "change_size": Number of rules that you want (e.g. 100),
+    // Number of rules that you want (e.g. 100)
+    "change_size": 1000,
     "projects": [
         {
             "owner": "mruby",
