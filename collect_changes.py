@@ -10,7 +10,7 @@ Style misses list
 import sys
 import os
 from csv import DictReader
-from json import dump, loads, dumps
+from json import dump, loads, dumps, load
 from unidiff import PatchSet, errors
 import difflib
 from configparser import ConfigParser
@@ -18,74 +18,85 @@ from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
 import git
 from datetime import datetime
+from collector.pulls_collector import PullsCollector
 
-config = ConfigParser()
-config.read('config')
-owner = config["Target"]["owner"]
-repo = config["Target"]["repo"]
-lang = config["Target"]["lang"]
+with open("config.json", "r") as json_file:
+    config = load(json_file)
+
+token = config["github_token"]
+lang = config["lang"]
 TN = TokeNizer(lang)
-change_size = int(config["Option"]["rule_size"])
-learn_from_pulls = config["Option"].getboolean("learn_from_pulls")
-abstracted = config["Option"].getboolean("abstract_master_change")
-defined_author = config["Option"]["developer_github_id"] if learn_from_pulls and "developer_github_id" in config["Option"] else\
-                 config["Option"]["developer_git_username"] if not learn_from_pulls and "developer_git_username" in config["Option"] else\
-                     None
+change_size = config["change_size"]
+all_author = config["all_author"] if "all_author" in config else True
+authors = config["authors"] if "authors" in config else []
 
 def main():
     """
     The main
     """
-    clone_target_repo()
-    target_repo = git.Repo("data/repos/" + repo)
 
-    if learn_from_pulls:
-        out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_pulls.json"
-        changes_sets = get_project_changes(owner, repo, lang, target_repo)
-        with open(out_name, "w", encoding='utf-8') as f:
-            print("\nSuccess to collect the pull changes Output is " + out_name)
-            dump(changes_sets, f, indent=1)
+    projects = config["projects"]
+    learn_from_pulls = "pull" in config["learn_from"]
+    validate_by_pulls = "pull" in config["validate_by"]
+    for projet in projects:
+        owner = projet["owner"]
+        repo = projet["repo"]
 
-    out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
-    print("collecting the master changes...")
-    changes_sets = make_master_diff(target_repo, lang)
-    with open(out_name, "w", encoding='utf-8') as f:
-        print("\nSuccess to collect the master changes Output is " + out_name)
-        dump(changes_sets, f, indent=1)
+        clone_target_repo(owner, repo)
+        target_repo = git.Repo("data/repos/" + repo)
+        print(f"{owner}/{repo} ")
 
+        # Learn or validate from master pull request
+        if learn_from_pulls or validate_by_pulls:            
+            collect_target_pulls(owner, repo, token)
 
-def get_project_changes(owner, repo, lang, target_repo, diffs_file=None):
-    changes_sets = []
-    diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
-    with open(diffs_file, "r", encoding="utf-8") as diffs:
-        reader = DictReader(diffs)
-        for i, diff_path in enumerate(reversed(list(reader))):
-            if diff_path["commit_len"] == "1" or not is_defined_author(diff_path["author"]):
-                continue
-            sys.stdout.write("\r%d pulls id: %s, %d / %d changes" % 
-                             (i, diff_path["number"], len(changes_sets), change_size))
+            abstracted = learn_from_pulls
+            print("collecting the pull changes...")
+            changes_sets = make_pull_diff(target_repo, owner, repo, abstracted)
 
-            changes_set = make_pull_diff(target_repo, diff_path)
-            if changes_set == []:
-                continue
-            changes_sets.extend(changes_set)
-            if len(changes_sets) > change_size:
-                return changes_sets
+            out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_pulls.json"
+            with open(out_name, "w", encoding='utf-8') as f:
+                print("\nSuccess to collect the pull changes Output is " + out_name)
+                dump(changes_sets, f, indent=1)
 
-    return changes_sets
+        # Learn or validate from master branch
+        if not (learn_from_pulls and validate_by_pulls):
+            abstracted = not learn_from_pulls
+            print("collecting the master changes...")
+            changes_sets = make_master_diff(target_repo, abstracted)
+
+            out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
+            with open(out_name, "w", encoding='utf-8') as f:
+                print("\nSuccess to collect the master changes Output is " + out_name)
+                dump(changes_sets, f, indent=1)
 
 
-def clone_target_repo():
+
+def clone_target_repo(owner, repo):
     data_repo_dir = "data/repos"
-    if not os.path.exists(data_repo_dir):
-        os.makedirs(data_repo_dir)
     if not os.path.exists(data_repo_dir + "/" + repo):
+        if not os.path.exists(data_repo_dir):
+            os.makedirs(data_repo_dir)
         print("Cloning " + data_repo_dir + "/" + repo)
-        if "Token" in config["GitHub"]:
-            git_url = "https://" + config["GitHub"]["Token"] + ":@github.com/" + owner + "/" + repo +".git"
+        if "github_token" in config:
+            git_url = "https://" + config["github_token"] + ":@github.com/" + owner + "/" + repo +".git"
         else:
             git_url = "https://github.com/" + owner + "/" + repo +".git"
         git.Git(data_repo_dir).clone(git_url)
+    else:
+        pass
+
+def collect_target_pulls(owner, repo, token):
+    file_name = f'data/pulls/{owner}_{repo}.csv'
+    if not os.path.exists(file_name):
+        print(f"collecting {owner}/{repo} pulls...")
+        collector = PullsCollector(token, owner, repo)
+        collector.save_all(file_name)
+        print(f"Succeeded collecting {owner}/{repo} pulls!")
+    else:
+        pass
+    # with open(file_name, "r", encoding="utf-8") as diffs:
+    #     return list(DictReader(diffs))
 
 def make_abstracted_hunks(diff_index, is_abstract):
     out_hunks = []
@@ -165,13 +176,15 @@ def make_hunks(source, target):
 
 def code_trip(code):
     splited_code = code.splitlines(keepends=True)
-    max_space = min(len(x) - len(x.lstrip()) for x in splited_code)
-    return "".join([x[max_space:] for x in splited_code])
+    min_space = min(len(x) - len(x.lstrip()) for x in splited_code)
+    return "".join([x[min_space:] for x in splited_code])
 
 def is_defined_author(author):
-    return defined_author in [None, author]
+    return all_author or\
+       len(authors) == 0 or\
+       any(author in x["git"] or author in x["github"] for x in authors)
 
-def make_master_diff(target_repo, lang):
+def make_master_diff(target_repo, abstracted):
     change_sets = []
 
     commits = list(target_repo.iter_commits("master"))
@@ -185,14 +198,13 @@ def make_master_diff(target_repo, lang):
             continue
 
         sha = commit.hexsha
-        created_at = str(datetime.fromtimestamp(commit.authored_date))
         try:
             diff_index = commit.diff(sha + "~1")
         except:
             continue
 
+        created_at = str(datetime.fromtimestamp(commit.authored_date))
         hunks = make_abstracted_hunks(diff_index, abstracted)
-
         out_metricses = [{
             "sha": sha,
             "author":author,
@@ -202,38 +214,46 @@ def make_master_diff(target_repo, lang):
             "consequent": x["consequent"]
         } for x in hunks]
         change_sets.extend(out_metricses)
-        
         if len(change_sets) > change_size:
             break
         
     return change_sets
 
-def make_pull_diff(target_repo, diff_path):
+def make_pull_diff(target_repo, owner, repo, abstracted):
     change_sets = []
-    try :
-        original_commit = target_repo.commit(diff_path["first_commit_sha"])
-        changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
-    except:
-        return []
-    commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
-    if any([x.message.startswith("Merge") for x in commits]):
-        return []
-    diff_index = original_commit.diff(changed_commit)
+    diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
+    with open(diffs_file, "r", encoding="utf-8") as diffs:
+        reader = list(DictReader(diffs))
+    for i, diff_path in enumerate(reversed(reader)):
+        if diff_path["commit_len"] == "1" or not is_defined_author(diff_path["author"]):
+            continue        
+        try :
+            original_commit = target_repo.commit(diff_path["first_commit_sha"])
+            changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
+        except:
+            continue
+        commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
+        if any([x.message.startswith("Merge") for x in commits]):
+            continue
 
-    hunks = make_abstracted_hunks(diff_index, True)
-    out_metricses = [{
-        "number": int(diff_path["number"]),
-        "sha": diff_path["merge_commit_sha"],
-        "author":diff_path["author"],
-        "created_at": diff_path["created_at"],
-        # "file_path": x["file_path"],
-        "condition": x["condition"],
-        "consequent": x["consequent"]
-    } for x in hunks]
-    change_sets.extend(out_metricses)
-    
-    if len(change_sets) > change_size:
-        return change_sets
+        sys.stdout.write("\r%d pulls id: %s, %d / %d changes" % 
+                    (i, diff_path["number"], len(change_sets), change_size))
+
+        diff_index = original_commit.diff(changed_commit)
+
+        hunks = make_abstracted_hunks(diff_index, abstracted)
+        out_metricses = [{
+            "number": int(diff_path["number"]),
+            "sha": diff_path["merge_commit_sha"],
+            "author":diff_path["author"],
+            "created_at": diff_path["created_at"],
+            # "file_path": x["file_path"],
+            "condition": x["condition"],
+            "consequent": x["consequent"]
+        } for x in hunks]
+        change_sets.extend(out_metricses)
+        if len(change_sets) > change_size:
+            return change_sets
 
     return change_sets
 

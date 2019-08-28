@@ -1,0 +1,24 @@
+{
+    "github_token": "XXXXXX",
+    "lang": "Ruby",
+    "change_size": 1000,
+    "projects": [
+        {
+            "owner": "mruby",
+            "repo": "mruby"
+        },
+        {
+            "owner": "mruby",
+            "repo": "mgem-list"
+        }
+    ],
+    "all_author": false,
+    "authors": [
+        {
+            "git": "Yukihiro Matsumoto",
+            "github": "matz"
+        }
+    ],
+    "learn_from": "pulls",
+    "validate_by": "master"
+}

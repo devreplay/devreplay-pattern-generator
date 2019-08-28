@@ -29,34 +29,38 @@ and edit `config` file like berrow
 
 (If your target `Python` repository name is `tensorflow/models`)
 ```properties
-[GitHub]
-id = YourGitHubId
-password = YourGitHubPassword
-token = YourGitHubToken
-[Target]
-owner = Your Target GitHub Repository Owner (e.g. tensorflow)
-repo = Your Target GitHub Repository (e.g. models)
-lang = Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
-[Option]
-rule_size = Number of rules that you want (e.g. 100)
-learn_from_pulls = If no, this tool will learn from master branch (e.g. yes or no)
-abstract_master_change = If yes, this tool will abstract master changed identifier, string, number like `${1:NAME}` (e.g. yes or no)
-validate_by_pulls = Check collected changes by pull changes or master changes. If `learn_from_pulls` is `no`, you can not choose yes (e.g. yes or no)
-
-combined_owner = (**option if you want to use other project rules) Your Combination GitHub Repository Owner (e.g. tensorflow)
-combined_repo = (**option if you want to use other projects' rules) Your Combination GitHub Repository (e.g. models)
+{
+    "github_token": "Your github token",
+    // Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
+    "lang": "Ruby",
+    "change_size": Number of rules that you want (e.g. 100),
+    "projects": [
+        {
+            "owner": "mruby",
+            "repo": "mruby"
+        },
+        {
+            "owner": "mruby",
+            "repo": "mgem-list"
+        }
+    ],
+    // will you get all authors change? (true or false)
+    "all_author": true,
+    "authors": [
+        // if all_author is true, choose target authors' name and github id
+        {
+            "git": "Yukihiro Matsumoto",
+            "github": "matz"
+        }
+    ],
+    "learn_from": "pulls",
+    "validate_by": "master"
+}
 ```
-
-`[Option]` is neccesaly. Plase see Use Case section and set variables.
 
 ### 2. Collecting training data set
 
-If you set `learn_from_pulls` to `yes`, please run `collect_pulls.py` before run `collect_changes.py`
-```sh
-python3 collect_pulls.py
-```
-
-Run `collect_changes.py` is necessary.
+Run `collect_changes.py`.
 
 ```sh
 python3 collect_changes.py
@@ -66,9 +70,10 @@ After run these script, some files output to `data` dirs.The details are as foll
 
 Output:
 * Pull List (`data/pulls/{owner}_{repo}.csv`)
+If `learn_from` or `validate_by` is `master`
 * Master Change List (`data/changes/{owner}_{repo}_{lang}_master.json`)
 
-If `Option/learn_from_pulls` is `yes`
+If `learn_from` or `validate_by` is `pulls`
 * Pull Change List (`data/changes/{owner}_{repo}_{lang}_pulls.json`)
 
 
@@ -81,67 +86,13 @@ python3 test_rules.py
 You can get frequency,accuracy,failed_number(pull_requests),successed_number(pull_requests) informations.
 
 Output:
+If projects is only one project
+
 * Pattern (`data/changes/{owner}_{repo}_{lang}_(pulls|master)_validated.json`)
 
-### Sample
+If you choose more than one projects
 
-This repository put a part of `tensorflow/model` and `twbs/bootstrap-sass` rules on `data/changes` directory.
-Also, these data is shorter than correct data set.
-
-### Use Case, and How should you set config `Option`?
-
-#### Case 1: If you want to get rules from small repository that does not have any pull request.
-
-```properties
-[Option]
-rule_size = 1000
-learn_from_pulls = no
-abstract_master_change = yes
-validate_by_pulls = no
-```
-
-#### Case 2: If you want to get rules from large repository that has more than 100 pull request.
-
-```properties
-[Option]
-rule_size = 1000
-learn_from_pulls = yes
-abstract_master_change = no
-validate_by_pulls = yes or no
-```
-
-#### Case 3: If you want to use rules from other repositories' for your repository.
-
-1. Get Rules by
-
-```properties
-[Target]
-owner = Other Project Repository Owner (e.g. tensorflow)
-repo = Other Project Repository (e.g. models)
-lang = Your Target Language
-[Option]
-rule_size = 1000
-learn_from_pulls = no
-abstract_master_change = yes
-validate_by_pulls = no
-```
-
-2. Check Rules by 
-
-```properties
-[Target]
-owner = Your Project Repository Owner
-repo = Your Project Repository
-lang = Your Target Language
-[Option]
-rule_size = 1000
-learn_from_pulls = yes
-abstract_master_change = no
-validate_by_pulls = yes or no
-
-combined_owner = Other Project Repository Owner
-combined_repo = Other Project Repository
-```
+* Pattern (`data/changes/devreplay.json`)
 
 ### Thanks
 
