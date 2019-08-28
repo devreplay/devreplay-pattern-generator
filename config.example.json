@@ -1,6 +1,6 @@
 {
     "github_token": "XXXXXX",
-    "lang": "Ruby",
+    "lang": "CPP",
     "change_size": 1000,
     "projects": [
         {
@@ -8,8 +8,8 @@
             "repo": "mruby"
         },
         {
-            "owner": "mruby",
-            "repo": "mgem-list"
+            "owner": "matz",
+            "repo": "streem"
         }
     ],
     "all_author": false,
@@ -17,8 +17,11 @@
         {
             "git": "Yukihiro Matsumoto",
             "github": "matz"
+        },
+        {
+            "git": "Yukihiro \"Matz\" Matsumoto"
         }
     ],
-    "learn_from": "pulls",
+    "learn_from": "master",
     "validate_by": "master"
 }
