@@ -51,7 +51,7 @@ combined_repo = (**option if you want to use other projects' rules) Your Combina
 
 ### 2. Collecting training data set
 
-If you set `learn_from_pulls` to `yes`, please run `collect_pulls.py` before run `collect_changes.py`
+If you set `learn_from_pulls` to `yes`, please run `collect_pulls.py` before run `test_rules.py`
 ```sh
 python3 collect_pulls.py
 ```
