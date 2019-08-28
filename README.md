@@ -16,18 +16,18 @@ git clone https://github.com/Ikuyadeu/CodeTokenizer.git
 
 ### 1. Preparing config file
 
-Making empty `config` file
+Making empty `config.json` file
 
 ```sh
 touch config
 ```
 
-and edit `config` file like berrow
+and edit `config.json` file like berrow
 
 * If you try first time, please check bottom example for the `Option` setting
 * GitHub token can be generated from https://github.com/settings/tokens)
 
-(If your target `Python` repository name is `tensorflow/models`)
+(If your target `Ruby` organization name is `mruby`)
 ```json
 {
     "github_token": "Your github token",
