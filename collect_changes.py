@@ -224,10 +224,10 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
     change_sets = []
     diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
     with open(diffs_file, "r", encoding="utf-8") as diffs:
-        reader = sorted(list(DictReader(diffs)), key=lambda x: x["number"])
-    for i, diff_path in enumerate(reversed(reader)):
-        if diff_path["commit_len"] == "1" or not is_defined_author(diff_path["author"]):
-            continue        
+        reader = list(DictReader(diffs))
+    for i, diff_path in sorted([(i, x) for i, x in enumerate(reader)\
+         if x["commit_len"] != "1" and (is_defined_author(x["author"]) or is_defined_author(x["merged_by"]))],\
+              key=lambda x: x[1]["number"], reverse=True):
         try :
             original_commit = target_repo.commit(diff_path["first_commit_sha"])
             changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
