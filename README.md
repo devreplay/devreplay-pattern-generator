@@ -19,7 +19,7 @@ git clone https://github.com/Ikuyadeu/CodeTokenizer.git
 Making empty `config.json` file
 
 ```sh
-touch config
+touch config.json
 ```
 
 and edit `config.json` file like berrow

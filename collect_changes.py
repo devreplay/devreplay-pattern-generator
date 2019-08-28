@@ -63,7 +63,7 @@ def main():
         if not (learn_from_pulls and validate_by_pulls):
             abstracted = not learn_from_pulls
             print("collecting the master changes...")
-            changes_sets = make_master_diff(target_repo, abstracted)
+            changes_sets = make_master_diff(target_repo, owner, repo, abstracted)
 
             out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
             with open(out_name, "w", encoding='utf-8') as f:
@@ -184,7 +184,7 @@ def is_defined_author(author):
        len(authors) == 0 or\
        any(author in x["git"] or author in x["github"] for x in authors)
 
-def make_master_diff(target_repo, abstracted):
+def make_master_diff(target_repo, owner, repo, abstracted):
     change_sets = []
 
     commits = list(target_repo.iter_commits("master"))
@@ -206,6 +206,7 @@ def make_master_diff(target_repo, abstracted):
         created_at = str(datetime.fromtimestamp(commit.authored_date))
         hunks = make_abstracted_hunks(diff_index, abstracted)
         out_metricses = [{
+            "repository": f"{owner}/{repo}",
             "sha": sha,
             "author":author,
             "created_at": created_at,
@@ -223,7 +224,7 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
     change_sets = []
     diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
     with open(diffs_file, "r", encoding="utf-8") as diffs:
-        reader = list(DictReader(diffs))
+        reader = sorted(list(DictReader(diffs)), key=lambda x: x["number"])
     for i, diff_path in enumerate(reversed(reader)):
         if diff_path["commit_len"] == "1" or not is_defined_author(diff_path["author"]):
             continue        
@@ -243,6 +244,7 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
 
         hunks = make_abstracted_hunks(diff_index, abstracted)
         out_metricses = [{
+            "repository": f"{owner}/{repo}",
             "number": int(diff_path["number"]),
             "sha": diff_path["merge_commit_sha"],
             "author":diff_path["author"],
