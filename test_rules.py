@@ -69,7 +69,7 @@ useful_lens = []
 successed_numbers = []
 for i, change in enumerate(reversed(changes[1:])):
     if len(change["condition"]) == 0 or len(change["consequent"]) == 0\
-        or change[contents] in successed_numbers or len(change["condition"]) > 5:
+        or change["repository"] + ":" + str(change[contents]) in successed_numbers or len(change["condition"]) > 5:
         continue
     sys.stdout.write("\r%d / %d pulls %d rules are collected" %
                     (i + 1, changes_len, len(output)))
@@ -85,11 +85,11 @@ for i, change in enumerate(reversed(changes[1:])):
 
     if len(condition_change) == 0:
         continue
-    consequent_change = [x[contents] for x in condition_change if re_consequent.search("\n".join(x["consequent"]))]
+    consequent_change = [x["repository"] + ":" + str(x[contents]) for x in condition_change if re_consequent.search("\n".join(x["consequent"]))]
 
     token_dict["successed_number"] = list(set([x for x in consequent_change if x not in successed_numbers]))
-    token_dict["failed_number"] = list(set([x[contents] for x in condition_change
-                                            if x[contents] not in token_dict["successed_number"]]))
+    token_dict["failed_number"] = list(set([x["repository"] + ":" + str(x[contents]) for x in condition_change
+                                            if x["repository"] + ":" + str(x[contents]) not in token_dict["successed_number"]]))
 
     if len(token_dict["failed_number"]) > 0:
         token_dict["successed_number"] = [x for x in token_dict["successed_number"]
