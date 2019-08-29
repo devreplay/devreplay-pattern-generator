@@ -105,7 +105,7 @@ for i, change in enumerate(reversed(changes[1:])):
     if token_dict["frequency"] != 0:
         output.append(token_dict)
 
-output = sorted(output, key=lambda x: x["accuracy"], reverse=True)
+output = sorted(output, key=lambda x: (x["accuracy"], x["frequency"]), reverse=True)
 
 print("\noutput %d rules" % len(output))
 if total_condition == 0:
