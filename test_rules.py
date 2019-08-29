@@ -69,7 +69,8 @@ useful_lens = []
 successed_numbers = []
 for i, change in enumerate(reversed(changes[1:])):
     if len(change["condition"]) == 0 or len(change["consequent"]) == 0\
-        or change["repository"] + ":" + str(change[contents]) in successed_numbers or len(change["condition"]) > 5:
+        or (contents in change and change["repository"] + ":" + str(change[contents]) in successed_numbers)\
+        or len(change["condition"]) > 5:
         continue
     sys.stdout.write("\r%d / %d pulls %d rules are collected" %
                     (i + 1, changes_len, len(output)))
