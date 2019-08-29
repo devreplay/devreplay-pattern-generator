@@ -32,7 +32,7 @@ and edit `config.json` file like berrow
 {
     "github_token": "Your github token",
     // Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
-    "lang": "Ruby",
+    "lang": "CPP",
     // Number of rules that you want (e.g. 100)
     "change_size": 1000,
     "projects": [
@@ -41,8 +41,8 @@ and edit `config.json` file like berrow
             "repo": "mruby"
         },
         {
-            "owner": "mruby",
-            "repo": "mgem-list"
+            "owner": "matz",
+            "repo": "streem"
         }
     ],
     // will you get all authors change? (true or false)
@@ -52,6 +52,9 @@ and edit `config.json` file like berrow
         {
             "git": "Yukihiro Matsumoto",
             "github": "matz"
+        },
+        {
+            "git": "Yukihiro \"Matz\" Matsumoto"
         }
     ],
     "learn_from": "pulls",
