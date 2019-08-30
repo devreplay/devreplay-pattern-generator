@@ -103,8 +103,11 @@ def make_abstracted_hunks(diff_index, is_abstract):
     for diff_item in [x for x in diff_index.iter_change_type('M')
                      if any([x.a_rawpath.decode('utf-8').endswith(y)
                              for y in lang_extentions[lang]])]:
-        source = diff_item.a_blob.data_stream.read().decode('utf-8')
-        target = diff_item.b_blob.data_stream.read().decode('utf-8')
+        try:
+            source = diff_item.a_blob.data_stream.read().decode('utf-8')
+            target = diff_item.b_blob.data_stream.read().decode('utf-8')
+        except UnicodeDecodeError:
+            continue
         if source == target:
             continue
         hunks = make_hunks(source.splitlines(keepends=True), target.splitlines(keepends=True))
