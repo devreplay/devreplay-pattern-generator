@@ -89,6 +89,12 @@ python3 test_rules.py
 ```
 You can get frequency,accuracy,failed_number(pull_requests),successed_number(pull_requests) informations.
 
+
+or
+```sh
+python3 test_rules_on_dir.py
+```
+
 Output:
 If projects is only one project
 
