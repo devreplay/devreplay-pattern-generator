@@ -1,12 +1,3 @@
-"""
-Get Style missing from diff file
-Style misses list
-* Rename identifier
-* Large to Small (ex:"Style" to "style")
-* only make new line
-* Space or Tab
-* Don't changed AST
-"""
 import sys
 import os
 from csv import DictReader
@@ -27,8 +18,8 @@ token = config["github_token"]
 lang = config["lang"]
 TN = TokeNizer(lang)
 change_size = config["change_size"]
-all_author = config["all_author"] if "all_author" in config else True
-authors = config["authors"] if "authors" in config else []
+all_author = config.get("all_author", True)
+authors = config.get("authors", [])
 
 def main():
     """
@@ -227,40 +218,39 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
     change_sets = []
     diffs_file = "data/pulls/" + owner + "_" + repo + ".csv"
     with open(diffs_file, "r", encoding="utf-8") as diffs:
-        reader = list(DictReader(diffs))
-    for i, diff_path in sorted([(i, x) for i, x in enumerate(reader)\
-         if x["commit_len"] != "1" and (is_defined_author(x["author"]) or is_defined_author(x["merged_by"]))],\
-              key=lambda x: x[1]["number"], reverse=True):
-        try :
-            original_commit = target_repo.commit(diff_path["first_commit_sha"])
-            changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
-        except:
-            continue
-        commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
-        if any([x.message.startswith("Merge") for x in commits]):
-            continue
+        reader = DictReader(diffs)
+        for i, diff_path in enumerate(reversed([x for x in reader\
+            if x["commit_len"] != "1" and (is_defined_author(x["author"]) or is_defined_author(x["merged_by"]))])):
+            try :
+                original_commit = target_repo.commit(diff_path["first_commit_sha"])
+                changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
+            except:
+                continue
+            commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
+            if any([x.message.startswith("Merge") for x in commits]):
+                continue
 
-        sys.stdout.write("\r%d pulls id: %s, %d / %d changes" % 
-                    (i, diff_path["number"], len(change_sets), change_size))
+            sys.stdout.write("\r%d pulls id: %s, %d / %d changes" % 
+                        (i, diff_path["number"], len(change_sets), change_size))
 
-        diff_index = original_commit.diff(changed_commit)
+            diff_index = original_commit.diff(changed_commit)
 
-        hunks = make_abstracted_hunks(diff_index, abstracted)
-        out_metricses = [{
-            "repository": f"{owner}/{repo}",
-            "number": int(diff_path["number"]),
-            "sha": diff_path["merge_commit_sha"],
-            "author":diff_path["author"],
-            "created_at": diff_path["created_at"],
-            # "file_path": x["file_path"],
-            "condition": x["condition"],
-            "consequent": x["consequent"]
-        } for x in hunks]
-        change_sets.extend(out_metricses)
-        if len(change_sets) > change_size:
-            return change_sets
+            hunks = make_abstracted_hunks(diff_index, abstracted)
+            out_metricses = [{
+                "repository": f"{owner}/{repo}",
+                "number": int(diff_path["number"]),
+                "sha": diff_path["merge_commit_sha"],
+                "author":diff_path["author"],
+                "created_at": diff_path["created_at"],
+                # "file_path": x["file_path"],
+                "condition": x["condition"],
+                "consequent": x["consequent"]
+            } for x in hunks]
+            change_sets.extend(out_metricses)
+            if len(change_sets) > change_size:
+                return change_sets
 
-    return change_sets
+        return change_sets
 
 if __name__ == '__main__':
     main()
