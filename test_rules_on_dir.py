@@ -2,6 +2,7 @@ import os
 import git
 import json
 import re
+import sys
 from pathlib import Path
 from lang_extentions import lang_extentions
 from collections import defaultdict
@@ -12,7 +13,6 @@ with open("config.json", "r") as json_file:
 lang = config["lang"]
 projects = config["projects"]
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
-skip_value_replace = config["skip_value_replace"]
 
 group_changes = re.compile(r"\\\$\\{(\d+)(:[a-zA-Z_]+\\})")
 simple_change = re.compile(r"[a-zA-Z_]+")
@@ -79,15 +79,22 @@ for project in projects:
     clone_target_repo(project["owner"], project["repo"])
     file_contents = get_all_file_contents(project["repo"])
     all_contents.extend(file_contents)
+print("Success Collecting %d files!" % len(all_contents))
 
 print("Checking Rules...")
-for change in changes:
-    if skip_value_replace and "$" not in "\n".join(change["consequent"]):
+
+duplicates_sha = []
+
+change_size = len(changes)
+for i, change in enumerate(changes):
+    if (change["condition"], change["consequent"]) in duplicates_sha:
         continue
+
     re_condition = snippet2Regex(change["condition"])
     re_consequent = snippet2Regex(change["consequent"])
     if re_condition == None or re_consequent == None:
         continue
+    sys.stdout.write("\r%d / %d changes" % (i, change_size))
     condition_files = [x["path"] for x in all_contents if re_condition.search(x["content"])]
     consequent_files = [x["path"] for x in all_contents if re_consequent.search(x["content"])]
 
@@ -95,12 +102,11 @@ for change in changes:
     condition_files = set(condition_files)
     origin_condition = condition_files.difference(consequent_files)
     origin_consequent = consequent_files.difference(condition_files)
-    # condition_len = len(origin_condition) if change["condition"] in change["consequent"] else len(condition_files)
-    # consequent_len = len(origin_consequent) if change["consequent"] in change["condition"] else len(consequent_files)
     condition_len = len(origin_condition)
     consequent_len = len(origin_consequent)
     change["consequent_vs_condition"] = consequent_len / (consequent_len + condition_len) if consequent_len > 0 else 0
     if change["consequent_vs_condition"] > 0.5 and condition_len != 0:
+        duplicates_sha.append((change["condition"], change["consequent"]))
         change["unchanged_files"] = list(origin_condition)
         all_changes.append(change)
 
