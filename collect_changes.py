@@ -69,10 +69,7 @@ def clone_target_repo(owner, repo):
         if not os.path.exists(data_repo_dir):
             os.makedirs(data_repo_dir)
         print("Cloning " + data_repo_dir + "/" + repo)
-        if "github_token" in config:
-            git_url = "https://" + config["github_token"] + ":@github.com/" + owner + "/" + repo +".git"
-        else:
-            git_url = "https://github.com/" + owner + "/" + repo +".git"
+        git_url = "https://" + token + ":@github.com/" + owner + "/" + repo +".git"
         git.Git(data_repo_dir).clone(git_url)
     else:
         pass
