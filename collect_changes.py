@@ -4,7 +4,6 @@ from csv import DictReader
 from json import dump, loads, dumps, load
 from unidiff import PatchSet, errors
 import difflib
-from configparser import ConfigParser
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
 import git
@@ -20,6 +19,10 @@ TN = TokeNizer(lang)
 change_size = config["change_size"]
 all_author = config.get("all_author", True)
 authors = config.get("authors", [])
+time_length = config.get("time_length")
+if time_length is not None:
+    time_span = (datetime.strptime(time_length["start"], "%Y-%m-%d %H:%M:%S"),
+                 datetime.strptime(time_length["end"], "%Y-%m-%d %H:%M:%S"))
 
 def main():
     """
@@ -175,6 +178,11 @@ def is_defined_author(author):
        len(authors) == 0 or\
        any(author in [x.get("git"), x.get("github")] for x in authors)
 
+def in_time_span(committed_date):
+    return time_length is None or\
+        (committed_date > time_span[0] and \
+         committed_date < time_span[1])
+
 def make_master_diff(target_repo, owner, repo, abstracted):
     change_sets = []
 
@@ -183,7 +191,10 @@ def make_master_diff(target_repo, owner, repo, abstracted):
         if commit.message.startswith("Merge"):
             continue
 
-        sys.stdout.write("\r%d/%d commits %d / %d changes" % (i, len(commits), len(change_sets), change_size))
+        committed_date = datetime.fromtimestamp(commit.authored_date)
+        if not in_time_span(committed_date):
+            continue
+
         author = commit.author.name
         if not is_defined_author(author):
             continue
@@ -194,7 +205,9 @@ def make_master_diff(target_repo, owner, repo, abstracted):
         except:
             continue
 
-        created_at = str(datetime.fromtimestamp(commit.authored_date))
+        sys.stdout.write("\r%d/%d commits %d / %d changes" % (i, len(commits), len(change_sets), change_size))
+
+        created_at = str(committed_date)
         hunks = make_abstracted_hunks(diff_index, abstracted)
         out_metricses = [{
             "repository": f"{owner}/{repo}",
@@ -217,7 +230,9 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
     with open(diffs_file, "r", encoding="utf-8") as diffs:
         reader = DictReader(diffs)
         for i, diff_path in enumerate(reversed([x for x in reader\
-            if x["commit_len"] != "1" and (is_defined_author(x["author"]) or is_defined_author(x["merged_by"]))])):
+            if x["commit_len"] != "1" and\
+                (is_defined_author(x["author"]) or is_defined_author(x["merged_by"])) and\
+                in_time_span(datetime.strptime(x["created_at"] ,"%Y-%m-%d %H:%M:%S"))])):
             try :
                 original_commit = target_repo.commit(diff_path["first_commit_sha"])
                 changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
