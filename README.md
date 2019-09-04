@@ -35,6 +35,10 @@ and edit `config.json` file like berrow
     "lang": "CPP",
     // Number of rules that you want (e.g. 100)
     "change_size": 1000,
+    "time_length": {
+        "start": "2018-01-01 00:00:00",
+        "end": "2019-01-01 00:00:00"
+    },
     "projects": [
         {
             "owner": "mruby",
