@@ -50,7 +50,7 @@ and edit `config.json` file like berrow
             "repo": "streem"
         }
     ],
-    "validate_projects": [
+    "applied_projects": [
         {
             "owner": "matz",
             "repo": "streem"
@@ -102,15 +102,42 @@ If you want to get more information about these output, please do this section.
 ```sh
 python3 test_rules.py
 ```
-You can get frequency,accuracy,failed_number(pull_requests),successed_number(pull_requests) informations.
+You can get popularity, frequency, accuracy,failed_number(pull_requests),successed_number(pull_requests) informations.
 
-
-or
-```sh
-python3 test_rules_on_dir.py
-```
 
 Output:
+
+Example:
+
+```json
+[  
+  {
+    "repository": "owner/repo",
+    "sha": "Change_Commit_Sha",
+    "author": "Change Author",
+    "created_at": "2019-04-09 11:56:38",
+    "condition": [
+      "${0:Identifier}.pullRequests.${1:Identifier}"
+    ],
+    "consequent": [
+      "${0:Identifier}.pulls.${1:Identifier}"
+    ],
+    "popularity": 0.7272727272727273,
+    "self_popularity": 0.3333333333333333,
+    "applicable_files": [
+      "app/lib/pro/get-status.js",
+      "app/test/integration/pro-plan-test.js"
+    ],
+    "link": "https://github.com/wei/pull/commit/Change_Commit_SHA",
+    "successed_number": [],
+    "failed_number": [
+      "wip/app:669407dcef96ae12227e4e5d0308d335eb6ca052"
+    ],
+    "frequency": 0,
+    "accuracy": 0.0
+  },
+]
+```
 If projects is only one project
 
 * Pattern (`data/changes/{owner}_{repo}_{lang}_(pulls|master)_validated.json`)
