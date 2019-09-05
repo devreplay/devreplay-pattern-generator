@@ -16,7 +16,7 @@ with open("config.json", "r") as json_file:
 token = config["github_token"]
 lang = config["lang"]
 TN = TokeNizer(lang)
-change_size = config["change_size"]
+change_size = config.get("change_size", 100)
 all_author = config.get("all_author", True)
 authors = config.get("authors", [])
 time_length = config.get("time_length")
@@ -162,7 +162,8 @@ def make_hunks(source, target):
             added_lines = []
 
         previous_symbol = symbol
-    if deleted_lines != [] and added_lines != []:
+    if deleted_lines != [] and added_lines != [] and\
+      len(deleted_lines) < 10 and len(added_lines) < 10:
         hunks.append({
             "condition": code_trip("".join(deleted_lines)),
             "consequent": code_trip("".join(added_lines)),
@@ -187,15 +188,10 @@ def in_time_span(committed_date):
 def make_master_diff(target_repo, owner, repo, abstracted):
     change_sets = []
 
-    commits = list(target_repo.iter_commits("master"))
+    commits = [x for x in target_repo.iter_commits("master")
+               if not x.message.startswith("Merge") and\
+                  in_time_span(datetime.fromtimestamp(x.authored_date))]
     for i, commit in enumerate(commits):
-        if commit.message.startswith("Merge"):
-            continue
-
-        committed_date = datetime.fromtimestamp(commit.authored_date)
-        if not in_time_span(committed_date):
-            continue
-
         author = commit.author.name
         if not is_defined_author(author):
             continue
@@ -205,10 +201,13 @@ def make_master_diff(target_repo, owner, repo, abstracted):
             diff_index = commit.diff(sha + "~1")
         except:
             continue
+        created_at = str(datetime.fromtimestamp(commit.authored_date))
 
-        sys.stdout.write("\r%d/%d commits %d / %d changes" % (i, len(commits), len(change_sets), change_size))
+        if all_change:
+            sys.stdout.write("\r%d/%d commits %d changes, %s" % (i, len(commits), len(change_sets), created_at))
+        else:
+            sys.stdout.write("\r%d/%d commits %d / %d changes, %s" % (i, len(commits), len(change_sets), change_size, created_at))
 
-        created_at = str(committed_date)
         hunks = make_abstracted_hunks(diff_index, abstracted)
         out_metricses = [{
             "repository": f"{owner}/{repo}",
