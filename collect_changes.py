@@ -20,6 +20,7 @@ change_size = config["change_size"]
 all_author = config.get("all_author", True)
 authors = config.get("authors", [])
 time_length = config.get("time_length")
+all_change = config.get("all_change", False)
 if time_length is not None:
     time_span = (datetime.strptime(time_length["start"], "%Y-%m-%d %H:%M:%S"),
                  datetime.strptime(time_length["end"], "%Y-%m-%d %H:%M:%S"))
@@ -215,11 +216,11 @@ def make_master_diff(target_repo, owner, repo, abstracted):
             "author":author,
             "created_at": created_at,
             # "file_path": x["file_path"],
-            "condition": x["condition"],
-            "consequent": x["consequent"]
+            "condition": x["consequent"],
+            "consequent": x["condition"]
         } for x in hunks]
         change_sets.extend(out_metricses)
-        if len(change_sets) > change_size:
+        if not all_change and len(change_sets) > change_size:
             break
         
     return change_sets
@@ -259,7 +260,7 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
                 "consequent": x["consequent"]
             } for x in hunks]
             change_sets.extend(out_metricses)
-            if len(change_sets) > change_size:
+            if not all_change and len(change_sets) > change_size:
                 return change_sets
 
         return change_sets
