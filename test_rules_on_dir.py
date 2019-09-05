@@ -12,6 +12,8 @@ with open("config.json", "r") as json_file:
 
 lang = config["lang"]
 projects = config["projects"]
+validate_projects = config.get("validate_projects", [])
+
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 
 group_changes = re.compile(r"\\\$\\{(\d+)(:[a-zA-Z_]+\\})")
@@ -70,6 +72,16 @@ def get_all_file_contents(repo):
              if any([str(x).endswith(y) for y in lang_extentions[lang]])]
     return [{"path": f"{repo}/{x}", "content": target_repo.git.show('HEAD:{}'.format(x))} for x in paths]
 
+def make_matched_files(contents, re_condition, re_consequent):
+    condition_files = [x["path"] for x in contents if re_condition.search(x["content"])]
+    consequent_files = [x["path"] for x in contents if re_consequent.search(x["content"])]
+
+    consequent_files = set(consequent_files)
+    condition_files = set(condition_files)
+    origin_condition = condition_files.difference(consequent_files)
+    origin_consequent = consequent_files.difference(condition_files)
+    return (origin_condition, origin_consequent)
+
 all_changes = []
 all_contents = []
 
@@ -79,6 +91,16 @@ for project in projects:
     clone_target_repo(project["owner"], project["repo"])
     file_contents = get_all_file_contents(project["repo"])
     all_contents.extend(file_contents)
+
+all_validate_contents = []
+if validate_projects != []:
+    print("Collecting validate file contents...")
+    for project in validate_projects:
+        print(project)
+        clone_target_repo(project["owner"], project["repo"])
+        file_contents = get_all_file_contents(project["repo"])
+        all_validate_contents.extend(file_contents)
+
 print("Success Collecting %d files!" % len(all_contents))
 
 print("Checking Rules...")
@@ -94,21 +116,38 @@ for i, change in enumerate(changes):
     re_consequent = snippet2Regex(change["consequent"])
     if re_condition == None or re_consequent == None:
         continue
-    sys.stdout.write("\r%d / %d changes" % (i, change_size))
-    condition_files = [x["path"] for x in all_contents if re_condition.search(x["content"])]
-    consequent_files = [x["path"] for x in all_contents if re_consequent.search(x["content"])]
+    sys.stdout.write("\r%d / %d changes, %d rules collected" % (i, change_size, len(all_changes)))
 
-    consequent_files = set(consequent_files)
-    condition_files = set(condition_files)
-    origin_condition = condition_files.difference(consequent_files)
-    origin_consequent = consequent_files.difference(condition_files)
+    origin_condition, origin_consequent = make_matched_files(all_contents, re_condition, re_consequent)
     condition_len = len(origin_condition)
     consequent_len = len(origin_consequent)
-    change["consequent_vs_condition"] = consequent_len / (consequent_len + condition_len) if consequent_len > 0 else 0
-    if change["consequent_vs_condition"] > 0.5 and condition_len != 0:
-        duplicates_sha.append((change["condition"], change["consequent"]))
+    change["popularity"] = consequent_len / (consequent_len + condition_len) if consequent_len > 0 else 0
+
+    if validate_projects != []:
+        validate_condition, validate_consequent = make_matched_files(all_validate_contents, re_condition, re_consequent)
+        validate_condition_len = len(validate_condition)
+        validate_consequent_len = len(validate_consequent)
+        change["self_popularity"] = validate_consequent_len / (validate_consequent_len + validate_condition_len) if validate_consequent_len > 0 else 0
+        change["unchanged_files"] = list(validate_condition)
+        total_conditon_len = validate_condition_len
+    else:
         change["unchanged_files"] = list(origin_condition)
+        total_conditon_len = condition_len
+    
+    if total_conditon_len != 0 and consequent_len != 0:
+        change["link"] = "https://github.com/%s/commit/%s" % (change["repository"], change["sha"])
+        duplicates_sha.append((change["condition"], change["consequent"]))
         all_changes.append(change)
+
+
+
+print("Collecting validate file contents...")
+for project in validate_projects:
+    print(project)
+    clone_target_repo(project["owner"], project["repo"])
+    file_contents = get_all_file_contents(project["repo"])
+    all_validate_contents.extend(file_contents)
+
 
 if len(projects) == 1:
     OUT_TOKEN_NAME = "data/changes/" + projects[0]["owner"] + "_" + projects[0]["repo"] + \
@@ -116,7 +155,7 @@ if len(projects) == 1:
 else:
     OUT_TOKEN_NAME = "data/changes/devreplay.json"
 
-all_changes = sorted(all_changes, key=lambda x: x["consequent_vs_condition"], reverse=True)
+all_changes = sorted(all_changes, key=lambda x: x["popularity"], reverse=True)
 with open(OUT_TOKEN_NAME, "w") as target:
     print("Success to validate the changes Output is " + OUT_TOKEN_NAME)
     json.dump(all_changes, target, indent=2)

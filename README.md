@@ -33,7 +33,8 @@ and edit `config.json` file like berrow
     "github_token": "Your github token",
     // Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
     "lang": "CPP",
-    // Number of rules that you want (e.g. 100)
+    "all_change": false,
+    // (if all_change is false) Number of rules that you want (e.g. 100)
     "change_size": 1000,
     "time_length": {
         "start": "2018-01-01 00:00:00",
@@ -49,6 +50,16 @@ and edit `config.json` file like berrow
             "repo": "streem"
         }
     ],
+    "validate_projects": [
+        {
+            "owner": "matz",
+            "repo": "streem"
+        }
+    ],
+    "time_length": {
+        "start": "2018-09-01 00:00:00",
+        "end": "2019-09-01 00:00:00"
+    },
     // will you get all authors change? (true or false)
     "all_author": true,
     "authors": [
