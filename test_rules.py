@@ -91,6 +91,7 @@ for project in projects:
     clone_target_repo(project["owner"], project["repo"])
     file_contents = get_all_file_contents(project["repo"])
     all_contents.extend(file_contents)
+print("Success Collecting %d files!" % len(all_contents))
 
 all_validate_contents = []
 if validate_projects != []:
@@ -101,7 +102,7 @@ if validate_projects != []:
         file_contents = get_all_file_contents(project["repo"])
         all_validate_contents.extend(file_contents)
 
-print("Success Collecting %d files!" % len(all_contents))
+print("Success Collecting %d files!" % len(all_validate_contents))
 
 print("Checking Rules...")
 
@@ -132,10 +133,9 @@ for i, change in enumerate(changes):
         change["self_popularity"] = validate_consequent_len / (validate_consequent_len + condition_len) if validate_consequent_len > 0 else 0
 
     change["applicable_files"] = list(origin_condition)
-    total_conditon_len = condition_len
     
-    if total_conditon_len != 0 and consequent_len != 0:
-        change["link"] = "https://github.com/%s/commit/%s" % (change["repository"], change["sha"])
+    if condition_len != 0 and consequent_len != 0:
+        change["links"] = ["https://github.com/%s/commit/%s" % (change["repository"], change["sha"])]
         duplicates_sha.append((change["condition"], change["consequent"]))
         all_changes.append(change)
 
@@ -153,6 +153,7 @@ if validate_by != learn_from:
             changes.extend(data)
 
 contents = "number" if "pulls" == validate_by else "sha"
+contents_type = "pull" if "pulls" == validate_by else "commit"
 successed_numbers = []
 changes_size = len(all_changes)
 output = []
@@ -175,15 +176,16 @@ for i, change in enumerate(all_changes):
     if len(condition_change) == 0:
         output.append(tmp_change)
         continue
-    consequent_change = [x["repository"] + ":" + str(x[contents]) for x in condition_change if re_consequent.search("\n".join(x["consequent"]))]
+    consequent_change = ["/".join([x["repository"], contents_type, str(x[contents])]) for x in condition_change if re_consequent.search("\n".join(x["consequent"]))]
 
-    tmp_change["successed_number"] = list(set([x for x in consequent_change if x not in successed_numbers]))
-    tmp_change["failed_number"] = list(set([x["repository"] + ":" + str(x[contents]) for x in condition_change
-                                            if x["repository"] + ":" + str(x[contents]) not in tmp_change["successed_number"]]))
+    successed_number = list(set([x for x in consequent_change if x not in successed_numbers]))
+    tmp_change["exception_links"] = list(set(["https://github.com/%s/%s/%s" % (x["repository"], contents_type, str(x[contents])) for x in condition_change
+                                            if "/".join([x["repository"], contents_type, str(x[contents])]) not in successed_number]))
 
-    successed_numbers.extend(tmp_change["successed_number"])
-    tmp_change["frequency"] = len(tmp_change["successed_number"])
-    tmp_change["accuracy"] = tmp_change["frequency"] / (tmp_change["frequency"] + len(tmp_change["failed_number"]))
+    successed_numbers.extend(successed_number)
+    tmp_change["links"].extend(["https://github.com/%s" % x for x in successed_number])
+    tmp_change["frequency"] = len(successed_number)
+    tmp_change["accuracy"] = tmp_change["frequency"] / (tmp_change["frequency"] + len(tmp_change["exception_links"]))
     output.append(tmp_change)
 
 if len(projects) == 1:
