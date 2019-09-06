@@ -27,19 +27,22 @@ and edit `config.json` file like berrow
 * If you try first time, please check bottom example for the `Option` setting
 * GitHub token can be generated from https://github.com/settings/tokens)
 
-(If your target `Ruby` organization name is `mruby`)
+(If your target `CPP` organization name is `mruby`)
 ```json
 {
+    // Your github token from https://github.com/settings/tokens
     "github_token": "Your github token",
-    // Your Target Language (e.g. Python, Ruby, Java, JavaScript, CPP)
+    // Your Target Language (Python, Ruby, Java, JavaScript, CPP, PHP)
     "lang": "CPP",
-    "all_change": false,
+    "all_change": true,
     // (if all_change is false) Number of rules that you want (e.g. 100)
     "change_size": 1000,
+    // (Option) Target time span
     "time_length": {
         "start": "2018-01-01 00:00:00",
         "end": "2019-01-01 00:00:00"
     },
+    // Projects that you want to learn
     "projects": [
         {
             "owner": "mruby",
@@ -50,20 +53,17 @@ and edit `config.json` file like berrow
             "repo": "streem"
         }
     ],
+    // (Option) Projects that you want to apply
     "applied_projects": [
         {
             "owner": "matz",
             "repo": "streem"
         }
     ],
-    "time_length": {
-        "start": "2018-09-01 00:00:00",
-        "end": "2019-09-01 00:00:00"
-    },
-    // will you get all authors change? (true or false)
-    "all_author": true,
+    // You will get all authors change or not (true or false)
+    "all_author": false,
+    // (Option) if all_author is false, choose target authors' name and github id
     "authors": [
-        // if all_author is true, choose target authors' name and github id
         {
             "git": "Yukihiro Matsumoto",
             "github": "matz"
@@ -72,6 +72,7 @@ and edit `config.json` file like berrow
             "git": "Yukihiro \"Matz\" Matsumoto"
         }
     ],
+    // Target of learning and validating (pulls or master)
     "learn_from": "pulls",
     "validate_by": "master"
 }
@@ -152,4 +153,3 @@ I would like to thank the Support Center for Advanced Telecommunications (SCAT) 
 
 Also, this repository use other repository
 https://github.com/Ikuyadeu/CodeTokenizer
-

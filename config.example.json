@@ -1,6 +1,7 @@
 {
     "github_token": "XXXXXX",
     "lang": "CPP",
+    "all_change": true,
     "change_size": 1000,
     "time_length": {
         "start": "2018-01-01 00:00:00",
@@ -11,6 +12,12 @@
             "owner": "mruby",
             "repo": "mruby"
         },
+        {
+            "owner": "matz",
+            "repo": "streem"
+        }
+    ],
+    "applied_projects": [
         {
             "owner": "matz",
             "repo": "streem"
