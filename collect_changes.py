@@ -7,7 +7,7 @@ import difflib
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
 import git
-from datetime import datetime
+from datetime import datetime, timedelta
 from collector.pulls_collector import PullsCollector
 
 with open("config.json", "r") as json_file:
@@ -22,8 +22,10 @@ authors = config.get("authors", [])
 time_length = config.get("time_length")
 all_change = config.get("all_change", False)
 if time_length is not None:
-    time_span = (datetime.strptime(time_length["start"], "%Y-%m-%d %H:%M:%S"),
-                 datetime.strptime(time_length["end"], "%Y-%m-%d %H:%M:%S"))
+    time_span = (datetime.strptime(time_length["start"], "%Y-%m-%d %H:%M:%S")  
+                 if "start" in time_length else datetime.now() - timedelta(days=365),
+                 datetime.strptime(time_length["end"], "%Y-%m-%d %H:%M:%S")
+                 if "end" in time_length else datetime.now())
 
 def main():
     """

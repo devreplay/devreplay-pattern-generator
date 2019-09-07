@@ -39,7 +39,9 @@ and edit `config.json` file like berrow
     "change_size": 1000,
     // (Option) Target time span
     "time_length": {
+        // Default (if not defined) is 1 years ago from today
         "start": "2018-01-01 00:00:00",
+        // Default is today
         "end": "2019-01-01 00:00:00"
     },
     // Projects that you want to learn
