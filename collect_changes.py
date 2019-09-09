@@ -43,9 +43,10 @@ def main():
         projects = config["projects"]
     learn_from_pulls = "pull" in config["learn_from"]
     validate_by_pulls = "pull" in config["validate_by"]
-    for projet in projects:
-        owner = projet["owner"]
-        repo = projet["repo"]
+    for project in projects:
+        owner = project["owner"]
+        repo = project["repo"]
+        branch = project.get("branch", "master")
 
         clone_target_repo(owner, repo)
         target_repo = git.Repo("data/repos/" + repo)
@@ -68,7 +69,7 @@ def main():
         if not (learn_from_pulls and validate_by_pulls):
             abstracted = not learn_from_pulls
             print("collecting the master changes...")
-            changes_sets = make_master_diff(target_repo, owner, repo, abstracted)
+            changes_sets = make_master_diff(target_repo, owner, repo, branch, abstracted)
 
             out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
             with open(out_name, "w", encoding='utf-8') as f:
@@ -195,10 +196,10 @@ def in_time_span(committed_date):
         (committed_date > time_span[0] and \
          committed_date < time_span[1])
 
-def make_master_diff(target_repo, owner, repo, abstracted):
+def make_master_diff(target_repo, owner, repo, branch, abstracted):
     change_sets = []
 
-    commits = [x for x in target_repo.iter_commits("master")
+    commits = [x for x in target_repo.iter_commits(branch)
                if not x.message.startswith("Merge") and\
                   in_time_span(datetime.fromtimestamp(x.authored_date))]
     for i, commit in enumerate(commits):

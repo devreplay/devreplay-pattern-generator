@@ -12,7 +12,16 @@ with open("config.json", "r") as json_file:
     config = json.load(json_file)
 
 lang = config["lang"]
-projects = config["projects"]
+def get_projects(path):
+    with open(path, "r") as json_file:
+        projects = json.load(json_file)
+        return list(projects)
+
+if "projects_path" in config:
+    projects = get_projects(config["projects_path"])
+else:
+    projects = config["projects"]
+
 validate_projects = config.get("applied_projects", [])
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
