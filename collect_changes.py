@@ -143,43 +143,14 @@ def make_abstracted_hunks(diff_index, is_abstract):
     out_hunks = list(map(loads, set(map(dumps, out_hunks))))
     return out_hunks
 
+
 def make_hunks(source, target):
-    hunks = []
-    differ = difflib.ndiff(source, target)
-    previous_symbol = " "
-    deleted_lines = []
-    added_lines = []
-    for diff in differ:
-        # print(diff)
-        symbol = diff[0]
-        if len(diff) < 3 or symbol == "?":
-            continue
-        line = diff[2:]
-
-        if symbol not in ["+", previous_symbol] and deleted_lines != [] and added_lines != []:
-            hunks.append({
-                "condition": code_trip("".join(deleted_lines)),
-                "consequent": code_trip("".join(added_lines)),
-            })
-            deleted_lines = []
-            added_lines = []
-
-        if symbol == "-":
-            deleted_lines.append(line)
-        elif symbol == "+":
-            added_lines.append(line)
-        else:
-            deleted_lines = []
-            added_lines = []
-
-        previous_symbol = symbol
-    if deleted_lines != [] and added_lines != [] and\
-      len(deleted_lines) < 10 and len(added_lines) < 10:
-        hunks.append({
-            "condition": code_trip("".join(deleted_lines)),
-            "consequent": code_trip("".join(added_lines)),
-        })
-    return hunks
+    s = difflib.SequenceMatcher(None, source, target)
+    return [
+        {"condition": "".join(source[i1:i2]),
+        "consequent": "".join(target[j1:j2])} for (tag, i1, i2, j1, j2) in s.get_opcodes()
+        if tag in ('replace')
+    ]
 
 def code_trip(code):
     splited_code = code.splitlines(keepends=True)
