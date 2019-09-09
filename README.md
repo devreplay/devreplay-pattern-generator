@@ -55,6 +55,8 @@ and edit `config.json` file like berrow
             "repo": "streem"
         }
     ],
+    // You can define projects by another file
+    "projects_path": "data/projects/rails_Ruby.json",
     // (Option) Projects that you want to apply
     "applied_projects": [
         {

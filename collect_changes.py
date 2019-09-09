@@ -27,12 +27,20 @@ if time_length is not None:
                  datetime.strptime(time_length["end"], "%Y-%m-%d %H:%M:%S")
                  if "end" in time_length else datetime.now())
 
+def get_projects(path):
+    with open(path, "r") as json_file:
+        projects = load(json_file)
+        return list(projects)
+
+
 def main():
     """
     The main
     """
-
-    projects = config["projects"]
+    if "projects_path" in config:
+        projects = get_projects(config["projects_path"])
+    else:
+        projects = config["projects"]
     learn_from_pulls = "pull" in config["learn_from"]
     validate_by_pulls = "pull" in config["validate_by"]
     for projet in projects:
