@@ -48,7 +48,8 @@ and edit `config.json` file like berrow
     "projects": [
         {
             "owner": "mruby",
-            "repo": "mruby"
+            "repo": "mruby",
+            "branch": "master"
         },
         {
             "owner": "matz",
