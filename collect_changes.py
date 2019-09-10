@@ -20,12 +20,12 @@ change_size = config.get("change_size", 100)
 all_author = config.get("all_author", True)
 authors = config.get("authors", [])
 time_length = config.get("time_length")
-all_change = config.get("all_change", False)
 if time_length is not None:
     time_span = (datetime.strptime(time_length["start"], "%Y-%m-%d %H:%M:%S")  
                  if "start" in time_length else datetime.now() - timedelta(days=365),
                  datetime.strptime(time_length["end"], "%Y-%m-%d %H:%M:%S")
                  if "end" in time_length else datetime.now())
+all_change = config.get("all_change", False)
 
 def get_projects(path):
     with open(path, "r") as json_file:
@@ -98,8 +98,6 @@ def collect_target_pulls(owner, repo, token):
         print(f"Succeeded collecting {owner}/{repo} pulls!")
     else:
         pass
-    # with open(file_name, "r", encoding="utf-8") as diffs:
-    #     return list(DictReader(diffs))
 
 def make_abstracted_hunks(diff_index, is_abstract):
     out_hunks = []
@@ -143,14 +141,10 @@ def make_abstracted_hunks(diff_index, is_abstract):
     out_hunks = list(map(loads, set(map(dumps, out_hunks))))
     return out_hunks
 
-
 def make_hunks(source, target):
     s = difflib.SequenceMatcher(None, source, target)
-    return [
-        {"condition": "".join(source[i1:i2]),
-        "consequent": "".join(target[j1:j2])} for (tag, i1, i2, j1, j2) in s.get_opcodes()
-        if tag in ('replace')
-    ]
+    return [{"condition": "".join(source[i1:i2]), "consequent": "".join(target[j1:j2])} 
+    for (tag, i1, i2, j1, j2) in s.get_opcodes() if tag in ('replace')]
 
 def code_trip(code):
     splited_code = code.splitlines(keepends=True)
