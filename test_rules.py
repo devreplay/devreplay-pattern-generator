@@ -174,7 +174,7 @@ changes_size = len(all_changes)
 output = []
 
 for i, change in enumerate(all_changes):
-    if change["repository"] + ":" + str(change[contents]) in successed_numbers:
+    if "/".join([change["repository"], contents_type, str(change[contents])]) in successed_numbers:
         continue
     sys.stdout.write("\r%d / %d rules are collected" %
                     (i + 1, changes_size))
