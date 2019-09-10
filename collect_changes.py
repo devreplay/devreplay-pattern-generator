@@ -143,11 +143,10 @@ def make_abstracted_hunks(diff_index, is_abstract):
 
 def make_hunks(source, target):
     s = difflib.SequenceMatcher(None, source, target)
-    return [{"condition": "".join(source[i1:i2]), "consequent": "".join(target[j1:j2])} 
+    return [{"condition": code_trip(source[i1:i2]), "consequent": code_trip(target[j1:j2])} 
     for (tag, i1, i2, j1, j2) in s.get_opcodes() if tag in ('replace')]
 
-def code_trip(code):
-    splited_code = code.splitlines(keepends=True)
+def code_trip(splited_code):
     min_space = min(len(x) - len(x.lstrip()) for x in splited_code)
     return "".join([x[min_space:] for x in splited_code])
 
