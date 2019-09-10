@@ -139,17 +139,18 @@ for i, change in enumerate(changes):
     change["popularity"] = consequent_len / (consequent_len + condition_len) if consequent_len > 0 else 0
 
     if len(projects) > 1:
-        condition_project_len = len([x for x in repos if any([y.startswith(x) for y in origin_condition])])
+        condition_project = [x for x in repos if any([y.startswith(x) for y in origin_condition])]
+        condition_project_len = len(condition_project)
         consequent_project_len = len([x for x in repos if any([y.startswith(x) for y in origin_consequent])])
         change["projects_popularity"] = consequent_project_len / (consequent_project_len + condition_project_len) if consequent_project_len > 0 else 0
+        change["applicable_projects"] = condition_project
 
     if validate_projects != []:
         origin_condition, validate_consequent = make_matched_files(all_validate_contents, re_condition, re_consequent)
         condition_len = len(origin_condition)
         validate_consequent_len = len(validate_consequent)
         change["self_popularity"] = validate_consequent_len / (validate_consequent_len + condition_len) if validate_consequent_len > 0 else 0
-
-    change["applicable_files"] = list(origin_condition)
+        change["applicable_files"] = list(origin_condition)
     
     if condition_len != 0 and consequent_len != 0:
         change["links"] = ["https://github.com/%s/commit/%s" % (change["repository"], change["sha"])]
