@@ -22,6 +22,8 @@ if "projects_path" in config:
 else:
     projects = config["projects"]
 
+repos = [x["repo"] for x in projects]
+
 validate_projects = config.get("applied_projects", [])
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
@@ -134,12 +136,12 @@ for i, change in enumerate(changes):
     condition_len = len(origin_condition)
     consequent_len = len(origin_consequent)
 
-    repos = [x["repo"] for x in projects]
-    condition_project_len = len([x for x in repos if any([y.startswith(x) for y in origin_condition])])
-    consequent_project_len = len([x for x in repos if any([y.startswith(x) for y in origin_consequent])])
-
     change["popularity"] = consequent_len / (consequent_len + condition_len) if consequent_len > 0 else 0
-    change["projects_popularity"] = consequent_project_len / (consequent_project_len + condition_project_len) if consequent_project_len > 0 else 0
+
+    if len(projects) > 1:
+        condition_project_len = len([x for x in repos if any([y.startswith(x) for y in origin_condition])])
+        consequent_project_len = len([x for x in repos if any([y.startswith(x) for y in origin_consequent])])
+        change["projects_popularity"] = consequent_project_len / (consequent_project_len + condition_project_len) if consequent_project_len > 0 else 0
 
     if validate_projects != []:
         origin_condition, validate_consequent = make_matched_files(all_validate_contents, re_condition, re_consequent)

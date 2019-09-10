@@ -129,8 +129,8 @@ def make_abstracted_hunks(diff_index, is_abstract):
                     continue
  
                 out_hunks.append({
-                    "condition": diff_result["condition"].splitlines(),
-                    "consequent": diff_result["consequent"].splitlines()
+                    "condition": code_trip(diff_result["condition"].splitlines(), True),
+                    "consequent": code_trip(diff_result["consequent"].splitlines(), True)
                 })
         else:
             out_hunks.extend([{
@@ -146,8 +146,10 @@ def make_hunks(source, target):
     return [{"condition": code_trip(source[i1:i2]), "consequent": code_trip(target[j1:j2])} 
     for (tag, i1, i2, j1, j2) in s.get_opcodes() if tag in ('replace')]
 
-def code_trip(splited_code):
+def code_trip(splited_code, to_code=False):
     min_space = min(len(x) - len(x.lstrip()) for x in splited_code)
+    if to_code:
+        return [x[min_space:] for x in splited_code]
     return "".join([x[min_space:] for x in splited_code])
 
 def is_defined_author(author):
