@@ -3,6 +3,13 @@
 This rules can be used on [devreplay](https://www.npmjs.com/package/devreplay)
 And you can use your rule by the [vscode extension](https://marketplace.visualstudio.com/items?itemName=Ikuyadeu.devreplay)
 
+### Requirements
+
+* Python3
+* Ruby (If you will collect ruby rulles)
+* git
+* GitHub account and [github token](https://github.com/settings/tokens)
+
 ## How to Use
 
 ### 0. Cloning this repository
@@ -85,15 +92,17 @@ and edit `config.json` file like berrow
 
 ### 2. Collecting training data set
 
-Run `collect_changes.py`.
-
 ```sh
-python3 collect_changes.py
+chmod +x make_rules.sh
+sh make_rules.sh
 ```
 
-After run these script, some files output to `data` dirs.The details are as follows.
+`make_rules.sh` will runnning `collect_changes.py` and `test_rules.py`
 
-Output:
+#### collect_changes.py
+
+After run this script, followed files will be output on `data` dir.
+
 * Pull List (`data/pulls/{owner}_{repo}.csv`)
 If `learn_from` or `validate_by` is `master`
 * Master Change List (`data/changes/{owner}_{repo}_{lang}_master.json`)
@@ -102,16 +111,9 @@ If `learn_from` or `validate_by` is `pulls`
 * Pull Change List (`data/changes/{owner}_{repo}_{lang}_pulls.json`)
 
 
-### 3. Extracting reusable changes
+#### test_rules.py
 
-If you want to get more information about these output, please do this section.
-```sh
-python3 test_rules.py
-```
 You can get popularity, frequency, accuracy,failed_number(pull_requests),successed_number(pull_requests) informations.
-
-
-Output:
 
 Example:
 
