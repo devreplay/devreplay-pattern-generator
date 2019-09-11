@@ -152,7 +152,7 @@ for i, change in enumerate(changes):
         change["self_popularity"] = validate_consequent_len / (validate_consequent_len + condition_len) if validate_consequent_len > 0 else 0
         change["applicable_files"] = list(origin_condition)
     
-    if condition_len != 0 and consequent_len != 0:
+    if condition_len != 0 and change["popularity"] > 0.01:
         change["links"] = ["https://github.com/%s/commit/%s" % (change["repository"], change["sha"])]
         duplicates_sha.append((change["condition"], change["consequent"]))
         all_changes.append(change)
