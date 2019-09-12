@@ -43,10 +43,10 @@ for change_file in change_files:
 def group2increment(matchobj, identifier_ids):
     tokenid = int(matchobj.group(1))
     if tokenid in identifier_ids:
-        return r"(P=token" + str(tokenid + 1) + r"[a-zA-Z_]+)"
+        return r"(?P=token" + str(tokenid + 1) + r")"
     else:
         identifier_ids.append(tokenid)
-        return r"(?P<token" + str(tokenid + 1) + r">[a-zA-Z_]+)"
+        return r"(?P<token" + str(tokenid + 1) + r">.+)"
 
 def snippet2Regex(snippet):
     identifier_ids = []
@@ -152,7 +152,7 @@ for i, change in enumerate(changes):
         change["self_popularity"] = validate_consequent_len / (validate_consequent_len + condition_len) if validate_consequent_len > 0 else 0
         change["applicable_files"] = list(origin_condition)
     
-    if condition_len != 0 and consequent_len != 0:
+    if condition_len != 0 and change["popularity"] > 0.01:
         change["links"] = ["https://github.com/%s/commit/%s" % (change["repository"], change["sha"])]
         duplicates_sha.append((change["condition"], change["consequent"]))
         all_changes.append(change)
@@ -208,7 +208,7 @@ for i, change in enumerate(all_changes):
 
 if len(projects) == 1:
     OUT_TOKEN_NAME = "data/changes/" + projects[0]["owner"] + "_" + projects[0]["repo"] + \
-    "_" + lang + "_" + learn_from + "_validated.json"
+    "_" + lang + "_" + learn_from + "_devreplay.json"
 else:
     OUT_TOKEN_NAME = "data/changes/devreplay.json"
 
