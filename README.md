@@ -146,7 +146,7 @@ Example:
 ```
 If projects is only one project
 
-* Pattern (`data/changes/{owner}_{repo}_{lang}_(pulls|master)_validated.json`)
+* Pattern (`data/changes/{owner}_{repo}_{lang}_(pulls|master)_devreplay.json`)
 
 If you choose more than one projects
 
