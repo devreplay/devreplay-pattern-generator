@@ -51,6 +51,11 @@ and edit `config.json` file like berrow
         // Default is today
         "end": "2019-01-01 00:00:00"
     },
+    // Target of learning and validating (pulls or master)
+    "learn_from": "pulls",
+    "validate_by": "master",
+    // You will get all authors change or not (true or false)
+    "all_author": false,
     // Projects that you want to learn
     "projects": [
         {
@@ -63,7 +68,7 @@ and edit `config.json` file like berrow
             "repo": "streem"
         }
     ],
-    // You can define projects by another file
+    // (Option) You can define projects by another file
     "projects_path": "data/projects/rails_Ruby.json",
     // (Option) Projects that you want to apply
     "applied_projects": [
@@ -72,8 +77,6 @@ and edit `config.json` file like berrow
             "repo": "streem"
         }
     ],
-    // You will get all authors change or not (true or false)
-    "all_author": false,
     // (Option) if all_author is false, choose target authors' name and github id
     "authors": [
         {
@@ -83,10 +86,7 @@ and edit `config.json` file like berrow
         {
             "git": "Yukihiro \"Matz\" Matsumoto"
         }
-    ],
-    // Target of learning and validating (pulls or master)
-    "learn_from": "pulls",
-    "validate_by": "master"
+    ]
 }
 ```
 
