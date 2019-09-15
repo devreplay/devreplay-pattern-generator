@@ -41,21 +41,9 @@ and edit `config.json` file like berrow
     "github_token": "Your github token",
     // Your Target Language (Python, Ruby, Java, JavaScript, CPP, PHP)
     "lang": "CPP",
-    "all_change": true,
-    // (if all_change is false) Number of rules that you want (e.g. 100)
-    "change_size": 1000,
-    // (Option) Target time span
-    "time_length": {
-        // Default (if not defined) is 1 years ago from today
-        "start": "2018-01-01 00:00:00",
-        // Default is today
-        "end": "2019-01-01 00:00:00"
-    },
     // Target of learning and validating (pulls or master)
     "learn_from": "pulls",
     "validate_by": "master",
-    // You will get all authors change or not (true or false)
-    "all_author": false,
     // Projects that you want to learn
     "projects": [
         {
@@ -68,6 +56,18 @@ and edit `config.json` file like berrow
             "repo": "streem"
         }
     ],
+    "all_change": true,
+    // You will get all authors change or not (true or false)
+    "all_author": false,
+    // (Option, if all_change is false) Number of rules that you want (e.g. 100)
+    "change_size": 1000,
+    // (Option) Target time span
+    "time_length": {
+        // Default (if not defined) is 1 years ago from today
+        "start": "2018-01-01 00:00:00",
+        // Default is today
+        "end": "2019-01-01 00:00:00"
+    },
     // (Option) You can define projects by another file
     "projects_path": "data/projects/rails_Ruby.json",
     // (Option) Projects that you want to apply
