@@ -13,10 +13,9 @@ from collector.pulls_collector import PullsCollector
 with open("config.json", "r") as json_file:
     config = load(json_file)
 
-token = config["github_token"]
+token = config.get("github_token", None)
 lang = config["lang"]
 TN = TokeNizer(lang)
-change_size = config.get("change_size", 100)
 all_author = config.get("all_author", True)
 authors = config.get("authors", [])
 time_length = config.get("time_length")
@@ -25,7 +24,8 @@ if time_length is not None:
                  if "start" in time_length else datetime.now() - timedelta(days=365),
                  datetime.strptime(time_length["end"], "%Y-%m-%d %H:%M:%S")
                  if "end" in time_length else datetime.now())
-all_change = config.get("all_change", False)
+all_change = config.get("all_change", True)
+change_size = config.get("change_size", 100)
 
 def get_projects(path):
     with open(path, "r") as json_file:
@@ -84,7 +84,10 @@ def clone_target_repo(owner, repo):
         if not os.path.exists(data_repo_dir):
             os.makedirs(data_repo_dir)
         print("Cloning " + data_repo_dir + "/" + repo)
-        git_url = "https://" + token + ":@github.com/" + owner + "/" + repo +".git"
+        if token is not None:
+            git_url = "https://" + token + ":@github.com/" + owner + "/" + repo +".git"
+        else:
+            git_url = "https://github.com/" + owner + "/" + repo +".git"
         git.Git(data_repo_dir).clone(git_url)
     else:
         pass

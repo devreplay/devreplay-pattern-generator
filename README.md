@@ -37,14 +37,10 @@ and edit `config.json` file like berrow
 (If your target `CPP` organization name is `mruby`)
 ```json
 {
-    // Your github token from https://github.com/settings/tokens
     "github_token": "Your github token",
-    // Your Target Language (Python, Ruby, Java, JavaScript, CPP, PHP)
     "lang": "CPP",
-    // Target of learning and validating (pulls or master)
     "learn_from": "pulls",
     "validate_by": "master",
-    // Projects that you want to learn
     "projects": [
         {
             "owner": "mruby",
@@ -57,27 +53,19 @@ and edit `config.json` file like berrow
         }
     ],
     "all_change": true,
-    // You will get all authors change or not (true or false)
     "all_author": false,
-    // (Option, if all_change is false) Number of rules that you want (e.g. 100)
     "change_size": 1000,
-    // (Option) Target time span
     "time_length": {
-        // Default (if not defined) is 1 years ago from today
         "start": "2018-01-01 00:00:00",
-        // Default is today
         "end": "2019-01-01 00:00:00"
     },
-    // (Option) You can define projects by another file
     "projects_path": "data/projects/rails_Ruby.json",
-    // (Option) Projects that you want to apply
     "applied_projects": [
         {
             "owner": "matz",
             "repo": "streem"
         }
     ],
-    // (Option) if all_author is false, choose target authors' name and github id
     "authors": [
         {
             "git": "Yukihiro Matsumoto",
@@ -89,6 +77,31 @@ and edit `config.json` file like berrow
     ]
 }
 ```
+
+
+### Detail of parameter
+
+`?`: The parameter is option
+
+* ?`github_token` (If you will get code review data): Your github token from https://github.com/settings/tokens
+* `lang`: Your Target Language (Python, Ruby, Java, JavaScript, CPP, PHP)
+* `learn_from` and `validate_by`: Target of learning and validating (pulls or master)
+* `projects`: Projects that you want to learn
+    * `owner`: Project owner name
+    * `repo`: Project repository name
+    * ?`branch` (default is `master`): Project branch name
+* ?`projects_path`: If you want to devide projects contents, you can write projects information on the other file
+* ?`applied_projects`: Projects that you want to apply rules
+* ?`all_change`(default is False): Will you get all commits or not
+* ?`change_size` (if all_change is false, default is 100):  Number of change that you collect
+* ?`time_length` (default is all changes):
+    * ?`start` (If `end` is defined, default is 1 years ago):
+    * ?`end` (If `start` is defined, default is today):
+* ?`all_author`?(default is True): :You will get all authors change or not (True or False) 
+* ?`authors` (if all_author is false): choose target authors' name and github id
+    * `git`: author git name
+    * `github`: author github id
+
 
 ### 2. Collecting training data set
 
