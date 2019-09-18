@@ -81,33 +81,33 @@ def get_all_file_contents(repo):
     target_repo = git.Repo("data/repos/" + repo)
     paths = [str(x) for x in list_paths(target_repo.commit("HEAD").tree)
              if any([str(x).endswith(y) for y in lang_extentions[lang]])]
-    return [{"path": f"{repo}/{x}", "content": target_repo.git.show('HEAD:{}'.format(x))} for x in paths]
+    return {f"{repo}/{x}": target_repo.git.show('HEAD:{}'.format(x)) for x in paths}
 
 def make_matched_files(contents, re_condition, re_consequent):
-    condition_files = {x["path"] for x in contents if re_condition.search(x["content"])}
-    consequent_files = {x["path"] for x in contents if re_consequent.search(x["content"])}
+    condition_files = {path for path, content in contents.items() if re_condition.search(content)}
+    consequent_files = {path for path, content in contents.items() if re_consequent.search(content)}
 
     # origin_condition = condition_files.difference(consequent_files)
     return (condition_files, consequent_files.difference(condition_files))
 
-all_contents = []
+all_contents = {}
 
 print("Collecting file contents...")
 for project in projects:
     print(project)
     clone_target_repo(project["owner"], project["repo"])
     file_contents = get_all_file_contents(project["repo"])
-    all_contents.extend(file_contents)
+    all_contents.update(file_contents)
 print("Success Collecting %d files!" % len(all_contents))
 
-all_validate_contents = []
+all_validate_contents = {}
 if validate_projects != []:
     print("Collecting validate file contents...")
     for project in validate_projects:
         print(project)
         clone_target_repo(project["owner"], project["repo"])
         file_contents = get_all_file_contents(project["repo"])
-        all_validate_contents.extend(file_contents)
+        all_validate_contents.update(file_contents)
 
     print("Success Collecting %d files!" % len(all_validate_contents))
 
