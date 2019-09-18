@@ -28,8 +28,7 @@ validate_projects = config.get("applied_projects", [])
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 
-group_changes = re.compile(r"\\\$\\{(\d+)(:[a-zA-Z_]+\\})")
-simple_change = re.compile(r"[a-zA-Z_]+")
+group_changes = re.compile(r"\\\$\\{(\d+):[a-zA-Z_]+\\}")
 
 change_files = ["data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".json"
             for x in projects]
@@ -46,7 +45,7 @@ def group2increment(matchobj, identifier_ids):
         return r"(?P=token" + str(tokenid + 1) + r")"
     else:
         identifier_ids.append(tokenid)
-        return r"(?P<token" + str(tokenid + 1) + r">.+)"
+        return r"(?P<token" + str(tokenid + 1) + r">[\w\s_]+)"
 
 def snippet2Regex(snippet):
     identifier_ids = []
@@ -85,14 +84,11 @@ def get_all_file_contents(repo):
     return [{"path": f"{repo}/{x}", "content": target_repo.git.show('HEAD:{}'.format(x))} for x in paths]
 
 def make_matched_files(contents, re_condition, re_consequent):
-    condition_files = [x["path"] for x in contents if re_condition.search(x["content"])]
-    consequent_files = [x["path"] for x in contents if re_consequent.search(x["content"])]
+    condition_files = {x["path"] for x in contents if re_condition.search(x["content"])}
+    consequent_files = {x["path"] for x in contents if re_consequent.search(x["content"])}
 
-    consequent_files = set(consequent_files)
-    condition_files = set(condition_files)
-    origin_condition = condition_files.difference(consequent_files)
-    origin_consequent = consequent_files.difference(condition_files)
-    return (origin_condition, origin_consequent)
+    # origin_condition = condition_files.difference(consequent_files)
+    return (condition_files, consequent_files.difference(condition_files))
 
 all_contents = []
 
@@ -136,20 +132,23 @@ for i, change in enumerate(changes):
     condition_len = len(origin_condition)
     consequent_len = len(origin_consequent)
 
-    change["popularity"] = consequent_len / (consequent_len + condition_len) if consequent_len > 0 else 0
+    change["popularity"] = consequent_len / len(origin_condition.union(origin_consequent))\
+                           if consequent_len > 0 else 0
 
     if len(projects) > 1:
-        condition_project = [x for x in repos if any([y.startswith(x) for y in origin_condition])]
-        condition_project_len = len(condition_project)
-        consequent_project_len = len([x for x in repos if any([y.startswith(x) for y in origin_consequent])])
-        change["projects_popularity"] = consequent_project_len / (consequent_project_len + condition_project_len) if consequent_project_len > 0 else 0
-        change["applicable_projects"] = condition_project
+        condition_project = {x for x in repos if any([y.startswith(x) for y in origin_condition])}
+        consequent_project = {x for x in repos if any([y.startswith(x) for y in origin_consequent])}
+        change["projects_popularity"] = len(consequent_project.difference(condition_project)) /\
+                                        len(condition_project.union(consequent_project))\
+                                        if len(consequent_project) > 0 else 0
+        change["applied_projects"] = list(consequent_project)
 
     if validate_projects != []:
         origin_condition, validate_consequent = make_matched_files(all_validate_contents, re_condition, re_consequent)
         condition_len = len(origin_condition)
         validate_consequent_len = len(validate_consequent)
-        change["self_popularity"] = validate_consequent_len / (validate_consequent_len + condition_len) if validate_consequent_len > 0 else 0
+        change["self_popularity"] = validate_consequent_len / len(origin_condition.union(validate_consequent))\
+               if validate_consequent_len > 0 else 0
         change["applicable_files"] = list(origin_condition)
     
     if condition_len != 0 and change["popularity"] > 0.01:
@@ -196,9 +195,9 @@ for i, change in enumerate(all_changes):
         continue
     consequent_change = ["/".join([x["repository"], contents_type, str(x[contents])]) for x in condition_change if re_consequent.search("\n".join(x["consequent"]))]
 
-    successed_number = list(set([x for x in consequent_change if x not in successed_numbers]))
-    tmp_change["exception_links"] = list(set(["https://github.com/%s/%s/%s" % (x["repository"], contents_type, str(x[contents])) for x in condition_change
-                                            if "/".join([x["repository"], contents_type, str(x[contents])]) not in successed_number]))
+    successed_number = list({x for x in consequent_change if x not in successed_numbers})
+    tmp_change["exception_links"] = list({"https://github.com/%s/%s/%s" % (x["repository"], contents_type, str(x[contents])) for x in condition_change
+                                            if "/".join([x["repository"], contents_type, str(x[contents])]) not in successed_number})
 
     successed_numbers.extend(successed_number)
     tmp_change["links"].extend(["https://github.com/%s" % x for x in successed_number])
