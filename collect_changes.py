@@ -2,7 +2,7 @@ import sys
 import os
 from csv import DictReader
 from json import dump, loads, dumps, load
-from unidiff import PatchSet, errors
+from unidiff import PatchSet
 import difflib
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
@@ -125,16 +125,12 @@ def make_abstracted_hunks(diff_index, is_abstract):
                     diff_result = TN.get_abstract_tree_diff(hunk["condition"], hunk["consequent"])
                 except:
                     continue
+                diff_result["condition"] = code_trip(diff_result["condition"].splitlines())
+                diff_result["consequent"] = code_trip(diff_result["consequent"].splitlines())
                 if diff_result["condition"] == diff_result["consequent"] or\
-                    diff_result["condition"] == [] or\
-                    diff_result["identifiers"]["condition"] == [] or\
-                    diff_result["identifiers"]["consequent"] == []:
+                    diff_result["condition"] == []:
                     continue
- 
-                out_hunks.append({
-                    "condition": code_trip(diff_result["condition"].splitlines(), True),
-                    "consequent": code_trip(diff_result["consequent"].splitlines(), True)
-                })
+                out_hunks.append(diff_result)
         else:
             out_hunks.extend([{
                 "condition": x["condition"].splitlines(),
@@ -150,7 +146,7 @@ def make_hunks(source, target):
     for (tag, i1, i2, j1, j2) in s.get_opcodes() if tag in ('replace')]
 
 def code_trip(splited_code, to_code=False):
-    min_space = min(len(x) - len(x.lstrip()) for x in splited_code)
+    min_space = 0 if len(splited_code) == 0 else min(len(x) - len(x.lstrip()) for x in splited_code)
     if to_code:
         return [x[min_space:] for x in splited_code]
     return "".join([x[min_space:] for x in splited_code])
@@ -196,7 +192,8 @@ def make_master_diff(target_repo, owner, repo, branch, abstracted):
             "created_at": created_at,
             # "file_path": x["file_path"],
             "condition": x["consequent"],
-            "consequent": x["condition"]
+            "consequent": x["condition"],
+            "abstracted": x["abstracted"] if abstracted else {}
         } for x in hunks]
         change_sets.extend(out_metricses)
         if not all_change and len(change_sets) > change_size:
@@ -236,7 +233,8 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
                 "created_at": diff_path["created_at"],
                 # "file_path": x["file_path"],
                 "condition": x["condition"],
-                "consequent": x["consequent"]
+                "consequent": x["consequent"],
+                "abstracted": x["abstracted"] if abstracted else {}
             } for x in hunks]
             change_sets.extend(out_metricses)
             if not all_change and len(change_sets) > change_size:
