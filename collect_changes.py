@@ -125,8 +125,8 @@ def make_abstracted_hunks(diff_index, is_abstract):
                     diff_result = TN.get_abstract_tree_diff(hunk["condition"], hunk["consequent"])
                 except:
                     continue
-                diff_result["condition"] = code_trip(diff_result["condition"].splitlines())
-                diff_result["consequent"] = code_trip(diff_result["consequent"].splitlines())
+                diff_result["condition"] = code_trip(diff_result["condition"].splitlines(), True)
+                diff_result["consequent"] = code_trip(diff_result["consequent"].splitlines(), True)
                 if diff_result["condition"] == diff_result["consequent"] or\
                     diff_result["condition"] == []:
                     continue
