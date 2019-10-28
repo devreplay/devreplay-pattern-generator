@@ -46,6 +46,9 @@ def main():
     for project in projects:
         owner = project["owner"]
         repo = project["repo"]
+        if "lang" in project:
+            lang = project["lang"]
+            TN = TokeNizer(lang)
         branch = project.get("branch", "master")
 
         clone_target_repo(owner, repo)
