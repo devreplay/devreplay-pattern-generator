@@ -1,0 +1,252 @@
+[
+ {
+  "repo": "tensorflow",
+  "owner": "tensorflow",
+  "description": "An Open Source Machine Learning Framework for Everyone",
+  "url": "https://github.com/tensorflow/tensorflow",
+  "forks": 78152,
+  "stars": 136469,
+  "branch": "master",
+  "language": "CPP"
+ },
+ {
+  "repo": "electron",
+  "owner": "electron",
+  "description": ":electron: Build cross-platform desktop apps with JavaScript, HTML, and CSS",
+  "url": "https://github.com/electron/electron",
+  "forks": 10340,
+  "stars": 78032,
+  "branch": "master",
+  "language": "CPP"
+ },
+ {
+  "repo": "terminal",
+  "owner": "microsoft",
+  "description": "The new Windows Terminal, and the original Windows console host - all in the same place!",
+  "url": "https://github.com/microsoft/terminal",
+  "forks": 5194,
+  "stars": 53595,
+  "branch": "master",
+  "language": "CPP"
+ },
+ {
+  "repo": "swift",
+  "owner": "apple",
+  "description": "The Swift Programming Language",
+  "url": "https://github.com/apple/swift",
+  "forks": 7997,
+  "stars": 49493,
+  "branch": "master",
+  "language": "CPP"
+ },
+ {
+  "repo": "bitcoin",
+  "owner": "bitcoin",
+  "description": "Bitcoin Core integration/staging tree",
+  "url": "https://github.com/bitcoin/bitcoin",
+  "forks": 24399,
+  "stars": 40569,
+  "branch": "master",
+  "language": "CPP"
+ },
+ {
+  "repo": "JavaGuide",
+  "owner": "Snailclimb",
+  "description": "\u3010Java\u5b66\u4e60+\u9762\u8bd5\u6307\u5357\u3011 \u4e00\u4efd\u6db5\u76d6\u5927\u90e8\u5206Java\u7a0b\u5e8f\u5458\u6240\u9700\u8981\u638c\u63e1\u7684\u6838\u5fc3\u77e5\u8bc6\u3002",
+  "url": "https://github.com/Snailclimb/JavaGuide",
+  "forks": 19864,
+  "stars": 59061,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "java-design-patterns",
+  "owner": "iluwatar",
+  "description": "Design patterns implemented in Java",
+  "url": "https://github.com/iluwatar/java-design-patterns",
+  "forks": 16965,
+  "stars": 52205,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "elasticsearch",
+  "owner": "elastic",
+  "description": "Open Source, Distributed, RESTful Search Engine",
+  "url": "https://github.com/elastic/elasticsearch",
+  "forks": 15174,
+  "stars": 45017,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "LeetCodeAnimation",
+  "owner": "MisterBooo",
+  "description": "Demonstrate all the questions on LeetCode in the form of animation.\uff08\u7528\u52a8\u753b\u7684\u5f62\u5f0f\u5448\u73b0\u89e3LeetCode\u9898\u76ee\u7684\u601d\u8def\uff09",
+  "url": "https://github.com/MisterBooo/LeetCodeAnimation",
+  "forks": 7493,
+  "stars": 43212,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "spring-boot",
+  "owner": "spring-projects",
+  "description": "Spring Boot",
+  "url": "https://github.com/spring-projects/spring-boot",
+  "forks": 27384,
+  "stars": 42820,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "system-design-primer",
+  "owner": "donnemartin",
+  "description": "Learn how to design large-scale systems. Prep for the system design interview.  Includes Anki flashcards.",
+  "url": "https://github.com/donnemartin/system-design-primer",
+  "forks": 12242,
+  "stars": 75472,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "awesome-python",
+  "owner": "vinta",
+  "description": "A curated list of awesome Python frameworks, libraries, software and resources",
+  "url": "https://github.com/vinta/awesome-python",
+  "forks": 14695,
+  "stars": 74852,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "public-apis",
+  "owner": "public-apis",
+  "description": "A collective list of free APIs for use in software and web development.",
+  "url": "https://github.com/public-apis/public-apis",
+  "forks": 7155,
+  "stars": 64107,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "models",
+  "owner": "tensorflow",
+  "description": "Models and examples built with TensorFlow",
+  "url": "https://github.com/tensorflow/models",
+  "forks": 37072,
+  "stars": 58747,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "youtube-dl",
+  "owner": "ytdl-org",
+  "description": "Command-line program to download videos from YouTube.com and other video sites",
+  "url": "https://github.com/ytdl-org/youtube-dl",
+  "forks": 9912,
+  "stars": 57013,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "rails",
+  "owner": "rails",
+  "description": "Ruby on Rails",
+  "url": "https://github.com/rails/rails",
+  "forks": 17924,
+  "stars": 44381,
+  "branch": "master",
+  "language": "Ruby"
+ },
+ {
+  "repo": "jekyll",
+  "owner": "jekyll",
+  "description": ":globe_with_meridians: Jekyll is a blog-aware static site generator in Ruby",
+  "url": "https://github.com/jekyll/jekyll",
+  "forks": 8518,
+  "stars": 38961,
+  "branch": "master",
+  "language": "Ruby"
+ },
+ {
+  "repo": "discourse",
+  "owner": "discourse",
+  "description": "A platform for community discussion. Free, open, simple.",
+  "url": "https://github.com/discourse/discourse",
+  "forks": 6576,
+  "stars": 29278,
+  "branch": "master",
+  "language": "Ruby"
+ },
+ {
+  "repo": "fastlane",
+  "owner": "fastlane",
+  "description": "\ud83d\ude80 The easiest way to automate building and releasing your iOS and Android apps",
+  "url": "https://github.com/fastlane/fastlane",
+  "forks": 4200,
+  "stars": 27219,
+  "branch": "master",
+  "language": "Ruby"
+ },
+ {
+  "repo": "awesome-awesomeness",
+  "owner": "bayandin",
+  "description": "A curated list of awesome awesomeness",
+  "url": "https://github.com/bayandin/awesome-awesomeness",
+  "forks": 3149,
+  "stars": 25117,
+  "branch": "master",
+  "language": "Ruby"
+ },
+ {
+  "repo": "freeCodeCamp",
+  "owner": "freeCodeCamp",
+  "description": "The https://www.freeCodeCamp.org open source codebase and curriculum. Learn to code for free together with millions of people.",
+  "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+  "forks": 23045,
+  "stars": 305808,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "react",
+  "owner": "facebook",
+  "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+  "url": "https://github.com/facebook/react",
+  "forks": 26249,
+  "stars": 138434,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "bootstrap",
+  "owner": "twbs",
+  "description": "The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.",
+  "url": "https://github.com/twbs/bootstrap",
+  "forks": 67200,
+  "stars": 136520,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "d3",
+  "owner": "d3",
+  "description": "Bring data to life with SVG, Canvas and HTML. :bar_chart::chart_with_upwards_trend::tada:",
+  "url": "https://github.com/d3/d3",
+  "forks": 21474,
+  "stars": 88195,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "create-react-app",
+  "owner": "facebook",
+  "description": "Set up a modern web app by running one command.",
+  "url": "https://github.com/facebook/create-react-app",
+  "forks": 17025,
+  "stars": 72903,
+  "branch": "master",
+  "language": "JavaScript"
+ }
+]
