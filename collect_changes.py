@@ -30,7 +30,7 @@ change_size = config.get("change_size", 100)
 def get_projects(path):
     with open(path, "r") as json_file:
         projects = load(json_file)
-        return list(projects)
+        return [x for x in list(projects) if "language" not in x or x["language"] == lang]
 
 
 def main():
@@ -46,9 +46,6 @@ def main():
     for project in projects:
         owner = project["owner"]
         repo = project["repo"]
-        if "lang" in project:
-            lang = project["lang"]
-            TN = TokeNizer(lang)
         branch = project.get("branch", "master")
 
         clone_target_repo(owner, repo)
