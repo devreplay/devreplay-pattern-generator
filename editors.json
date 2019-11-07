@@ -1,0 +1,62 @@
+[
+ {
+  "repo": "vscode",
+  "owner": "microsoft",
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+    "repo": "atom",
+    "owner": "atom",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "jupyter",
+    "owner": "notebook",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "c9",
+    "owner": "core",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "brackets",
+    "owner": "adobe",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "che",
+    "owner": "eclipse",
+    "branch": "master",
+    "language": "Java"
+ },
+ {
+    "repo": "rstudio",
+    "owner": "rstudio",
+    "branch": "master",
+    "language": "Java"
+ },
+ {
+    "repo": "netbeans",
+    "owner": "apache",
+    "branch": "master",
+    "language": "Java"
+ },
+ {
+    "repo": "jupyter",
+    "owner": "notebook",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "notepad-plus-plus",
+    "owner": "notepad-plus-plus",
+    "branch": "master",
+    "language": "CPP"
+ }
+]

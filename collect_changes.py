@@ -216,13 +216,18 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
             except:
                 continue
             commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
-            if any([x.message.startswith("Merge") for x in commits]):
+            if any(x.message.startswith("Merge branch") for x in commits):
                 continue
 
-            sys.stdout.write("\r%d pulls id: %s, %d / %d changes" % 
-                        (i, diff_path["number"], len(change_sets), change_size))
+            if all_change:
+                sys.stdout.write("\r%d pulls id: %s, %d changes" % 
+                            (i, diff_path["number"], len(change_sets)))
+            else:
+                sys.stdout.write("\r%d pulls id: %s, %d / %d changes" % 
+                            (i, diff_path["number"], len(change_sets), change_size))
 
             diff_index = original_commit.diff(changed_commit)
+            # diff_index = changed_commit.diff()
 
             hunks = make_abstracted_hunks(diff_index, abstracted)
             out_metricses = [{

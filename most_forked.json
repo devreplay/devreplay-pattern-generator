@@ -1,0 +1,1002 @@
+[
+ {
+  "repo": "datasharing",
+  "owner": "jtleek",
+  "description": "The Leek group guide to data sharing ",
+  "url": "https://github.com/jtleek/datasharing",
+  "forks": 197884,
+  "stars": 4908,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "ProgrammingAssignment2",
+  "owner": "rdpeng",
+  "description": "Repository for Programming Assignment 2 for R Programming on Coursera",
+  "url": "https://github.com/rdpeng/ProgrammingAssignment2",
+  "forks": 118593,
+  "stars": 609,
+  "branch": "master",
+  "language": "R"
+ },
+ {
+  "repo": "Spoon-Knife",
+  "owner": "octocat",
+  "description": "This repo is for demonstration purposes only.",
+  "url": "https://github.com/octocat/Spoon-Knife",
+  "forks": 106586,
+  "stars": 10172,
+  "branch": "master",
+  "language": "HTML"
+ },
+ {
+  "repo": "tensorflow",
+  "owner": "tensorflow",
+  "description": "An Open Source Machine Learning Framework for Everyone",
+  "url": "https://github.com/tensorflow/tensorflow",
+  "forks": 78152,
+  "stars": 136469,
+  "branch": "master",
+  "language": "C++"
+ },
+ {
+  "repo": "bootstrap",
+  "owner": "twbs",
+  "description": "The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.",
+  "url": "https://github.com/twbs/bootstrap",
+  "forks": 67200,
+  "stars": 136520,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "SmartThingsPublic",
+  "owner": "SmartThingsCommunity",
+  "description": "SmartThings open-source DeviceTypeHandlers and SmartApps code",
+  "url": "https://github.com/SmartThingsCommunity/SmartThingsPublic",
+  "forks": 60981,
+  "stars": 1400,
+  "branch": "master",
+  "language": "Groovy"
+ },
+ {
+  "repo": "ExData_Plotting1",
+  "owner": "rdpeng",
+  "description": "Plotting Assignment 1 for Exploratory Data Analysis",
+  "url": "https://github.com/rdpeng/ExData_Plotting1",
+  "forks": 50173,
+  "stars": 178,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "models",
+  "owner": "tensorflow",
+  "description": "Models and examples built with TensorFlow",
+  "url": "https://github.com/tensorflow/models",
+  "forks": 37073,
+  "stars": 58747,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "cgm-remote-monitor",
+  "owner": "nightscout",
+  "description": "nightscout web monitor",
+  "url": "https://github.com/nightscout/cgm-remote-monitor",
+  "forks": 33719,
+  "stars": 974,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "free-programming-books",
+  "owner": "EbookFoundation",
+  "description": ":books: Freely available programming books",
+  "url": "https://github.com/EbookFoundation/free-programming-books",
+  "forks": 32563,
+  "stars": 130448,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "RepData_PeerAssessment1",
+  "owner": "rdpeng",
+  "description": "Peer Assessment 1 for Reproducible Research",
+  "url": "https://github.com/rdpeng/RepData_PeerAssessment1",
+  "forks": 32173,
+  "stars": 78,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "opencv",
+  "owner": "opencv",
+  "description": "Open Source Computer Vision Library",
+  "url": "https://github.com/opencv/opencv",
+  "forks": 29525,
+  "stars": 39349,
+  "branch": "master",
+  "language": "C++"
+ },
+ {
+  "repo": "angular.js",
+  "owner": "angular",
+  "description": "AngularJS - HTML enhanced for web apps!",
+  "url": "https://github.com/angular/angular.js",
+  "forks": 28890,
+  "stars": 59615,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "linux",
+  "owner": "torvalds",
+  "description": "Linux kernel source tree",
+  "url": "https://github.com/torvalds/linux",
+  "forks": 28664,
+  "stars": 81898,
+  "branch": "master",
+  "language": "C"
+ },
+ {
+  "repo": "courses",
+  "owner": "DataScienceSpecialization",
+  "description": "Course materials for the Data Science Specialization: https://www.coursera.org/specialization/jhudatascience/1",
+  "url": "https://github.com/DataScienceSpecialization/courses",
+  "forks": 28026,
+  "stars": 3299,
+  "branch": "master",
+  "language": "HTML"
+ },
+ {
+  "repo": "spring-boot",
+  "owner": "spring-projects",
+  "description": "Spring Boot",
+  "url": "https://github.com/spring-projects/spring-boot",
+  "forks": 27384,
+  "stars": 42820,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "coding-interview-university",
+  "owner": "jwasham",
+  "description": "A complete computer science study plan to become a software engineer.",
+  "url": "https://github.com/jwasham/coding-interview-university",
+  "forks": 27062,
+  "stars": 91901,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "tutorials",
+  "owner": "eugenp",
+  "description": "The \"REST With Spring\" Course: ",
+  "url": "https://github.com/eugenp/tutorials",
+  "forks": 26744,
+  "stars": 17689,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "react",
+  "owner": "facebook",
+  "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+  "url": "https://github.com/facebook/react",
+  "forks": 26249,
+  "stars": 138434,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "jekyll-now",
+  "owner": "barryclark",
+  "description": "Build a Jekyll blog in minutes, without touching the command line.",
+  "url": "https://github.com/barryclark/jekyll-now",
+  "forks": 25830,
+  "stars": 6295,
+  "branch": "master",
+  "language": "CSS"
+ },
+ {
+  "repo": "patchwork",
+  "owner": "jlord",
+  "description": "All the Git-it Workshop completers! ",
+  "url": "https://github.com/jlord/patchwork",
+  "forks": 25763,
+  "stars": 922,
+  "branch": "gh-pages",
+  "language": "HTML"
+ },
+ {
+  "repo": "Python-100-Days",
+  "owner": "jackfrued",
+  "description": "Python - 100\u5929\u4ece\u65b0\u624b\u5230\u5927\u5e08",
+  "url": "https://github.com/jackfrued/Python-100-Days",
+  "forks": 25311,
+  "stars": 65884,
+  "branch": "master",
+  "language": "Jupyter Notebook"
+ },
+ {
+  "repo": "bitcoin",
+  "owner": "bitcoin",
+  "description": "Bitcoin Core integration/staging tree",
+  "url": "https://github.com/bitcoin/bitcoin",
+  "forks": 24399,
+  "stars": 40568,
+  "branch": "master",
+  "language": "C++"
+ },
+ {
+  "repo": "frontend-nanodegree-resume",
+  "owner": "udacity",
+  "description": "This repository is used for one of the projects in Udacity's Front-End Web Developer Nanodegree program. Learn how to become a Front-End Developer today with line-by-line code reviewed projects and get a job with career services!",
+  "url": "https://github.com/udacity/frontend-nanodegree-resume",
+  "forks": 24304,
+  "stars": 1062,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "freeCodeCamp",
+  "owner": "freeCodeCamp",
+  "description": "The https://www.freeCodeCamp.org open source codebase and curriculum. Learn to code for free together with millions of people.",
+  "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+  "forks": 23045,
+  "stars": 305808,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "Complete-Python-3-Bootcamp",
+  "owner": "Pierian-Data",
+  "description": "Course Files for Complete Python 3 Bootcamp Course on Udemy",
+  "url": "https://github.com/Pierian-Data/Complete-Python-3-Bootcamp",
+  "forks": 22976,
+  "stars": 6187,
+  "branch": "master",
+  "language": "Jupyter Notebook"
+ },
+ {
+  "repo": "first-contributions",
+  "owner": "firstcontributions",
+  "description": "\ud83d\ude80\u2728 Help beginners to contribute to open source projects",
+  "url": "https://github.com/firstcontributions/first-contributions",
+  "forks": 22775,
+  "stars": 8439,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "recipes",
+  "owner": "LarryMad",
+  "description": null,
+  "url": "https://github.com/LarryMad/recipes",
+  "forks": 22592,
+  "stars": 65,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "vue",
+  "owner": "vuejs",
+  "description": "\ud83d\udd96 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
+  "url": "https://github.com/vuejs/vue",
+  "forks": 22426,
+  "stars": 151002,
+  "branch": "dev",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "You-Dont-Know-JS",
+  "owner": "getify",
+  "description": "A book series on JavaScript. @YDKJS on twitter.",
+  "url": "https://github.com/getify/You-Dont-Know-JS",
+  "forks": 22064,
+  "stars": 110424,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "DefinitelyTyped",
+  "owner": "DefinitelyTyped",
+  "description": "The repository for high quality TypeScript type definitions.",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+  "forks": 19335,
+  "stars": 24842,
+  "branch": "master",
+  "language": "TypeScript"
+ },
+ {
+  "repo": "scikit-learn",
+  "owner": "scikit-learn",
+  "description": "scikit-learn: machine learning in Python",
+  "url": "https://github.com/scikit-learn/scikit-learn",
+  "forks": 18531,
+  "stars": 37689,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "react-native",
+  "owner": "facebook",
+  "description": "A framework for building native apps with React.",
+  "url": "https://github.com/facebook/react-native",
+  "forks": 18384,
+  "stars": 82122,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "free-programming-books-zh_CN",
+  "owner": "justjavac",
+  "description": ":books: \u514d\u8d39\u7684\u8ba1\u7b97\u673a\u7f16\u7a0b\u7c7b\u4e2d\u6587\u4e66\u7c4d\uff0c\u6b22\u8fce\u6295\u7a3f",
+  "url": "https://github.com/justjavac/free-programming-books-zh_CN",
+  "forks": 18340,
+  "stars": 57558,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "Python",
+  "owner": "TheAlgorithms",
+  "description": "All Algorithms implemented in Python",
+  "url": "https://github.com/TheAlgorithms/Python",
+  "forks": 18154,
+  "stars": 60407,
+  "branch": "master",
+  "language": "Jupyter Notebook"
+ },
+ {
+  "repo": "rails",
+  "owner": "rails",
+  "description": "Ruby on Rails",
+  "url": "https://github.com/rails/rails",
+  "forks": 17924,
+  "stars": 44381,
+  "branch": "master",
+  "language": "Ruby"
+ },
+ {
+  "repo": "oh-my-zsh",
+  "owner": "robbyrussell",
+  "description": "\ud83d\ude43 A delightful community-driven (with 1,300+ contributors) framework for managing your zsh configuration. Includes 200+ optional plugins (rails, git, OSX, hub, capistrano, brew, ant, php, python, etc), over 140 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community.",
+  "url": "https://github.com/robbyrussell/oh-my-zsh",
+  "forks": 17858,
+  "stars": 97487,
+  "branch": "master",
+  "language": "Shell"
+ },
+ {
+  "repo": "caffe",
+  "owner": "BVLC",
+  "description": "Caffe: a fast open framework for deep learning.",
+  "url": "https://github.com/BVLC/caffe",
+  "forks": 17680,
+  "stars": 29309,
+  "branch": "master",
+  "language": "C++"
+ },
+ {
+  "repo": "javascript",
+  "owner": "airbnb",
+  "description": "JavaScript Style Guide",
+  "url": "https://github.com/airbnb/javascript",
+  "forks": 17412,
+  "stars": 89978,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "git",
+  "owner": "git",
+  "description": "Git Source Code Mirror - This is a publish-only repository and all pull requests are ignored. Please follow Documentation/SubmittingPatches procedure for any of your improvements.",
+  "url": "https://github.com/git/git",
+  "forks": 17343,
+  "stars": 29824,
+  "branch": "master",
+  "language": "C"
+ },
+ {
+  "repo": "ansible",
+  "owner": "ansible",
+  "description": "Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications \u2014 automate in a language that approaches plain English, using SSH, with no agents to install on remote systems. https://docs.ansible.com/ansible/",
+  "url": "https://github.com/ansible/ansible",
+  "forks": 17194,
+  "stars": 39967,
+  "branch": "devel",
+  "language": "Python"
+ },
+ {
+  "repo": "laravel",
+  "owner": "laravel",
+  "description": "A PHP framework for web artisans",
+  "url": "https://github.com/laravel/laravel",
+  "forks": 17183,
+  "stars": 55839,
+  "branch": "master",
+  "language": "PHP"
+ },
+ {
+  "repo": "keras",
+  "owner": "keras-team",
+  "description": "Deep Learning for humans",
+  "url": "https://github.com/keras-team/keras",
+  "forks": 17117,
+  "stars": 45038,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "create-react-app",
+  "owner": "facebook",
+  "description": "Set up a modern web app by running one command.",
+  "url": "https://github.com/facebook/create-react-app",
+  "forks": 17025,
+  "stars": 72903,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "java-design-patterns",
+  "owner": "iluwatar",
+  "description": "Design patterns implemented in Java",
+  "url": "https://github.com/iluwatar/java-design-patterns",
+  "forks": 16965,
+  "stars": 52205,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "2048",
+  "owner": "gabrielecirulli",
+  "description": "A small clone of 1024 (https://play.google.com/store/apps/details?id=com.veewo.a1024)",
+  "url": "https://github.com/gabrielecirulli/2048",
+  "forks": 15752,
+  "stars": 10240,
+  "branch": "master",
+  "language": "CSS"
+ },
+ {
+  "repo": "awesome",
+  "owner": "sindresorhus",
+  "description": "\ud83d\ude0e Awesome lists about all kinds of interesting topics",
+  "url": "https://github.com/sindresorhus/awesome",
+  "forks": 15729,
+  "stars": 118288,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "AspNetCore.Docs",
+  "owner": "aspnet",
+  "description": "Documentation for ASP.NET Core",
+  "url": "https://github.com/aspnet/AspNetCore.Docs",
+  "forks": 15331,
+  "stars": 6115,
+  "branch": "master",
+  "language": "C#"
+ },
+ {
+  "repo": "redis",
+  "owner": "antirez",
+  "description": "Redis is an in-memory database that persists on disk. The data model is key-value, but many different kind of values are supported: Strings, Lists, Sets, Sorted Sets, Hashes, Streams, HyperLogLogs, Bitmaps.",
+  "url": "https://github.com/antirez/redis",
+  "forks": 15323,
+  "stars": 39347,
+  "branch": "unstable",
+  "language": "C"
+ },
+ {
+  "repo": "node",
+  "owner": "nodejs",
+  "description": "Node.js JavaScript runtime :sparkles::turtle::rocket::sparkles:",
+  "url": "https://github.com/nodejs/node",
+  "forks": 15188,
+  "stars": 65240,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "elasticsearch",
+  "owner": "elastic",
+  "description": "Open Source, Distributed, RESTful Search Engine",
+  "url": "https://github.com/elastic/elasticsearch",
+  "forks": 15174,
+  "stars": 45017,
+  "branch": "master",
+  "language": "Java"
+ },
+ {
+  "repo": "angular",
+  "owner": "angular",
+  "description": "One framework. Mobile & desktop.",
+  "url": "https://github.com/angular/angular",
+  "forks": 14763,
+  "stars": 53358,
+  "branch": "master",
+  "language": "TypeScript"
+ },
+ {
+  "repo": "vue-element-admin",
+  "owner": "PanJiaChen",
+  "description": ":tada: A magical vue admin                                                                https://panjiachen.github.io/vue-element-admin",
+  "url": "https://github.com/PanJiaChen/vue-element-admin",
+  "forks": 14758,
+  "stars": 43770,
+  "branch": "master",
+  "language": "Vue"
+ },
+ {
+  "repo": "awesome-python",
+  "owner": "vinta",
+  "description": "A curated list of awesome Python frameworks, libraries, software and resources",
+  "url": "https://github.com/vinta/awesome-python",
+  "forks": 14695,
+  "stars": 74852,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "developer-roadmap",
+  "owner": "kamranahmedse",
+  "description": "Roadmap to becoming a web developer in 2019",
+  "url": "https://github.com/kamranahmedse/developer-roadmap",
+  "forks": 14379,
+  "stars": 89541,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "shadowsocks-windows",
+  "owner": "shadowsocks",
+  "description": "If you want to keep a secret, you must also hide it from yourself.",
+  "url": "https://github.com/shadowsocks/shadowsocks-windows",
+  "forks": 14356,
+  "stars": 44061,
+  "branch": "master",
+  "language": "C#"
+ },
+ {
+  "repo": "reveal.js",
+  "owner": "hakimel",
+  "description": "The HTML Presentation Framework",
+  "url": "https://github.com/hakimel/reveal.js",
+  "forks": 14202,
+  "stars": 48906,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "game-of-life",
+  "owner": "wakaleo",
+  "description": "Demo application for the 'Jenkins: The Definitive Guide' book",
+  "url": "https://github.com/wakaleo/game-of-life",
+  "forks": 14133,
+  "stars": 1866,
+  "branch": "master",
+  "language": "HTML"
+ },
+ {
+  "repo": "redux",
+  "owner": "reduxjs",
+  "description": "Predictable state container for JavaScript apps",
+  "url": "https://github.com/reduxjs/redux",
+  "forks": 13328,
+  "stars": 51095,
+  "branch": "master",
+  "language": "TypeScript"
+ },
+ {
+  "repo": "animate.css",
+  "owner": "daneden",
+  "description": "\ud83c\udf7f A cross-browser library of CSS animations. As easy to use as an easy thing.",
+  "url": "https://github.com/daneden/animate.css",
+  "forks": 13293,
+  "stars": 62732,
+  "branch": "master",
+  "language": "CSS"
+ },
+ {
+  "repo": "vue-element-admin",
+  "owner": "PanJiaChen",
+  "description": ":tada: A magical vue admin                                                                https://panjiachen.github.io/vue-element-admin",
+  "url": "https://github.com/PanJiaChen/vue-element-admin",
+  "forks": 14758,
+  "stars": 43770,
+  "branch": "master",
+  "language": "Vue"
+ },
+ {
+  "repo": "awesome-python",
+  "owner": "vinta",
+  "description": "A curated list of awesome Python frameworks, libraries, software and resources",
+  "url": "https://github.com/vinta/awesome-python",
+  "forks": 14695,
+  "stars": 74852,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "developer-roadmap",
+  "owner": "kamranahmedse",
+  "description": "Roadmap to becoming a web developer in 2019",
+  "url": "https://github.com/kamranahmedse/developer-roadmap",
+  "forks": 14379,
+  "stars": 89541,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "shadowsocks-windows",
+  "owner": "shadowsocks",
+  "description": "If you want to keep a secret, you must also hide it from yourself.",
+  "url": "https://github.com/shadowsocks/shadowsocks-windows",
+  "forks": 14356,
+  "stars": 44061,
+  "branch": "master",
+  "language": "C#"
+ },
+ {
+  "repo": "reveal.js",
+  "owner": "hakimel",
+  "description": "The HTML Presentation Framework",
+  "url": "https://github.com/hakimel/reveal.js",
+  "forks": 14202,
+  "stars": 48906,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "game-of-life",
+  "owner": "wakaleo",
+  "description": "Demo application for the 'Jenkins: The Definitive Guide' book",
+  "url": "https://github.com/wakaleo/game-of-life",
+  "forks": 14133,
+  "stars": 1866,
+  "branch": "master",
+  "language": "HTML"
+ },
+ {
+  "repo": "todomvc",
+  "owner": "tastejs",
+  "description": "Helping you select an MV* framework - Todo apps for React.js, Ember.js, Angular, and many more",
+  "url": "https://github.com/tastejs/todomvc",
+  "forks": 13593,
+  "stars": 25935,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "redux",
+  "owner": "reduxjs",
+  "description": "Predictable state container for JavaScript apps",
+  "url": "https://github.com/reduxjs/redux",
+  "forks": 13328,
+  "stars": 51095,
+  "branch": "master",
+  "language": "TypeScript"
+ },
+ {
+  "repo": "TensorFlow-Examples",
+  "owner": "aymericdamien",
+  "description": "TensorFlow Tutorial and Examples for Beginners (support TF v1 & v2)",
+  "url": "https://github.com/aymericdamien/TensorFlow-Examples",
+  "forks": 13196,
+  "stars": 35002,
+  "branch": "master",
+  "language": "Jupyter Notebook"
+ },
+ {
+  "repo": "ionic",
+  "owner": "ionic-team",
+  "description": "Build amazing native and progressive web apps with open web technologies. One app running on everything \ud83c\udf89",
+  "url": "https://github.com/ionic-team/ionic",
+  "forks": 13136,
+  "stars": 39384,
+  "branch": "master",
+  "language": "TypeScript"
+ },
+ {
+  "repo": "atom",
+  "owner": "atom",
+  "description": ":atom: The hackable text editor",
+  "url": "https://github.com/atom/atom",
+  "forks": 13136,
+  "stars": 50243,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "flask",
+  "owner": "pallets",
+  "description": "The Python micro framework for building web applications.",
+  "url": "https://github.com/pallets/flask",
+  "forks": 13010,
+  "stars": 47191,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "AdminLTE",
+  "owner": "ColorlibHQ",
+  "description": "AdminLTE - Free Premium Admin control Panel Theme Based On Bootstrap 3.x",
+  "url": "https://github.com/ColorlibHQ/AdminLTE",
+  "forks": 12844,
+  "stars": 31512,
+  "branch": "master",
+  "language": "HTML"
+ },
+ {
+  "repo": "JavaScript30",
+  "owner": "wesbos",
+  "description": "30 Day Vanilla JS Challenge",
+  "url": "https://github.com/wesbos/JavaScript30",
+  "forks": 12831,
+  "stars": 11372,
+  "branch": "master",
+  "language": "HTML"
+ },
+ {
+  "repo": "material-ui",
+  "owner": "mui-org",
+  "description": "React components for faster and easier web development. Build your own design system, or start with Material Design.",
+  "url": "https://github.com/mui-org/material-ui",
+  "forks": 12648,
+  "stars": 51663,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "vscode",
+  "owner": "microsoft",
+  "description": "Visual Studio Code",
+  "url": "https://github.com/microsoft/vscode",
+  "forks": 12508,
+  "stars": 85102,
+  "branch": "master",
+  "language": "TypeScript"
+ },
+ {
+  "repo": "legacy-homebrew",
+  "owner": "Homebrew",
+  "description": "\ud83d\udc80 The former home of Homebrew/homebrew (deprecated)",
+  "url": "https://github.com/Homebrew/legacy-homebrew",
+  "forks": 12431,
+  "stars": 27973,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "cpython",
+  "owner": "python",
+  "description": "The Python programming language",
+  "url": "https://github.com/python/cpython",
+  "forks": 12131,
+  "stars": 27394,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "android-open-project",
+  "owner": "Trinea",
+  "description": "A categorized collection of Android Open Source Projects,  More powerful web version:",
+  "url": "https://github.com/Trinea/android-open-project",
+  "forks": 12106,
+  "stars": 29301,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "architect-awesome",
+  "owner": "xingshaocheng",
+  "description": "\u540e\u7aef\u67b6\u6784\u5e08\u6280\u672f\u56fe\u8c31",
+  "url": "https://github.com/xingshaocheng/architect-awesome",
+  "forks": 12068,
+  "stars": 38251,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "fullstack-nanodegree-vm",
+  "owner": "udacity",
+  "description": null,
+  "url": "https://github.com/udacity/fullstack-nanodegree-vm",
+  "forks": 11795,
+  "stars": 289,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "incubator-echarts",
+  "owner": "apache",
+  "description": "A powerful, interactive charting and visualization library for browser",
+  "url": "https://github.com/apache/incubator-echarts",
+  "forks": 11626,
+  "stars": 37347,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "odoo",
+  "owner": "odoo",
+  "description": "Odoo. Open Source Apps To Grow Your Business.",
+  "url": "https://github.com/odoo/odoo",
+  "forks": 11133,
+  "stars": 15531,
+  "branch": "13.0",
+  "language": "Python"
+ },
+ {
+  "repo": "charts",
+  "owner": "helm",
+  "description": "Curated applications for Kubernetes",
+  "url": "https://github.com/helm/charts",
+  "forks": 10959,
+  "stars": 10587,
+  "branch": "master",
+  "language": "Go"
+ },
+ {
+  "repo": "node-js-sample",
+  "owner": "heroku",
+  "description": "This repository is deprecated. Head over to https://github.com/heroku/node-js-getting-started",
+  "url": "https://github.com/heroku/node-js-sample",
+  "forks": 10697,
+  "stars": 848,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "awesome-machine-learning",
+  "owner": "josephmisiti",
+  "description": "A curated list of awesome Machine Learning frameworks, libraries and software.",
+  "url": "https://github.com/josephmisiti/awesome-machine-learning",
+  "forks": 10691,
+  "stars": 42313,
+  "branch": "master",
+  "language": "Python"
+ },
+ {
+  "repo": "the-craft-of-selfteaching",
+  "owner": "selfteaching",
+  "description": "One has no future if one couldn't teach themself.",
+  "url": "https://github.com/selfteaching/the-craft-of-selfteaching",
+  "forks": 10664,
+  "stars": 10902,
+  "branch": "master",
+  "language": "Jupyter Notebook"
+ },
+ {
+  "repo": "DeepLearning-500-questions",
+  "owner": "scutan90",
+  "description": "\u6df1\u5ea6\u5b66\u4e60500\u95ee\uff0c\u4ee5\u95ee\u7b54\u5f62\u5f0f\u5bf9\u5e38\u7528\u7684\u6982\u7387\u77e5\u8bc6\u3001\u7ebf\u6027\u4ee3\u6570\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u3001\u8ba1\u7b97\u673a\u89c6\u89c9\u7b49\u70ed\u70b9\u95ee\u9898\u8fdb\u884c\u9610\u8ff0\uff0c\u4ee5\u5e2e\u52a9\u81ea\u5df1\u53ca\u6709\u9700\u8981\u7684\u8bfb\u8005\u3002 \u5168\u4e66\u5206\u4e3a18\u4e2a\u7ae0\u8282\uff0c50\u4f59\u4e07\u5b57\u3002\u7531\u4e8e\u6c34\u5e73\u6709\u9650\uff0c\u4e66\u4e2d\u4e0d\u59a5\u4e4b\u5904\u6073\u8bf7\u5e7f\u5927\u8bfb\u8005\u6279\u8bc4\u6307\u6b63\u3002   \u672a\u5b8c\u5f85\u7eed............ \u5982\u6709\u610f\u5408\u4f5c\uff0c\u8054\u7cfbscutjy2015@163.com                     \u7248\u6743\u6240\u6709\uff0c\u8fdd\u6743\u5fc5\u7a76       Tan 2018.06",
+  "url": "https://github.com/scutan90/DeepLearning-500-questions",
+  "forks": 10465,
+  "stars": 34682,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "html5-boilerplate",
+  "owner": "h5bp",
+  "description": "A professional front-end template for building fast, robust, and adaptable web apps or sites.",
+  "url": "https://github.com/h5bp/html5-boilerplate",
+  "forks": 10406,
+  "stars": 43545,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "Font-Awesome",
+  "owner": "FortAwesome",
+  "description": "The iconic SVG, font, and CSS toolkit",
+  "url": "https://github.com/FortAwesome/Font-Awesome",
+  "forks": 10371,
+  "stars": 61255,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "the-craft-of-selfteaching",
+  "owner": "selfteaching",
+  "description": "One has no future if one couldn't teach themself.",
+  "url": "https://github.com/selfteaching/the-craft-of-selfteaching",
+  "forks": 10664,
+  "stars": 10902,
+  "branch": "master",
+  "language": "Jupyter Notebook"
+ },
+ {
+  "repo": "DeepLearning-500-questions",
+  "owner": "scutan90",
+  "description": "\u6df1\u5ea6\u5b66\u4e60500\u95ee\uff0c\u4ee5\u95ee\u7b54\u5f62\u5f0f\u5bf9\u5e38\u7528\u7684\u6982\u7387\u77e5\u8bc6\u3001\u7ebf\u6027\u4ee3\u6570\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u3001\u8ba1\u7b97\u673a\u89c6\u89c9\u7b49\u70ed\u70b9\u95ee\u9898\u8fdb\u884c\u9610\u8ff0\uff0c\u4ee5\u5e2e\u52a9\u81ea\u5df1\u53ca\u6709\u9700\u8981\u7684\u8bfb\u8005\u3002 \u5168\u4e66\u5206\u4e3a18\u4e2a\u7ae0\u8282\uff0c50\u4f59\u4e07\u5b57\u3002\u7531\u4e8e\u6c34\u5e73\u6709\u9650\uff0c\u4e66\u4e2d\u4e0d\u59a5\u4e4b\u5904\u6073\u8bf7\u5e7f\u5927\u8bfb\u8005\u6279\u8bc4\u6307\u6b63\u3002   \u672a\u5b8c\u5f85\u7eed............ \u5982\u6709\u610f\u5408\u4f5c\uff0c\u8054\u7cfbscutjy2015@163.com                     \u7248\u6743\u6240\u6709\uff0c\u8fdd\u6743\u5fc5\u7a76       Tan 2018.06",
+  "url": "https://github.com/scutan90/DeepLearning-500-questions",
+  "forks": 10465,
+  "stars": 34682,
+  "branch": "master",
+  "language": null
+ },
+ {
+  "repo": "html5-boilerplate",
+  "owner": "h5bp",
+  "description": "A professional front-end template for building fast, robust, and adaptable web apps or sites.",
+  "url": "https://github.com/h5bp/html5-boilerplate",
+  "forks": 10406,
+  "stars": 43545,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "Font-Awesome",
+  "owner": "FortAwesome",
+  "description": "The iconic SVG, font, and CSS toolkit",
+  "url": "https://github.com/FortAwesome/Font-Awesome",
+  "forks": 10371,
+  "stars": 61255,
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+  "repo": "shadowsocks-android",
+  "owner": "shadowsocks",
+  "description": "A shadowsocks client for Android",
+  "url": "https://github.com/shadowsocks/shadowsocks-android",
+  "forks": 10358,
+  "stars": 27068,
+  "branch": "master",
+  "language": "Kotlin"
+ },
+ {
+  "repo": "electron",
+  "owner": "electron",
+  "description": ":electron: Build cross-platform desktop apps with JavaScript, HTML, and CSS",
+  "url": "https://github.com/electron/electron",
+  "forks": 10340,
+  "stars": 78032,
+  "branch": "master",
+  "language": "C++"
+ },
+ {
+  "repo": "protobuf",
+  "owner": "protocolbuffers",
+  "description": "Protocol Buffers - Google's data interchange format",
+  "url": "https://github.com/protocolbuffers/protobuf",
+  "forks": 10287,
+  "stars": 38000,
+  "branch": "master",
+  "language": "C++"
+ },
+ {
+  "repo": "create-your-own-adventure",
+  "owner": "udacity",
+  "description": "This is example repo illustrates the concept of a \"Pull Request\", created as part of the course How to Use Git and GitHub",
+  "url": "https://github.com/udacity/create-your-own-adventure",
+  "forks": 10274,
+  "stars": 423,
+  "branch": "master",
+  "language": "Shell"
+ },
+ {
+  "repo": "vue2-elm",
+  "owner": "bailicangdu",
+  "description": "\u57fa\u4e8e vue2 + vuex \u6784\u5efa\u4e00\u4e2a\u5177\u6709 45 \u4e2a\u9875\u9762\u7684\u5927\u578b\u5355\u9875\u9762\u5e94\u7528",
+  "url": "https://github.com/bailicangdu/vue2-elm",
+  "forks": 10124,
+  "stars": 30357,
+  "branch": "master",
+  "language": "Vue"
+ },
+ {
+  "repo": "qmk_firmware",
+  "owner": "qmk",
+  "description": "Open-source keyboard firmware for Atmel AVR and Arm USB families",
+  "url": "https://github.com/qmk/qmk_firmware",
+  "forks": 10081,
+  "stars": 5271,
+  "branch": "master",
+  "language": "C"
+ }
+]
