@@ -106,7 +106,8 @@ class PullsCollector:
                         login
                       }
                       baseRefOid
-                      commits(first:100) {
+                      headRefOid
+                      commits(first:1) {
                         totalCount
                         edges {
                           node {
@@ -126,11 +127,10 @@ class PullsCollector:
 
     def _format(self, pull: dict) -> dict:
         author = pull["author"]["login"]
-        commit_oids = [edge['node']['commit']['oid'] for edge in pull['commits']['edges']]
+        base_sha = [edge['node']['commit']['oid'] for edge in pull['commits']['edges']][0]
         # participant = [participant["node"]["login"] for participant in pull["participants"]["edges"] 
         #                 if participant["node"]["login"] != author]
-        base_sha = commit_oids[0]
-        head_sha = commit_oids[-1]
+        # head_sha = commit_oids[-1]
         return {
             "author": author,
             # "participant": participant[0] if len(participant) > 0 else "None",
@@ -138,7 +138,7 @@ class PullsCollector:
             "commit_len": pull['commits']['totalCount'],
             "base_commit_sha": pull['baseRefOid'],
             "first_commit_sha": base_sha,
-            "merge_commit_sha": head_sha,
+            "merge_commit_sha": pull['headRefOid'],
             "created_at": self._parse_datetime(pull['createdAt']),
             "merged_at": self._parse_datetime(pull['mergedAt']),
             "merged_by": self._merged_by(pull),
