@@ -1,0 +1,68 @@
+[
+ {
+  "repo": "standard",
+  "owner": "standard",
+  "branch": "master",
+  "language": "JavaScript"
+ },
+ {
+    "repo": "eslint",
+    "owner": "eslint",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "jshint",
+    "owner": "jshint",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "csscomb.js",
+    "owner": "csscomb",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "HTMLHint",
+    "owner": "htmlhint",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "csslint",
+    "owner": "CSSLint",
+    "branch": "master",
+    "language": "JavaScript"
+ },
+ {
+    "repo": "pycodestyle",
+    "owner": "PyCQA",
+    "branch": "master",
+    "language": "Python"
+ },
+ {
+    "repo": "flake8",
+    "owner": "PyCQA",
+    "branch": "master",
+    "language": "Python"
+ },
+ {
+    "repo": "black",
+    "owner": "psf",
+    "branch": "master",
+    "language": "Python"
+ },
+ {
+    "repo": "coala",
+    "owner": "coala",
+    "branch": "master",
+    "language": "Python"
+ },
+ {
+    "repo": "pre-commit",
+    "owner": "pre-commit",
+    "branch": "master",
+    "language": "Python"
+ }
+]
