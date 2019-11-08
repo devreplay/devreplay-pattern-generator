@@ -12,7 +12,7 @@
     "language": "JavaScript"
  },
  {
-    "repo": "notebooke",
+    "repo": "notebook",
     "owner": "jupyter",
     "branch": "master",
     "language": "JavaScript"
@@ -46,12 +46,6 @@
     "owner": "apache",
     "branch": "master",
     "language": "Java"
- },
- {
-    "repo": "notebook",
-    "owner": "jupyter",
-    "branch": "master",
-    "language": "JavaScript"
  },
  {
     "repo": "notepad-plus-plus",
