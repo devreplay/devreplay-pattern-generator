@@ -106,7 +106,9 @@ class PullsCollector:
                         login
                       }
                       baseRefOid
-                      headRefOid
+                      mergeCommit {
+                        oid
+                      }
                       commits(first:1) {
                         totalCount
                         edges {
@@ -138,7 +140,7 @@ class PullsCollector:
             "commit_len": pull['commits']['totalCount'],
             "base_commit_sha": pull['baseRefOid'],
             "first_commit_sha": base_sha,
-            "merge_commit_sha": pull['headRefOid'],
+            "merge_commit_sha": pull['mergeCommit']["oid"],
             "created_at": self._parse_datetime(pull['createdAt']),
             "merged_at": self._parse_datetime(pull['mergedAt']),
             "merged_by": self._merged_by(pull),
