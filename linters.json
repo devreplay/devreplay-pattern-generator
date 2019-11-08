@@ -20,13 +20,13 @@
  {
     "repo": "csscomb.js",
     "owner": "csscomb",
-    "branch": "master",
+    "branch": "dev",
     "language": "JavaScript"
  },
  {
     "repo": "HTMLHint",
     "owner": "htmlhint",
-    "branch": "master",
+    "branch": "develop",
     "language": "JavaScript"
  },
  {
