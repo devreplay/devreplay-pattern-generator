@@ -12,14 +12,14 @@
     "language": "JavaScript"
  },
  {
-    "repo": "jupyter",
-    "owner": "notebook",
+    "repo": "notebooke",
+    "owner": "jupyter",
     "branch": "master",
     "language": "JavaScript"
  },
  {
-    "repo": "c9",
-    "owner": "core",
+    "repo": "core",
+    "owner": "c9",
     "branch": "master",
     "language": "JavaScript"
  },
@@ -48,8 +48,8 @@
     "language": "Java"
  },
  {
-    "repo": "jupyter",
-    "owner": "notebook",
+    "repo": "notebook",
+    "owner": "jupyter",
     "branch": "master",
     "language": "JavaScript"
  },
