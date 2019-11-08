@@ -211,15 +211,12 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
                 (is_defined_author(x["author"]) or is_defined_author(x["merged_by"])) and\
                 in_time_span(datetime.strptime(x["created_at"] ,"%Y-%m-%d %H:%M:%S"))])):
             try :
-                original_commit = target_repo.commit(diff_path["first_commit_sha"])
-                commit_span = "1-n"
+                # original_commit = target_repo.commit(diff_path["first_commit_sha"])
+                original_commit = target_repo.commit(diff_path["base_commit_sha"])
+                changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
+                # commit_span = "1-n"
             except:
-                try :
-                    original_commit = target_repo.commit(diff_path["base_commit_sha"])
-                    changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
-                    commit_span = "0-n"
-                except:
-                    continue
+                continue
             commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
             if any(x.message.startswith("Merge branch") for x in commits):
                 continue
@@ -242,7 +239,6 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
                 "author":diff_path["author"],
                 "created_at": diff_path["created_at"],
                 # "file_path": x["file_path"],
-                "commit_span": commit_span,
                 "condition": x["condition"],
                 "consequent": x["consequent"],
                 "abstracted": x["abstracted"] if abstracted else {}
