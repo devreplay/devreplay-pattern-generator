@@ -213,7 +213,7 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
                 in_time_span(datetime.strptime(x["created_at"] ,"%Y-%m-%d %H:%M:%S"))])):
             try :
                 # original_commit = target_repo.commit(diff_path["first_commit_sha"])
-                original_commit = target_repo.commit(diff_path["base_commit_sha"])
+                original_commit = target_repo.commit(diff_path["first_commit_sha"])
                 changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
                 # commit_span = "1-n"
             except:
