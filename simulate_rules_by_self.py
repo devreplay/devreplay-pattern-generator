@@ -14,23 +14,18 @@ with open("config.json", "r") as json_file:
 
 lang = config["lang"]
 
-group_changes = re.compile(r"\\\$\\{(\d+):[a-zA-Z_]+\\}")
 group_changes2 = re.compile(r"\$\{(\d+):[a-zA-Z_]+\}")
 consequent_newline = re.compile(r"(\".+\\)(n.*\")")
 
 def get_projects(path):
     with open(path, "r") as json_file:
         projects = json.load(json_file)
-        return list(projects)
+        return [x for x in list(projects) if "language" not in x or x["language"] == lang]
 
 if "projects_path" in config:
     projects = get_projects(config["projects_path"])
 else:
     projects = config["projects"]
-
-repos = [x["repo"] for x in projects]
-
-validate_projects = config.get("applied_projects", [])
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 
@@ -38,15 +33,15 @@ learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 
 change_files = ["data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".json"
             for x in projects]
-out_files = ["data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".csv"
-            for x in projects]
-changes = []
-for change_file in change_files:
-    print("Combine from " + change_file)
-    with open(change_file, "r") as target:
-        data = json.load(target)
-        changes.extend(data)
 
+from_self = False
+
+if from_self:
+    out_files = ["data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".csv"
+                for x in projects]
+else:
+    out_files = ["data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + "_cross.csv"
+                for x in projects]
 def group2increment(matchobj, identifier_ids):
     tokenid = int(matchobj.group(1))
     if tokenid in identifier_ids:
@@ -54,15 +49,6 @@ def group2increment(matchobj, identifier_ids):
     else:
         identifier_ids.append(tokenid)
         return r"(?P<token" + str(tokenid + 1) + r">[\w\s_]+)"
-
-def snippet2Regex(snippet):
-    identifier_ids = []
-    joinedCondition = re.escape("\n".join(snippet))
-    joinedCondition = group_changes.sub(lambda m: group2increment(m, identifier_ids), joinedCondition)
-    try:
-        return re.compile(joinedCondition)
-    except:
-        exit()
 
 def consequent2regex(matchobj, identifier_ids):
     tokenid = int(matchobj.group(1))
@@ -74,6 +60,7 @@ def snippet2RegexConsequent(snippet):
     # joinedCondition = consequent_newline.sub(r"\g<1>\\\g<2>", joinedCondition)
     return group_changes2.sub(lambda m: consequent2regex(m, identifier_ids), joinedCondition)
 
+group_changes = re.compile(r"\\\$\\{(\d+):[a-zA-Z_]+\\}")
 def snippet2RegexCondition(snippet):
     identifier_ids = []
     joinedCondition = "\n".join(snippet)
@@ -103,68 +90,74 @@ def clone_target_repo(owner, repo):
         pass
 
 def buggy2accepted(buggy, rules, rule_size):
-    tmp_rules = [x for x in rules if x["re_condition"].search(buggy)]
-    if len(tmp_rules) == 0:
+    suggested_rules = [x for x in rules if x["re_condition"].search(buggy)]
+    if len(suggested_rules) == 0:
         return [], None
     else:
         try:
-            return [x["re_condition"].sub(x["re_consequent"], buggy) for x in tmp_rules], tmp_rules
+            return [x["re_condition"].sub(x["re_consequent"], buggy) for x in suggested_rules], suggested_rules
         except:
             return [], None
 
-def getDefectKind():
-    pass
 
-output = []
 
-out_name = change_files[0]
-with open(out_name, "r") as jsonfile:
-    target_changes = json.load(jsonfile)
-changes_size = len(target_changes)
+projects_patterns = {}
 
-for i, bug in enumerate(target_changes):
-    target_changes[i]["re_condition"] = snippet2RegexCondition(bug["condition"])
-    target_changes[i]["re_consequent"] = snippet2RegexConsequent(bug["consequent"])
-    target_changes[i]["condition"] = snippet2Realcode(bug["condition"], bug["abstracted"])
-    target_changes[i]["consequent"] = snippet2Realcode(bug["consequent"], bug["abstracted"]).strip()
-    target_changes[i]["created_at"] = dt.strptime(bug["created_at"],"%Y-%m-%d %H:%M:%S")
 
-adopt_same_data = True
-if adopt_same_data:
-    all_changes = target_changes.copy()
-else:
+for change_id, out_name in enumerate(change_files):
+
     with open(out_name, "r") as jsonfile:
-        all_changes = json.load(jsonfile)
+        target_changes = json.load(jsonfile)
+    patterns = []
+
+    for bug in target_changes:
+        # if len(bug["condition"]) > 5 or len(bug["consequent"]) > 5:
+        #     continue
+        patterns.append({
+            "sha": bug["sha"],
+            "re_condition": snippet2RegexCondition(bug["condition"]),
+            "re_consequent": snippet2RegexConsequent(bug["consequent"]),
+            "condition": snippet2Realcode(bug["condition"], bug["abstracted"]),
+            "consequent": snippet2Realcode(bug["consequent"], bug["abstracted"]).strip(),
+            "created_at": dt.strptime(bug["created_at"],"%Y-%m-%d %H:%M:%S")
+        })
+    projects_patterns[out_name] = patterns
+
+
+
+for change_id, out_name in enumerate(change_files):
+    output = []
+
+    all_changes = projects_patterns[out_name].copy()
+    if not from_self:
+        learned_changes2 = []
+        for out_name2 in change_files:
+            if out_name2 != out_name:
+                learned_changes2.extend(projects_patterns[out_name2])
+    
     changes_size = len(all_changes)
 
-    for i, bug in enumerate(all_changes):
-        all_changes[i]["re_condition"] = snippet2RegexCondition(bug["condition"])
-        all_changes[i]["re_consequent"] = snippet2RegexConsequent(bug["consequent"])
-        all_changes[i]["condition"] = snippet2Realcode(bug["condition"], bug["abstracted"])
-        all_changes[i]["consequent"] = snippet2Realcode(bug["consequent"], bug["abstracted"]).strip()
-        all_changes[i]["created_at"] = dt.strptime(bug["created_at"],"%Y-%m-%d %H:%M:%S")
+    for i, change in enumerate(all_changes):
+        sys.stdout.write("\r%d / %d patterns are collected" %
+                        (i + 1, changes_size))
+        if from_self:
+            learned_change = [x for x in projects_patterns[out_name] if x["created_at"] < change["created_at"]]
+        else:
+            learned_change = [x for x in projects_patterns[out_name] if x["created_at"] < change["created_at"]]
+            learned_change.extend(learned_changes2)
+            # learned_change = learned_changes2
+        fixed_contents, _ = buggy2accepted(change["condition"], learned_change, 0)
 
+        output.append({
+            "sha": change["sha"],
+            "learned_num": len(learned_change),
+            "suggested_num": len(fixed_contents),
+            "success": any([x.strip() == change["consequent"] for x in fixed_contents])
+        })
 
-for i, change in enumerate(all_changes):
-    sys.stdout.write("\r%d / %d rules are collected" %
-                    (i + 1, changes_size))
-    tmp_change = change
-    if i == 2469:
-        continue
-
-    learned_change = [x for x in target_changes if x["created_at"] < change["created_at"]]
-    fixed_contents, _ = buggy2accepted(change["condition"], learned_change, 0)
-
-    output.append({
-        "sha": change["sha"],
-        "learned_num": len(learned_change),
-        "suggested_num": len(fixed_contents),
-        "success": any([x.strip() == change["consequent"] for x in fixed_contents])
-    })
-
-OUT_TOKEN_NAME = out_files[0]
-with open(OUT_TOKEN_NAME, "w") as target:
-    print("Success to validate the changes Output is " + OUT_TOKEN_NAME)
-    writer = csv.DictWriter(target, ["sha", "learned_num", "suggested_num", "success"])
-    writer.writeheader()
-    writer.writerows(output)
+    OUT_TOKEN_NAME = out_files[change_id]
+    with open(OUT_TOKEN_NAME, "w") as target:
+        print("Success to validate the changes Output is " + OUT_TOKEN_NAME)
+        writer = csv.DictWriter(target, ["sha", "learned_num", "suggested_num", "success"])
+        writer.writeheader()
+        writer.writerows(output)

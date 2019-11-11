@@ -12,24 +12,6 @@
     "language": "JavaScript"
  },
  {
-    "repo": "notebook",
-    "owner": "jupyter",
-    "branch": "master",
-    "language": "JavaScript"
- },
- {
-    "repo": "core",
-    "owner": "c9",
-    "branch": "master",
-    "language": "JavaScript"
- },
- {
-    "repo": "brackets",
-    "owner": "adobe",
-    "branch": "master",
-    "language": "JavaScript"
- },
- {
     "repo": "che",
     "owner": "eclipse",
     "branch": "master",
@@ -46,11 +28,5 @@
     "owner": "apache",
     "branch": "master",
     "language": "Java"
- },
- {
-    "repo": "notepad-plus-plus",
-    "owner": "notepad-plus-plus",
-    "branch": "master",
-    "language": "CPP"
  }
 ]
