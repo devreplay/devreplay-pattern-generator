@@ -28,20 +28,23 @@ else:
     projects = config["projects"]
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
+validate_by = "pulls" if "pull" in config["validate_by"] else "master"
+change_files = {x["repo"]: "data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + validate_by + ".json"
+                for x in projects}
 
 # group_changes = re.compile(r"\\\$\\{(\d+):[a-zA-Z_]+\\}")
 
-change_files = ["data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".json"
-            for x in projects]
+rule_files = {x["repo"]: "data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".json"
+              for x in projects}
 
 from_self = False
 
 if from_self:
-    out_files = ["data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".csv"
-                for x in projects]
+    out_files = {x["repo"]: "data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + validate_by + ".csv"
+                for x in projects}
 else:
-    out_files = ["data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + "_cross.csv"
-                for x in projects]
+    out_files = {x["repo"]: "data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + validate_by + "_cross.csv"
+                for x in projects}
 def group2increment(matchobj, identifier_ids):
     tokenid = int(matchobj.group(1))
     if tokenid in identifier_ids:
@@ -72,8 +75,10 @@ def snippet2RegexCondition(snippet):
         exit()
 
 def snippet2Realcode(snippet, abstracted):
-    return group_changes2.sub(lambda m: abstracted[m.group(1)], "\n".join(snippet))
-    
+    try:
+        return group_changes2.sub(lambda m: abstracted[m.group(1)], "\n".join(snippet))
+    except:
+        return ""
 
 def clone_target_repo(owner, repo):
     data_repo_dir = "data/repos"
@@ -104,7 +109,7 @@ def buggy2accepted(buggy, rules, rule_size):
 projects_patterns = {}
 
 
-for change_id, out_name in enumerate(change_files):
+for repo, out_name in rule_files.items():
 
     with open(out_name, "r") as jsonfile:
         target_changes = json.load(jsonfile)
@@ -121,19 +126,37 @@ for change_id, out_name in enumerate(change_files):
             "consequent": snippet2Realcode(bug["consequent"], bug["abstracted"]).strip(),
             "created_at": dt.strptime(bug["created_at"],"%Y-%m-%d %H:%M:%S")
         })
-    projects_patterns[out_name] = patterns
+    projects_patterns[repo] = patterns
+
+projects_changes = {}
+
+if learn_from != validate_by:
+    for repo, out_name in change_files.items():
+        with open(out_name, "r") as jsonfile:
+            target_changes = json.load(jsonfile)
+        patterns = []
+
+        for bug in target_changes:
+            patterns.append({
+                "sha": bug["sha"],
+                "condition": snippet2Realcode(bug["condition"], bug["abstracted"]),
+                "consequent": snippet2Realcode(bug["consequent"], bug["abstracted"]).strip(),
+                "created_at": dt.strptime(bug["created_at"],"%Y-%m-%d %H:%M:%S")
+            })
+        projects_changes[repo] = patterns
+else:
+    projects_changes = projects_patterns
 
 
-
-for change_id, out_name in enumerate(change_files):
+for repo in change_files.keys():
     output = []
 
-    all_changes = projects_patterns[out_name].copy()
+    all_changes = projects_changes[repo].copy()
     if not from_self:
         learned_changes2 = []
-        for out_name2 in change_files:
-            if out_name2 != out_name:
-                learned_changes2.extend(projects_patterns[out_name2])
+        for repo2 in change_files.keys():
+            if repo2 != repo:
+                learned_changes2.extend(projects_patterns[repo2])
     
     changes_size = len(all_changes)
 
@@ -141,23 +164,26 @@ for change_id, out_name in enumerate(change_files):
         sys.stdout.write("\r%d / %d patterns are collected" %
                         (i + 1, changes_size))
         if from_self:
-            learned_change = [x for x in projects_patterns[out_name] if x["created_at"] < change["created_at"]]
+            learned_change = [x for x in projects_patterns[repo] if x["created_at"] < change["created_at"]]
         else:
-            learned_change = [x for x in projects_patterns[out_name] if x["created_at"] < change["created_at"]]
+            learned_change = [x for x in projects_patterns[repo] if x["created_at"] < change["created_at"]]
             learned_change.extend(learned_changes2)
             # learned_change = learned_changes2
         fixed_contents, _ = buggy2accepted(change["condition"], learned_change, 0)
+
+        success_index = [i for i, x in enumerate(fixed_contents) if x.strip() == change["consequent"]]
 
         output.append({
             "sha": change["sha"],
             "learned_num": len(learned_change),
             "suggested_num": len(fixed_contents),
-            "success": any([x.strip() == change["consequent"] for x in fixed_contents])
+            "rule_index": min(success_index) + 1 if len(success_index) != 0 else -1,
+            "success": len(success_index) != 0
         })
 
-    OUT_TOKEN_NAME = out_files[change_id]
+    OUT_TOKEN_NAME = out_files[repo]
     with open(OUT_TOKEN_NAME, "w") as target:
         print("Success to validate the changes Output is " + OUT_TOKEN_NAME)
-        writer = csv.DictWriter(target, ["sha", "learned_num", "suggested_num", "success"])
+        writer = csv.DictWriter(target, ["sha", "learned_num", "suggested_num", "success", "rule_index"])
         writer.writeheader()
         writer.writerows(output)
