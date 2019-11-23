@@ -1,0 +1,940 @@
+[
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "STRM_NODE_ELSE,",
+   "STRM_NODE_ELSEIF,"
+  ],
+  "consequent": [
+   "STRM_NODE_EMIT,",
+   "STRM_NODE_RETURN,",
+   "STRM_NODE_BREAK,"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "          ",
+   "return NULL;"
+  ],
+  "consequent": [
+   "  strm_node_func* node_func = malloc(sizeof(strm_node_func));",
+   "  node_func->ident = ident;",
+   "  node_func->args = args;",
+   "  node_func->blk = blk;",
+   "",
+   "  strm_node* node = malloc(sizeof(strm_node));",
+   "  node->type = STRM_NODE_FUNC;",
+   "  node->value.t = STRM_VALUE_USER;",
+   "  node->value.v.p = node_func;",
+   "  return node;",
+   "}",
+   "",
+   "strm_node*",
+   "node_call_new(strm_node* cond, strm_node* ident, strm_node* args)",
+   "{",
+   "  strm_node_call* node_call = malloc(sizeof(strm_node_call));",
+   "  node_call->cond = cond;",
+   "  node_call->ident = ident;",
+   "  node_call->args = args;",
+   "",
+   "  strm_node* node = malloc(sizeof(strm_node));",
+   "  node->type = STRM_NODE_CALL;",
+   "  node->value.t = STRM_VALUE_USER;",
+   "  node->value.v.p = node_call;",
+   "  return node;"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "            ",
+   "  return NULL;",
+   "}"
+  ],
+  "consequent": [
+   "strm_node_op* node_op = malloc(sizeof(strm_node_op));",
+   "node_op->lhs = lhs;",
+   "node_op->op = op;",
+   "node_op->rhs = rhs;"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "node_op_new(const char* ${0:Identifier}, ${1:Identifier}* ${2:Identifier}, ${1:Identifier}* ${3:Identifier})"
+  ],
+  "consequent": [
+   "node_op_new(char* ${0:Identifier}, ${1:Identifier}* ${2:Identifier}, ${1:Identifier}* ${3:Identifier})"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "STRM_VALUE_CARRAY"
+  ],
+  "consequent": [
+   "STRM_VALUE_ARRAY"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "STRM_NODE_OP_PLUS"
+  ],
+  "consequent": [
+   "STRM_NODE_OP"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "node_ident_of(const char* ${0:Identifier})"
+  ],
+  "consequent": [
+   "node_ident_of(char* ${0:Identifier})"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "STRM_NODE_ARRAY,"
+  ],
+  "consequent": [
+   "STRM_NODE_ARGS,",
+   "STRM_NODE_PAIR,"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "node_funcall_new(strm_id id, ${0:Identifier}* ${1:Identifier}, ${0:Identifier}* ${2:Identifier})"
+  ],
+  "consequent": [
+   "node_func_new(${0:Identifier}* ident, ${0:Identifier}* ${1:Identifier}, ${0:Identifier}* ${2:Identifier})"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "extern ${0:Identifier}* node_funcall_new(strm_id, ${0:Identifier}*, ${0:Identifier}*);"
+  ],
+  "consequent": [
+   "extern ${0:Identifier}* node_call_new(${0:Identifier}*, ${0:Identifier}*, ${0:Identifier}*);"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "            ",
+   "  return NULL;",
+   "}"
+  ],
+  "consequent": [
+   "strm_node_let* node_let = malloc(sizeof(strm_node_let));",
+   "node_let->lhs = lhs;",
+   "node_let->rhs = rhs;"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "STRM_NODE_ARRAY"
+  ],
+  "consequent": [
+   "STRM_NODE_VALUE"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "extern ${0:Identifier}* node_op_new(const char*, ${0:Identifier}*, ${0:Identifier}*);"
+  ],
+  "consequent": [
+   "extern ${0:Identifier}* node_op_new(char*, ${0:Identifier}*, ${0:Identifier}*);",
+   "extern ${0:Identifier}* node_func_new(${0:Identifier}*, ${0:Identifier}*, ${0:Identifier}*);"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "node_let_new(${0:Identifier}* var, ${0:Identifier}* ${1:Identifier})"
+  ],
+  "consequent": [
+   "node_pair_new(${0:Identifier}* key, ${0:Identifier}* value)",
+   "{",
+   "  strm_pair* pair = malloc(sizeof(strm_pair));",
+   "  pair->key = key;",
+   "  pair->value = value;",
+   "",
+   "  ${0:Identifier}* ${1:Identifier} = malloc(sizeof(${0:Identifier}));",
+   "  ${1:Identifier}->type = STRM_NODE_PAIR;",
+   "  ${1:Identifier}->value.t = STRM_VALUE_USER;",
+   "  ${1:Identifier}->value.v.p = pair;",
+   "  return ${1:Identifier};",
+   "}",
+   "",
+   "${0:Identifier}*",
+   "node_map_new()",
+   "{",
+   "  strm_array* arr = malloc(sizeof(strm_array));",
+   "                         ",
+   "  arr->len = 0;",
+   "  arr->max = 0;",
+   "  arr->data = NULL;",
+   "",
+   "  ${0:Identifier}* ${1:Identifier} = malloc(sizeof(${0:Identifier}));",
+   "  ${1:Identifier}->type = STRM_NODE_VALUE;",
+   "  ${1:Identifier}->value.t = STRM_VALUE_MAP;",
+   "  ${1:Identifier}->value.v.p = arr;",
+   "  return ${1:Identifier};",
+   "}",
+   "",
+   "${0:Identifier}*",
+   "node_map_of(${0:Identifier}* ${1:Identifier})",
+   "{",
+   "  if (${1:Identifier} == NULL)",
+   "    ${1:Identifier} = node_map_new();",
+   "  return ${1:Identifier};",
+   "}",
+   "",
+   "${0:Identifier}*",
+   "node_let_new(${0:Identifier}* lhs, ${0:Identifier}* rhs)"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "extern ${0:Identifier} node_ident_of(const char*);"
+  ],
+  "consequent": [
+   "extern ${0:Identifier} node_ident_of(char*);"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 92,
+  "sha": "ff5db6d9f276c88f2a314fc1f5589ebfe51e10ac",
+  "author": "mattn",
+  "created_at": "2015-01-26 04:21:05",
+  "condition": [
+   "STRM_NODE_OP_MINUS,"
+  ],
+  "consequent": [
+   "STRM_NODE_FUNC,",
+   "STRM_NODE_CALL,"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "if (select(${0:Integerliteral}, &${1:Identifier}[${2:Integerliteral}], &${1:Identifier}[${0:Integerliteral}], &${1:Identifier}[${3:Integerliteral}], tp) > ${2:Integerliteral} &&"
+  ],
+  "consequent": [
+   "if (select(${0:Integerliteral}, &${1:Identifier}[${2:Integerliteral}], &${1:Identifier}[${0:Integerliteral}], &${1:Identifier}[${3:Integerliteral}], &tv) > ${2:Integerliteral} &&"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "while (GetTickCount() - ${0:Identifier} < ${1:Identifier}) {"
+  ],
+  "consequent": [
+   "for (i = 0; i < FD_SETSIZE; i++) {",
+   "  if (ee->fds[i] < 0) continue;",
+   "  n++;",
+   "}",
+   "if (n == 0) return 0;",
+   "while (${1:Identifier} == -1 || GetTickCount() - ${0:Identifier} <= ${1:Identifier}) {"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "FD_ISSET(${0:Identifier}->${1:Identifier}[${2:Identifier}], &${3:Identifier}[${4:Integerliteral}]) ||"
+  ],
+  "consequent": [
+   "(${0:Identifier}->events & EPOLLOUT && FD_ISSET(${0:Identifier}->${1:Identifier}[${2:Identifier}], &${3:Identifier}[${4:Integerliteral}])) ||"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "FD_ISSET(${0:Identifier}->${1:Identifier}[${2:Identifier}], &${3:Identifier}[${4:Integerliteral}]))) {"
+  ],
+  "consequent": [
+   "(${0:Identifier}->events & EPOLLERR && FD_ISSET(${0:Identifier}->${1:Identifier}[${2:Identifier}], &${3:Identifier}[${4:Integerliteral}]))) {"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "             ",
+   "  ${0:Identifier} = _open_osfhandle(${0:Identifier}, 0);",
+   "      ",
+   "  *${1:Identifier} = strm_io_new(${0:Identifier}, ${2:Identifier}|${3:Identifier}|${4:Identifier});"
+  ],
+  "consequent": [
+   "*${1:Identifier} = strm_ptr_value((void*)strm_io_new(${0:Identifier},",
+   "${2:Identifier}|${3:Identifier}|${4:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "if (select(${0:Integerliteral}, &${1:Identifier}[${2:Integerliteral}], &${1:Identifier}[${0:Integerliteral}], &${1:Identifier}[${3:Integerliteral}], tp) > ${2:Integerliteral} &&"
+  ],
+  "consequent": [
+   "if (select(${2:Integerliteral}, &${1:Identifier}[${2:Integerliteral}], &${1:Identifier}[${0:Integerliteral}], &${1:Identifier}[${3:Integerliteral}], &tv) == -${0:Integerliteral})"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "(FD_ISSET(${0:Identifier}->${1:Identifier}[${2:Identifier}], &${3:Identifier}[${4:Integerliteral}]) ||"
+  ],
+  "consequent": [
+   "  break;",
+   "if ((${0:Identifier}->events & EPOLLIN && FD_ISSET(${0:Identifier}->${1:Identifier}[${2:Identifier}], &${3:Identifier}[${4:Integerliteral}])) ||"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "struct ${0:Identifier} ${1:Identifier}, *tp;"
+  ],
+  "consequent": [
+   " struct ${0:Identifier} ${1:Identifier} = {0};",
+   " int i, n = 0;"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "if (${0:Identifier} != ${1:Identifier} && WaitForSingleObject(${0:Identifier}, timeout < ${2:Integerliteral} ? INFINITE : timeout) == ${3:Identifier}) {"
+  ],
+  "consequent": [
+   "if (${0:Identifier} != ${1:Identifier} && WaitForSingleObject(${0:Identifier}, ${2:Integerliteral}) == ${3:Identifier}) {",
+   "  memcpy(&events[e++], ee, sizeof(struct epoll_event));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "read"
+  ],
+  "consequent": [
+   "strm_read"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 148,
+  "sha": "4cd6cf9e1e6602d581176bb5ae47699cee469455",
+  "author": "mattn",
+  "created_at": "2016-04-19 08:29:41",
+  "condition": [
+   "while (current_time() - ${0:Identifier} < ${1:Identifier}) {"
+  ],
+  "consequent": [
+   "for (i = 0; i < FD_SETSIZE; i++) {",
+   "  if (ee->fds[i] < 0) continue;",
+   "  n++;",
+   "}",
+   "if (n == 0) return 0;",
+   "while (${1:Identifier} == -1 || current_time() - ${0:Identifier} < ${1:Identifier}) {"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 129,
+  "sha": "caccfba325f142e3dd515e8bdee96a0614c9e745",
+  "author": "suzukaze",
+  "created_at": "2015-06-22 15:55:55",
+  "condition": [
+   "else if (strm_num_p(${0:Identifier}[${1:Integerliteral}])) {"
+  ],
+  "consequent": [
+   "if (strm_num_p(${0:Identifier}[${1:Integerliteral}])) {"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 114,
+  "sha": "74dbc9ca5ead27225eebd9c827705defa1348ad5",
+  "author": "mattn",
+  "created_at": "2015-05-19 13:11:56",
+  "condition": [
+   "if (strm_value_bool(${0:Identifier})) {"
+  ],
+  "consequent": [
+   "if (strm_value_bool(${0:Identifier}) || (strm_int_p(${0:Identifier}) && strm_value_int(${0:Identifier}) > 0)) {"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 114,
+  "sha": "74dbc9ca5ead27225eebd9c827705defa1348ad5",
+  "author": "mattn",
+  "created_at": "2015-05-19 13:11:56",
+  "condition": [
+   "*${0:Identifier} = args[1];"
+  ],
+  "consequent": [
+   "*${0:Identifier} = rhs;"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "${0:Identifier}->${1:Identifier}->${2:Identifier}.${3:Identifier} = strdup0(${4:Identifier});"
+  ],
+  "consequent": [
+   "${0:Identifier}->${1:Identifier}->arg->${2:Identifier}.${3:Identifier} = strdup0(${4:Identifier});"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "node_free(pair0->${0:Identifier});"
+  ],
+  "consequent": [
+   "node_free(npair->${0:Identifier});",
+   "free(npair);"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "printf(${0:Stringliteral});"
+  ],
+  "consequent": [
+   "fprintf(out, ${0:Stringliteral});"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "pair0"
+  ],
+  "consequent": [
+   "pair"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "${0:Identifier}->${1:Identifier}->${2:Identifier} = STRM_VALUE_STRING;"
+  ],
+  "consequent": [
+   "${0:Identifier}->${1:Identifier}->arg->${2:Identifier} = STRM_VALUE_ERROR;"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "int i;",
+   "node_array* arr0 = ((${0:Identifier}*)${1:Identifier}->${2:Identifier})->value.v.${1:Identifier};",
+   "for (i = 0; i < arr0->len; i++)",
+   "  node_expr(&${1:Identifier}->${3:Identifier}, arr0->data[i]);"
+  ],
+  "consequent": [
+   "node_expr_stmt(&${1:Identifier}->${3:Identifier}, (${0:Identifier}*)${1:Identifier}->${2:Identifier});",
+   "if (${1:Identifier}->${3:Identifier}.exc != NULL) {",
+   "  strm_array* arr = strm_array_new();",
+   "  strm_array_add(arr, ${1:Identifier}->${3:Identifier}.exc->arg);",
+   "  strm_cputs(&${1:Identifier}->${3:Identifier}, stderr, arr);",
+   "                                                      ",
+   "  ${1:Identifier}->${3:Identifier}.exc = NULL;",
+   "}"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "${0:Identifier}->${1:Identifier} = malloc(sizeof(${2:Identifier}));"
+  ],
+  "consequent": [
+   "${0:Identifier}->${1:Identifier} = malloc(sizeof(strm_error));",
+   "${0:Identifier}->${1:Identifier}->type = STRM_ERROR_RUNTIME;",
+   "${0:Identifier}->${1:Identifier}->arg = malloc(sizeof(${2:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "printf(${0:Stringliteral}, ${1:Identifier}->${1:Identifier}.${2:Identifier});"
+  ],
+  "consequent": [
+   "fprintf(out, ${0:Stringliteral}, ${1:Identifier}->${1:Identifier}.${2:Identifier});"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "pair0"
+  ],
+  "consequent": [
+   "npair"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "arr0"
+  ],
+  "consequent": [
+   "arr"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "strm_puts(${0:Identifier}* ${1:Identifier}, ${2:Identifier}* ${3:Identifier}) {"
+  ],
+  "consequent": [
+   "strm_cputs(${0:Identifier}* ${1:Identifier}, FILE* out, ${2:Identifier}* ${3:Identifier}) {"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "typedef struct {",
+   "  int len;",
+   "  int max;",
+   "  node** data;",
+   "} ${0:Identifier};"
+  ],
+  "consequent": [
+   "typedef strm_array ${0:Identifier};"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "${0:Identifier}* ${1:Identifier} = node_expr(${2:Identifier}, ${3:Identifier}->${1:Identifier});"
+  ],
+  "consequent": [
+   "${0:Identifier}* ${1:Identifier} = node_expr(${2:Identifier}, ${3:Identifier}->${1:Identifier});",
+   "if (${2:Identifier}->exc != NULL) return NULL;"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "strm_value"
+  ],
+  "consequent": [
+   "strm_error"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 103,
+  "sha": "67757cbe4cbfae177ce44e167da4f71948d85e59",
+  "author": "mattn",
+  "created_at": "2015-02-09 11:20:18",
+  "condition": [
+   "printf(${0:Identifier}->${0:Identifier}.${1:Identifier} ? ${2:Stringliteral} : ${3:Stringliteral});"
+  ],
+  "consequent": [
+   "  fprintf(out, ${0:Identifier}->${0:Identifier}.${1:Identifier} ? ${2:Stringliteral} : ${3:Stringliteral});",
+   "  break;",
+   "case STRM_VALUE_ERROR:",
+   "  fprintf(out, \"%s\", ${0:Identifier}->${0:Identifier}.s);"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "${0:Identifier}* ${0:Identifier} = malloc(sizeof(${0:Identifier}));"
+  ],
+  "consequent": [
+   "${0:Identifier}* np = malloc(sizeof(${0:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node_array_of(${0:Identifier}* ${0:Identifier})"
+  ],
+  "consequent": [
+   "node_array_of(${0:Identifier}* np)"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node_block"
+  ],
+  "consequent": [
+   "block"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node_call"
+  ],
+  "consequent": [
+   "ncall"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node"
+  ],
+  "consequent": [
+   "np"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "pair"
+  ],
+  "consequent": [
+   "npair"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node = node_array_new();"
+  ],
+  "consequent": [
+   "np = node_array_new();"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node_let"
+  ],
+  "consequent": [
+   "nlet"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "${0:Identifier}* ${0:Identifier} = malloc(sizeof(${0:Identifier}));"
+  ],
+  "consequent": [
+   "${0:Identifier}* nif = malloc(sizeof(${0:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "${0:Identifier}* ${0:Identifier} = malloc(sizeof(${0:Identifier}));"
+  ],
+  "consequent": [
+   "${0:Identifier}* nlet = malloc(sizeof(${0:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "printf(\"IDENT: %d\\n\", ${0:Identifier}->${1:Identifier}.${2:Identifier}.${3:Identifier});"
+  ],
+  "consequent": [
+   "printf(\"IDENT: %p\\n\", ${0:Identifier}->${1:Identifier}.${2:Identifier}.${3:Identifier});"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node_if"
+  ],
+  "consequent": [
+   "nif"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "${0:Identifier}* ${0:Identifier} = malloc(sizeof(${0:Identifier}));"
+  ],
+  "consequent": [
+   "${0:Identifier}* block = malloc(sizeof(${0:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "${0:Identifier}* ${0:Identifier} = malloc(sizeof(${0:Identifier}));"
+  ],
+  "consequent": [
+   "${0:Identifier}* nop = malloc(sizeof(${0:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "${0:Identifier}* ${0:Identifier} = malloc(sizeof(${0:Identifier}));"
+  ],
+  "consequent": [
+   "${0:Identifier}* ncall = malloc(sizeof(${0:Identifier}));"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "pair"
+  ],
+  "consequent": [
+   "malloc"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "dump_node(${0:Identifier}.lval, 0);"
+  ],
+  "consequent": [
+   "                                ",
+   " strm_run(&${0:Identifier});",
+   "}",
+   "strm_parse_free(&${0:Identifier});"
+  ]
+ },
+ {
+  "repository": "matz/streem",
+  "number": 101,
+  "sha": "58b75b63f00645eae69539a8afbb9204ced11768",
+  "author": "mattn",
+  "created_at": "2015-02-05 02:46:46",
+  "condition": [
+   "node_op"
+  ],
+  "consequent": [
+   "nop"
+  ]
+ }
+]
