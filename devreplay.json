@@ -40,8 +40,7 @@
        "consequent": [
            "if not ${1:list}s:"
        ]
-    }
-    ,
+    },
     {
        "condition": [
            "if not ${1:value} is None:"
@@ -49,15 +48,6 @@
        "consequent": [
            "if ${1:value} is not None:"
        ]
-    },
-    {
-       "condition": [
-          "import ${1:lib1}, ${2:lib2}"
-      ],
-      "consequent": [
-          "import ${1:lib1}",
-          "import ${1:lib2}"
-      ]
     },
     {
        "condition": [

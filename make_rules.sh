@@ -1,2 +1,2 @@
 python3 collect_changes.py
-python3 simulate_rules_by_self.py
+python3 test_rules.py
