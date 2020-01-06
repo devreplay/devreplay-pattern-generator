@@ -147,10 +147,10 @@ def make_hunks(source, target):
 
 def code_trip(splited_code, to_code=False):
     min_space = 0 if len(splited_code) == 0 else min(len(x) - len(x.lstrip()) for x in splited_code)
-    splited_code = [x[min_space:].rstrip() for x in splited_code[min_space:] if x.rstrip() != ""]
+    splited_code = [x[min_space:].rstrip() for x in splited_code]
     if to_code:
         return splited_code
-    return "".join(splited_code)
+    return "\n".join(splited_code)
 
 def is_defined_author(author):
     return all_author or\
