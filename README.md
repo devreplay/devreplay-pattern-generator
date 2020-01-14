@@ -15,10 +15,8 @@ And you can use your rule by the [vscode extension](https://marketplace.visualst
 ### 0. Cloning this repository
 
 ```sh
-git clone https://github.com/Ikuyadeu/review_pattern_gen.git
-cd review_pattern_gen
+git clone --recursive  https://github.com/Ikuyadeu/review_pattern_gen.git
 pip3 install antlr4-python3-runtime unidiff gitpython
-git clone https://github.com/Ikuyadeu/CodeTokenizer.git
 ```
 
 ### 1. Preparing config file
