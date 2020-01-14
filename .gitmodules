@@ -1,0 +1,3 @@
+[submodule "CodeTokenizer"]
+	path = CodeTokenizer
+	url = https://github.com/Ikuyadeu/CodeTokenizer.git
