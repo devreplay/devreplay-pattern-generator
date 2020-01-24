@@ -10,7 +10,7 @@ And you can use your rule by the [vscode extension](https://marketplace.visualst
 * git
 * GitHub account and [github token](https://github.com/settings/tokens)
 
-## How to Use
+## Get started
 
 ### 0. Cloning this repository
 
@@ -54,16 +54,10 @@ and edit `config.json` file like berrow
     "all_author": false,
     "change_size": 1000,
     "time_length": {
-        "start": "2018-01-01 00:00:00",
-        "end": "2019-01-01 00:00:00"
+        "start": "2019-01-01 00:00:00",
+        "end": "2020-01-01 00:00:00"
     },
     "projects_path": "data/projects/rails_Ruby.json",
-    "applied_projects": [
-        {
-            "owner": "matz",
-            "repo": "streem"
-        }
-    ],
     "authors": [
         {
             "git": "Yukihiro Matsumoto",
@@ -89,7 +83,6 @@ and edit `config.json` file like berrow
     * `repo`: Project repository name
     * ?`branch` (default is `master`): Project branch name
 * ?`projects_path`: If you want to devide projects contents, you can write projects information on the other file
-* ?`applied_projects`: Projects that you want to apply rules
 * ?`all_change`(default is False): Will you get all commits or not
 * ?`change_size` (if all_change is false, default is 100):  Number of change that you collect
 * ?`time_length` (default is all changes):
