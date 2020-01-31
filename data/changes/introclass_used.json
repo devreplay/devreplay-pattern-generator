@@ -4,54 +4,45 @@
   "buggy": "002",
   "correct": "004",
   "condition": [
-   "if ((i!=${0:Integerliteral}) && (negative < ${1:Integerliteral})){",
-   "  ${2:Identifier}=(-1*${3:Identifier})%${0:Integerliteral};"
+   "return ${0:Integerliteral};"
   ],
   "consequent": [
-   "${2:Identifier}=${3:Identifier}%${0:Integerliteral};",
-   "",
-   "if (${3:Identifier} == ${1:Integerliteral}){",
-   "  printf(\"0\\n\");",
-   "  break;"
+   "return (${0:Integerliteral});"
   ],
   "abstracted": {
-   "0": "10",
-   "1": "0",
-   "2": "digit",
-   "3": "integer"
+   "0": "0"
   },
-  "frequency": 93
+  "sha": "digits7",
+  "frequency": 73
  },
  {
-  "repo": "0cdfa335eea3c612e6fa3ad261276b0c3ebbc6ff0ff13c20bdc249bad29a8037ca6dc887dd28558964e1e1a24f47c4cffc05adba525285dc8b93660cdf9b8b7c",
-  "buggy": "000",
-  "correct": "008",
+  "repo": "317aa7055d3b7337ab43b73863692d1288ca246c473f9fd176bc737a7c3e1e08c37a15603cfb7bfc86f7bc2dcc239967b79b605aec11f86ae3ab90dc140b540f",
+  "buggy": "002",
+  "correct": "004",
   "condition": [
-   "int c, i,flag1,flag2=0;",
-   "char ${0:Identifier}[11];"
+   "int main () {"
   ],
   "consequent": [
-   "int n, temp, ${0:Identifier};"
+   "int main (void) {"
   ],
-  "abstracted": {
-   "0": "digit"
-  },
-  "frequency": 88
+  "abstracted": {},
+  "sha": "digits4",
+  "frequency": 19
  },
  {
   "repo": "30074a0e036669b5681720e6481cc101877d52ee589bab434417ece22b4133ed584c6a84f80047c10ab47aa73a7807720b5375983e8b489e8e69978e5e0e8b71",
   "buggy": "000",
-  "correct": "007",
+  "correct": "015",
   "condition": [
-   "printf(${0:Stringliteral});"
+   "return ${0:Integerliteral};"
   ],
   "consequent": [
-   "printf(${0:Stringliteral}); }",
-   ""
+   "return (${0:Integerliteral});"
   ],
   "abstracted": {
-   "0": "\"0\\n\""
+   "0": "0"
   },
+  "sha": "median23",
   "frequency": 11
  },
  {
@@ -68,22 +59,26 @@
    "0": "add",
    "1": "sum"
   },
+  "sha": "checksum6",
   "frequency": 9
  },
  {
   "repo": "8cddfdf7aebdb470a597d7220985f0328a2221da11e260c17fafdf236b78e561014bc0a7ea717540ecab6e9a12d2b584cbdf07a4cd928a622ed99bb88ea81e33",
-  "buggy": "003",
+  "buggy": "000",
   "correct": "005",
   "condition": [
-   "if(nint < 2147483647) {",
-   "    ${0:Identifier} = nint;"
+   "int ${0:Identifier}, ${1:Identifier}, ${2:Identifier};"
   ],
   "consequent": [
-   "if(${0:Identifier} != 0) {"
+   "int ${0:Identifier}, ${1:Identifier}, ${2:Identifier}, x;",
+   "x = 0;"
   ],
   "abstracted": {
-   "0": "n"
+   "0": "dx",
+   "1": "numcheck",
+   "2": "dxy"
   },
+  "sha": "digits97",
   "frequency": 4
  },
  {
@@ -99,23 +94,25 @@
   "abstracted": {
    "0": "negative"
   },
+  "sha": "digits92",
   "frequency": 2
  },
  {
   "repo": "1c2bb3a40a82cba97b2937bc6825903a28ecfe91f993fc177a0f2ae003bcc7b1073eb49e35d3f0f69d6b612e8347e9c1b93306bf25a7e5390098c1a06845baac",
   "buggy": "000",
-  "correct": "009",
+  "correct": "016",
   "condition": [
-   "int ${0:Identifier} = ${1:Integerliteral};"
+   "int ${0:Identifier},${1:Identifier},${2:Identifier};"
   ],
   "consequent": [
-   "int ${0:Identifier} = -1;",
-   "int neg=${1:Integerliteral};"
+   "int ${0:Identifier},${1:Identifier},${2:Identifier},temp;"
   ],
   "abstracted": {
-   "0": "max",
-   "1": "0"
+   "0": "x",
+   "1": "y",
+   "2": "z"
   },
+  "sha": "median29",
   "frequency": 2
  },
  {
@@ -123,31 +120,58 @@
   "buggy": "003",
   "correct": "007",
   "condition": [
-   "scanf(\"%i\",&${0:Identifier});"
+   "int main(void){"
   ],
   "consequent": [
-   "scanf(\"%d\",&${0:Identifier});"
+   "int main(){"
   ],
-  "abstracted": {
-   "0": "n"
-  },
+  "abstracted": {},
+  "sha": "digits68",
   "frequency": 2
+ },
+ {
+  "repo": "d2b889e1ac42bc85f9df5c45c10708f46784be93d69acd1415cfd4d028cb50b19f50c374a9498c8e8b909173053a100e20c279ddb06c6359a06a920ead3e8080",
+  "buggy": "000",
+  "correct": "001",
+  "condition": [
+   "int main(){"
+  ],
+  "consequent": [
+   "int main (){"
+  ],
+  "abstracted": {},
+  "sha": "median57",
+  "frequency": 1
+ },
+ {
+  "repo": "317aa7055d3b7337ab43b73863692d1288ca246c473f9fd176bc737a7c3e1e08c37a15603cfb7bfc86f7bc2dcc239967b79b605aec11f86ae3ab90dc140b540f",
+  "buggy": "001",
+  "correct": "004",
+  "condition": [
+   "int main () {"
+  ],
+  "consequent": [
+   "int main (void) {"
+  ],
+  "abstracted": {},
+  "sha": "digits36",
+  "frequency": 1
  },
  {
   "repo": "a0e3fdae706d528dcf146cbad986ba9fd834440a7b500e32f04fad073e955a46e481c713ee118432f3fd5dfa1a63fc1caefd648a56a389e40e6362dfd51625b0",
   "buggy": "005",
   "correct": "006",
   "condition": [
-   "int ${0:Identifier} = strlen(${1:Identifier});"
+   "scanf(\"%s\", ${0:Identifier});"
   ],
   "consequent": [
-   "int ${0:Identifier} = strlen(${1:Identifier}) -1;",
-   ""
+   "",
+   "fgets(${0:Identifier}, sizeof(${0:Identifier}), stdin);"
   ],
   "abstracted": {
-   "0": "stringlength",
-   "1": "value"
+   "0": "value"
   },
+  "sha": "checksum33",
   "frequency": 1
  }
 ]
