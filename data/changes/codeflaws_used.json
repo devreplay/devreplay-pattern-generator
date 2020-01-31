@@ -1,0 +1,1156 @@
+[
+ {
+  "sha": "463-B-bug-15496189-15496207",
+  "number": "463",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "1",
+   "2": "n"
+  },
+  "frequency": 10
+ },
+ {
+  "sha": "92-A-bug-15227260-15227314",
+  "number": "92",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "1",
+   "2": "n"
+  },
+  "frequency": 6
+ },
+ {
+  "sha": "276-B-bug-14833281-14833300",
+  "number": "276",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}%${1:Integerliteral}==${2:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}!=${2:Integerliteral} && ${0:Identifier}%${1:Integerliteral}==${2:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "2",
+   "2": "0"
+  },
+  "frequency": 6
+ },
+ {
+  "sha": "68-A-bug-4431487-4431492",
+  "number": "68",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}==${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "c1",
+   "1": "7"
+  },
+  "frequency": 5
+ },
+ {
+  "sha": "71-A-bug-18179306-18179326",
+  "number": "71",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<=${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "l",
+   "1": "10"
+  },
+  "frequency": 4
+ },
+ {
+  "sha": "107-B-bug-4234495-4234502",
+  "number": "107",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "1",
+   "2": "n"
+  },
+  "frequency": 4
+ },
+ {
+  "sha": "202-A-bug-1938570-1938571",
+  "number": "202",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "0",
+   "2": "j"
+  },
+  "frequency": 4
+ },
+ {
+  "sha": "233-A-bug-16343149-16343192",
+  "number": "233",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}>${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Integerliteral}&&${0:Identifier}%2==0)"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "1"
+  },
+  "frequency": 4
+ },
+ {
+  "sha": "263-B-bug-6011209-6011215",
+  "number": "263",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "k",
+   "1": "n"
+  },
+  "frequency": 4
+ },
+ {
+  "sha": "424-B-bug-6496241-6496246",
+  "number": "424",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}==${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "s",
+   "1": "1000000"
+  },
+  "frequency": 4
+ },
+ {
+  "sha": "34-B-bug-18168171-18168218",
+  "number": "34",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<=${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "c",
+   "1": "m"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "122-B-bug-5768530-5768538",
+  "number": "122",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}==${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}==${1:Integerliteral}||${0:Identifier}==2)"
+  ],
+  "abstracted": {
+   "0": "k",
+   "1": "0"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "146-B-bug-3823679-3823682",
+  "number": "146",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}==${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}==${1:Identifier} && i>a)"
+  ],
+  "abstracted": {
+   "0": "ma",
+   "1": "b"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "218-A-bug-2049468-2049470",
+  "number": "218",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}==${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "k",
+   "1": "0"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "279-A-bug-3822288-3822664",
+  "number": "279",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Integerliteral};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Integerliteral};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "0",
+   "2": "400"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "318-A-bug-17923580-17923594",
+  "number": "318",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "m",
+   "1": "l"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "401-D-bug-6052619-6052631",
+  "number": "401",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Integerliteral};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Integerliteral};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "0",
+   "2": "9"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "467-A-bug-17462031-17462044",
+  "number": "467",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "t",
+   "1": "2"
+  },
+  "frequency": 3
+ },
+ {
+  "sha": "4-A-bug-18279795-18282404",
+  "number": "4",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<=${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "2"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "82-A-bug-16870449-16870616",
+  "number": "82",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "sum",
+   "1": "n"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "96-A-bug-18176869-18176878",
+  "number": "96",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier}-${3:Integerliteral};${0:Identifier}++){"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier}-${3:Integerliteral};${0:Identifier}++){"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "0",
+   "2": "len",
+   "3": "7"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "80-A-bug-14423890-14423905",
+  "number": "80",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Identifier}+${2:Integerliteral};${0:Identifier}<${3:Integerliteral};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Identifier}+${2:Integerliteral};${0:Identifier}<=${3:Integerliteral};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "n",
+   "2": "1",
+   "3": "50"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "110-C-bug-11176379-11176427",
+  "number": "110",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier} == ${1:Identifier}){"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Identifier}){"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "quo1"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "133-E-bug-7115937-7115949",
+  "number": "133",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} < ${2:Identifier}; ${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} <= ${2:Identifier}; ${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "0",
+   "2": "n"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "363-A-bug-17933456-17933469",
+  "number": "363",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}[${1:Identifier}]>${2:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}[${1:Identifier}]>=${2:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "a",
+   "1": "j",
+   "2": "5"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "376-C-bug-7329404-7329433",
+  "number": "376",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Integerliteral};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Integerliteral};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "1",
+   "2": "9"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "369-A-bug-15438550-15438572",
+  "number": "369",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "count1",
+   "1": "m"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "342-B-bug-4426866-4426893",
+  "number": "342",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "1",
+   "2": "t"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "496-A-bug-16451574-16451724",
+  "number": "496",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "m",
+   "1": "c"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "246-A-bug-6327105-6327112",
+  "number": "246",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if (${0:Identifier} < ${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if (${0:Identifier} <= ${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "2"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "144-A-bug-18061142-18061295",
+  "number": "144",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Identifier}-${2:Integerliteral};${0:Identifier}>${3:Integerliteral};${0:Identifier}--)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Identifier}-${2:Integerliteral};${0:Identifier}>=${3:Integerliteral};${0:Identifier}--)"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "n",
+   "2": "1",
+   "3": "0"
+  },
+  "frequency": 2
+ },
+ {
+  "sha": "4-B-bug-12979060-12979073",
+  "number": "4",
+  "bug_kind": "OLLN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier} && ${0:Identifier}<${2:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Identifier} || ${0:Identifier}<${2:Identifier})"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "sum2",
+   "2": "sum1"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "17-A-bug-8358953-8359086",
+  "number": "17",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}==${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "count",
+   "1": "k"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "49-A-bug-11598208-11598303",
+  "number": "49",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "2",
+   "2": "i"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "101-A-bug-3317973-3317996",
+  "number": "101",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "sum",
+   "1": "k"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "141-B-bug-12854822-12854834",
+  "number": "141",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "xc",
+   "1": "x"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "111-A-bug-12842177-12842259",
+  "number": "111",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Integerliteral}){"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<=${1:Integerliteral}){"
+  ],
+  "abstracted": {
+   "0": "y",
+   "1": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "6-C-bug-10865678-10865690",
+  "number": "6",
+  "bug_kind": "ORRN",
+  "condition": [
+   "while(${0:Identifier} < ${1:Identifier}){"
+  ],
+  "consequent": [
+   "while(${0:Identifier} <= ${1:Identifier}){"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "j"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "146-B-bug-2035917-2035968",
+  "number": "146",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}==${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}==${1:Integerliteral} && x==${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "y",
+   "1": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "252-B-bug-2803260-2803272",
+  "number": "252",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "1",
+   "2": "n"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "257-A-bug-3069844-3069860",
+  "number": "257",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "0",
+   "2": "n"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "186-A-bug-11510847-11510876",
+  "number": "186",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>=${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "m",
+   "1": "2"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "266-B-bug-17461208-17461221",
+  "number": "266",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Identifier};${0:Identifier}>=${2:Integerliteral};${0:Identifier}--)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Identifier};${0:Identifier}>${2:Integerliteral};${0:Identifier}--)"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "t",
+   "2": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "4-A-bug-18331331-18331412",
+  "number": "4",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}%${1:Integerliteral}==${2:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}%${1:Integerliteral}==${2:Integerliteral}&&${0:Identifier}>${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "wgt",
+   "1": "2",
+   "2": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "158-A-bug-18164999-18165022",
+  "number": "158",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}[${1:Identifier}]==${0:Identifier}[${2:Identifier}])"
+  ],
+  "consequent": [
+   "if(${0:Identifier}[${1:Identifier}]==${0:Identifier}[${2:Identifier}] &&${0:Identifier}[${2:Identifier}]!=0)"
+  ],
+  "abstracted": {
+   "0": "arr",
+   "1": "pos",
+   "2": "i"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "71-B-bug-636712-636716",
+  "number": "71",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for (${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} < ${2:Identifier}; ${0:Identifier}++) {"
+  ],
+  "consequent": [
+   "for (${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} <= ${2:Identifier}; ${0:Identifier}++) {"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "0",
+   "2": "k"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "257-A-bug-4611748-4611754",
+  "number": "257",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "m",
+   "1": "k"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "312-C-bug-3776800-3776948",
+  "number": "312",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "k",
+   "1": "x"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "350-B-bug-4632248-4632388",
+  "number": "350",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} < ${2:Identifier}; ${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} <= ${2:Identifier}; ${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "1",
+   "2": "n"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "151-A-bug-17894679-17894708",
+  "number": "151",
+  "bug_kind": "ORRN",
+  "condition": [
+   "while(${0:Identifier}>${1:Identifier})"
+  ],
+  "consequent": [
+   "while(${0:Identifier}>=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "l",
+   "1": "rodada"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "355-A-bug-10454902-10454924",
+  "number": "355",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}==${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}==${1:Integerliteral} && k>1)"
+  ],
+  "abstracted": {
+   "0": "d",
+   "1": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "411-A-bug-17508041-17508258",
+  "number": "411",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier} > ${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier} >= ${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "5"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "4-A-bug-18353377-18353474",
+  "number": "4",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}%${1:Integerliteral}==${2:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}%${1:Integerliteral}==${2:Integerliteral} && ${0:Identifier}!=${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "t",
+   "1": "2",
+   "2": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "460-B-bug-15678392-15678418",
+  "number": "460",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "x",
+   "1": "1000000000"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "475-A-bug-9771242-9771616",
+  "number": "475",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}==${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}==${1:Integerliteral}&&i>=1)"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "2"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "46-A-bug-16438491-16438553",
+  "number": "46",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if (${0:Identifier}<${1:Identifier}){"
+  ],
+  "consequent": [
+   "if (${0:Identifier}<=${1:Identifier}){"
+  ],
+  "abstracted": {
+   "0": "sum",
+   "1": "n"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "245-C-bug-10964212-10964263",
+  "number": "245",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier}%${1:Integerliteral}==${2:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}%${1:Integerliteral}==${2:Integerliteral}||${0:Identifier}==1)"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "2",
+   "2": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "427-A-bug-14694510-14694520",
+  "number": "427",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}[${1:Identifier}]>${2:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}[${1:Identifier}]>=${2:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "a",
+   "1": "i",
+   "2": "1"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "203-A-bug-16588171-16589375",
+  "number": "203",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} <= ${2:Identifier}; ${0:Identifier}++){"
+  ],
+  "consequent": [
+   "for(${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} < ${2:Identifier}; ${0:Identifier}++){"
+  ],
+  "abstracted": {
+   "0": "j",
+   "1": "0",
+   "2": "t"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "476-A-bug-16527981-16528001",
+  "number": "476",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if (${0:Identifier} > ${1:Identifier})"
+  ],
+  "consequent": [
+   "if (${0:Identifier} < ${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "m"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "311-A-bug-3909390-3920914",
+  "number": "311",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "sum",
+   "1": "k"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "78-B-bug-2089776-2089781",
+  "number": "78",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<${2:Identifier}/${3:Integerliteral};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Integerliteral};${0:Identifier}<=${2:Identifier}/${3:Integerliteral};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "y",
+   "1": "1",
+   "2": "x",
+   "3": "4"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "288-A-bug-6891038-6891042",
+  "number": "288",
+  "bug_kind": "OILN",
+  "condition": [
+   "if(${0:Identifier} == ${1:Integerliteral})"
+  ],
+  "consequent": [
+   "if(${0:Identifier} == ${1:Integerliteral} && k == ${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "1"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "551-B-bug-13548816-13548978",
+  "number": "551",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for (${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} < ${2:Identifier}; ${0:Identifier}++) {"
+  ],
+  "consequent": [
+   "for (${0:Identifier} = ${1:Integerliteral}; ${0:Identifier} <= ${2:Identifier}; ${0:Identifier}++) {"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "0",
+   "2": "b_curr"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "402-A-bug-9220746-9220767",
+  "number": "402",
+  "bug_kind": "ORRN",
+  "condition": [
+   "while (${0:Identifier} >= ${1:Integerliteral})"
+  ],
+  "consequent": [
+   "while (${0:Identifier} > ${1:Integerliteral})"
+  ],
+  "abstracted": {
+   "0": "a",
+   "1": "0"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "492-A-bug-17556761-17556796",
+  "number": "492",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier}){"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Identifier}){"
+  ],
+  "abstracted": {
+   "0": "rem",
+   "1": "sum"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "592-A-bug-14644721-14644772",
+  "number": "592",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<=${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "wd",
+   "1": "bd"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "625-A-bug-16658668-16658732",
+  "number": "625",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}>${1:Identifier}){"
+  ],
+  "consequent": [
+   "if(${0:Identifier}>=${1:Identifier}){"
+  ],
+  "abstracted": {
+   "0": "n",
+   "1": "b"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "612-A-bug-15750192-15750273",
+  "number": "612",
+  "bug_kind": "ORRN",
+  "condition": [
+   "for(${0:Identifier}=${1:Identifier};${0:Identifier}<=${2:Identifier};${0:Identifier}++)"
+  ],
+  "consequent": [
+   "for(${0:Identifier}=${1:Identifier};${0:Identifier}<${2:Identifier};${0:Identifier}++)"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "p",
+   "2": "k"
+  },
+  "frequency": 1
+ },
+ {
+  "sha": "466-A-bug-18072621-18072662",
+  "number": "466",
+  "bug_kind": "ORRN",
+  "condition": [
+   "if(${0:Identifier}<=${1:Identifier})"
+  ],
+  "consequent": [
+   "if(${0:Identifier}<${1:Identifier})"
+  ],
+  "abstracted": {
+   "0": "i",
+   "1": "a"
+  },
+  "frequency": 1
+ }
+]
