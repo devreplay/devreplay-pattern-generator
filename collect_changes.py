@@ -17,6 +17,8 @@ token = config.get("github_token", None)
 lang = config["lang"]
 TN = TokeNizer(lang)
 all_author = config.get("all_author", True)
+ignore_test = config.get("ignore_test", False)
+
 authors = config.get("authors", [])
 time_length = config.get("time_length")
 if time_length is not None:
