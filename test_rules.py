@@ -25,6 +25,7 @@ else:
     projects = config["projects"]
 
 repos = [x["repo"] for x in projects]
+ignore_test = config.get("ignore_test", False)
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 
@@ -36,7 +37,7 @@ for change_file in change_files:
     with open(change_file, "r") as target:
         data = json.load(target)
         changes.extend(data)
-
+changes = [x for x in changes if x["consequent"] != [""]]
 def clone_target_repo(owner, repo):
     data_repo_dir = "data/repos"
     if not os.path.exists(data_repo_dir + "/" + repo):
@@ -60,7 +61,8 @@ def list_paths(root_tree, path=Path(".")):
 def get_all_file_contents(repo):
     target_repo = git.Repo("data/repos/" + repo)
     paths = [str(x) for x in list_paths(target_repo.commit("HEAD").tree)
-             if any([str(x).endswith(y) for y in lang_extentions[lang]])]
+             if any([str(x).endswith(y) for y in lang_extentions[lang]]) and\
+                (not ignore_test or "test" in str(x))]
     return {f"{repo}/{x}": target_repo.git.show('HEAD:{}'.format(x)) for x in paths}
 
 def make_matched_files(contents, re_condition, re_consequent):
@@ -107,9 +109,9 @@ for i, change in enumerate(changes):
         continue
 
     change["popularity"] = consequent_len / len(origin_condition.union(origin_consequent))
-    change["applicable_files"] = list(origin_condition)
     
-    if change["popularity"] > 0.01:
+    if change["popularity"] > 0.1:
+        change["applicable_files"] = list(origin_condition) if len(origin_condition) < 10 else list(origin_condition)[:9]
         change["links"] = ["https://github.com/%s/commit/%s" % (change["repository"], change["sha"])]
         duplicates_sha.append((change["condition"], change["consequent"]))
         all_changes.append(change)
