@@ -1,1293 +1,408 @@
 [
   {
     "repository": "mruby/mruby",
-    "sha": "265171a28c2805ae49d0ad70d0f35220b4cb4d4b",
+    "sha": "a365f9a67d4bf082ee9a414fe247bd18148d7081",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-12-11 10:41:26",
+    "created_at": "2019-09-25 21:46:26",
     "condition": [
-      "ht_foreach_func"
+      "mrb_sym2str"
     ],
     "consequent": [
-      "mrb_hash_foreach_func"
+      "mrb_symbol"
     ],
     "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
+    "popularity": 0.9615384615384616,
+    "applicable_files": [
+      "mruby/include/mruby.h"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/265171a28c2805ae49d0ad70d0f35220b4cb4d4b"
+      "https://github.com/mruby/mruby/commit/a365f9a67d4bf082ee9a414fe247bd18148d7081"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "afca99a40b8a3415b3a9a0e8fc41c93ddcbb11d8",
+    "sha": "a365f9a67d4bf082ee9a414fe247bd18148d7081",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-19 20:53:32",
+    "created_at": "2019-09-25 21:46:26",
     "condition": [
-      "*  <${1:Identifier}>to_int</${1:Identifier}>, and <${1:Identifier}>to_i</${1:Identifier}>. ${0:Identifier} <${1:Identifier}>${2:Identifier}</${1:Identifier}>*  ${3:Identifier} ${4:Identifier} ${5:Identifier}."
+      "mrb_sym2name"
     ],
     "consequent": [
-      "*  ${0:Identifier} <${1:Identifier}>${2:Identifier}</${1:Identifier}> ${3:Identifier} ${4:Identifier} ${5:Identifier}."
-    ],
-    "abstracted": {
-      "0": "Passing",
-      "1": "code",
-      "2": "nil",
-      "3": "raises",
-      "4": "a",
-      "5": "TypeError"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/afca99a40b8a3415b3a9a0e8fc41c93ddcbb11d8"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_hash_func(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} ${4:Identifier})"
-    ],
-    "consequent": [
-      "ht_hash_func(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} ${4:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "key"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_put(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} ${5:Identifier})"
-    ],
-    "consequent": [
-      "ht_put(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} ${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "key",
-      "5": "val"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_shift(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} *${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "consequent": [
-      "ht_shift(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} *${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "kp",
-      "5": "vp"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_index_get(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "consequent": [
-      "ht_index_get(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "key",
-      "5": "vp"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_compact(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier})"
-    ],
-    "consequent": [
-      "ht_compact(${0:Identifier} *${1:Identifier}, htable *${2:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_get(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "consequent": [
-      "ht_get(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "key",
-      "5": "vp"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_index(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier})"
-    ],
-    "consequent": [
-      "ht_index(${0:Identifier} *${1:Identifier}, htable *${2:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_hash_equal(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} ${5:Identifier})"
-    ],
-    "consequent": [
-      "ht_hash_equal(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} ${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "a",
-      "5": "b"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_put"
-    ],
-    "consequent": [
-      "ht_put"
+      "mrb_sym_name"
     ],
     "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
+    "popularity": 0.9285714285714286,
+    "applicable_files": [
+      "mruby/include/mruby.h"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
+      "https://github.com/mruby/mruby/commit/a365f9a67d4bf082ee9a414fe247bd18148d7081"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
+    "sha": "a365f9a67d4bf082ee9a414fe247bd18148d7081",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
+    "created_at": "2019-09-25 21:46:26",
     "condition": [
-      "sg_index_put(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} ${5:Identifier})"
+      "mrb_sym2name_len"
     ],
     "consequent": [
-      "ht_index_put(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} ${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "key",
-      "5": "val"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "sg_del(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "consequent": [
-      "ht_del(${0:Identifier} *${1:Identifier}, htable *${2:Identifier}, ${3:Identifier} ${4:Identifier}, ${3:Identifier} *${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t",
-      "3": "mrb_value",
-      "4": "key",
-      "5": "vp"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
-    "condition": [
-      "seglist"
-    ],
-    "consequent": [
-      "htable"
+      "mrb_sym_name_len"
     ],
     "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
+    "popularity": 0.9090909090909091,
+    "applicable_files": [
+      "mruby/include/mruby.h"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
+      "https://github.com/mruby/mruby/commit/a365f9a67d4bf082ee9a414fe247bd18148d7081"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "25d390d6ccf3da7a853ddd8272dd318ecadca316",
+    "sha": "a365f9a67d4bf082ee9a414fe247bd18148d7081",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-19 09:30:15",
+    "created_at": "2019-09-25 21:46:26",
     "condition": [
-      "sg_free(${0:Identifier} *${1:Identifier}, seglist *${2:Identifier})"
+      "mrb_sym2name"
     ],
     "consequent": [
-      "ht_free(${0:Identifier} *${1:Identifier}, htable *${2:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "t"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/25d390d6ccf3da7a853ddd8272dd318ecadca316"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "1bea1e2050ee4c1b3e558a307c7d2731f6b52823",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-15 19:24:45",
-    "condition": [
-      "is_lv_defined"
-    ],
-    "consequent": [
-      "lv_defined_p"
+      "fprintf"
     ],
     "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
+    "popularity": 0.9090909090909091,
+    "applicable_files": [
+      "mruby/include/mruby.h"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/1bea1e2050ee4c1b3e558a307c7d2731f6b52823"
+      "https://github.com/mruby/mruby/commit/a365f9a67d4bf082ee9a414fe247bd18148d7081"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "1bea1e2050ee4c1b3e558a307c7d2731f6b52823",
+    "sha": "87809742f57fc78be9c17a0d5943dd12440a90db",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-15 19:24:45",
+    "created_at": "2019-12-19 09:59:36",
     "condition": [
-      "is_debug_info_defined"
+      "const char *${0:Identifier} = RSTRING_CSTR(${1:Identifier}, ${2:Identifier});"
     ],
     "consequent": [
-      "debug_info_defined_p"
+      "${0:Identifier} = RSTRING_CSTR(${1:Identifier}, ${2:Identifier});"
+    ],
+    "abstracted": {
+      "0": "fmt",
+      "1": "mrb",
+      "2": "fmt_str"
+    },
+    "popularity": 0.8,
+    "applicable_files": [
+      "mruby/mrbgems/mruby-io/src/file.c"
+    ],
+    "links": [
+      "https://github.com/mruby/mruby/commit/87809742f57fc78be9c17a0d5943dd12440a90db"
+    ]
+  },
+  {
+    "repository": "mruby/mruby",
+    "sha": "08eafe21d305e17c41b0221cae22dc1e90bee9cf",
+    "author": "Yukihiro \"Matz\" Matsumoto",
+    "created_at": "2019-10-04 14:42:01",
+    "condition": [
+      "mrb_value ${0:Identifier} = mrb_str_new(${1:Identifier}, ${2:Identifier}, ${3:Identifier});"
+    ],
+    "consequent": [
+      "${0:Identifier} = mrb_str_new(${1:Identifier}, ${2:Identifier}, ${3:Identifier});"
+    ],
+    "abstracted": {
+      "0": "str",
+      "1": "mrb",
+      "2": "name",
+      "3": "len"
+    },
+    "popularity": 0.75,
+    "applicable_files": [
+      "mruby/src/symbol.c",
+      "mruby/src/error.c"
+    ],
+    "links": [
+      "https://github.com/mruby/mruby/commit/08eafe21d305e17c41b0221cae22dc1e90bee9cf"
+    ]
+  },
+  {
+    "repository": "mruby/mruby",
+    "sha": "a365f9a67d4bf082ee9a414fe247bd18148d7081",
+    "author": "Yukihiro \"Matz\" Matsumoto",
+    "created_at": "2019-09-25 21:46:26",
+    "condition": [
+      "mrb_sym2str"
+    ],
+    "consequent": [
+      "mrb_sym_str"
     ],
     "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
+    "popularity": 0.75,
+    "applicable_files": [
+      "mruby/include/mruby.h"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/1bea1e2050ee4c1b3e558a307c7d2731f6b52823"
+      "https://github.com/mruby/mruby/commit/a365f9a67d4bf082ee9a414fe247bd18148d7081"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "7ad53273a2c5346557a233d040ad233019c03277",
+    "sha": "a365f9a67d4bf082ee9a414fe247bd18148d7081",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-01 22:52:12",
+    "created_at": "2019-09-25 21:46:26",
     "condition": [
-      "static signed char ${0:Identifier}[${1:Integerliteral}];"
+      "mrb_str_cat_cstr"
     ],
     "consequent": [
-      "static unsigned char ${0:Identifier}[${1:Integerliteral}];"
-    ],
-    "abstracted": {
-      "0": "base64_dec_tab",
-      "1": "128"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/7ad53273a2c5346557a233d040ad233019c03277"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "d78acc7afed35813f25e3091150dab668c373f05",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-26 11:14:36",
-    "condition": [
-      "mrb_hash_ht_key"
-    ],
-    "consequent": [
-      "ht_key"
+      "mrb_sym_name"
     ],
     "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
+    "popularity": 0.55,
+    "applicable_files": [
+      "mruby/mrbgems/mruby-proc-ext/src/proc.c",
+      "mruby/include/mruby/string.h",
+      "mruby/mrbgems/mruby-bin-debugger/tools/mrdb/cmdprint.c",
+      "mruby/mrbgems/mruby-string-ext/src/string.c",
+      "mruby/src/backtrace.c",
+      "mruby/src/string.c",
+      "mruby/mrbgems/mruby-method/src/method.c",
+      "mruby/src/object.c",
+      "mruby/src/variable.c"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/d78acc7afed35813f25e3091150dab668c373f05"
+      "https://github.com/mruby/mruby/commit/a365f9a67d4bf082ee9a414fe247bd18148d7081"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "fb49a9431482d7f60d065af68c5c0e028b130c41",
+    "sha": "111045ecada16d3c047b90a26a1ec0af06e5a323",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-23 21:10:25",
+    "created_at": "2020-01-04 23:07:57",
     "condition": [
-      "tr_pattern_free"
+      "${0:Identifier} ${1:Identifier} = mrb_str_to_inum(${2:Identifier}, ${3:Identifier}, ${4:Integerliteral}, ${5:Identifier});"
     ],
     "consequent": [
-      "tr_free_pattern"
-    ],
-    "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/fb49a9431482d7f60d065af68c5c0e028b130c41"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "68523b4ec4a271134aae34d744582a974558c962",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-20 17:14:15",
-    "condition": [
-      "tr_parse_pattern(${0:Identifier} *${1:Identifier}, const ${2:Identifier} ${3:Identifier}, ${4:Identifier} ${5:Identifier})"
-    ],
-    "consequent": [
-      "tr_parse_pattern(${0:Identifier} *${1:Identifier}, struct tr_pattern *ret, const ${2:Identifier} ${3:Identifier}, ${4:Identifier} ${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "mrb_value",
-      "3": "v_pattern",
-      "4": "mrb_bool",
-      "5": "flag_reverse_enable"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/68523b4ec4a271134aae34d744582a974558c962"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "c0ae8a96a1fb658b21428bee174602e9373eef3b",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-20 16:46:42",
-    "condition": [
-      "str_tr(${0:Identifier} *${1:Identifier}, ${2:Identifier} ${3:Identifier}, ${2:Identifier} ${4:Identifier}, ${2:Identifier} ${5:Identifier})"
-    ],
-    "consequent": [
-      "str_tr(${0:Identifier} *${1:Identifier}, ${2:Identifier} ${3:Identifier}, ${2:Identifier} ${4:Identifier}, ${2:Identifier} ${5:Identifier}, mrb_bool squeeze)"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "mrb_value",
-      "3": "str",
-      "4": "p1",
-      "5": "p2"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/c0ae8a96a1fb658b21428bee174602e9373eef3b"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "159575f63024c79592229f9c0e7da42a0075dae9",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-20 13:57:43",
-    "condition": [
-      "is_namespace"
-    ],
-    "consequent": [
-      "namespace_p"
-    ],
-    "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/159575f63024c79592229f9c0e7da42a0075dae9"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "72522f8e0ecd7a94af4df0cf7c892fb5ed971deb",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-06 23:33:53",
-    "condition": [
-      "** ${0:Identifier} - ${1:Identifier} class for mruby"
-    ],
-    "consequent": [
-      "** ${0:Identifier} - ${1:Identifier} methods for mruby"
-    ],
-    "abstracted": {
-      "0": "mrb_sleep",
-      "1": "sleep"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/72522f8e0ecd7a94af4df0cf7c892fb5ed971deb"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "9b5910bd0f674f5948cd1185e07d8a024477d162",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-04 21:06:36",
-    "condition": [
-      "const_get(${0:Identifier} *${1:Identifier}, struct ${2:Identifier} *${3:Identifier}, ${4:Identifier} ${5:Identifier}, mrb_bool top)"
-    ],
-    "consequent": [
-      "const_get(${0:Identifier} *${1:Identifier}, struct ${2:Identifier} *${3:Identifier}, ${4:Identifier} ${5:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "RClass",
-      "3": "base",
-      "4": "mrb_sym",
-      "5": "sym"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/9b5910bd0f674f5948cd1185e07d8a024477d162"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "a657117e4e5fbde4434661794f80a93dde55d70d",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-01 17:36:35",
-    "condition": [
-      "stack_extend_alloc(${0:Identifier} *${1:Identifier}, int ${2:Identifier})"
-    ],
-    "consequent": [
-      "stack_extend_alloc(${0:Identifier} *${1:Identifier}, mrb_int ${2:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "room"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/a657117e4e5fbde4434661794f80a93dde55d70d"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "0c6353aa2cf8b002d2540c8b66db7d5af730f503",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-01 11:01:50",
-    "condition": [
-      "MRB_API ${0:Identifier} mrb_f_send(${1:Identifier} *${2:Identifier}, ${0:Identifier} ${3:Identifier});"
-    ],
-    "consequent": [
-      "${0:Identifier} mrb_f_send(${1:Identifier} *${2:Identifier}, ${0:Identifier} ${3:Identifier});"
+      "${0:Identifier} ${1:Identifier} = mrb_str_len_to_inum(${2:Identifier}, ${3:Identifier}, pool_data_len, ${4:Integerliteral}, ${5:Identifier});"
     ],
     "abstracted": {
       "0": "mrb_value",
-      "1": "mrb_state",
+      "1": "num",
       "2": "mrb",
-      "3": "self"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/0c6353aa2cf8b002d2540c8b66db7d5af730f503"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "471288f37d18e640f98029fabcdcb7ee16b95d93",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-08-25 16:58:01",
-    "condition": [
-      "mrb_stack_extend(${0:Identifier} *${1:Identifier}, int ${2:Identifier})"
-    ],
-    "consequent": [
-      "mrb_stack_extend(${0:Identifier} *${1:Identifier}, mrb_int ${2:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "room"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/471288f37d18e640f98029fabcdcb7ee16b95d93"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "471288f37d18e640f98029fabcdcb7ee16b95d93",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-08-25 16:58:01",
-    "condition": [
-      "${0:Identifier} void mrb_stack_extend(${1:Identifier}*, int);"
-    ],
-    "consequent": [
-      "${0:Identifier} void mrb_stack_extend(${1:Identifier}*, mrb_int);"
-    ],
-    "abstracted": {
-      "0": "MRB_API",
-      "1": "mrb_state"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/471288f37d18e640f98029fabcdcb7ee16b95d93"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "9409a2ff6d7c1467900278898d97c95dfe9ea229",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-08-03 15:03:09",
-    "condition": [
-      "mrb_iv_p"
-    ],
-    "consequent": [
-      "mrb_iv_name_sym_p"
-    ],
-    "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/9409a2ff6d7c1467900278898d97c95dfe9ea229"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "9409a2ff6d7c1467900278898d97c95dfe9ea229",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-08-03 15:03:09",
-    "condition": [
-      "${0:Identifier} ${1:Identifier} mrb_iv_p(${2:Identifier} *${3:Identifier}, ${4:Identifier} ${5:Identifier});${0:Identifier} void mrb_iv_check(${2:Identifier} *${3:Identifier}, ${4:Identifier} ${5:Identifier});"
-    ],
-    "consequent": [
-      "${0:Identifier} ${1:Identifier} mrb_iv_name_sym_p(${2:Identifier} *${3:Identifier}, ${4:Identifier} ${5:Identifier});${0:Identifier} void mrb_iv_name_sym_check(${2:Identifier} *${3:Identifier}, ${4:Identifier} ${5:Identifier});"
-    ],
-    "abstracted": {
-      "0": "MRB_API",
-      "1": "mrb_bool",
-      "2": "mrb_state",
-      "3": "mrb",
-      "4": "mrb_sym",
-      "5": "sym"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/9409a2ff6d7c1467900278898d97c95dfe9ea229"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "c88fd32713e980abe5613ae06f46d9ceaa0c063b",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-08-02 21:08:50",
-    "condition": [
-      "else {  ${0:Identifier} = ${1:Identifier}->${2:Identifier};}"
-    ],
-    "consequent": [
-      "${0:Identifier} = ${1:Identifier}->${2:Identifier};"
-    ],
-    "abstracted": {
-      "0": "t",
-      "1": "mrb",
-      "2": "globals"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby",
-      "streem"
-    ],
-    "self_popularity": 1.0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/c88fd32713e980abe5613ae06f46d9ceaa0c063b"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "beb6e5c299bb411a7f2a9e355e6eeca3aa785c74",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-07-31 17:28:42",
-    "condition": [
-      "mrb_decode_insn(codegen_scope *s, ${0:Identifier} *${1:Identifier})"
-    ],
-    "consequent": [
-      "mrb_decode_insn(${0:Identifier} *${1:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_code",
-      "1": "pc"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/beb6e5c299bb411a7f2a9e355e6eeca3aa785c74"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "8c9e7127845f84fcbb249c45936c97a89ca7a80a",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-07-30 22:07:31",
-    "condition": [
-      "${0:Identifier} ${3:Identifier} mrb_hash_empty_p(${1:Identifier} *${2:Identifier}, ${3:Identifier} ${4:Identifier});"
-    ],
-    "consequent": [
-      "${0:Identifier} mrb_bool mrb_hash_empty_p(${1:Identifier} *${2:Identifier}, ${3:Identifier} ${4:Identifier});"
-    ],
-    "abstracted": {
-      "0": "MRB_API",
-      "1": "mrb_state",
-      "2": "mrb",
-      "3": "mrb_value",
-      "4": "self"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/8c9e7127845f84fcbb249c45936c97a89ca7a80a"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "891839b976c75c77f238931123ac472e3284e95d",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-05-24 15:19:06",
-    "condition": [
-      "static inline mrb_code"
-    ],
-    "consequent": [
-      "static uint16_t"
-    ],
-    "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/891839b976c75c77f238931123ac472e3284e95d"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "891839b976c75c77f238931123ac472e3284e95d",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-05-24 15:19:06",
-    "condition": [
-      "bx"
-    ],
-    "consequent": [
-      "b"
-    ],
-    "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby",
-      "streem"
-    ],
-    "self_popularity": 1.0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/891839b976c75c77f238931123ac472e3284e95d"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "891839b976c75c77f238931123ac472e3284e95d",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-05-24 15:19:06",
-    "condition": [
-      "print_lv(${0:Identifier} *${1:Identifier}, ${2:Identifier} *${3:Identifier}, mrb_code c, int r)"
-    ],
-    "consequent": [
-      "print_lv_a(${0:Identifier} *${1:Identifier}, ${2:Identifier} *${3:Identifier}, uint16_t a)"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "mrb_irep",
-      "3": "irep"
-    },
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/891839b976c75c77f238931123ac472e3284e95d"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "891839b976c75c77f238931123ac472e3284e95d",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-05-24 15:19:06",
-    "condition": [
-      "}return genop(s, i);"
-    ],
-    "consequent": [
-      "}"
-    ],
-    "abstracted": {},
-    "popularity": 1.0,
-    "projects_popularity": 1.0,
-    "applied_projects": [
-      "mruby",
-      "streem"
-    ],
-    "self_popularity": 1.0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/891839b976c75c77f238931123ac472e3284e95d"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "e8dcfe17454eb88f266f90cf31ca562e30378291",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-08-06 16:38:38",
-    "condition": [
-      "khint_t"
-    ],
-    "consequent": [
-      "mrb_bool"
-    ],
-    "abstracted": {},
-    "popularity": 0.9354838709677419,
-    "projects_popularity": 0.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [
-      "streem/src/khash.h",
-      "streem/src/string.c"
-    ],
-    "links": [
-      "https://github.com/mruby/mruby/commit/e8dcfe17454eb88f266f90cf31ca562e30378291"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "afca99a40b8a3415b3a9a0e8fc41c93ddcbb11d8",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-19 20:53:32",
-    "condition": [
-      "to_int(${0:Identifier} ${1:Identifier})"
-    ],
-    "consequent": [
-      "to_int(mrb_state *mrb, ${0:Identifier} ${1:Identifier})"
-    ],
-    "abstracted": {
-      "0": "mrb_value",
-      "1": "x"
-    },
-    "popularity": 0.6666666666666666,
-    "projects_popularity": 0.5,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [
-      "streem/src/value.c"
-    ],
-    "links": [
-      "https://github.com/mruby/mruby/commit/afca99a40b8a3415b3a9a0e8fc41c93ddcbb11d8"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "f6b2e6231a1c07438915c2d32ab6002c2a2256b9",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-12-11 09:47:06",
-    "condition": [
-      "static mrb_bool"
-    ],
-    "consequent": [
-      "static void"
-    ],
-    "abstracted": {},
-    "popularity": 0.6440677966101694,
-    "projects_popularity": 0.5,
-    "applied_projects": [
-      "mruby",
-      "streem"
-    ],
-    "self_popularity": 1.0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/f6b2e6231a1c07438915c2d32ab6002c2a2256b9"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "ff08856fe314faa4d16b4502c0960a3475387846",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-19 21:51:53",
-    "condition": [
-      "mrb_string_type"
-    ],
-    "consequent": [
-      "mrb_ensure_string_type"
-    ],
-    "abstracted": {},
-    "popularity": 0.5,
-    "projects_popularity": 0.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
-    "applicable_files": [],
-    "links": [
-      "https://github.com/mruby/mruby/commit/ff08856fe314faa4d16b4502c0960a3475387846"
-    ]
-  },
-  {
-    "repository": "mruby/mruby",
-    "sha": "faf51f82c7265f2cbdda8291429d7f2016d2bc3f",
-    "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-11-15 23:28:34",
-    "condition": [
-      "mrb_debug_info_append_file(${0:Identifier} *${1:Identifier}, ${2:Identifier} *info,"
-    ],
-    "consequent": [
-      "mrb_debug_info_append_file(${0:Identifier} *${1:Identifier}, ${2:Identifier} *d,"
-    ],
-    "abstracted": {
-      "0": "mrb_state",
-      "1": "mrb",
-      "2": "mrb_irep_debug_info"
+      "3": "s",
+      "4": "10",
+      "5": "FALSE"
     },
     "popularity": 0.5,
-    "projects_popularity": 0.0,
-    "applied_projects": [
-      "mruby"
+    "applicable_files": [
+      "mruby/mrbgems/mruby-sprintf/src/sprintf.c"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/faf51f82c7265f2cbdda8291429d7f2016d2bc3f"
+      "https://github.com/mruby/mruby/commit/111045ecada16d3c047b90a26a1ec0af06e5a323"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "8ffd4e47fb1c18088e554d31e8af88881517a201",
+    "sha": "111045ecada16d3c047b90a26a1ec0af06e5a323",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-09-22 23:05:52",
+    "created_at": "2020-01-04 23:07:57",
     "condition": [
-      "size_t"
+      "static mrb_value"
     ],
     "consequent": [
-      "mrb_int"
+      "mrb_value"
     ],
     "abstracted": {},
-    "popularity": 0.42574257425742573,
-    "projects_popularity": 0.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
+    "popularity": 0.4387755102040816,
     "applicable_files": [
-      "streem/src/strm.h",
-      "streem/src/io.c",
-      "streem/src/time.c",
-      "streem/src/sort.c",
-      "streem/src/random.c"
+      "mruby/mrbgems/mruby-rational/src/rational.c",
+      "mruby/mrbgems/mruby-test/driver.c",
+      "mruby/mrbgems/mruby-inline-struct/test/inline.c",
+      "mruby/mrbgems/mruby-symbol-ext/src/symbol.c",
+      "mruby/src/class.c",
+      "mruby/mrbgems/mruby-string-ext/src/string.c",
+      "mruby/mrbgems/mruby-method/src/method.c",
+      "mruby/src/object.c",
+      "mruby/examples/mrbgems/c_extension_example/src/example.c"
     ],
     "links": [
-      "https://github.com/mruby/mruby/commit/8ffd4e47fb1c18088e554d31e8af88881517a201"
+      "https://github.com/mruby/mruby/commit/111045ecada16d3c047b90a26a1ec0af06e5a323"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "891839b976c75c77f238931123ac472e3284e95d",
+    "sha": "fd1cff77358c00a49f791405285899ede30cdf54",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-05-24 15:19:06",
+    "created_at": "2020-01-01 12:34:30",
     "condition": [
-      "uint32_t"
+      "mrb_get_args"
     ],
     "consequent": [
-      "uint8_t"
+      "sym"
     ],
     "abstracted": {},
-    "popularity": 0.15555555555555556,
-    "projects_popularity": 0.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
+    "popularity": 0.3625,
     "applicable_files": [
-      "streem/src/strm.h",
-      "streem/src/random.c",
-      "streem/src/pollfd.h"
+      "mruby/mrbgems/mruby-rational/src/rational.c",
+      "mruby/mrbgems/mruby-test/driver.c",
+      "mruby/mrbgems/mruby-inline-struct/test/inline.c",
+      "mruby/src/class.c",
+      "mruby/mrbgems/mruby-string-ext/src/string.c",
+      "mruby/mrbgems/mruby-method/src/method.c",
+      "mruby/src/object.c",
+      "mruby/mrbgems/mruby-test/vformat.c",
+      "mruby/mrbgems/mruby-objectspace/src/mruby_objectspace.c"
     ],
     "links": [
-      "https://github.com/mruby/mruby/commit/891839b976c75c77f238931123ac472e3284e95d"
+      "https://github.com/mruby/mruby/commit/fd1cff77358c00a49f791405285899ede30cdf54"
     ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "8c9e7127845f84fcbb249c45936c97a89ca7a80a",
+    "sha": "1f5a7f2f4970144164232a2bc45f561de5d65c33",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-07-30 22:07:31",
+    "created_at": "2019-10-04 16:02:50",
+    "condition": [
+      "static mrb_value"
+    ],
+    "consequent": [
+      "MRB_API mrb_value"
+    ],
+    "abstracted": {},
+    "popularity": 0.2361111111111111,
+    "applicable_files": [
+      "mruby/mrbgems/mruby-rational/src/rational.c",
+      "mruby/mrbgems/mruby-test/driver.c",
+      "mruby/mrbgems/mruby-inline-struct/test/inline.c",
+      "mruby/mrbgems/mruby-symbol-ext/src/symbol.c",
+      "mruby/src/class.c",
+      "mruby/mrbgems/mruby-string-ext/src/string.c",
+      "mruby/mrbgems/mruby-method/src/method.c",
+      "mruby/src/object.c",
+      "mruby/examples/mrbgems/c_extension_example/src/example.c"
+    ],
+    "links": [
+      "https://github.com/mruby/mruby/commit/1f5a7f2f4970144164232a2bc45f561de5d65c33"
+    ]
+  },
+  {
+    "repository": "mruby/mruby",
+    "sha": "b545f62aebb38bb4dedf5e7ba1e4b780db14441e",
+    "author": "Yukihiro \"Matz\" Matsumoto",
+    "created_at": "2020-01-06 18:57:43",
     "condition": [
       "mrb_value"
     ],
     "consequent": [
-      "mrb_bool"
+      "int"
     ],
     "abstracted": {},
-    "popularity": 0.07547169811320754,
-    "projects_popularity": 0.0,
-    "applied_projects": [
-      "mruby"
+    "popularity": 0.18333333333333332,
+    "applicable_files": [
+      "mruby/mrbgems/mruby-sprintf/src/kernel.c",
+      "mruby/mrbgems/mruby-symbol-ext/src/symbol.c",
+      "mruby/examples/mrbgems/c_extension_example/src/example.c",
+      "mruby/src/dump.c",
+      "mruby/mrbgems/mruby-objectspace/src/mruby_objectspace.c",
+      "mruby/mrbgems/mruby-sleep/src/mrb_sleep.c",
+      "mruby/mrbgems/mruby-compiler/core/codegen.c",
+      "mruby/mrbgems/mruby-metaprog/src/metaprog.c",
+      "mruby/mrbgems/mruby-io/src/file.c"
     ],
-    "self_popularity": 0,
-    "applicable_files": [],
     "links": [
-      "https://github.com/mruby/mruby/commit/8c9e7127845f84fcbb249c45936c97a89ca7a80a"
-    ],
-    "exception_links": [
-      "https://github.com/mruby/mruby/commit/e471d37ca5f1422860a1eaa81d4c9f1b3c8b6aed",
-      "https://github.com/mruby/mruby/commit/d78acc7afed35813f25e3091150dab668c373f05"
-    ],
-    "frequency": 0,
-    "accuracy": 0.0
+      "https://github.com/mruby/mruby/commit/b545f62aebb38bb4dedf5e7ba1e4b780db14441e"
+    ]
   },
   {
     "repository": "mruby/mruby",
-    "sha": "891839b976c75c77f238931123ac472e3284e95d",
+    "sha": "d4be545d54ad53e282637f66ef5b770b9effa918",
     "author": "Yukihiro \"Matz\" Matsumoto",
-    "created_at": "2018-05-24 15:19:06",
+    "created_at": "2019-09-26 23:56:40",
+    "condition": [
+      "mrb_sym_name"
+    ],
+    "consequent": [
+      "mrb_sym_dump"
+    ],
+    "abstracted": {},
+    "popularity": 0.06666666666666667,
+    "applicable_files": [
+      "mruby/src/vm.c",
+      "mruby/include/mruby.h",
+      "mruby/mrbgems/mruby-struct/src/struct.c",
+      "mruby/src/variable.c",
+      "mruby/mrbgems/mruby-symbol-ext/src/symbol.c",
+      "mruby/mrbgems/mruby-proc-ext/src/proc.c",
+      "mruby/src/class.c",
+      "mruby/mrbgems/mruby-bin-debugger/tools/mrdb/apibreak.c",
+      "mruby/src/backtrace.c"
+    ],
+    "links": [
+      "https://github.com/mruby/mruby/commit/d4be545d54ad53e282637f66ef5b770b9effa918"
+    ]
+  },
+  {
+    "repository": "mruby/mruby",
+    "sha": "10c2b7ee1c2783498efa14a41648cbd8a7a99453",
+    "author": "Yukihiro \"Matz\" Matsumoto",
+    "created_at": "2020-01-31 09:22:27",
     "condition": [
       "int ${0:Identifier};"
     ],
     "consequent": [
-      "uint16_t ${0:Identifier};"
+      "size_t ${0:Identifier};"
     ],
     "abstracted": {
-      "0": "epos"
+      "0": "i"
     },
-    "popularity": 0.02830188679245283,
-    "projects_popularity": 0.0,
-    "applied_projects": [
-      "mruby"
-    ],
-    "self_popularity": 0,
+    "popularity": 0.038461538461538464,
     "applicable_files": [
-      "streem/src/node.h",
-      "streem/src/strm.h",
-      "streem/src/iter.c",
-      "streem/src/latch.c",
-      "streem/src/stat.c",
-      "streem/src/env.c",
-      "streem/src/ns.c",
-      "streem/src/time.c",
-      "streem/src/socket.c",
-      "streem/src/kvs.c",
-      "streem/src/sort.c",
-      "streem/src/signal.c",
-      "streem/src/exec.c",
-      "streem/src/io.c",
-      "streem/src/string.c",
-      "streem/src/main.c",
-      "streem/src/graph.c",
-      "streem/src/random.c",
-      "streem/src/value.c",
-      "streem/src/pollfd.c",
-      "streem/src/csv.c",
-      "streem/src/args.c",
-      "streem/src/khash.h",
-      "streem/src/array.c",
-      "streem/src/node.c",
-      "streem/src/core.c",
-      "streem/src/number.c",
-      "streem/src/pollfd.h"
+      "mruby/mrbgems/mruby-rational/src/rational.c",
+      "mruby/mrbgems/mruby-test/driver.c",
+      "mruby/mrbgems/mruby-symbol-ext/src/symbol.c",
+      "mruby/src/class.c",
+      "mruby/include/mruby/gc.h",
+      "mruby/mrbgems/mruby-string-ext/src/string.c",
+      "mruby/mrbgems/mruby-method/src/method.c",
+      "mruby/mrbgems/mruby-test/vformat.c",
+      "mruby/src/dump.c"
     ],
     "links": [
-      "https://github.com/mruby/mruby/commit/891839b976c75c77f238931123ac472e3284e95d"
+      "https://github.com/mruby/mruby/commit/10c2b7ee1c2783498efa14a41648cbd8a7a99453"
+    ]
+  },
+  {
+    "repository": "mruby/mruby",
+    "sha": "2256bb07b02c9025ed7ea1fee8c21c86104c07dc",
+    "author": "Yukihiro \"Matz\" Matsumoto",
+    "created_at": "2019-09-16 11:14:13",
+    "condition": [
+      "",
+      "",
+      ""
     ],
-    "exception_links": [
-      "https://github.com/mruby/mruby/commit/e471d37ca5f1422860a1eaa81d4c9f1b3c8b6aed"
+    "consequent": [
+      "",
+      ""
     ],
-    "frequency": 0,
-    "accuracy": 0.0
+    "abstracted": {},
+    "popularity": 0.015151515151515152,
+    "applicable_files": [
+      "mruby/mrbgems/mruby-sprintf/src/kernel.c",
+      "mruby/mrbgems/mruby-symbol-ext/src/symbol.c",
+      "mruby/include/mruby/gc.h",
+      "mruby/examples/mrbgems/c_extension_example/src/example.c",
+      "mruby/mrbgems/mruby-bin-debugger/tools/mrdb/mrdbconf.h",
+      "mruby/src/dump.c",
+      "mruby/mrbgems/mruby-objectspace/src/mruby_objectspace.c",
+      "mruby/mrbgems/mruby-sleep/src/mrb_sleep.c",
+      "mruby/mrbgems/mruby-compiler/core/codegen.c"
+    ],
+    "links": [
+      "https://github.com/mruby/mruby/commit/2256bb07b02c9025ed7ea1fee8c21c86104c07dc"
+    ]
   }
 ]
