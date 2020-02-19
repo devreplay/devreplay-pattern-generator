@@ -1,22 +1,20 @@
 {
     "github_token": "XXXXXX",
-    "lang": "CPP",
     "all_change": true,
     "change_size": 1000,
     "time_length": {
-        "start": "2018-01-01 00:00:00",
-        "end": "2019-01-01 00:00:00"
+        "start": "2019-02-09 00:00:00",
+        "end": "2020-02-16 00:00:00"
     },
-    "projects": [
-        {
-            "owner": "mruby",
-            "repo": "mruby"
-        },
-        {
-            "owner": "matz",
-            "repo": "streem"
-        }
-    ],
+    "projects": [{
+        "owner": "mruby",
+        "repo": "mruby"
+    }],
+    "authors": [{
+        "git": "Yukihiro \"Matz\" Matsumoto",
+        "github": "matz"
+    }],
+    "lang": "CPP",
     "applied_projects": [
         {
             "owner": "matz",
@@ -24,15 +22,7 @@
         }
     ],
     "all_author": false,
-    "authors": [
-        {
-            "git": "Yukihiro Matsumoto",
-            "github": "matz"
-        },
-        {
-            "git": "Yukihiro \"Matz\" Matsumoto"
-        }
-    ],
+
     "learn_from": "master",
     "validate_by": "master"
 }
