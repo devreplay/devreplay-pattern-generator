@@ -63,7 +63,12 @@ def get_all_file_contents(repo):
     paths = [str(x) for x in list_paths(target_repo.commit("HEAD").tree)
              if any([str(x).endswith(y) for y in lang_extentions[lang]]) and\
                 (not ignore_test or "test" in str(x))]
-    return {f"{repo}/{x}": target_repo.git.show('HEAD:{}'.format(x)) for x in paths}
+    contents = {}
+    for x in paths:
+        with open("{}/data/repos/{}/{}".format(os.getcwd(), repo, x), "r", encoding='utf-8') as target:
+            contents["{}/{}".format(repo, x)] = target.read()
+    # return {f"{repo}\\{x}": target_repo.git.show('HEAD:{}'.format(x)) for x in paths}
+    return contents
 
 def make_matched_files(contents, re_condition, re_consequent):
     consequent_files = {path for path, content in contents.items() if re_consequent.search(content)}
@@ -83,7 +88,6 @@ for project in projects:
     file_contents = get_all_file_contents(project["repo"])
     all_contents.update(file_contents)
 print("Success Collecting %d files!" % len(all_contents))
-
 
 print("Checking Rules...")
 
