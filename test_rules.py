@@ -14,10 +14,13 @@ with open("config.json", "r") as json_file:
     config = json.load(json_file)
 
 lang = config["lang"]
+
+
 def get_projects(path):
     with open(path, "r") as json_file:
         projects = json.load(json_file)
         return list(projects)
+
 
 if "projects_path" in config:
     projects = get_projects(config["projects_path"])
@@ -29,8 +32,8 @@ ignore_test = config.get("ignore_test", False)
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 
-change_files = ["data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + learn_from + ".json"
-            for x in projects]
+change_files = ["data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + learn_from + ".json"
+                for x in projects]
 changes = []
 for change_file in change_files:
     print("Combine changes from " + change_file)
@@ -38,6 +41,8 @@ for change_file in change_files:
         data = json.load(target)
         changes.extend(data)
 changes = [x for x in changes if x["consequent"] != [""]]
+
+
 def clone_target_repo(owner, repo):
     data_repo_dir = "data/repos"
     if not os.path.exists(data_repo_dir + "/" + repo):
@@ -45,12 +50,13 @@ def clone_target_repo(owner, repo):
             os.makedirs(data_repo_dir)
         print("Cloning " + data_repo_dir + "/" + repo)
         if "github_token" in config:
-            git_url = "https://" + config["github_token"] + ":@github.com/" + owner + "/" + repo +".git"
+            git_url = "https://" + config["github_token"] + ":@github.com/" + owner + "/" + repo + ".git"
         else:
-            git_url = "https://github.com/" + owner + "/" + repo +".git"
+            git_url = "https://github.com/" + owner + "/" + repo + ".git"
         git.Git(data_repo_dir).clone(git_url)
     else:
         pass
+
 
 def list_paths(root_tree, path=Path(".")):
     for blob in root_tree.blobs:
@@ -58,10 +64,11 @@ def list_paths(root_tree, path=Path(".")):
     for tree in root_tree.trees:
         yield from list_paths(tree, path / tree.name)
 
+
 def get_all_file_contents(repo):
     target_repo = git.Repo("data/repos/" + repo)
     paths = [str(x) for x in list_paths(target_repo.commit("HEAD").tree)
-             if any([str(x).endswith(y) for y in lang_extentions[lang]]) and\
+             if any([str(x).endswith(y) for y in lang_extentions[lang]]) and
                 (not ignore_test or "test" in str(x))]
     contents = {}
     for x in paths:
@@ -78,6 +85,7 @@ def make_matched_files(contents, re_condition, re_consequent):
 
     # origin_condition = condition_files.difference(consequent_files)
     return (condition_files, consequent_files.difference(condition_files))
+
 
 all_contents = {}
 
@@ -103,7 +111,7 @@ for i, change in enumerate(changes):
 
     re_condition = snippet2RegexCondition(change["condition"])
     re_consequent = snippet2RegexCondition(change["consequent"])
-    if re_condition == None or re_consequent == None:
+    if re_condition is None or re_consequent is None:
         continue
     sys.stdout.write("\r%d / %d changes, %d rules are collected" % (i, changes_size, len(all_changes)))
 
@@ -125,8 +133,8 @@ validate_by = "pulls" if "pull" in config["validate_by"] else "master"
 
 if validate_by != learn_from:
     changes = []
-    change_files = ["data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang  + "_"  + validate_by + "2.json"
-            for x in projects]
+    change_files = ["data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + "2.json"
+                    for x in projects]
     for change_file in change_files:
         print("Combine from " + change_file)
         with open(change_file, "r") as target:
