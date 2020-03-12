@@ -55,7 +55,12 @@ def main():
         print(f"{owner}/{repo} ")
 
         # Learn or validate from master pull request
-        if learn_from_pulls or validate_by_pulls:            
+        if learn_from_pulls or validate_by_pulls:
+            update_repo_fetch(repo)
+            print("fetching the pull request")
+            target_repo.remote().fetch()
+
+            print("collecting the pulls")
             collect_target_pulls(owner, repo, token)
 
             abstracted = learn_from_pulls
@@ -82,17 +87,32 @@ def main():
 
 def clone_target_repo(owner, repo):
     data_repo_dir = "data/repos"
-    if not os.path.exists(data_repo_dir + "/" + repo):
+    if not os.path.exists(f"{data_repo_dir}/{repo}"):
         if not os.path.exists(data_repo_dir):
             os.makedirs(data_repo_dir)
-        print("Cloning " + data_repo_dir + "/" + repo)
+        print(f"Cloning {data_repo_dir}/{repo}")
         if token is not None:
-            git_url = "https://" + token + ":@github.com/" + owner + "/" + repo +".git"
+            git_url = f"https://{token}:@github.com/{owner}/{repo}.git"
         else:
-            git_url = "https://github.com/" + owner + "/" + repo +".git"
+            git_url = f"https://github.com/{owner}/{repo}.git"
         git.Git(data_repo_dir).clone(git_url)
     else:
-        pass
+        print(f"Target repo {data_repo_dir}/{repo}is already existed")
+
+
+def update_repo_fetch(repo):
+    config_name = f'data/repos/{repo}/.git/config'
+    origin_fetch = "[remote \"origin\"]"
+    new_fetch = "fetch = +refs/pull/*/head:refs/remotes/origin/pr/*"
+    with open(config_name, "r") as files:
+        git_config = files.read()
+    if new_fetch in git_config:
+        return
+    splitted_config = git_config.splitlines()
+    splitted_config.insert(splitted_config.index(origin_fetch) + 1, new_fetch)
+    with open(config_name, "w") as files:
+        git_config = files.write("\n".join(splitted_config))
+
 
 def collect_target_pulls(owner, repo, token):
     file_name = f'data/pulls/{owner}_{repo}.csv'
@@ -102,7 +122,7 @@ def collect_target_pulls(owner, repo, token):
         collector.save_all(file_name)
         print(f"Succeeded collecting {owner}/{repo} pulls!")
     else:
-        pass
+        print(f"data/pulls/{owner}_{repo}.csv is already existed")
 
 def make_abstracted_hunks(diff_index, is_abstract):
     out_hunks = []
@@ -213,16 +233,15 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
             if x["commit_len"] != "1" and\
                 (is_defined_author(x["author"]) or is_defined_author(x["merged_by"])) and\
                 in_time_span(datetime.strptime(x["created_at"] ,"%Y-%m-%d %H:%M:%S"))])):
+            commit_id = diff_path["number"]
+            commit_len = int(diff_path["commit_len"])
             try :
-                # original_commit = target_repo.commit(diff_path["first_commit_sha"])
-                original_commit = target_repo.commit(diff_path["first_commit_sha"])
-                changed_commit = target_repo.commit(diff_path["merge_commit_sha"])
-                # commit_span = "1-n"
-            except:
-                continue
-            commits = target_repo.iter_commits(diff_path["first_commit_sha"] + ".." + diff_path["merge_commit_sha"])
-            if any(x.message.startswith("Merge branch") for x in commits):
-                continue
+                # pull_head = target_repo.create_head()
+                original_commit = target_repo.commit(f"remotes/origin/pr/{commit_id}~{commit_len-1}")
+                changed_commit = target_repo.commit(f"remotes/origin/pr/{commit_id}")
+            except Exception as e:
+                print(e)
+                exit()
 
             if all_change:
                 sys.stdout.write("\r%d pulls id: %s, %d changes" % 
