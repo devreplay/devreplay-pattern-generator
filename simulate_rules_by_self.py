@@ -31,12 +31,12 @@ else:
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 validate_by = "pulls" if "pull" in config["validate_by"] else "master"
-change_files = {x["repo"]: "data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + ".json"
+change_files = {x["repo"]: "data/benchmarks/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + ".json"
                 for x in projects}
 
 # group_changes = re.compile(r"\\\$\\{(\d+):[a-zA-Z_]+\\}")
 
-rule_files = {x["repo"]: "data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + learn_from + ".json"
+rule_files = {x["repo"]: "data/benchmarks/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + learn_from + ".json"
               for x in projects}
 
 from_self = True
