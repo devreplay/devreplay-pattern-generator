@@ -67,7 +67,7 @@ def main():
             print("collecting the pull changes...")
             changes_sets = make_pull_diff(target_repo, owner, repo, abstracted)
 
-            out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_pulls.json"
+            out_name = f"data/changes/{owner}_{repo}_{lang}_pulls.json"
             with open(out_name, "w", encoding='utf-8') as f:
                 print("\nSuccess to collect the pull changes Output is " + out_name)
                 dump(changes_sets, f, indent=1)
@@ -78,11 +78,10 @@ def main():
             print("collecting the master changes...")
             changes_sets = make_master_diff(target_repo, owner, repo, branch, abstracted)
 
-            out_name = "data/changes/" + owner + "_" + repo + "_" + lang + "_master.json"
+            out_name = f"data/changes/{owner}_{repo}_{lang}_master.json"
             with open(out_name, "w", encoding='utf-8') as f:
                 print("\nSuccess to collect the master changes Output is " + out_name)
                 dump(changes_sets, f, indent=1)
-
 
 
 def clone_target_repo(owner, repo):
@@ -97,7 +96,7 @@ def clone_target_repo(owner, repo):
             git_url = f"https://github.com/{owner}/{repo}.git"
         git.Git(data_repo_dir).clone(git_url)
     else:
-        print(f"Target repo {data_repo_dir}/{repo}is already existed")
+        print(f"Target repo {data_repo_dir}/{repo} is already existed")
 
 
 def update_repo_fetch(repo):
@@ -133,6 +132,7 @@ def make_abstracted_hunks(diff_index, is_abstract):
             source = diff_item.a_blob.data_stream.read().decode('utf-8')
             target = diff_item.b_blob.data_stream.read().decode('utf-8')
         except UnicodeDecodeError:
+            print("UnicodeDecodeError")
             continue
         if source == target:
             continue
@@ -145,8 +145,8 @@ def make_abstracted_hunks(diff_index, is_abstract):
             for hunk in hunks:
                 try:
                     diff_result = TN.get_abstract_tree_diff(hunk["condition"], hunk["consequent"])
-                except:
-                    continue
+                except Exception as e:
+                    print(e)
                 diff_result["condition"] = code_trip(diff_result["condition"].splitlines(), True)
                 diff_result["consequent"] = code_trip(diff_result["consequent"].splitlines(), True)
                 if diff_result["condition"] == diff_result["consequent"] or\
@@ -236,7 +236,6 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
             commit_id = diff_path["number"]
             commit_len = int(diff_path["commit_len"])
             try :
-                # pull_head = target_repo.create_head()
                 original_commit = target_repo.commit(f"remotes/origin/pr/{commit_id}~{commit_len-1}")
                 changed_commit = target_repo.commit(f"remotes/origin/pr/{commit_id}")
             except Exception as e:
@@ -251,7 +250,6 @@ def make_pull_diff(target_repo, owner, repo, abstracted):
                             (i, diff_path["number"], len(change_sets), change_size))
 
             diff_index = original_commit.diff(changed_commit)
-            # diff_index = changed_commit.diff()
 
             hunks = make_abstracted_hunks(diff_index, abstracted)
             out_metricses = [{
