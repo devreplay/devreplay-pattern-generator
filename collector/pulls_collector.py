@@ -4,6 +4,7 @@ from csv import DictWriter
 from datetime import datetime, timezone
 from time import sleep
 from typing import Generator, Optional
+from requests import exceptions, request, post
 from urllib.error import HTTPError
 from urllib.request import urlopen, Request
 
@@ -26,6 +27,8 @@ class PullsCollector:
         self._token = token
         self._repo_owner = repo_owner
         self._repo_name = repo_name
+        self._headers = {"Authorization": f"token {token}"}
+        self.cursor = None
 
     def save_all(self, output_path: str):
         with open(output_path, 'w', encoding='utf-8', buffering=1) as f:
@@ -36,48 +39,50 @@ class PullsCollector:
             print("\nFinish to collect the pull list. Output is " + output_path)
 
     def all(self) -> Generator:
-        cursor = None
+        self.cursor = None
+        gene = self._generator()
+        hasNextPage = True
+        repos_vulnerabilities = []
+        while hasNextPage:
+            obj = next(gene)
+            if "errors" in obj:
+              continue
 
-        while True:
-            obj = self._fetch(cursor)
             for pull in (edge['node'] for edge in obj['data']['repository']['pullRequests']['edges']):
                 if pull['commits']['totalCount'] > 0 and "author" in pull and pull["author"] is not None:
                     yield self._format(pull)
-            if not obj['data']['repository']['pullRequests']['pageInfo']['hasNextPage']:
-                break
-            cursor = obj['data']['repository']['pullRequests']['pageInfo']['endCursor']
+            hasNextPage = obj['data']['repository']['pullRequests']['pageInfo']['hasNextPage']
+            self.cursor = obj['data']['repository']['pullRequests']['pageInfo']['endCursor']
             if obj['data']['rateLimit']['remaining'] < 1:
                 reset_at = self._parse_datetime(obj['data']['rateLimit']['resetAt'])
                 delta = reset_at - datetime.now(timezone.utc)
                 sleep(delta.seconds)
 
-    def _fetch(self, cursor: str = None, nth_retry: int = 0) -> dict:
-        req = Request(
-            'https://api.github.com/graphql',
-            method='POST',
-            data=self._graphql_request(cursor),
-            headers={
-                'Authorization': f'bearer {self._token}',
-            })
-        try:
-            response = urlopen(req)
-        except HTTPError as e:
-            print('===== Headers\n\n'
-                  f'{e.headers.as_string()}\n'
-                  '===== Reason\n\n'
-                  f'{e.reason}\n\n'
-                  '===== Code\n'
-                  f'{e.code}\n', file=sys.stderr)
-            retry_after = e.headers.get('Retry-After')
-            if retry_after is not None and nth_retry < self.MAX_FETCH_RETRY:
-                print(f'Waiting {retry_after} seconds to retry fetching', file=sys.stderr)
-                sleep(int(retry_after))
-                return self._fetch(cursor, nth_retry + 1)
-            else:
-                raise
-        return json.loads(response.read().decode('utf-8'))
+    def _generator(self):
+        nth_retry = 0
+        while(True):
+            try:
+              res = post(
+                    'https://api.github.com/graphql',
+                    headers=self._headers,
+                    data=self._graphql_request(),
+                ).json()
+              if "errors" in res:
+                if nth_retry < self.MAX_FETCH_RETRY:
+                  nth_retry += 1
+                  # Magic number to avoid timeout
+                  sleep(10)
+                  continue
+                else:
+                  nth_retry = 0
+                  print(res["errors"])
+              yield res
+            except exceptions.HTTPError as http_err:
+                raise http_err
+            except Exception as err:
+                raise err
 
-    def _graphql_request(self, cursor: str = None) -> str:
+    def _graphql_request(self) -> str:
         """GitHub GraphQL Query
 
         See https://developer.github.com/v4/object/pullrequest/
@@ -89,7 +94,7 @@ class PullsCollector:
                 resetAt
               }
               repository(owner: "%(repo_owner)s", name: "%(repo_name)s") {
-                pullRequests(after: $cursor, first: 100, baseRefName: "master", states: [MERGED], orderBy: {field: CREATED_AT, direction: ASC}) {
+                pullRequests(after: $cursor, first: 50, baseRefName: "master", states: [MERGED], orderBy: {field: CREATED_AT, direction: DESC}) {
                   pageInfo {
                     hasNextPage
                     endCursor
@@ -109,13 +114,6 @@ class PullsCollector:
                       headRefOid
                       commits(first:1) {
                         totalCount
-                        edges {
-                          node {
-                            commit {
-                              oid
-                            }
-                          }
-                        }
                       }
                     }
                   }
@@ -123,11 +121,12 @@ class PullsCollector:
               }
             }
         ''' % {'repo_owner': self._repo_owner, 'repo_name': self._repo_name}
-        return json.dumps({'query': query, 'variables': {'cursor': cursor}}).encode('utf-8')
+        # return query
+        return json.dumps({'query': query, 'variables': {'cursor': self.cursor}}).encode('utf-8')
 
     def _format(self, pull: dict) -> dict:
         author = pull["author"]["login"]
-        base_sha = [edge['node']['commit']['oid'] for edge in pull['commits']['edges']][0]
+        # base_sha = [edge['node']['commit']['oid'] for edge in pull['commits']['edges']][0]
         # participant = [participant["node"]["login"] for participant in pull["participants"]["edges"] 
         #                 if participant["node"]["login"] != author]
         # head_sha = commit_oids[-1]
@@ -137,11 +136,10 @@ class PullsCollector:
             "number": pull['number'],
             "commit_len": pull['commits']['totalCount'],
             "base_commit_sha": pull['baseRefOid'],
-            "first_commit_sha": base_sha,
             "merge_commit_sha": pull['headRefOid'],
             "created_at": self._parse_datetime(pull['createdAt']),
             "merged_at": self._parse_datetime(pull['mergedAt']),
-            "merged_by": self._merged_by(pull),
+            "merged_by": self._merged_by(pull)
         }
 
     def _parse_datetime(self, d: str) -> datetime:
@@ -152,3 +150,9 @@ class PullsCollector:
         if merged_by is None:
             return None
         return merged_by.get('login')
+
+if __name__ == "__main__":
+    collector = PullsCollector("995a00abc096ec3203f1fe85b134bf8d2d0c9574", "kubernetes", "kubernetes")
+    for x in collector.all():
+      # if x["created_at"] > datetime.strptime("2019-1-1", '%Y-%m-%d'):
+      print(x)
