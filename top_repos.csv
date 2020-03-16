@@ -1,0 +1,9 @@
+owner,repo,branch,lang
+microsoft,vscode,master,JavaScript
+flutter,flutter,master,Dart
+react-nativekubernetes,react-nativekubernetes,master,JavaScript
+kubernetes,kubernetes,master,Go
+tensorflow,tensorflow,master,CPP
+definitelytyped,definitelytyped,master,JavaScript
+ansible,ansible,devel,Python
+home-assistant,core,dev,Python
