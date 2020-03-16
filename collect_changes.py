@@ -48,6 +48,7 @@ def main():
     for project in projects:
         owner = project["owner"]
         repo = project["repo"]
+        repo_lang = project.get("lang", lang)
         branch = project.get("branch", "master")
 
         clone_target_repo(owner, repo)
@@ -61,7 +62,7 @@ def main():
             target_repo.remote().fetch()
 
             print("collecting the pulls")
-            collect_target_pulls(owner, repo, token)
+            collect_target_pulls(owner, repo, branch, token)
 
             abstracted = learn_from_pulls
             print("collecting the pull changes...")
@@ -113,11 +114,11 @@ def update_repo_fetch(repo):
         git_config = files.write("\n".join(splitted_config))
 
 
-def collect_target_pulls(owner, repo, token):
+def collect_target_pulls(owner, repo, branch, token):
     file_name = f'data/pulls/{owner}_{repo}.csv'
     if not os.path.exists(file_name):
         print(f"collecting {owner}/{repo} pulls...")
-        collector = PullsCollector(token, owner, repo)
+        collector = PullsCollector(token, owner, repo, branch)
         collector.save_all(file_name)
         print(f"Succeeded collecting {owner}/{repo} pulls!")
     else:

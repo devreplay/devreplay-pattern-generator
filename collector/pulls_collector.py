@@ -23,10 +23,11 @@ class PullsCollector:
         "merged_by"
     ]
 
-    def __init__(self, token: str, repo_owner: str, repo_name: str):
+    def __init__(self, token: str, repo_owner: str, repo_name: str, repo_branch = "master"):
         self._token = token
         self._repo_owner = repo_owner
         self._repo_name = repo_name
+        self._repo_branch = repo_branch
         self._headers = {"Authorization": f"token {token}"}
         self.cursor = None
 
@@ -94,7 +95,7 @@ class PullsCollector:
                 resetAt
               }
               repository(owner: "%(repo_owner)s", name: "%(repo_name)s") {
-                pullRequests(after: $cursor, first: 50, baseRefName: "master", states: [MERGED], orderBy: {field: CREATED_AT, direction: DESC}) {
+                pullRequests(after: $cursor, first: 50, baseRefName: "%(repo_branch)s", states: [MERGED], orderBy: {field: CREATED_AT, direction: DESC}) {
                   pageInfo {
                     hasNextPage
                     endCursor
@@ -120,7 +121,7 @@ class PullsCollector:
                 }
               }
             }
-        ''' % {'repo_owner': self._repo_owner, 'repo_name': self._repo_name}
+        ''' % {'repo_owner': self._repo_owner, 'repo_name': self._repo_name, 'repo_branch': self._repo_branch}
         # return query
         return json.dumps({'query': query, 'variables': {'cursor': self.cursor}}).encode('utf-8')
 
