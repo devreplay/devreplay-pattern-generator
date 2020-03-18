@@ -1,4 +1,4 @@
-from json import dump, loads, dumps, load
+from json import dump, load
 
 with open("config.json", "r") as json_file:
     config = load(json_file)
@@ -8,17 +8,17 @@ projects = projects = config["projects"]
 learn_from = config["learn_from"]
 
 OUT_TOKEN_NAME = "data/changes/" + projects[0]["owner"] + "_" + projects[0]["repo"] + \
-"_" + lang + "_" + learn_from + "_devreplay.json"
+"_" + lang + "_" + learn_from + ".json"
 OUT_TOKEN_NAME3 = "data/changes/" + projects[0]["owner"] + "_" + projects[0]["repo"] + \
 "_" + lang + "_" + learn_from + "_devreplay3.json"
 output = []
 
 with open(OUT_TOKEN_NAME, "r") as jsonfile:
-    target_changes = json.load(jsonfile)
+    target_changes = load(jsonfile)
     for i, change in enumerate(target_changes):
         change["id"] = i
         output.append(change)
 
 with open(OUT_TOKEN_NAME3, "w") as target:
     print("Success to validate the changes Output is " + OUT_TOKEN_NAME3)
-    json.dump(output, target, indent=2)
+    dump(output, target, indent=2)
