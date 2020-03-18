@@ -5,22 +5,25 @@ group_changes = re.compile(r"\\\$\\{(\d+):[a-zA-Z_]+\\}")
 group_changes2 = re.compile(r"\$\{(\d+):[a-zA-Z_]+\}")
 consequent_newline = re.compile(r"(\".+\\)(n.*\")")
 
+def is_meaninglines(line):
+    return not (line.isspace() or line.lstrip().startswith("//"))
+
 def group2increment(matchobj, identifier_ids):
     tokenid = int(matchobj.group(1))
     if tokenid in identifier_ids:
         return r"(?P=token" + str(tokenid + 1) + r")"
     else:
         identifier_ids.append(tokenid)
-        return r"(?P<token" + str(tokenid + 1) + r">[\w\s_]+)"
+        return r"(?P<token" + str(tokenid + 1) + r">\"[\w\s_]+\"|[\w]+)"
 
 def snippet2Regex(snippet):
     identifier_ids = []
-    joinedCondition = re.escape("\n".join(snippet))
+    joinedCondition = "\n".join([re.escape(x) for x in snippet])
     joinedCondition = group_changes.sub(lambda m: group2increment(m, identifier_ids), joinedCondition)
     try:
         return re.compile(joinedCondition)
     except:
-        exit()
+        return
 
 def consequent2regex(matchobj, identifier_ids):
     tokenid = int(matchobj.group(1))
@@ -52,8 +55,9 @@ def buggy2accepted(buggy, rules, rule_size):
     else:
         result = []
         for rule in tmp_rules:
-            try:
-                result.append(rule["re_condition"].sub(rule["re_consequent"], buggy))
-            except:
-                pass
+            fixed_content = rule["re_condition"].sub(rule["re_consequent"], buggy)
+            if fixed_content == buggy:
+                continue
+
+            result.append(fixed_content)
         return result
