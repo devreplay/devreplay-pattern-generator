@@ -61,3 +61,17 @@ def buggy2accepted(buggy, rules, rule_size):
 
             result.append(fixed_content)
         return result
+
+def buggy2accepted_id(buggy, rules, rule_size):
+    tmp_rules = [x for x in rules if x["re_condition"].search(buggy)]
+    if not tmp_rules:
+        return []
+    else:
+        result = []
+        for rule in tmp_rules:
+            fixed_content = rule["re_condition"].sub(rule["re_consequent"], buggy)
+            if fixed_content == buggy:
+                continue
+
+            result.append((fixed_content.strip(), rule["sha"]))
+        return result
