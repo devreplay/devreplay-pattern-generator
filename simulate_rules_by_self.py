@@ -31,21 +31,21 @@ else:
 
 learn_from = "pulls" if "pull" in config["learn_from"] else "master"
 validate_by = "pulls" if "pull" in config["validate_by"] else "master"
-change_files = {x["repo"]: "data/benchmarks/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + ".json"
+change_files = {x["repo"]: "data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + ".json"
                 for x in projects}
 
 # group_changes = re.compile(r"\\\$\\{(\d+):[a-zA-Z_]+\\}")
 
-rule_files = {x["repo"]: "data/benchmarks/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + learn_from + ".json"
+rule_files = {x["repo"]: "data/changes/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + learn_from + ".json"
               for x in projects}
 
 from_self = True
 
 if from_self:
-    out_files = {x["repo"]: "data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + ".csv"
+    out_files = {x["repo"]: "data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by
                  for x in projects}
 else:
-    out_files = {x["repo"]: "data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + "_cross.csv"
+    out_files = {x["repo"]: "data/result/" + x["owner"] + "_" + x["repo"] + "_" + lang + "_" + validate_by + "_cross"
                  for x in projects}
 
 projects_patterns = {}
@@ -91,7 +91,7 @@ else:
     projects_changes = projects_patterns
 
 
-for repo, out_name in change_files.items():
+for repo in change_files.keys():
     output = []
 
     all_changes = projects_changes[repo].copy()
@@ -103,29 +103,31 @@ for repo, out_name in change_files.items():
 
     changes_size = len(all_changes)
 
-    for i, change in enumerate(all_changes):
-        sys.stdout.write("\r%d / %d patterns are collected" %
-                         (i + 1, changes_size))
-        period_date = change["created_at"] - timedelta(days=7)
-        learned_change = [x for x in projects_patterns[repo]
-                          if x["created_at"] < change["created_at"] and x["created_at"] > period_date]
-        if not from_self:
-            learned_change.extend(learned_changes2)
-        fixed_contents = buggy2accepted(change["condition"], learned_change, 0)
+    days_span = [1, 7, 30]
+    for days in days_span:
+        for i, change in enumerate(all_changes):
+            # sys.stdout.write("\r%d / %d patterns are collected" %
+            #                  (i + 1, changes_size))
+            period_date = change["created_at"] - timedelta(days=days)
+            learned_change = [x for x in projects_patterns[repo]
+                              if x["created_at"] < change["created_at"] and x["created_at"] > period_date]
+            if not from_self:
+                learned_change.extend(learned_changes2)
+            fixed_contents = buggy2accepted(change["condition"], learned_change, 0)
 
-        success_index = [i for i, x in enumerate(fixed_contents) if x.strip() == change["consequent"]]
+            success_index = [i for i, x in enumerate(fixed_contents) if x.strip() == change["consequent"]]
 
-        output.append({
-            "sha": change["sha"],
-            "learned_num": len(learned_change),
-            "suggested_num": len(fixed_contents),
-            "rule_index": min(success_index) + 1 if len(success_index) != 0 else -1,
-            "success": len(success_index) != 0
-        })
+            output.append({
+                "sha": change["sha"],
+                "learned_num": len(learned_change),
+                "suggested_num": len(fixed_contents),
+                "rule_index": min(success_index) + 1 if len(success_index) != 0 else -1,
+                "success": len(success_index) != 0
+            })
 
-    OUT_TOKEN_NAME = out_files[repo]
-    with open(OUT_TOKEN_NAME, "w") as target:
-        print("Success to validate the changes Output is " + OUT_TOKEN_NAME)
-        writer = csv.DictWriter(target, ["sha", "learned_num", "suggested_num", "success", "rule_index"])
-        writer.writeheader()
-        writer.writerows(output)
+        OUT_TOKEN_NAME = out_files[repo] + f"_{days}.csv"
+        with open(OUT_TOKEN_NAME, "w") as target:
+            print("Success to validate the changes Output is " + OUT_TOKEN_NAME)
+            writer = csv.DictWriter(target, ["sha", "learned_num", "suggested_num", "success", "rule_index"])
+            writer.writeheader()
+            writer.writerows(output)
