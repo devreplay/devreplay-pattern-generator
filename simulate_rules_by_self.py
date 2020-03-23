@@ -92,7 +92,6 @@ else:
 
 
 for repo in change_files.keys():
-    output = []
 
     all_changes = projects_changes[repo].copy()
     if not from_self:
@@ -107,6 +106,7 @@ for repo in change_files.keys():
     days_span = [1]
     failed_sha = defaultdict(list)
     for days in days_span:
+        output = []
         for i, change in enumerate(all_changes):
             # sys.stdout.write("\r%d / %d patterns are collected" %
             #                  (i + 1, changes_size))
