@@ -69,9 +69,35 @@ def buggy2accepted_id(buggy, rules, rule_size):
     else:
         result = []
         for rule in tmp_rules:
-            fixed_content = rule["re_condition"].sub(rule["re_consequent"], buggy)
+            try:
+                fixed_content = rule["re_condition"].sub(rule["re_consequent"], buggy)
+            except Exception as e:
+                print(e)
+                continue
             if fixed_content == buggy:
                 continue
 
             result.append((fixed_content.strip(), rule["sha"]))
         return result
+
+
+condition = ["${0:NAME}.${1:NAME} = True"]
+consequent = ["${0:NAME}.${1:NAME} = connection_exists"]
+consequent_abstract = {
+   "0": "connection",
+   "1": "return_value"
+  }
+change = snippet2Realcode(condition, consequent_abstract)
+pattern = [{
+    "sha": "aaaa",
+    "re_condition": snippet2RegexCondition(condition),
+    "re_consequent": snippet2RegexConsequent(consequent)
+}]
+print(change)
+print(pattern)
+fixed_contents = buggy2accepted_id(change, pattern, 0)
+print(fixed_contents)
+
+correct_contents = snippet2Realcode(consequent, consequent_abstract).strip()
+
+print(correct_contents == fixed_contents[0][0])
