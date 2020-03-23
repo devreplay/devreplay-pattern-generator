@@ -114,7 +114,7 @@ for repo in change_files.keys():
             learned_change = [x for x in projects_patterns[repo]
                               if x["created_at"] < change["created_at"] and\
                                  x["created_at"] > period_date and \
-                                 x["sha"] not in failed_sha]
+                                 x["sha"] not in failed_sha[days]]
             if not from_self:
                 learned_change.extend(learned_changes2)
             fixed_contents = buggy2accepted_id(change["condition"], learned_change, 0)
