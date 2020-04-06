@@ -60,14 +60,18 @@ for repo, out_name in rule_files.items():
         sha_count = sha_count + 1 if sha == prev_sha else 0
         prev_sha = sha
         sha += f"_{str(sha_count)}"
-        patterns.append({
-            "sha": sha,
-            "re_condition": snippet2RegexCondition(bug["condition"]),
-            "re_consequent": snippet2RegexConsequent(bug["consequent"]),
-            "condition": snippet2Realcode(bug["condition"], bug["abstracted"]),
-            "consequent": snippet2Realcode(bug["consequent"], bug["abstracted"]).strip(),
-            "created_at": dt.strptime(bug["created_at"], "%Y-%m-%d %H:%M:%S")
-        })
+        try:
+            patterns.append({
+                "sha": sha,
+                "re_condition": snippet2RegexCondition(bug["condition"]),
+                "re_consequent": snippet2RegexConsequent(bug["consequent"]),
+                "condition": snippet2Realcode(bug["condition"], bug["abstracted"]),
+                "consequent": snippet2Realcode(bug["consequent"], bug["abstracted"]).strip(),
+                "created_at": dt.strptime(bug["created_at"], "%Y-%m-%d %H:%M:%S")
+            })
+        except KeyError as e:
+            print(e)
+            continue
     projects_patterns[repo] = patterns
 
 projects_changes = {}
@@ -80,12 +84,16 @@ if learn_from != validate_by:
         patterns = []
 
         for bug in target_changes:
-            patterns.append({
-                "sha": bug["sha"],
-                "condition": snippet2Realcode(bug["condition"], bug["abstracted"]),
-                "consequent": snippet2Realcode(bug["consequent"], bug["abstracted"]).strip(),
-                "created_at": dt.strptime(bug["created_at"], "%Y-%m-%d %H:%M:%S")
-            })
+            try:
+                patterns.append({
+                    "sha": bug["sha"],
+                    "condition": snippet2Realcode(bug["condition"], bug["abstracted"]),
+                    "consequent": snippet2Realcode(bug["consequent"], bug["abstracted"]).strip(),
+                    "created_at": dt.strptime(bug["created_at"], "%Y-%m-%d %H:%M:%S")
+                })
+            except KeyError as e:
+                print(e)
+                continue
         projects_changes[repo] = patterns
 else:
     projects_changes = projects_patterns
@@ -103,37 +111,39 @@ for repo in change_files.keys():
     changes_size = len(all_changes)
 
     days_span = [1, 7, 30]
-    days_span = [1]
     failed_sha = defaultdict(list)
     for days in days_span:
-        output = []
-        for i, change in enumerate(all_changes):
-            # sys.stdout.write("\r%d / %d patterns are collected" %
-            #                  (i + 1, changes_size))
-            period_date = change["created_at"] - timedelta(days=days)
-            learned_change = [x for x in projects_patterns[repo]
-                              if x["created_at"] < change["created_at"] and\
-                                 x["created_at"] > period_date and \
-                                 x["sha"] not in failed_sha[days]]
-            if not from_self:
-                learned_change.extend(learned_changes2)
-            fixed_contents = buggy2accepted_id(change["condition"], learned_change, 0)
-
-            success_index = [i for i, x in enumerate(fixed_contents) if x[0] == change["consequent"]]
-            failed_sha[days].extend([x[1] for x in fixed_contents if x[0] != change["consequent"]])
-
-            output.append({
-                "sha": change["sha"],
-                "learned_num": len(learned_change),
-                "suggested_num": len(fixed_contents),
-                "rule_index": min(success_index) + 1 if len(success_index) != 0 else -1,
-                "success": len(success_index) != 0,
-                "reffered_sha": fixed_contents[min(success_index)][1] if len(success_index) != 0 else "Nothing"
-            })
-
+        sys.stdout.write("\r%s / %d days patterns are collecting" %
+                    (repo, days))
+        
         OUT_TOKEN_NAME = out_files[repo] + f"_{days}.csv"
         with open(OUT_TOKEN_NAME, "w") as target:
             print("Success to validate the changes Output is " + OUT_TOKEN_NAME)
             writer = csv.DictWriter(target, ["sha", "learned_num", "suggested_num", "success", "rule_index", "reffered_sha"])
             writer.writeheader()
-            writer.writerows(output)
+            for i, change in enumerate(all_changes):
+                if i % 100 == 0:
+                    sys.stdout.write("\r%d / %d patterns are collected" %
+                                    (i + 1, changes_size))
+                period_date = change["created_at"] - timedelta(days=days)
+                learned_change = [x for x in projects_patterns[repo]
+                                if x["created_at"] < change["created_at"] and\
+                                    x["created_at"] > period_date and \
+                                    x["sha"] not in failed_sha[days]]
+                if not from_self:
+                    learned_change.extend(learned_changes2)
+                fixed_contents = buggy2accepted_id(change["condition"], learned_change, 0)
+
+                success_index = [i for i, x in enumerate(fixed_contents) if x[0] == change["consequent"]]
+                failed_sha[days].extend([x[1] for x in fixed_contents if x[0] != change["consequent"]])
+
+                output = {
+                    "sha": change["sha"],
+                    "learned_num": len(learned_change),
+                    "suggested_num": len(fixed_contents),
+                    "rule_index": min(success_index) + 1 if len(success_index) != 0 else -1,
+                    "success": len(success_index) != 0,
+                    "reffered_sha": fixed_contents[min(success_index)][1] if len(success_index) != 0 else "Nothing"
+                }
+
+                writer.writerow(output)
