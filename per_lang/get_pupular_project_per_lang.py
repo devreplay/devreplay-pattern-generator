@@ -10,17 +10,18 @@ import requests
 import json
 import csv
 from github import Github
-import configparser
 
-config = configparser.ConfigParser()
-config.read('config')
-user = config["GitHub"]["id"]
-password = config["GitHub"]["password"]
-g = Github(user, password)
+with open("config.json", "r") as json_file:
+    config = json.load(json_file)
+
+token = config["github_token"]
+g = Github(token)
 languages = ["Python", "Java", "JavaScript", "C++", "Ruby"]
+languages = ["JavaScript", "TypeScript"]
+
 
 for language in languages:
-    repos = g.search_repositories("stars:>0", sort="stars", language=language)
+    repos = g.search_repositories("stars:>100", sort="stars", language=language)
 
     results = []
     for x in repos[:10]:
