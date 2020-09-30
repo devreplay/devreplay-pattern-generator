@@ -2,7 +2,6 @@ import sys
 import os
 from csv import DictReader
 from json import dump, loads, dumps, load
-from unidiff import PatchSet
 import difflib
 from CodeTokenizer.tokenizer import TokeNizer
 from lang_extentions import lang_extentions
@@ -48,7 +47,6 @@ def main():
     for project in projects:
         owner = project["owner"]
         repo = project["repo"]
-        repo_lang = project.get("lang", lang)
         branch = project.get("branch", "master")
 
         clone_target_repo(owner, repo)
