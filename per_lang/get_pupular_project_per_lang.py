@@ -6,7 +6,6 @@ $ touch config.json
 Edit config.sjon
 """
 
-import requests
 import json
 import csv
 from github import Github
@@ -24,7 +23,7 @@ for language in languages:
     repos = g.search_repositories("stars:>100", sort="stars", language=language)
 
     results = []
-    for x in repos[:10]:
+    for x in repos[:100]:
         results.append({"repo": x.name, "owner": x.owner.login,
                         "url": x.url, "forks": x.forks, "stars": x.stargazers_count})
 
