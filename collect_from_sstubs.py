@@ -1,6 +1,6 @@
 # import csv
 import json
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Counter
 # import sys
 # import os
 # from csv import DictReader
@@ -36,13 +36,13 @@ def makePattern():
 def main():
     # sstubs形式にプロジェクトの変更履歴を収集する
     bugs = readsstubs()
-    print(bugs[:1])
     TN = TokeNizer("Java")
-    out_hunks = []
+    hunks = []
     for bug in bugs:
         # bugType = bug["bugType"]
         # filePath = bug["bugFilePath"]
         project = bug["projectName"]
+        bugType = bug["bugType"]
         before = bug['sourceBeforeFix']
         after = bug['sourceAfterFix']
 
@@ -57,9 +57,19 @@ def main():
             diff_result["condition"] == []:
             continue
         diff_result['author'] = project
-        out_hunks.append(diff_result)
+        diff_result['bugType'] = bugType
 
+        hunks.append(diff_result)
 
+    unique_set= [(val["condition"][0] + " *** " + val["consequent"][0], {'bugType': val['bugType'],'author': val['author']}) for val in hunks]
+    count_set = Counter([x[0] for x in unique_set])
+    out_hunks = [{
+        "change": key.split(" *** "),
+        "count": x,
+        'bugType': list(set([x['bugType'] for i, x in unique_set if i == key])),
+        'author': list(set([x['author'] for i, x in unique_set if i == key]))} for key, x in count_set.items()]
+
+    out_hunks = sorted(out_hunks, key=lambda k: k['count']) 
     out_name = f"data/changes/sstubs_devreplay.json"
     with open(out_name, "w", encoding='utf-8') as f:
         print("\nSuccess to collect the pull changes Output is " + out_name)
