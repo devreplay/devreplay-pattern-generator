@@ -1,5 +1,6 @@
 from json import load, dump
 from csv import DictWriter
+from statistics import mean, median 
 
 out_name = f"data/changes/sstubs_devreplay.json"
 with open(out_name, "r", encoding='utf-8') as f:
@@ -15,6 +16,7 @@ with open(out_name, "r", encoding='utf-8') as f:
         data_set[i]['Project common'] = len(pattern['author']) > 1
     
     output = []
+    freq_output = []
     for key in ['All' ,'Shift', 'Contradiction', 'Multi opinion', 'Filter']:
         if key == 'All':
             patterns = data_set.copy()
@@ -25,10 +27,22 @@ with open(out_name, "r", encoding='utf-8') as f:
         bug_common = [x for x in patterns if len(x['bugType']) > 1]
 
         value = {
-            key: str(len(patterns)) + ' / ' + str(sum(x['count'] for x in patterns))  for key, patterns 
+            key: str(len(tmp_patterns)) + ' / ' + str(sum(x['count'] for x in tmp_patterns))  for key, tmp_patterns 
             in {"All":  patterns, "Bug common":bug_common, "Project common": project_common}.items()}
-        value["Category"] = key
+        
+        # pattern_med = '{:5.2f}'.format(median([x['count'] for x in patterns]))
+        # pattern_med = '{:5.2f}'.format(mean([x['count'] for x in patterns]))
 
+        frequency = {
+            key: '{:5.2f}'.format(median([x['count'] for x in tmp_patterns])) + ' : ' +'{:5.2f}'.format(mean([x['count'] for x in tmp_patterns]))
+            for key, tmp_patterns 
+            in {"All":  patterns, "Bug common":bug_common, "Project common": project_common}.items()}
+
+
+        value["Category"] = key
+        frequency["Category"] = key
+
+        freq_output.append(frequency)
         output.append(value)
 
     out_name = f"data/changes/sstubs_devreplay_summary2.csv"
@@ -36,6 +50,13 @@ with open(out_name, "r", encoding='utf-8') as f:
         writer = DictWriter(f, ["Category", "All", "Bug common", "Project common"])
         writer.writeheader()
         writer.writerows(output)
+        print("\nSuccess to collect the pull changes Output is " + out_name)
+
+    out_name = f"data/changes/sstubs_devreplay_frequency.csv"
+    with open(out_name, "w",  encoding='utf-8') as f:
+        writer = DictWriter(f, ["Category", "All", "Bug common", "Project common"])
+        writer.writeheader()
+        writer.writerows(freq_output)
         print("\nSuccess to collect the pull changes Output is " + out_name)
 
     out_name = f"data/changes/sstubs_devreplay_common_summary.json"
