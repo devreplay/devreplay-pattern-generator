@@ -51,19 +51,22 @@ def main():
         except Exception as e:
             print(e)
             continue
-        diff_result["condition"] = code_trip(diff_result["condition"].splitlines(), True)
-        diff_result["consequent"] = code_trip(diff_result["consequent"].splitlines(), True)
-        if diff_result["condition"] == diff_result["consequent"] or\
-            diff_result["condition"] == []:
-            continue
+        diff_result["before"] = code_trip(diff_result["condition"].splitlines(), True)
+        diff_result["after"] = code_trip(diff_result["consequent"].splitlines(), True)
+            
+        del diff_result['condition']
+        del diff_result['consequent']
+        del diff_result['abstracted']
         diff_result['author'] = project
-        diff_result['bugType'] = bugType
+        # TODO CommitIdからコミットメッセージを取得する
+        # TODO パターンのメッセージをコミットメッセージにする
+        diff_result['message'] = bugType
 
         hunks.append(diff_result)
 
     filtered_set = [x for x in hunks 
-                    if x["condition"] != x["consequent"] and x["condition"] != []]
-    unique_set = [(val["condition"][0] + " *** " + val["consequent"][0], {'bugType': val['bugType'],'author': val['author']}) for val in filtered_set]
+                    if x["before"] != x["after"] and x["before"] != []]
+    unique_set = [(val["before"][0] + " *** " + val["after"][0], {'bugType': val['message'],'author': val['author']}) for val in filtered_set]
     count_set = Counter([x[0] for x in unique_set])
     out_hunks = [{
         "change": key.split(" *** "),
@@ -81,16 +84,6 @@ def main():
     with open(out_name, "w", encoding='utf-8') as f:
         print("\nSuccess to collect the pull changes Output is " + out_name)
         dump(hunks, f, indent=1)
-
-
-
-    # 一箇所のみの修正だけを対象とする
-
-    # 空白などはもちろん削除
-
-    # CommitIdからコミットメッセージを取得する
-
-    # パターンのメッセージをコミットメッセージにする
 
     return
 
