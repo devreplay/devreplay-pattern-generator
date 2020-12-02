@@ -1,6 +1,6 @@
 from json import load
 from os import name
-from typing import Any, Dict, List
+from typing import Any, DefaultDict, Dict, List
 from csv import DictReader, DictWriter
 import sys
 import pandas as pd
@@ -13,6 +13,9 @@ def readsstubs() -> List[Dict[str, Any]]:
 
 def getProjects(pattern: List[str]) -> List[str]:
     return list(set([x['projectName'] for x in pattern]))
+
+def getBugTypes(pattern: List[str]) -> List[str]:
+    return list(set([x['bugType'] for x in pattern]))
 
 def makeKlearned(patterns, k: int):
     patterns_len = len(patterns)
@@ -36,54 +39,163 @@ def makeKlearned(patterns, k: int):
     return fixed_patterns
 
 
+def correctProjectSummary(projects: List[str], K: int):
+    output = []
+    total = 0
+    total_fixed = 0
+
+    K_total = 0
+    K_total_fixed = 0
+    for project in projects:
+        # sys.stdout.write("\r%s %d/%d projects\n" % (project, j, len(projects)))
+        with open(f'data/sstubs/sstubs_{project}.csv', 'r') as target:
+            # names = ['project', 'bugType', 'fixCommitSHA1', 'state', 'correct', 'precision', 'recall']
+            reader = list(DictReader(target))
+            last_row = reader[-1]
+            tmp_output = {
+                'project': project,
+                'size': len(reader),
+                'precision': float(last_row['precision']),
+                'recall': float(last_row['recall']),
+            }
+            total += len(reader)
+            total_fixed += int(last_row['correct'])
+
+            k_reader = makeKlearned(reader, K)
+            last_row = k_reader[-1]
+
+            tmp_output[f'{K}_precision'] = last_row[f'{K}_precision']
+            tmp_output[f'{K}_recall'] = last_row[f'{K}_recall']
+            
+            K_total += len(k_reader)
+            K_total_fixed += int(last_row['correct'])
+
+
+            output.append(tmp_output)
+
+    output = sorted(output, key=lambda x: x['recall'], reverse=True)
+
+    total_sum = {
+        'project': 'all',
+        'size': total,
+        'precision': 0,
+        'recall': total_fixed / total,
+        f'{K}_precision': 0,
+        f'{K}_recall': K_total_fixed / K_total,
+    }
+    output = [total_sum] + output
+
+    return output
+
+
+
+
+def correctBugTypeSummary(projects: List[str], bugTypes: List[str], K: int):
+    bugTypeOut = {}
+    k_bugTypeOut = {}
+
+    for project in projects:
+        # sys.stdout.write("\r%s %d/%d projects\n" % (project, j, len(projects)))
+        with open(f'data/sstubs/sstubs_{project}.csv', 'r') as target:
+            # names = ['project', 'bugType', 'fixCommitSHA1', 'state', 'correct', 'precision', 'recall']
+            reader = list(DictReader(target))
+
+            for bugType in bugTypes:
+                bugTypeCollect = [x for x in reader if x['bugType'] == bugType]
+                if bugType in bugTypeOut:
+                    bugTypeOut[bugType]['size'] += len(bugTypeCollect)
+                    bugTypeOut[bugType]['correct'] += len([x for x in bugTypeCollect if int(x['state']) == 0])
+                    bugTypeOut[bugType]['suggest'] += len([x for x in bugTypeCollect if int(x['state']) in [0, 1]])
+                else:
+                    bugTypeOut[bugType] = {
+                        'size': len(bugTypeCollect),
+                        'correct': len([x for x in bugTypeCollect if int(x['state']) == 0]),
+                        'suggest': len([x for x in bugTypeCollect if int(x['state']) in [0, 1]])
+                    }
+                k_reader = makeKlearned(bugTypeCollect, K)
+                if bugType in k_bugTypeOut:
+                    k_bugTypeOut[bugType]['size'] += len(k_reader)
+                    k_bugTypeOut[bugType]['correct'] += len([x for x in k_reader if int(x['state']) == 0])
+                    k_bugTypeOut[bugType]['suggest'] += len([x for x in k_reader if int(x['state']) in [0, 1]])
+                else:
+                    k_bugTypeOut[bugType] = {
+                        'size': len(k_reader),
+                        'correct': len([x for x in k_reader if int(x['state']) == 0]),
+                        'suggest': len([x for x in k_reader if int(x['state']) in [0, 1]])
+                    }
+
+    output = []
+    total = 0
+    total_fixed = 0
+    total_suggest = 0
+
+    k_total = 0
+    k_total_fixed = 0
+    k_total_suggest = 0
+    for bugType in bugTypes:
+        output.append({
+            'bugType': bugType,
+            'size': bugTypeOut[bugType]['size'],
+            'correct': bugTypeOut[bugType]['correct'],
+            'suggest': bugTypeOut[bugType]['suggest'],
+            'precision': bugTypeOut[bugType]['correct'] / bugTypeOut[bugType]['suggest'],
+            'recall': bugTypeOut[bugType]['correct'] / bugTypeOut[bugType]['size'],
+            f'{K}_precision': k_bugTypeOut[bugType]['correct'] / k_bugTypeOut[bugType]['suggest'],
+            f'{K}_recall': k_bugTypeOut[bugType]['correct'] / k_bugTypeOut[bugType]['size']
+        })
+        total += bugTypeOut[bugType]['size']
+        total_fixed += bugTypeOut[bugType]['correct']
+        total_suggest +=bugTypeOut[bugType]['suggest']
+
+        k_total += k_bugTypeOut[bugType]['size']
+        k_total_fixed += k_bugTypeOut[bugType]['correct']
+        k_total_suggest +=k_bugTypeOut[bugType]['suggest']
+
+    output = sorted(output, key=lambda x: x['recall'], reverse=True)
+
+    total_sum = {
+        'bugType': 'all',
+        'size': total,
+        'correct': total_fixed,
+        'suggest': total_suggest,
+        'precision': total_fixed / total_suggest,
+        'recall': total_fixed / total,
+        f'{K}_precision': k_total_fixed / k_total_suggest,
+        f'{K}_recall': k_total_fixed / k_total
+    }
+    output = [total_sum] + output
+
+    return output
+
+
 target_data = readsstubs()
 projects = getProjects(target_data)
+bugTypes = getBugTypes(target_data)
 
-output = []
-total = 0
-total_fixed = 0
-
-K_total = 0
-K_total_fixed = 0
 K = 10
 
-for j, project in enumerate(projects):
+filter_size = 100
+filtered_projects = []
+
+for project in projects:
     # sys.stdout.write("\r%s %d/%d projects\n" % (project, j, len(projects)))
     with open(f'data/sstubs/sstubs_{project}.csv', 'r') as target:
-        names = ['project', 'bugType', 'fixCommitSHA1', 'state', 'correct', 'precision', 'recall']
+        # names = ['project', 'bugType', 'fixCommitSHA1', 'state', 'correct', 'precision', 'recall']
         reader = list(DictReader(target))
-        last_row = reader[-1]
-        tmp_output = {
-            'project': project,
-            'size': len(reader),
-            'precision': float(last_row['precision']),
-            'recall': float(last_row['recall']),
-        }
-        total += len(reader)
-        total_fixed += int(last_row['correct'])
+        if len(reader) > filter_size:
+            filtered_projects.append(project)
 
-        k_reader = makeKlearned(reader, K)
-        last_row = k_reader[-1]
+projects = filtered_projects
 
-        tmp_output[f'{K}_precision'] = last_row[f'{K}_precision']
-        tmp_output[f'{K}_recall'] = last_row[f'{K}_recall']
-        
-        K_total += len(k_reader)
-        K_total_fixed += int(last_row['correct'])
-
-        output.append(tmp_output)
-
-output = sorted(output, key=lambda x: x['recall'], reverse=True)
-total_sum = {
-    'project': 'all',
-    'size': total,
-    'precision': 0,
-    'recall': total_fixed / total,
-    f'{K}_precision': 0,
-    f'{K}_recall': K_total_fixed / K_total,
-}
-output = [total_sum] + output
-with open(f'data/sstubs/summary.csv', 'w') as target:
+output = correctProjectSummary(projects, K)
+with open(f'data/sstubs/F{filter_size}K{K}_summary2.csv', 'w') as target:
     writer = DictWriter(target, ['project', 'size', 'precision', 'recall', f'{K}_precision', f'{K}_recall'])
+    writer.writeheader()
+    writer.writerows(output)
+
+
+output = correctBugTypeSummary(projects, bugTypes, K)
+with open(f'data/sstubs/F{filter_size}K{K}_bug_summary.csv', 'w') as target:
+    writer = DictWriter(target, ['bugType', 'size', 'correct', 'suggest','precision', 'recall', f'{K}_precision', f'{K}_recall'])
     writer.writeheader()
     writer.writerows(output)
