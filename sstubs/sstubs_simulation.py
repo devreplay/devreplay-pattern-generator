@@ -39,7 +39,7 @@ def canPatchFixable(prefixed: str, fixed: str, patterns: List[str]):
     with open(prefixed_file_name, 'w', encoding='utf-8') as target:
         target.write(prefixed)
     with open(pattern_file_name, "w", encoding='utf-8') as target2:
-        dump(patterns, target2)
+        dump(list(reversed(patterns)), target2)
 
     fixed_result = execDevReplay(prefixed_file_name, pattern_file_name)
 
@@ -129,20 +129,34 @@ target_data = readsstubs()
 target_patterns = readPatterns()
 projects = getProjects(target_data)
 
-for j, project in enumerate(projects):
-    sys.stdout.write("\r%s %d/%d projects\n" % (project, j, len(projects)))
-    project_data = [x for x in target_data if x['projectName'] == project]
-    project_patterns = [x for x in target_patterns if x['author'] == project]
+bug_types = ['SWAP_ARGUMENTS', 'CHANGE_OPERATOR', 'CHANGE_OPERAND']
+# Same Function Swap Args
+# Change Binary Operator
+# Change Operand Checks
+for bug_type in bug_types:
+    for j, project in enumerate(projects):
+        # sys.stdout.write("\r%s %d/%d projects\n" % (project, j, len(projects)))
+        project_data = [x for x in target_data if x['projectName'] == project and x['bugType'] == bug_type]
+        project_patterns = [x for x in target_patterns if x['author'] == project and x['message'] == bug_type]
 
-    state_log = evaluatePatterns(project_patterns, project_data)
+        state_log = evaluatePatterns(project_patterns, project_data)
 
-    with open(f'data/sstubs/sstubs_{project}.csv', 'w') as target:
-        writer = DictWriter(target, ['project', 'bugType', 'fixCommitSHA1', 'state', 'correct', 'precision', 'recall'])
-        writer.writeheader()
-        writer.writerows(state_log)
+        with open(f'data/sstubs/sstubs_{project}_{bug_type}.csv', 'w') as target:
+            writer = DictWriter(target, ['project', 'bugType', 'fixCommitSHA1', 'state', 'correct', 'precision', 'recall'])
+            writer.writeheader()
+            writer.writerows(state_log)
 
 
-    # 結果を出力
-    # 精度＝そのとおりに修正された数 / 推薦した数
-    # 再現率＝そのとおりに推薦した数 / すべてのSSTubs > 14%
+# for j, project in enumerate(projects):
+#     sys.stdout.write("\r%s %d/%d projects\n" % (project, j, len(projects)))
+#     project_data = [x for x in target_data if x['projectName'] == project]
+#     project_patterns = [x for x in target_patterns if x['author'] == project]
+
+#     state_log = evaluatePatterns(project_patterns, project_data)
+
+#     with open(f'data/sstubs/sstubs_{project}.csv', 'w') as target:
+#         writer = DictWriter(target, ['project', 'bugType', 'fixCommitSHA1', 'state', 'correct', 'precision', 'recall'])
+#         writer.writeheader()
+#         writer.writerows(state_log)
+
 
