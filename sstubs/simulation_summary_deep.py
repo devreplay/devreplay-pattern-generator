@@ -52,25 +52,25 @@ def correctBugTypeSummary(projects: List[str], bugTypes: List[str], K: int):
                 reader = list(DictReader(target))
                 bugTypeCollect = [x for x in reader if x['bugType'] == bugType]
                 if bugType in bugTypeOut:
-                    bugTypeOut[bugType]['size'] += len(bugTypeCollect)
-                    bugTypeOut[bugType]['correct'] += len([x for x in bugTypeCollect if int(x['state']) == 0])
-                    bugTypeOut[bugType]['suggest'] += len([x for x in bugTypeCollect if int(x['state']) in [0, 1]])
+                    bugTypeOut[bugType]['Size'] += len(bugTypeCollect)
+                    bugTypeOut[bugType]['Correct'] += len([x for x in bugTypeCollect if int(x['state']) == 0])
+                    bugTypeOut[bugType]['Suggest'] += len([x for x in bugTypeCollect if int(x['state']) in [0, 1]])
                 else:
                     bugTypeOut[bugType] = {
-                        'size': len(bugTypeCollect),
-                        'correct': len([x for x in bugTypeCollect if int(x['state']) == 0]),
-                        'suggest': len([x for x in bugTypeCollect if int(x['state']) in [0, 1]])
+                        'Size': len(bugTypeCollect),
+                        'Correct': len([x for x in bugTypeCollect if int(x['state']) == 0]),
+                        'Suggest': len([x for x in bugTypeCollect if int(x['state']) in [0, 1]])
                     }
                 k_reader = makeKlearned(bugTypeCollect, K)
                 if bugType in k_bugTypeOut:
-                    k_bugTypeOut[bugType]['size'] += len(k_reader)
-                    k_bugTypeOut[bugType]['correct'] += len([x for x in k_reader if int(x['state']) == 0])
-                    k_bugTypeOut[bugType]['suggest'] += len([x for x in k_reader if int(x['state']) in [0, 1]])
+                    k_bugTypeOut[bugType]['Size'] += len(k_reader)
+                    k_bugTypeOut[bugType]['Correct'] += len([x for x in k_reader if int(x['state']) == 0])
+                    k_bugTypeOut[bugType]['Suggest'] += len([x for x in k_reader if int(x['state']) in [0, 1]])
                 else:
                     k_bugTypeOut[bugType] = {
-                        'size': len(k_reader),
-                        'correct': len([x for x in k_reader if int(x['state']) == 0]),
-                        'suggest': len([x for x in k_reader if int(x['state']) in [0, 1]])
+                        'Size': len(k_reader),
+                        'Correct': len([x for x in k_reader if int(x['state']) == 0]),
+                        'Suggest': len([x for x in k_reader if int(x['state']) in [0, 1]])
                         }
 
     output = []
@@ -83,32 +83,32 @@ def correctBugTypeSummary(projects: List[str], bugTypes: List[str], K: int):
     k_total_suggest = 0
     for bugType in bugTypes:
         output.append({
-            'bugType': bugType,
-            'size': bugTypeOut[bugType]['size'],
-            'correct': bugTypeOut[bugType]['correct'],
-            'suggest': bugTypeOut[bugType]['suggest'],
-            'precision': bugTypeOut[bugType]['correct'] / bugTypeOut[bugType]['suggest'],
-            'recall': bugTypeOut[bugType]['correct'] / bugTypeOut[bugType]['size'],
-            f'{K}_precision': k_bugTypeOut[bugType]['correct'] / k_bugTypeOut[bugType]['suggest'],
-            f'{K}_recall': k_bugTypeOut[bugType]['correct'] / k_bugTypeOut[bugType]['size']
+            'BugType': bugType,
+            'Size': bugTypeOut[bugType]['Size'],
+            'Correct': bugTypeOut[bugType]['Correct'],
+            'Suggest': bugTypeOut[bugType]['Suggest'],
+            'Precision': bugTypeOut[bugType]['Correct'] / bugTypeOut[bugType]['Suggest'],
+            'Recall': bugTypeOut[bugType]['Correct'] / bugTypeOut[bugType]['Size'],
+            f'{K}_precision': k_bugTypeOut[bugType]['Correct'] / k_bugTypeOut[bugType]['Suggest'],
+            f'{K}_recall': k_bugTypeOut[bugType]['Correct'] / k_bugTypeOut[bugType]['Size']
         })
-        total += bugTypeOut[bugType]['size']
-        total_fixed += bugTypeOut[bugType]['correct']
-        total_suggest +=bugTypeOut[bugType]['suggest']
+        total += bugTypeOut[bugType]['Size']
+        total_fixed += bugTypeOut[bugType]['Correct']
+        total_suggest +=bugTypeOut[bugType]['Suggest']
 
-        k_total += k_bugTypeOut[bugType]['size']
-        k_total_fixed += k_bugTypeOut[bugType]['correct']
-        k_total_suggest +=k_bugTypeOut[bugType]['suggest']
+        k_total += k_bugTypeOut[bugType]['Size']
+        k_total_fixed += k_bugTypeOut[bugType]['Correct']
+        k_total_suggest +=k_bugTypeOut[bugType]['Suggest']
 
-    output = sorted(output, key=lambda x: x['recall'], reverse=True)
+    output = sorted(output, key=lambda x: x['Recall'], reverse=True)
 
     total_sum = {
-        'bugType': 'all',
-        'size': total,
-        'correct': total_fixed,
-        'suggest': total_suggest,
-        'precision': total_fixed / total_suggest,
-        'recall': total_fixed / total,
+        'BugType': 'Total',
+        'Size': total,
+        'Correct': total_fixed,
+        'Suggest': total_suggest,
+        'Precision': total_fixed / total_suggest,
+        'Recall': total_fixed / total,
         f'{K}_precision': k_total_fixed / k_total_suggest,
         f'{K}_recall': k_total_fixed / k_total
     }
@@ -139,6 +139,6 @@ projects = filtered_projects
 
 output = correctBugTypeSummary(projects, bugTypes, K)
 with open(f'data/sstubs/F{filter_size}K{K}_bug_summary_deep.csv', 'w') as target:
-    writer = DictWriter(target, ['bugType', 'size', 'correct', 'suggest','precision', 'recall', f'{K}_precision', f'{K}_recall'])
+    writer = DictWriter(target, ['BugType', 'Size', 'Correct', 'Suggest','Precision', 'Recall', f'{K}_precision', f'{K}_recall'])
     writer.writeheader()
     writer.writerows(output)
