@@ -214,8 +214,8 @@ def make_master_diff(target_repo, owner, repo, branch, abstracted):
             "author":author,
             "created_at": created_at,
             # "file_path": x["file_path"],
-            "condition": x["consequent"],
-            "consequent": x["condition"],
+            "condition": x["condition"],
+            "consequent": x["consequent"],
             "abstracted": x["abstracted"] if abstracted else {}
         } for x in hunks]
         change_sets.extend(out_metricses)
